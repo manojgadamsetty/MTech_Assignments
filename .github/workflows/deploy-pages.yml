@@ -32,7 +32,13 @@ jobs:
 
       - name: Prepare deployment directory
         run: |
+          # Create directory structure
           mkdir -p _site/MTech/Software_Architectures/1
+          
+          # Copy index page
+          cp index.html _site/index.html
+          
+          # Copy Software Architecture assignment
           cp "Software Architecture/iam-architecture.html" _site/MTech/Software_Architectures/1/index.html
           
           # Create CNAME file for custom domain

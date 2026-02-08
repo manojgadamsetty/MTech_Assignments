@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTech Assignments - Manoj Gadamsetty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .assignment-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .assignment-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .assignment-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .assignment-description {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .assignment-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .badge-deployed {
+            background: #48bb78;
+            color: white;
+        }
+
+        .badge-github {
+            background: #4299e1;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .github-link:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .assignments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MTech Assignments</h1>
+            <p>BITS Pilani - Master of Technology Program</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">by Manoj Gadamsetty</p>
+        </header>
+
+        <div class="assignments-grid">
+            <!-- Software Architecture -->
+            <a href="/MTech/Software_Architectures/1/" class="assignment-card">
+                <div class="assignment-icon">SA</div>
+                <div class="assignment-title">Software Architecture</div>
+                <div class="assignment-description">
+                    Identity Access Management (IAM) architecture design for SSO and MFA integration. 
+                    Comprehensive documentation with system diagrams and implementation details.
+                </div>
+                <span class="badge badge-deployed">View Documentation</span>
+                <div class="assignment-meta">
+                    <div class="meta-item">Feb 2026</div>
+                    <div class="meta-item">Live Page</div>
+                </div>
+            </a>
+
+            <!-- Data Structure and Algo -->
+            <a href="https://github.com/manojgadamsetty/MTech_Assignments/tree/main/Data%20Structure%20and%20Algo" target="_blank" class="assignment-card">
+                <div class="assignment-icon">DS</div>
+                <div class="assignment-title">Data Structures & Algorithms</div>
+                <div class="assignment-description">
+                    Algorithm analysis and implementation assignments. Includes performance analysis, 
+                    complexity calculations, and optimized solutions with detailed reports.
+                </div>
+                <span class="badge badge-github">View on GitHub</span>
+                <div class="assignment-meta">
+                    <div class="meta-item">Nov 2025</div>
+                    <div class="meta-item">Source Code</div>
+                </div>
+            </a>
+
+            <!-- Distributed Computing -->
+            <a href="https://github.com/manojgadamsetty/MTech_Assignments/tree/main/distributed-computing-assignments" target="_blank" class="assignment-card">
+                <div class="assignment-icon">DC</div>
+                <div class="assignment-title">Distributed Computing</div>
+                <div class="assignment-description">
+                    Implementation of distributed algorithms including Lamport Mutex for mutual exclusion 
+                    and Byzantine Agreement protocol for fault-tolerant consensus.
+                </div>
+                <span class="badge badge-github">View on GitHub</span>
+                <div class="assignment-meta">
+                    <div class="meta-item">Oct 2025</div>
+                    <div class="meta-item">2 Projects</div>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <a href="https://github.com/manojgadamsetty/MTech_Assignments" target="_blank" class="github-link">
+                View Full Repository on GitHub →
+            </a>
+            <p style="margin-top: 30px;">&copy; 2026 Manoj Gadamsetty | BITS Pilani MTech Program</p>
+        </footer>
+    </div>
+</body>
+</html>
