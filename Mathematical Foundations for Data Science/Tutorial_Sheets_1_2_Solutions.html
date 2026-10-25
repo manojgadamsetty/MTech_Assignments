@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematical Foundations for Data Science – Tutorial Sheet 1 &amp; 2 Solutions</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+    macros: {
+      vv: ['\\vec{#1}', 1],
+      R: '\\mathbb{R}'
+    }
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --primary: #1a237e;
+    --secondary: #283593;
+    --accent: #e53935;
+    --accent2: #2e7d32;
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --border: #dee2f0;
+    --text: #1a1a2e;
+    --muted: #546e7a;
+    --highlight: #fff9c4;
+    --pivot: #e8f5e9;
+    --step-bg: #f0f4ff;
+    --answer-bg: #e8f5e9;
+    --note-bg: #fff3e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, #3949ab 100%);
+    color: white;
+    padding: 36px 24px 28px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  }
+  header h1 { font-size: 1.8em; font-weight: 700; letter-spacing: 0.5px; }
+  header p { margin-top: 8px; font-size: 1.05em; opacity: 0.88; }
+  .toc {
+    max-width: 950px; margin: 32px auto 0; padding: 0 16px;
+  }
+  .toc-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .toc-card h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 12px; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .toc-grid a { color: var(--secondary); text-decoration: none; font-size: 0.93em; }
+  .toc-grid a:hover { text-decoration: underline; }
+  .sheet-section {
+    max-width: 950px; margin: 36px auto; padding: 0 16px;
+  }
+  .sheet-header {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .sheet-body {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 28px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+  }
+  .problem-block {
+    margin-bottom: 44px;
+    padding-bottom: 36px;
+    border-bottom: 2px solid var(--border);
+  }
+  .problem-block:last-child { border-bottom: none; }
+  .problem-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent);
+  }
+  .sub-problem {
+    margin: 20px 0 20px 10px;
+  }
+  .sub-title {
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    font-size: 1.02em;
+  }
+  .given-box {
+    background: var(--step-bg);
+    border: 1px solid #c5cae9;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 8px 0 12px;
+    font-size: 0.97em;
+  }
+  .given-box strong { color: var(--primary); }
+  .step-list { list-style: none; padding: 0; }
+  .step-list li {
+    background: var(--step-bg);
+    border-left: 3px solid #7986cb;
+    border-radius: 0 5px 5px 0;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 0.96em;
+  }
+  .step-num {
+    font-weight: 700;
+    color: var(--primary);
+    min-width: 24px;
+    display: inline-block;
+  }
+  .answer-box {
+    background: var(--answer-bg);
+    border: 1.5px solid #a5d6a7;
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin: 14px 0 6px;
+  }
+  .answer-box strong { color: var(--accent2); }
+  .note-box {
+    background: var(--note-bg);
+    border: 1.5px solid #ffe082;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-size: 0.93em;
+    color: #5d4037;
+  }
+  .note-box strong { color: #e65100; }
+
+  /* Matrix table */
+  .matrix-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    vertical-align: middle;
+    margin: 4px 2px;
+  }
+  .matrix-bracket-l, .matrix-bracket-r {
+    font-size: 2.2em;
+    font-weight: 100;
+    color: #333;
+    line-height: 1;
+  }
+  table.mat {
+    border-collapse: separate;
+    border-spacing: 6px 4px;
+  }
+  table.mat td {
+    text-align: center;
+    min-width: 28px;
+    padding: 2px 4px;
+    font-size: 0.97em;
+  }
+  table.mat td.pivot { background: #c8e6c9; border-radius: 3px; font-weight: 700; }
+  table.mat td.highlight { background: #fff9c4; }
+  .ops-label {
+    color: var(--muted);
+    font-size: 0.88em;
+    font-style: italic;
+    margin: 6px 0 2px 4px;
+  }
+  .arrow-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .arrow-lbl {
+    font-size: 0.85em;
+    color: var(--muted);
+    font-style: italic;
+    white-space: nowrap;
+  }
+  .final-tag {
+    background: var(--accent2);
+    color: white;
+    font-size: 0.78em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .key-formula {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 0.97em;
+  }
+  .row-ops {
+    color: #5c6bc0;
+    font-size: 0.84em;
+    font-style: italic;
+    padding-left: 14px;
+    margin: 2px 0;
+  }
+  hr.section-sep {
+    border: none;
+    border-top: 3px solid var(--primary);
+    margin: 8px 0 20px;
+    opacity: 0.15;
+  }
+  .tag-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    font-size: 0.78em;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-badge.red { background: var(--accent); }
+  .tag-badge.blue { background: var(--secondary); }
+  .inline-mat { font-family: monospace; background: #f3f4f6; padding: 1px 5px; border-radius: 4px; }
+
+  /* Augmented matrix separator */
+  .aug-sep { border-left: 2px solid #9c27b0; padding-left: 6px !important; }
+
+  @media (max-width: 700px) {
+    .toc-grid { grid-template-columns: 1fr; }
+    .sheet-body { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mathematical Foundations for Data Science</h1>
+  <p>BITS Pilani, Hyderabad Campus &nbsp;|&nbsp; Second Semester 2025–2026</p>
+  <p style="margin-top:6px;font-size:0.98em;">Tutorial Sheet 1 &amp; Tutorial Sheet 2 — Complete Solutions</p>
+</header>
+
+<!-- Table of Contents -->
+<div class="toc">
+  <div class="toc-card">
+    <h2>📋 Table of Contents</h2>
+    <div class="toc-grid">
+      <a href="#ts1">📘 Tutorial Sheet 1</a>
+      <a href="#ts2">📗 Tutorial Sheet 2</a>
+      <a href="#ts1-q1">Q1. Row Echelon &amp; RREF</a>
+      <a href="#ts2-q1">Q1. Trace &amp; Determinant</a>
+      <a href="#ts1-q2">Q2. Matrix Inverse (Gauss)</a>
+      <a href="#ts2-q2">Q2. Eigenvalues &amp; Eigenvectors</a>
+      <a href="#ts1-q3">Q3. Linear Dependence / Parameter</a>
+      <a href="#ts2-q3">Q3. Cholesky Factorization</a>
+      <a href="#ts1-q4">Q4. Linear Independence</a>
+      <a href="#ts2-q4">Q4. Eigendecomposition</a>
+      <a href="#ts1-q5">Q5. Basis for ℝ³</a>
+      <a href="#ts2-q5">Q5. Singular Value Decomposition</a>
+      <a href="#ts1-q6">Q6. Rank of a Matrix</a>
+      <a href="#ts1-q789">Q7–10. Linear Transformations</a>
+      <a href="#exam-guide">Exam Quick Guide (All Problems)</a>
+      <a href="#formula-bank">Formula Bank + Tips</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TUTORIAL SHEET 1 -->
+<!-- ============================================================ -->
+<div class="sheet-section" id="ts1">
+  <div class="sheet-header">📘 Tutorial Sheet 1 — Linear Algebra Fundamentals</div>
+  <div class="sheet-body">
+
+    <!-- ======================================================= -->
+    <!-- Q1 REF / RREF -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q1">
+      <div class="problem-title">Question 1 &nbsp; — &nbsp; Row Echelon Form (REF) &amp; Reduced Row Echelon Form (RREF)</div>
+      <div class="given-box">
+        <strong>Concept Recap:</strong>
+        <ul style="margin:6px 0 0 18px;">
+          <li><strong>REF:</strong> Each leading entry (pivot) is to the right of the pivot above; all zeros below each pivot.</li>
+          <li><strong>RREF:</strong> Additionally: each pivot is <em>1</em>; all other entries in the pivot column are <em>0</em>.</li>
+          <li>Elementary row operations: swap rows ($R_i \leftrightarrow R_j$), scale ($R_i \to kR_i$), add multiple ($R_i \to R_i + kR_j$).</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>How to think during elimination:</strong> At each stage, pick the leftmost possible pivot column, make one entry the pivot, clear all entries below it (REF), and only after that clear above it (RREF). This avoids confusion in larger matrices.</p>
+      </div>
+
+      <!-- 1(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $A = \begin{pmatrix}0&2&2\\1&3&3\\2&4&2\end{pmatrix}$</div>
+
+        <strong>Step 1 – Get a nonzero pivot in position (1,1) by swapping $R_1 \leftrightarrow R_2$:</strong>
+        <div class="arrow-row">
+          <div class="matrix-wrap">
+            <span class="matrix-bracket-l">[</span>
+            <table class="mat"><tr><td>1</td><td>3</td><td>3</td></tr><tr><td>0</td><td>2</td><td>2</td></tr><tr><td>2</td><td>4</td><td>2</td></tr></table>
+            <span class="matrix-bracket-r">]</span>
+          </div>
+          <span class="arrow-lbl">$R_1 \leftrightarrow R_2$</span>
+        </div>
+
+        <strong>Step 2 – Eliminate below pivot in column 1: $R_3 = R_3 - 2R_1$</strong>
+        <div class="note-box"><strong>Why this works:</strong> The first entry in $R_3$ is 2 and pivot in $R_1$ is 1. Using $R_3-2R_1$ makes the first entry exactly 0, which is required for echelon form.</div>
+        <div class="arrow-row">
+          <div class="matrix-wrap">
+            <span class="matrix-bracket-l">[</span>
+            <table class="mat"><tr><td class="pivot">1</td><td>3</td><td>3</td></tr><tr><td>0</td><td>2</td><td>2</td></tr><tr><td>0</td><td>-2</td><td>-4</td></tr></table>
+            <span class="matrix-bracket-r">]</span>
+          </div>
+        </div>
+
+        <strong>Step 3 – Eliminate below pivot in column 2: $R_3 = R_3 + R_2$</strong>
+        <div class="note-box"><strong>Quick check:</strong> after this step, pivots are in columns 1, 2, and 3 with a staircase pattern, so REF is complete.</div>
+        <div class="arrow-row">
+          <div class="matrix-wrap">
+            <span class="matrix-bracket-l">[</span>
+            <table class="mat"><tr><td class="pivot">1</td><td>3</td><td>3</td></tr><tr><td>0</td><td class="pivot">2</td><td>2</td></tr><tr><td>0</td><td>0</td><td>-2</td></tr></table>
+            <span class="matrix-bracket-r">]</span>
+          </div>
+          <span class="arrow-lbl">← This is the <strong>REF</strong></span>
+        </div>
+
+        <strong>Step 4 – Convert to RREF: scale pivots to 1 and clear above.</strong>
+        <div class="row-ops">$R_3 \to R_3/(-2)$, then $R_2 \to R_2/2$, then $R_2 \to R_2 - R_3$, then $R_1 \to R_1 - 3R_3$, then $R_1 \to R_1 - 3R_2$</div>
+        <div class="step-list">
+          <li><span class="step-num">Mini-checkpoint:</span> after scaling, rows are $[1,3,3]$, $[0,1,1]$, $[0,0,1]$.</li>
+          <li><span class="step-num">Clear above pivot 3:</span> $R_2-R_3$ makes row 2 become $[0,1,0]$, and $R_1-3R_3$ makes row 1 become $[1,3,0]$.</li>
+          <li><span class="step-num">Clear above pivot 2:</span> $R_1-3R_2$ gives $[1,0,0]$.</li>
+        </div>
+        <div class="answer-box">
+          <strong>REF:</strong>
+          $\begin{pmatrix}1&3&3\\0&2&2\\0&0&-2\end{pmatrix}$ &emsp;
+          <strong>RREF:</strong>
+          $\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix} = I_3$
+          <br><small style="color:#555;margin-top:4px;display:block;">The RREF is the 3×3 identity matrix, confirming that the matrix has rank 3 (full rank).</small>
+        </div>
+      </div>
+
+      <!-- 1(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $A = \begin{pmatrix}1&3&3&8&5\\0&1&3&10&8\\0&0&0&-1&-4\\0&0&0&2&8\end{pmatrix}$</div>
+
+        <strong>Observation:</strong> The matrix already looks almost like REF — there's a pivot in col 1 (row 1) and col 2 (row 2). Column 3 has all zeros in rows 3–4. The issue is row 4.
+        <div class="note-box"><strong>Strategy:</strong> Do not force a pivot in column 3, because it is naturally a non-pivot (free-variable) column. Move directly to column 4 where the next pivot already exists.</div>
+
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> $R_4 = R_4 + 2R_3$ to eliminate column 4 below the pivot in row 3:
+            <br>New $R_4 = [0,\ 0,\ 0,\ 2+2(-1),\ 8+2(-4)] = [0,\ 0,\ 0,\ 0,\ 0]$</li>
+        </div>
+        <div class="given-box"><strong>Checkpoint (already REF):</strong>
+          $$\begin{pmatrix}1&3&3&8&5\\0&1&3&10&8\\0&0&0&-1&-4\\0&0&0&0&0\end{pmatrix}$$
+          Pivot columns are 1, 2, and 4. Non-pivot columns 3 and 5 correspond to free variables.
+        </div>
+
+        <div class="answer-box">
+          <strong>REF:</strong>
+          $\begin{pmatrix}1&3&3&8&5\\0&1&3&10&8\\0&0&0&-1&-4\\0&0&0&0&0\end{pmatrix}$
+          &emsp; Pivots at columns 1, 2, 4.
+        </div>
+
+        <strong>Finding RREF from REF:</strong>
+        <div class="step-list">
+          <li><span class="step-num">Step 2:</span> $R_3 \to R_3 / (-1)$: Row 3 becomes $[0,\ 0,\ 0,\ 1,\ 4]$</li>
+          <li><span class="step-num">Step 3:</span> $R_2 = R_2 - 10R_3$: $[0,\ 1,\ 3,\ 0,\ -32]$</li>
+          <li><span class="step-num">Step 4:</span> $R_1 = R_1 - 8R_3$: $[1,\ 3,\ 3,\ 0,\ -27]$</li>
+          <li><span class="step-num">Step 5:</span> $R_1 = R_1 - 3R_2$: $[1,\ 0,\ -6,\ 0,\ 69]$</li>
+        </div>
+        <div class="note-box"><strong>Interpretation:</strong> Column 3 stays non-pivot even in RREF, so it cannot be eliminated to a pivot 1. That is expected and indicates one degree of freedom among solution variables.</div>
+
+        <div class="answer-box">
+          <strong>RREF:</strong>
+          $\begin{pmatrix}1&0&-6&0&69\\0&1&3&0&-32\\0&0&0&1&4\\0&0&0&0&0\end{pmatrix}$
+          <br><small style="color:#555;margin-top:4px;display:block;">Rank = 3. Free variables: $x_3$ and $x_5$ (columns 3 and 5 are non-pivot).</small>
+        </div>
+      </div>
+
+      <!-- 1(iii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(iii) &nbsp; $A = \begin{pmatrix}0&1&3&-1&2&1\\0&-2&-6&2&0&2\\0&0&0&1&-1&7\\0&2&6&-2&2&0\\0&3&9&-2&2&7\end{pmatrix}$</div>
+
+        <strong>Observation:</strong> Column 1 is all zeros — skip it. First pivot is in column 2, row 1.
+        <div class="note-box"><strong>Important:</strong> Since column 1 is entirely zero, this matrix can never have a pivot in column 1. So variable $x_1$ will definitely be free in any associated linear system.</div>
+
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Clear column 2 below pivot (row 1):
+            <br>$R_2 = R_2 + 2R_1 \Rightarrow [0,\ 0,\ 0,\ 0,\ 4,\ 4]$
+            <br>$R_4 = R_4 - 2R_1 \Rightarrow [0,\ 0,\ 0,\ 0,\ -2,\ -2]$
+            <br>$R_5 = R_5 - 3R_1 \Rightarrow [0,\ 0,\ 0,\ 1,\ -4,\ 4]$</li>
+          <li><span class="step-num">Step 2:</span> Next pivot in column 4. Swap $R_2 \leftrightarrow R_3$, then swap new $R_3 \leftrightarrow R_5$:
+            <br>After rearranging below-R1 rows: $R_2 = [0,0,0,1,-1,7]$</li>
+          <li><span class="step-num">Step 3:</span> Clear column 4 below new $R_2$:
+            <br>$R_5 = R_5 - R_2 \Rightarrow [0,\ 0,\ 0,\ 0,\ -3,\ -3]$</li>
+          <li><span class="step-num">Step 4:</span> Pivot in column 5, row 3: use $R_3 = [0,0,0,0,4,4]$, then clear below:
+            <br>$R_4 = R_4 + \tfrac{1}{2}R_3$, $R_5 = R_5 + \tfrac{3}{4}R_3$ — both become zero rows.</li>
+          <li><span class="step-num">Step 5:</span> Scale: $R_3 \to R_3/4 = [0,0,0,0,1,1]$</li>
+        </div>
+        <div class="given-box"><strong>Checkpoint before final cleanup:</strong>
+          $$\begin{pmatrix}0&1&3&-1&2&1\\0&0&0&1&-1&7\\0&0&0&0&1&1\\0&0&0&0&0&0\\0&0&0&0&0&0\end{pmatrix}$$
+          This is already valid REF because each nonzero row starts to the right of the row above.
+        </div>
+
+        <div class="answer-box">
+          <strong>REF:</strong>
+          $\begin{pmatrix}0&1&3&-1&2&1\\0&0&0&1&-1&7\\0&0&0&0&1&1\\0&0&0&0&0&0\\0&0&0&0&0&0\end{pmatrix}$
+          &emsp; Pivots at columns 2, 4, 5.
+        </div>
+
+        <strong>Finding RREF from REF:</strong>
+        <div class="step-list">
+          <li><span class="step-num">Step 6:</span> $R_2 = R_2 + R_3$: $[0,0,0,1,0,8]$</li>
+          <li><span class="step-num">Step 7:</span> $R_1 = R_1 - 2R_3$: $[0,1,3,-1,0,-1]$</li>
+          <li><span class="step-num">Step 8:</span> $R_1 = R_1 + R_2$: $[0,1,3,0,0,7]$</li>
+        </div>
+        <div class="note-box"><strong>Why no more steps?</strong> Pivot columns 2, 4, 5 already have pivot value 1 and zeros elsewhere, which is exactly the RREF requirement. Column 3 remains free.</div>
+
+        <div class="answer-box">
+          <strong>RREF:</strong>
+          $\begin{pmatrix}0&1&3&0&0&7\\0&0&0&1&0&8\\0&0&0&0&1&1\\0&0&0&0&0&0\\0&0&0&0&0&0\end{pmatrix}$
+          <br><small style="color:#555;margin-top:4px;display:block;">Rank = 3. Free variables: $x_1$, $x_3$ (non-pivot columns). Dependent variables: $x_2 = 7-3x_3$, $x_4 = 8$, $x_5 = 1$.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q2 INVERSE -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q2">
+      <div class="problem-title">Question 2 &nbsp; — &nbsp; Matrix Inverse by Gauss Elimination (Gauss-Jordan)</div>
+      <div class="given-box">
+        <strong>Method:</strong> Form the augmented matrix $[A\,|\,I]$. Apply row operations until the left block becomes $I$. The right block then gives $A^{-1}$.
+        <br><strong>Execution tip:</strong> perform elimination in two phases: first create upper-triangular form on the left, then do back-elimination to clear entries above pivots.
+      </div>
+
+      <!-- 2(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $A = \begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$</div>
+
+        <strong>Augmented matrix $[A\,|\,I]$:</strong>
+        <div style="overflow-x:auto;margin:8px 0;">
+          $$\left[\begin{array}{ccc|ccc} 1&1&1&1&0&0\\ 1&2&2&0&1&0\\ 1&2&3&0&0&1 \end{array}\right]$$
+        </div>
+        <div class="step-list">
+          <li>$R_2 = R_2 - R_1 \Rightarrow [0,1,1\,|\,-1,1,0]$ and $R_3 = R_3 - R_1 \Rightarrow [0,1,2\,|\,-1,0,1]$</li>
+          <li>$R_3 = R_3 - R_2 \Rightarrow [0,0,1\,|\,0,-1,1]$ (third pivot obtained).</li>
+          <li><strong>Checkpoint:</strong> left block is now upper triangular with diagonal ones, so only entries above pivot 3 and pivot 2 remain.</li>
+          <li>Back-sub: $R_2 = R_2 - R_3 \Rightarrow [0,1,0\,|\,-1,2,-1]$</li>
+          <li>$R_1 = R_1 - R_3 \Rightarrow [1,1,0\,|\,1,1,-1]$, then $R_1 = R_1 - R_2 \Rightarrow [1,0,0\,|\,2,-1,0]$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Answer: </strong>$A^{-1} = \begin{pmatrix}2&-1&0\\-1&2&-1\\0&-1&1\end{pmatrix}$
+          <br><small style="color:#555">Verify: $A \cdot A^{-1} = I$ ✓</small>
+        </div>
+      </div>
+
+      <!-- 2(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $A = \begin{pmatrix}2&1&-1\\3&1&0\\-1&0&2\end{pmatrix}$</div>
+        <div class="note-box"><strong>Note:</strong> $\det(A) = -3 \neq 0$, so the inverse exists.</div>
+        <div class="given-box"><strong>Start augmented matrix:</strong>
+          $$\left[\begin{array}{ccc|ccc}2&1&-1&1&0&0\\3&1&0&0&1&0\\-1&0&2&0&0&1\end{array}\right]$$
+        </div>
+        <div class="step-list">
+          <li>$R_2 = R_2 - \tfrac{3}{2}R_1 \Rightarrow [0,-\tfrac{1}{2},\tfrac{3}{2}\,|\,-\tfrac{3}{2},1,0]$</li>
+          <li>$R_3 = R_3 + \tfrac{1}{2}R_1 \Rightarrow [0,\tfrac{1}{2},\tfrac{3}{2}\,|\,\tfrac{1}{2},0,1]$</li>
+          <li>$R_3 = R_3 + R_2 \Rightarrow [0,0,3\,|\,-1,1,1]$</li>
+          <li>$R_3 \to R_3/3 \Rightarrow [0,0,1\,|\,-\tfrac{1}{3},\tfrac{1}{3},\tfrac{1}{3}]$</li>
+          <li>$R_2 = R_2 - \tfrac{3}{2}R_3 \Rightarrow [0,-\tfrac{1}{2},0\,|\,-1,\tfrac{1}{2},-\tfrac{1}{2}]$</li>
+          <li>$R_2 \to R_2 \times (-2) \Rightarrow [0,1,0\,|\,2,-1,1]$</li>
+          <li>$R_1 = R_1 + R_3 \Rightarrow [2,1,0\,|\,\tfrac{2}{3},\tfrac{1}{3},\tfrac{1}{3}]$</li>
+          <li>$R_1 = R_1 - R_2 \Rightarrow [2,0,0\,|\,-\tfrac{4}{3},\tfrac{4}{3},-\tfrac{2}{3}]$</li>
+          <li>$R_1 \to R_1/2 \Rightarrow [1,0,0\,|\,-\tfrac{2}{3},\tfrac{2}{3},-\tfrac{1}{3}]$</li>
+        </div>
+        <div class="note-box"><strong>Why fractions appear early:</strong> because pivot 2 in row 1 is not 1, using $R_2-\tfrac{3}{2}R_1$ is the cleanest direct cancellation for the first column. Fractions are normal in Gauss-Jordan and still lead to an exact inverse.</div>
+        <div class="answer-box">
+          <strong>Answer: </strong>$A^{-1} = \dfrac{1}{3}\begin{pmatrix}-2&2&-1\\6&-3&3\\-1&1&1\end{pmatrix}\ =\ \begin{pmatrix}-\tfrac{2}{3}&\tfrac{2}{3}&-\tfrac{1}{3}\\2&-1&1\\-\tfrac{1}{3}&\tfrac{1}{3}&\tfrac{1}{3}\end{pmatrix}$
+        </div>
+      </div>
+
+      <!-- 2(iii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(iii) &nbsp; $A = \begin{pmatrix}0&1&-1&1\\2&2&0&-2\\1&1&-2&0\\0&1&2&0\end{pmatrix}$</div>
+        <div class="note-box"><strong>Note:</strong> $\det(A) = 2 \neq 0$, so the inverse exists. Since $\det = 2$, the inverse will have entries that are integers or half-integers.</div>
+        <div class="given-box"><strong>Start augmented matrix:</strong>
+          $$\left[\begin{array}{cccc|cccc}0&1&-1&1&1&0&0&0\\2&2&0&-2&0&1&0&0\\1&1&-2&0&0&0&1&0\\0&1&2&0&0&0&0&1\end{array}\right]$$
+        </div>
+
+        <strong>Start by swapping $R_1 \leftrightarrow R_3$ to avoid a zero pivot:</strong>
+        <div class="step-list">
+          <li><span class="step-num">Phase A (forward elimination):</span> $R_1 \leftrightarrow R_3$, then $R_2 = R_2-2R_1$ to clear below pivot 1.</li>
+          <li><span class="step-num">Phase B (second pivot):</span> swap $R_2 \leftrightarrow R_3$ so pivot in column 2 is easy to use, then eliminate other column-2 entries.</li>
+          <li><span class="step-num">Phase C (third and fourth pivots):</span> use row operations to isolate column 3 pivot, then column 4 pivot.</li>
+          <li><span class="step-num">Key cleanup:</span> $R_4 = R_4 - R_2$ and then $R_4 = R_4 - \tfrac{3}{4}R_3$ gives a single nonzero pivot entry; scale $R_4 \to 2R_4$ to make that pivot 1.</li>
+          <li><span class="step-num">Back elimination:</span> clear entries above pivots in columns 4, 3, and 2 to convert left block to $I_4$.</li>
+        </div>
+        <div class="note-box"><strong>Practical reading of the workflow:</strong> in 4x4 inverses, it is normal to choose row swaps that keep arithmetic smaller. The swap sequence here prevents unnecessary large fractions until late in the process.</div>
+        <div class="answer-box">
+          <strong>Answer: </strong>$A^{-1} = \begin{pmatrix}-4&-2&5&3\\2&1&-2&-1\\-1&-\tfrac{1}{2}&1&1\\-2&-\tfrac{3}{2}&3&2\end{pmatrix}$
+          <br><small>Or equivalently: $A^{-1} = \dfrac{1}{2}\begin{pmatrix}-8&-4&10&6\\4&2&-4&-2\\-2&-1&2&2\\-4&-3&6&4\end{pmatrix}$</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q3 Linear Dependence -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q3">
+      <div class="problem-title">Question 3 &nbsp; — &nbsp; Linear Dependence and Linear Combination</div>
+      <div class="given-box">
+        <strong>Given:</strong> $S = \left\{\mathbf{v}_1 = \begin{pmatrix}c\\2\\1\end{pmatrix},\quad \mathbf{v}_2 = \begin{pmatrix}1\\-3\\0\end{pmatrix},\quad \mathbf{v}_3 = \begin{pmatrix}2\\c\\-1\end{pmatrix}\right\}$
+        <br><strong>Interpretation:</strong> Think of these vectors as columns of a 3x3 matrix. Linear dependence means one column can be written as a combination of the other two, which is exactly when the determinant is zero.
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">(i) Find the value(s) of $c$ such that $S$ is linearly dependent.</div>
+        <div class="given-box"><strong>Key fact:</strong> A set of 3 vectors in $\mathbb{R}^3$ is linearly dependent $\iff$ the determinant of the matrix formed by those vectors is $\mathbf{0}$.</div>
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Form matrix $M = [\mathbf{v}_1\;\mathbf{v}_2\;\mathbf{v}_3]$:
+            $M = \begin{pmatrix}c&1&2\\2&-3&c\\1&0&-1\end{pmatrix}$</li>
+          <li><span class="step-num">Step 2:</span> Compute $\det(M)$ by expanding along row 3:
+            $$\det(M) = 1\cdot[1\cdot c - 2(-3)] + (-1)\cdot[c(-3)-2(1)] = (c+6)-(-3c-2) = 4c+8$$</li>
+          <li><span class="step-num">Step 3:</span> Set $\det(M) = 0$: $4c + 8 = 0 \;\Rightarrow\; c = -2$</li>
+        </div>
+        <div class="note-box"><strong>Meaning of $c=-2$:</strong> At this parameter value, the volume spanned by the three vectors collapses to zero, so the vectors lie in a common plane (or line), hence dependence.</div>
+        <div class="answer-box"><strong>Answer: </strong>$c = -2$. When $c=-2$, the three vectors are linearly dependent.</div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">(ii) Express $\begin{pmatrix}a_1\\a_2\\0\end{pmatrix}$ as a linear combination of vectors in $S$.</div>
+        <p>Find scalars $\alpha, \beta, \gamma$ such that $\alpha\mathbf{v}_1 + \beta\mathbf{v}_2 + \gamma\mathbf{v}_3 = \begin{pmatrix}a_1\\a_2\\0\end{pmatrix}$.</p>
+        <div class="given-box"><strong>Set up component-wise equations:</strong>
+          $$\begin{aligned}
+          c\alpha + \beta + 2\gamma &= a_1 \\
+          2\alpha - 3\beta + c\gamma &= a_2 \\
+          \alpha - \gamma &= 0
+          \end{aligned}$$
+        </div>
+        <div class="step-list">
+          <li><span class="step-num">Equation from row 3:</span> $\alpha - \gamma = 0 \;\Rightarrow\; \alpha = \gamma$</li>
+          <li><span class="step-num">Equation from row 1:</span> with $\gamma=\alpha$, $c\alpha + \beta + 2\alpha = a_1$ gives $\beta = a_1 - (c+2)\alpha$</li>
+          <li><span class="step-num">Substitute into row 2:</span> $(c+2)\alpha - 3\beta = a_2$</li>
+          <li><span class="step-num">Replace $\beta$:</span> $(c+2)\alpha - 3[a_1-(c+2)\alpha] = a_2$</li>
+          <li><span class="step-num">Collect terms:</span> $4(c+2)\alpha = 3a_1 + a_2 \Rightarrow \alpha = \dfrac{3a_1+a_2}{4(c+2)}$ and $\gamma=\alpha$</li>
+          <li><span class="step-num">Compute $\beta$:</span> $\beta = a_1 - (c+2)\alpha = a_1 - \dfrac{3a_1+a_2}{4} = \dfrac{a_1-a_2}{4}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Answer (for $c \neq -2$):</strong><br>
+          $$\alpha = \gamma = \frac{3a_1 + a_2}{4(c+2)}, \qquad \beta = \frac{a_1 - a_2}{4}$$
+          $$\therefore\;\begin{pmatrix}a_1\\a_2\\0\end{pmatrix} = \frac{3a_1+a_2}{4(c+2)}\mathbf{v}_1 + \frac{a_1-a_2}{4}\mathbf{v}_2 + \frac{3a_1+a_2}{4(c+2)}\mathbf{v}_3$$
+          <small style="color:#555">When $c = -2$ (dependent case), this system is consistent only if $3a_1 + a_2 = 0$.</small>
+        </div>
+        <div class="note-box"><strong>Special case explanation ($c=-2$):</strong> The formulas for $\alpha$ and $\gamma$ divide by $(c+2)$, so they are not valid at $c=-2$. In that case the three vectors are dependent; representation is possible only for target vectors that satisfy the compatibility relation $3a_1+a_2=0$.</div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q4 Linear Independence -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q4">
+      <div class="problem-title">Question 4 &nbsp; — &nbsp; Linear Independence or Dependence</div>
+      <div class="given-box"><strong>Method:</strong> Place vectors as columns of a matrix. If $\det \neq 0$ (for square) or rank = number of vectors, they are <strong>independent</strong>; otherwise <strong>dependent</strong>.</div>
+
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $\mathbf{v}_1=\begin{pmatrix}2\\2\\0\end{pmatrix},\; \mathbf{v}_2=\begin{pmatrix}1\\-1\\1\end{pmatrix},\; \mathbf{v}_3=\begin{pmatrix}4\\2\\-2\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Form $M = \begin{pmatrix}2&1&4\\2&-1&2\\0&1&-2\end{pmatrix}$</li>
+          <li><span class="step-num">Step 2:</span> $\det(M) = 2[(-1)(-2)-(2)(1)] - 1[(2)(-2)-(2)(0)] + 4[(2)(1)-(-1)(0)]$
+            $= 2(2-2) - 1(-4) + 4(2) = 0 + 4 + 8 = \mathbf{12 \neq 0}$</li>
+        </div>
+        <div class="answer-box"><strong>Conclusion: LINEARLY INDEPENDENT</strong> (determinant = 12 ≠ 0, only trivial solution).</div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $\mathbf{v}_1=\begin{pmatrix}1\\1\\3\\3\end{pmatrix},\; \mathbf{v}_2=\begin{pmatrix}-1\\1\\-1\\-3\end{pmatrix},\; \mathbf{v}_3=\begin{pmatrix}2\\5\\9\\6\end{pmatrix}$ (vectors in $\mathbb{R}^4$)</div>
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Form matrix $M$ (4×3) and row-reduce.</li>
+          <li>$R_2 - R_1 \to [0,2,3]$, &nbsp; $R_3 - 3R_1 \to [0,2,3]$, &nbsp; $R_4 - 3R_1 \to [0,0,0]$</li>
+          <li>$R_3 - R_2 \to [0,0,0]$</li>
+          <li>Result: rank = 2 &lt; 3</li>
+        </div>
+        <div class="answer-box"><strong>Conclusion: LINEARLY DEPENDENT</strong> (rank = 2 &lt; 3).</div>
+        <div class="note-box">
+          <strong>Dependence relation:</strong> Solving $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 = \mathbf{v}_3$:
+          $\mathbf{v}_3 = \dfrac{7}{2}\mathbf{v}_1 + \dfrac{3}{2}\mathbf{v}_2$, equivalently $\;2\mathbf{v}_3 = 7\mathbf{v}_1 + 3\mathbf{v}_2\;$, i.e., $7\mathbf{v}_1 + 3\mathbf{v}_2 - 2\mathbf{v}_3 = \mathbf{0}$.
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q5 Basis -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q5">
+      <div class="problem-title">Question 5 &nbsp; — &nbsp; Basis for $\mathbb{R}^3$</div>
+      <div class="given-box"><strong>Given:</strong> $\mathbf{u}=\begin{pmatrix}0\\3\\1\end{pmatrix},\; \mathbf{v}=\begin{pmatrix}1\\0\\1\end{pmatrix},\; \mathbf{w}=\begin{pmatrix}-2\\1\\4\end{pmatrix}$. Is this set a basis for $\mathbb{R}^3$?</div>
+      <div class="given-box"><strong>Key fact:</strong> A set of $n$ vectors forms a basis for $\mathbb{R}^n$ if and only if they are linearly independent, equivalently, if the matrix formed by the vectors has nonzero determinant.</div>
+      <div class="step-list">
+        <li><span class="step-num">Step 1:</span> Form $M = [\mathbf{u}\;\mathbf{v}\;\mathbf{w}] = \begin{pmatrix}0&1&-2\\3&0&1\\1&1&4\end{pmatrix}$</li>
+        <li><span class="step-num">Step 2:</span> $\det(M) = 0[(0)(4)-(1)(1)] - 1[(3)(4)-(1)(1)] + (-2)[(3)(1)-(0)(1)]$
+          $= 0 - 1(11) - 2(3) = -11 - 6 = \mathbf{-17 \neq 0}$</li>
+      </div>
+      <div class="answer-box"><strong>Yes, $\{\mathbf{u}, \mathbf{v}, \mathbf{w}\}$ IS a basis for $\mathbb{R}^3$.</strong> The determinant is $-17 \neq 0$, confirming the vectors are linearly independent and span $\mathbb{R}^3$.</div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q6 Rank -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q6">
+      <div class="problem-title">Question 6 &nbsp; — &nbsp; Rank of a Matrix</div>
+      <div class="given-box"><strong>Given:</strong> $A = \begin{pmatrix}1&2&0&1&1\\2&4&1&3&0\\3&6&2&5&1\\-4&-8&1&-3&1\end{pmatrix}$. Find $\text{rank}(A)$.</div>
+      <div class="given-box"><strong>Key fact:</strong> Rank = number of nonzero rows in the REF/RREF of the matrix.</div>
+      <div class="step-list">
+        <li>$R_2 = R_2 - 2R_1 \Rightarrow [0,0,1,1,-2]$</li>
+        <li>$R_3 = R_3 - 3R_1 \Rightarrow [0,0,2,2,-2]$</li>
+        <li>$R_4 = R_4 + 4R_1 \Rightarrow [0,0,1,1,5]$</li>
+        <li>$R_3 = R_3 - 2R_2 \Rightarrow [0,0,0,0,2]$</li>
+        <li>$R_4 = R_4 - R_2 \Rightarrow [0,0,0,0,7]$</li>
+        <li>$R_4 = R_4 - \tfrac{7}{2}R_3 \Rightarrow [0,0,0,0,0]$</li>
+      </div>
+      <p>The REF has 3 nonzero rows (pivots in columns 1, 3, 5).</p>
+      <div class="answer-box"><strong>$\text{rank}(A) = 3$</strong>. The RREF is $\begin{pmatrix}1&2&0&1&0\\0&0&1&1&0\\0&0&0&0&1\\0&0&0&0&0\end{pmatrix}$</div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q7-10 Linear Transformations -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts1-q789">
+      <div class="problem-title">Questions 7–10 &nbsp; — &nbsp; Linear Transformations</div>
+      <div class="given-box">
+        <strong>A transformation $T$ is linear if and only if:</strong>
+        <br>(a) $T(\mathbf{u}+\mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$ &nbsp; (additivity)
+        <br>(b) $T(\alpha\mathbf{u}) = \alpha T(\mathbf{u})$ &nbsp; (homogeneity)
+        <br><strong>Shortcut:</strong> If $T(\mathbf{0}) \neq \mathbf{0}$, then $T$ is NOT linear. Any transformation of the form $T(\mathbf{x}) = A\mathbf{x}$ (matrix multiplication) IS always linear.
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">Q7 &nbsp; $T: \mathbb{R}^2 \to \mathbb{R}^3$, &nbsp; $T\begin{pmatrix}x_1\\x_2\end{pmatrix} = \begin{pmatrix}x_1+3x_2\\3x_2+2\\2x_1-x_2\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Check $T(\mathbf{0})$:</span> $T\begin{pmatrix}0\\0\end{pmatrix} = \begin{pmatrix}0\\2\\0\end{pmatrix} \neq \begin{pmatrix}0\\0\\0\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>$T$ is NOT linear.</strong> Since $T(\mathbf{0}) = (0,2,0)^T \neq \mathbf{0}$, the transformation fails the zero-vector test. The constant term $+2$ in the second component makes it an affine (not linear) map.
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">Q8 &nbsp; $T: \mathbb{R}^2 \to \mathbb{R}^2$, &nbsp; $T\begin{pmatrix}x_1\\x_2\end{pmatrix} = \begin{pmatrix}x_1-|x_2|\\x_1+2x_2\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Test homogeneity:</span> Let $\mathbf{x} = \begin{pmatrix}0\\1\end{pmatrix}$, $\alpha = -1$.</li>
+          <li>$T(\mathbf{x}) = T\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}0-1\\0+2\end{pmatrix} = \begin{pmatrix}-1\\2\end{pmatrix}$</li>
+          <li>$T(\alpha\mathbf{x}) = T\begin{pmatrix}0\\-1\end{pmatrix} = \begin{pmatrix}0-|-1|\\0+2(-1)\end{pmatrix} = \begin{pmatrix}-1\\-2\end{pmatrix}$</li>
+          <li>$\alpha T(\mathbf{x}) = (-1)\begin{pmatrix}-1\\2\end{pmatrix} = \begin{pmatrix}1\\-2\end{pmatrix}$</li>
+          <li>$T(\alpha\mathbf{x}) = (-1,-2) \neq \alpha T(\mathbf{x}) = (1,-2)$ ← <strong>Homogeneity fails!</strong></li>
+        </div>
+        <div class="answer-box"><strong>$T$ is NOT linear.</strong> The absolute value $|x_2|$ breaks homogeneity: $T(-\mathbf{x}) \neq -T(\mathbf{x})$.</div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">Q9 &nbsp; $T: \mathbb{R}^2 \to \mathbb{R}^2$, &nbsp; $T(\mathbf{x}) = A\mathbf{x}$ where $A = \begin{pmatrix}1&2\\2&5\end{pmatrix}$, &nbsp; $\mathbf{v} = \begin{pmatrix}2\\2\end{pmatrix}$</div>
+        <div class="step-list">
+          <li>$T(\mathbf{v}) = A\mathbf{v} = \begin{pmatrix}1&2\\2&5\end{pmatrix}\begin{pmatrix}2\\2\end{pmatrix} = \begin{pmatrix}1\cdot2+2\cdot2\\2\cdot2+5\cdot2\end{pmatrix} = \begin{pmatrix}6\\14\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box"><strong>Image of $\mathbf{v}$ under $T$: &nbsp; $T(\mathbf{v}) = \begin{pmatrix}6\\14\end{pmatrix}$</strong></div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">Q10 &nbsp; $T: \mathbb{R}^3 \to \mathbb{R}^3$, &nbsp; $T\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix} = \begin{pmatrix}3x_1+x_2\\-2x_1-4x_2+3x_3\\5x_1+4x_2-2x_3\end{pmatrix}$</div>
+        <div class="step-list">
+          <li>Rewrite in matrix form: $T(\mathbf{x}) = A\mathbf{x}$ where $A = \begin{pmatrix}3&1&0\\-2&-4&3\\5&4&-2\end{pmatrix}$</li>
+          <li>Since $T$ can be expressed as multiplication by a fixed matrix $A$, it is a <strong>matrix transformation</strong>.</li>
+          <li>Every matrix transformation is linear: $T(\mathbf{u}+\mathbf{v}) = A(\mathbf{u}+\mathbf{v}) = A\mathbf{u}+A\mathbf{v} = T(\mathbf{u})+T(\mathbf{v})$ ✓ and $T(\alpha\mathbf{u}) = A(\alpha\mathbf{u}) = \alpha A\mathbf{u} = \alpha T(\mathbf{u})$ ✓</li>
+        </div>
+        <div class="answer-box"><strong>$T$ IS linear.</strong> It is the matrix transformation $T(\mathbf{x}) = A\mathbf{x}$ with $A = \begin{pmatrix}3&1&0\\-2&-4&3\\5&4&-2\end{pmatrix}$.</div>
+      </div>
+    </div>
+
+  </div><!-- end sheet-body TS1 -->
+</div><!-- end sheet-section TS1 -->
+
+
+<!-- ============================================================ -->
+<!-- TUTORIAL SHEET 2 -->
+<!-- ============================================================ -->
+<div class="sheet-section" id="ts2">
+  <div class="sheet-header">📗 Tutorial Sheet 2 — Advanced Linear Algebra for Data Science</div>
+  <div class="sheet-body">
+
+    <!-- ======================================================= -->
+    <!-- Q1 Trace & Determinant -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts2-q1">
+      <div class="problem-title">Question 1 &nbsp; — &nbsp; Trace and Determinant</div>
+      <div class="given-box">
+        <strong>Definitions:</strong>
+        <br>• $\text{tr}(A) = \sum_{i} a_{ii}$ (sum of diagonal entries)
+        <br>• $\det(A)$ for a 3×3 matrix $A$: expand along first row: $\det(A) = a_{11}M_{11} - a_{12}M_{12} + a_{13}M_{13}$ where $M_{ij}$ are 2×2 minors.
+      </div>
+
+      <!-- 1(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $A = \begin{pmatrix}5&2&2\\1&0&3\\2&4&7\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Trace:</span> $\text{tr}(A) = 5 + 0 + 7 = \mathbf{12}$</li>
+          <li><span class="step-num">Determinant</span> (expand along row 1):
+            <br>$\det(A) = 5\begin{vmatrix}0&3\\4&7\end{vmatrix} - 2\begin{vmatrix}1&3\\2&7\end{vmatrix} + 2\begin{vmatrix}1&0\\2&4\end{vmatrix}$
+            <br>$= 5(0-12) - 2(7-6) + 2(4-0)$
+            <br>$= 5(-12) - 2(1) + 2(4) = -60 - 2 + 8$</li>
+        </div>
+        <div class="answer-box"><strong>tr$(A) = 12$, &nbsp; $\det(A) = -54$</strong></div>
+      </div>
+
+      <!-- 1(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $A = \begin{pmatrix}10&3&3\\0&-1&3\\0&0&0\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Trace:</span> $\text{tr}(A) = 10 + (-1) + 0 = \mathbf{9}$</li>
+          <li><span class="step-num">Determinant:</span> The last row is all zeros, so $\det(A) = 0$ (row of zeros makes the matrix singular).</li>
+        </div>
+        <div class="answer-box"><strong>tr$(A) = 9$, &nbsp; $\det(A) = 0$</strong><br><small>The matrix is <strong>singular</strong> (not invertible) since $\det = 0$.</small></div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q2 Eigenvalues / Eigenvectors -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts2-q2">
+      <div class="problem-title">Question 2 &nbsp; — &nbsp; Characteristic Polynomial, Eigenvalues &amp; Eigenvectors</div>
+      <div class="given-box">
+        <strong>Process:</strong>
+        <ol style="margin:6px 0 0 18px;">
+          <li>Characteristic polynomial: $p(\lambda) = \det(\lambda I - A)$</li>
+          <li>Eigenvalues $\lambda_i$: roots of $p(\lambda) = 0$</li>
+          <li>Eigenvectors: for each $\lambda_i$, find null space of $(A - \lambda_i I)$, i.e., solve $(A - \lambda_i I)\mathbf{x} = \mathbf{0}$</li>
+        </ol>
+      </div>
+
+      <!-- 2(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $A = \begin{pmatrix}2&-3&0\\2&-5&0\\0&0&3\end{pmatrix}$</div>
+
+        <strong>Step 1 – Characteristic polynomial:</strong>
+        <div class="step-list">
+          <li>Since $A$ is <em>block diagonal</em> with blocks $B = \begin{pmatrix}2&-3\\2&-5\end{pmatrix}$ and $[3]$:
+            <br>$p(\lambda) = \det(\lambda I - A) = \det(\lambda I - B) \cdot (\lambda - 3)$</li>
+          <li>$\det(\lambda I - B) = (\lambda-2)(\lambda+5) - (-3)(2) = \lambda^2+3\lambda-10+6 = \lambda^2+3\lambda-4$
+            <br>$= (\lambda+4)(\lambda-1)$</li>
+        </div>
+        <div class="answer-box"><strong>Char. poly: $p(\lambda) = (\lambda-3)(\lambda-1)(\lambda+4)$</strong><br>
+        <strong>Eigenvalues: $\lambda_1 = 1$, &nbsp; $\lambda_2 = -4$, &nbsp; $\lambda_3 = 3$</strong></div>
+
+        <strong>Step 2 – Eigenvectors:</strong>
+        <div class="step-list">
+          <li><strong>For $\lambda_1 = 1$:</strong> $(A-I)\mathbf{x}=\mathbf{0}$:
+            $\begin{pmatrix}1&-3&0\\2&-6&0\\0&0&2\end{pmatrix} \to \begin{pmatrix}1&-3&0\\0&0&0\\0&0&1\end{pmatrix}$
+            &nbsp;→ $x_3=0$, &nbsp;$x_1=3x_2$ &nbsp;→ &nbsp;free: $x_2=t$</li>
+          <li><strong>Eigenvector for $\lambda_1=1$:</strong> $\mathbf{v}_1 = \begin{pmatrix}3\\1\\0\end{pmatrix}$</li>
+          <li><strong>For $\lambda_2 = -4$:</strong> $(A+4I)\mathbf{x}=\mathbf{0}$:
+            $\begin{pmatrix}6&-3&0\\2&-1&0\\0&0&7\end{pmatrix} \to \begin{pmatrix}2&-1&0\\0&0&0\\0&0&1\end{pmatrix}$
+            &nbsp;→ $x_3=0$, &nbsp;$2x_1-x_2=0$, &nbsp;free: $x_1=t$</li>
+          <li><strong>Eigenvector for $\lambda_2=-4$:</strong> $\mathbf{v}_2 = \begin{pmatrix}1\\2\\0\end{pmatrix}$</li>
+          <li><strong>For $\lambda_3 = 3$:</strong> $(A-3I)\mathbf{x}=\mathbf{0}$:
+            $\begin{pmatrix}-1&-3&0\\2&-8&0\\0&0&0\end{pmatrix} \to \begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix}$
+            &nbsp;→ $x_1=0$, $x_2=0$, free: $x_3=t$</li>
+          <li><strong>Eigenvector for $\lambda_3=3$:</strong> $\mathbf{v}_3 = \begin{pmatrix}0\\0\\1\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Summary:</strong><br>
+          $\lambda=1$: eigenvector $\begin{pmatrix}3\\1\\0\end{pmatrix}$ &emsp;
+          $\lambda=-4$: eigenvector $\begin{pmatrix}1\\2\\0\end{pmatrix}$ &emsp;
+          $\lambda=3$: eigenvector $\begin{pmatrix}0\\0\\1\end{pmatrix}$
+        </div>
+      </div>
+
+      <!-- 2(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $A = \begin{pmatrix}1&1&1\\-1&-3&-3\\2&4&4\end{pmatrix}$</div>
+
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> $\det(A) = 1[(-3)(4)-(-3)(4)] - 1[(-1)(4)-(-3)(2)] + 1[(-1)(4)-(-3)(2)]$
+            $= 1(-12+12) - 1(-4+6) + 1(-4+6) = 0 - 2 + 2 = \mathbf{0}$
+            &nbsp;→ $\lambda = 0$ is an eigenvalue.</li>
+          <li><span class="step-num">Char. poly</span> (expanding $\det(\lambda I - A)$ by cofactor along row 3):
+            $p(\lambda) = \lambda^3 - 2\lambda^2 = \lambda^2(\lambda - 2)$</li>
+        </div>
+        <div class="answer-box"><strong>Char. poly: $p(\lambda) = \lambda^2(\lambda-2)$</strong><br>
+        <strong>Eigenvalues: $\lambda_1 = 0$ (algebraic multiplicity 2), &nbsp; $\lambda_2 = 2$ (multiplicity 1)</strong></div>
+
+        <div class="note-box"><strong>⚠️ Important:</strong> Although $\lambda=0$ has algebraic multiplicity 2, its eigenspace (null space of $A$) has dimension 1 (geometric multiplicity = 1). This means $A$ is <strong>defective</strong> (not diagonalizable).</div>
+
+        <strong>Eigenvectors:</strong>
+        <div class="step-list">
+          <li><strong>For $\lambda_1 = 0$:</strong> $A\mathbf{x} = \mathbf{0}$ &nbsp;→ row reduce $A$:
+            $\begin{pmatrix}1&1&1\\-1&-3&-3\\2&4&4\end{pmatrix} \to \begin{pmatrix}1&0&0\\0&1&1\\0&0&0\end{pmatrix}$
+            &nbsp;→ $x_1=0$, &nbsp;$x_2=-x_3$, &nbsp;free: $x_3=t$</li>
+          <li><strong>Eigenvector for $\lambda=0$:</strong> $\mathbf{v}_1 = \begin{pmatrix}0\\-1\\1\end{pmatrix}$</li>
+          <li><strong>For $\lambda_2 = 2$:</strong> $(A-2I)\mathbf{x}=\mathbf{0}$:
+            $\begin{pmatrix}-1&1&1\\-1&-5&-3\\2&4&2\end{pmatrix} \to \begin{pmatrix}1&0&-1\\0&1&0\\0&0&0\end{pmatrix}$
+            &nbsp;→ $x_2=0$, &nbsp;$x_1=x_3$, &nbsp;free: $x_3=t$</li>
+          <li><strong>Eigenvector for $\lambda=2$:</strong> $\mathbf{v}_2 = \begin{pmatrix}1\\-2\\3\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          $\lambda=0$: eigenvector $\begin{pmatrix}0\\-1\\1\end{pmatrix}$ &emsp;
+          $\lambda=2$: eigenvector $\begin{pmatrix}1\\-2\\3\end{pmatrix}$
+          <br><small>Only 2 independent eigenvectors for a 3×3 matrix → matrix is not diagonalizable.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q3 Cholesky -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts2-q3">
+      <div class="problem-title">Question 3 &nbsp; — &nbsp; Cholesky Factorization</div>
+      <div class="given-box">
+        <strong>Given:</strong> $A = \begin{pmatrix}4&12&-16\\12&37&-43\\-16&-43&98\end{pmatrix}$
+        <br><strong>Goal:</strong> Find lower-triangular $L$ with positive diagonal such that $A = LL^T$.
+        <br><strong>Method:</strong> Equate entries of $LL^T = A$ to find $l_{ij}$ row by row.
+      </div>
+      <div class="step-list">
+        <li><span class="step-num">Step 1 (Col 1 of $L$):</span>
+          <br>$l_{11}^2 = a_{11} = 4 \;\Rightarrow\; l_{11} = 2$
+          <br>$l_{21} = a_{21}/l_{11} = 12/2 = 6$
+          <br>$l_{31} = a_{31}/l_{11} = -16/2 = -8$</li>
+        <li><span class="step-num">Step 2 (Col 2 of $L$):</span>
+          <br>$l_{22}^2 = a_{22} - l_{21}^2 = 37 - 36 = 1 \;\Rightarrow\; l_{22} = 1$
+          <br>$l_{32} = (a_{32} - l_{31}l_{21})/l_{22} = (-43 - (-8)(6))/1 = (-43+48)/1 = 5$</li>
+        <li><span class="step-num">Step 3 (Col 3 of $L$):</span>
+          <br>$l_{33}^2 = a_{33} - l_{31}^2 - l_{32}^2 = 98 - 64 - 25 = 9 \;\Rightarrow\; l_{33} = 3$</li>
+      </div>
+      <div class="answer-box">
+        <strong>Cholesky factor: </strong>$L = \begin{pmatrix}2&0&0\\6&1&0\\-8&5&3\end{pmatrix}$, &emsp; so &emsp; $A = LL^T = \begin{pmatrix}2&0&0\\6&1&0\\-8&5&3\end{pmatrix}\begin{pmatrix}2&6&-8\\0&1&5\\0&0&3\end{pmatrix}$
+      </div>
+      <div class="note-box"><strong>Verification:</strong> $LL^T$: $(1,1)=4$✓, $(2,2)=36+1=37$✓, $(3,3)=64+25+9=98$✓, $(1,2)=12$✓, $(2,3)=-48+5=-43$✓</div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q4 Eigendecomposition -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts2-q4">
+      <div class="problem-title">Question 4 &nbsp; — &nbsp; Eigendecomposition</div>
+      <div class="given-box">
+        <strong>Eigendecomposition:</strong> If $A$ is diagonalizable, then $A = PDP^{-1}$ where $D$ = diagonal matrix of eigenvalues, $P$ = matrix of corresponding eigenvectors (as columns).
+      </div>
+
+      <!-- 4(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $A = \begin{pmatrix}4&1\\2&3\end{pmatrix}$</div>
+        <div class="step-list">
+          <li><span class="step-num">Char. poly:</span> $\det(\lambda I - A) = (\lambda-4)(\lambda-3) - (1)(2) = \lambda^2 - 7\lambda + 10 = (\lambda-2)(\lambda-5)$</li>
+          <li><span class="step-num">Eigenvalues:</span> $\lambda_1 = 2$, &nbsp; $\lambda_2 = 5$</li>
+          <li><span class="step-num">Eigenvector for $\lambda_1=2$:</span> $(A-2I)\mathbf{x}=\mathbf{0}$ →
+            $\begin{pmatrix}2&1\\2&1\end{pmatrix}\mathbf{x}=\mathbf{0}$ → $2x_1+x_2=0$ → $\mathbf{v}_1=\begin{pmatrix}-1\\2\end{pmatrix}$</li>
+          <li><span class="step-num">Eigenvector for $\lambda_2=5$:</span> $(A-5I)\mathbf{x}=\mathbf{0}$ →
+            $\begin{pmatrix}-1&1\\2&-2\end{pmatrix}\mathbf{x}=\mathbf{0}$ → $x_1=x_2$ → $\mathbf{v}_2=\begin{pmatrix}1\\1\end{pmatrix}$</li>
+          <li><span class="step-num">Form $P$ and $D$:</span> $P = \begin{pmatrix}-1&1\\2&1\end{pmatrix}$, $\;D = \begin{pmatrix}2&0\\0&5\end{pmatrix}$</li>
+          <li><span class="step-num">Compute $P^{-1}$:</span> $\det(P) = -1-2 = -3$, so $P^{-1} = \frac{1}{-3}\begin{pmatrix}1&-1\\-2&-1\end{pmatrix} = \begin{pmatrix}-\frac{1}{3}&\frac{1}{3}\\\frac{2}{3}&\frac{1}{3}\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Eigendecomposition:</strong> $A = PDP^{-1}$ with
+          $$P = \begin{pmatrix}-1&1\\2&1\end{pmatrix}, \quad D = \begin{pmatrix}2&0\\0&5\end{pmatrix}, \quad P^{-1} = \begin{pmatrix}-\frac{1}{3}&\frac{1}{3}\\\frac{2}{3}&\frac{1}{3}\end{pmatrix}$$
+        </div>
+      </div>
+
+      <!-- 4(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $A = \begin{pmatrix}3&1&1\\1&2&2\\1&2&2\end{pmatrix}$</div>
+        <div class="note-box"><strong>Observation:</strong> Rows 2 and 3 are identical, so $\det(A) = 0$, meaning $\lambda=0$ is an eigenvalue.</div>
+        <div class="step-list">
+          <li><span class="step-num">Char. poly:</span> $p(\lambda) = \lambda(\lambda-2)(\lambda-5)$ (trace$=7$, sum-of-2×2-minors$=5$, det$=0$)</li>
+          <li><span class="step-num">Eigenvalues:</span> $\lambda_1=0$, $\lambda_2=2$, $\lambda_3=5$ — all distinct!</li>
+          <li><span class="step-num">Eigenvector for $\lambda=0$:</span> $A\mathbf{x}=\mathbf{0}$, row-reduce: $x_1=0$, $x_2=-x_3$ → $\mathbf{v}_1=\begin{pmatrix}0\\-1\\1\end{pmatrix}$</li>
+          <li><span class="step-num">Eigenvector for $\lambda=2$:</span> $(A-2I)\mathbf{x}=\mathbf{0}$: $\begin{pmatrix}1&1&1\\1&0&2\\1&2&0\end{pmatrix} \to x_1=-2x_3, x_2=x_3$ → $\mathbf{v}_2=\begin{pmatrix}-2\\1\\1\end{pmatrix}$</li>
+          <li><span class="step-num">Eigenvector for $\lambda=5$:</span> $(A-5I)\mathbf{x}=\mathbf{0}$: $\begin{pmatrix}-2&1&1\\1&-3&2\\1&2&-3\end{pmatrix} \to x_1=x_2=x_3$ → $\mathbf{v}_3=\begin{pmatrix}1\\1\\1\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Eigendecomposition:</strong> $A = PDP^{-1}$ with
+          $$P = \begin{pmatrix}0&-2&1\\-1&1&1\\1&1&1\end{pmatrix}, \quad D = \begin{pmatrix}0&0&0\\0&2&0\\0&0&5\end{pmatrix}$$
+          <small>Note: All three eigenvalues are distinct, so $A$ is diagonalizable. $A^n = P D^n P^{-1}$ for any power $n$.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- Q5 SVD -->
+    <!-- ======================================================= -->
+    <div class="problem-block" id="ts2-q5">
+      <div class="problem-title">Question 5 &nbsp; — &nbsp; Singular Value Decomposition (SVD)</div>
+      <div class="given-box">
+        <strong>SVD of $m\times n$ matrix $M$:</strong> $M = U\Sigma V^T$
+        <br>• $U$ ($m\times m$): left singular vectors = eigenvectors of $MM^T$
+        <br>• $V$ ($n\times n$): right singular vectors = eigenvectors of $M^TM$
+        <br>• $\Sigma$ ($m\times n$): diagonal with singular values $\sigma_i = \sqrt{\lambda_i} \geq 0$
+        <br>• Short method: (1) compute $M^TM$ or $MM^T$ (whichever is smaller), (2) find eigenvalues $\lambda_i$, (3) $\sigma_i=\sqrt{\lambda_i}$, (4) compute right singular vectors $V$ from $M^TM$, (5) compute left singular vectors $U = \frac{1}{\sigma_i}M\mathbf{v}_i$.
+      </div>
+
+      <!-- 5(i) -->
+      <div class="sub-problem">
+        <div class="sub-title">(i) &nbsp; $M = \begin{pmatrix}1&1\\0&1\\-1&1\end{pmatrix}$ &nbsp; (3×2 matrix)</div>
+
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Compute $M^TM$ (2×2 — easier):
+            $M^TM = \begin{pmatrix}1&0&-1\\1&1&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\\-1&1\end{pmatrix} = \begin{pmatrix}1+0+1&1+0-1\\1+0-1&1+1+1\end{pmatrix} = \begin{pmatrix}2&0\\0&3\end{pmatrix}$</li>
+          <li><span class="step-num">Step 2:</span> $M^TM$ is already diagonal → eigenvalues are $\lambda_1=3$ and $\lambda_2=2$.</li>
+          <li><span class="step-num">Step 3:</span> Singular values: $\sigma_1 = \sqrt{3}$, $\sigma_2 = \sqrt{2}$ (ordered largest first).</li>
+          <li><span class="step-num">Step 4 – Right singular vectors $V$:</span>
+            <br>$\mathbf{v}_1 = [0,1]^T$ (eigenvector of $M^TM$ for $\lambda=3$)
+            <br>$\mathbf{v}_2 = [1,0]^T$ (eigenvector of $M^TM$ for $\lambda=2$)
+            <br>So $V^T = \begin{pmatrix}0&1\\1&0\end{pmatrix}$</li>
+          <li><span class="step-num">Step 5 – Left singular vectors $U$:</span>
+            <br>$\mathbf{u}_1 = \frac{1}{\sigma_1}M\mathbf{v}_1 = \frac{1}{\sqrt{3}}\begin{pmatrix}1\\1\\1\end{pmatrix} = \frac{1}{\sqrt{3}}\begin{pmatrix}1\\1\\1\end{pmatrix}$
+            <br>$\mathbf{u}_2 = \frac{1}{\sigma_2}M\mathbf{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\-1\end{pmatrix}$
+            <br>$\mathbf{u}_3$ (orthogonal to $\mathbf{u}_1, \mathbf{u}_2$): $\mathbf{u}_3 = \frac{1}{\sqrt{6}}\begin{pmatrix}1\\-2\\1\end{pmatrix}$</li>
+        </div>
+        <div class="answer-box">
+          <strong>SVD: $M = U\Sigma V^T$</strong>
+          $$U = \begin{pmatrix}\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{6}}\\\frac{1}{\sqrt{3}}&0&\frac{-2}{\sqrt{6}}\\\frac{1}{\sqrt{3}}&\frac{-1}{\sqrt{2}}&\frac{1}{\sqrt{6}}\end{pmatrix}, \quad \Sigma = \begin{pmatrix}\sqrt{3}&0\\0&\sqrt{2}\\0&0\end{pmatrix}, \quad V^T = \begin{pmatrix}0&1\\1&0\end{pmatrix}$$
+          <small>Singular values: $\sigma_1=\sqrt{3}\approx1.732$, $\sigma_2=\sqrt{2}\approx1.414$</small>
+        </div>
+        <div class="note-box">
+          <strong>Verification:</strong> $U\Sigma V^T$ should give back $M$:
+          $U\Sigma = \frac{1}{\sqrt{3}}\begin{pmatrix}\sqrt{3}\\\sqrt{3}\\\sqrt{3}\end{pmatrix}\oplus\frac{1}{\sqrt{2}}\begin{pmatrix}\sqrt{2}\\0\\-\sqrt{2}\end{pmatrix} = \begin{pmatrix}1&1\\1&0\\1&-1\end{pmatrix}$. Then $(U\Sigma)V^T = \begin{pmatrix}1&1\\1&0\\1&-1\end{pmatrix}\begin{pmatrix}0&1\\1&0\end{pmatrix} = \begin{pmatrix}1&1\\0&1\\-1&1\end{pmatrix} = M$ ✓
+        </div>
+      </div>
+
+      <!-- 5(ii) -->
+      <div class="sub-problem">
+        <div class="sub-title">(ii) &nbsp; $M = \begin{pmatrix}3&1&1&0\\1&2&2&-1\end{pmatrix}$ &nbsp; (2×4 matrix)</div>
+
+        <div class="step-list">
+          <li><span class="step-num">Step 1:</span> Compute $MM^T$ (2×2):
+            $MM^T = \begin{pmatrix}9+1+1+0 & 3+2+2+0\\3+2+2+0 & 1+4+4+1\end{pmatrix} = \begin{pmatrix}11&7\\7&10\end{pmatrix}$</li>
+          <li><span class="step-num">Step 2 – Eigenvalues of $MM^T$:</span>
+            $\text{tr}=21$, $\det=110-49=61$ → char. poly $\lambda^2-21\lambda+61=0$
+            $$\lambda = \frac{21 \pm \sqrt{441-244}}{2} = \frac{21 \pm \sqrt{197}}{2}$$</li>
+          <li><span class="step-num">Step 3 – Singular values:</span>
+            $\sigma_1 = \sqrt{\frac{21+\sqrt{197}}{2}} \approx 4.185$, &nbsp; $\sigma_2 = \sqrt{\frac{21-\sqrt{197}}{2}} \approx 1.866$</li>
+          <li><span class="step-num">Step 4 – Left singular vectors $U$ (eigenvectors of $MM^T$):</span>
+            <br>For $\lambda_1 = \frac{21+\sqrt{197}}{2}$: $(MM^T - \lambda_1 I)\mathbf{u}=0$
+            $\Rightarrow (11-\lambda_1)u_1 + 7u_2 = 0 \Rightarrow u_2 = \frac{\lambda_1-11}{7}u_1$
+            <br>Normalized: $\mathbf{u}_1 = \frac{1}{N_1}\begin{pmatrix}7\\\lambda_1-11\end{pmatrix}$ where $N_1$ is the norm.</li>
+          <li><span class="step-num">Step 5 – Right singular vectors $V$:</span> $\mathbf{v}_i = \frac{1}{\sigma_i}M^T\mathbf{u}_i$</li>
+        </div>
+        <div class="answer-box">
+          <strong>Singular values:</strong> &nbsp;$\sigma_1 = \sqrt{\frac{21+\sqrt{197}}{2}} \approx 4.185$, &nbsp; $\sigma_2 = \sqrt{\frac{21-\sqrt{197}}{2}} \approx 1.866$
+          <br><br>
+          <strong>Numerical SVD:</strong><br>
+          $U \approx \begin{pmatrix}-0.7319 & -0.6815\\-0.6815 & 0.7319\end{pmatrix}$, &emsp;
+          $\Sigma \approx \begin{pmatrix}4.185 & 0 & 0 & 0\\0 & 1.866 & 0 & 0\end{pmatrix}$<br><br>
+          $V^T \approx \begin{pmatrix}-0.6874&-0.5005&-0.5005&0.1628\\-0.7034&0.4192&0.4192&-0.3922\\-0.0331&-0.6454&0.7449&0.1657\\-0.1780&0.3965&0.1376&0.8901\end{pmatrix}$
+          <br><small style="color:#555">The singular values are irrational but the decomposition $M = U\Sigma V^T$ holds exactly.</small>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end sheet-body TS2 -->
+</div><!-- end sheet-section TS2 -->
+
+<!-- ============================================================ -->
+<!-- EXAM QUICK GUIDE -->
+<!-- ============================================================ -->
+<div class="sheet-section" id="exam-guide">
+  <div class="sheet-header">Exam Quick Guide - What To Understand For Every Problem</div>
+  <div class="sheet-body">
+    <div class="problem-block">
+      <div class="problem-title">How To Use This Section Tonight</div>
+      <div class="given-box">
+        <strong>Revision method (fast and effective):</strong>
+        <ol style="margin:6px 0 0 18px;">
+          <li>Read only the <strong>"Core Idea"</strong> first.</li>
+          <li>Then memorize the <strong>"Exam Steps"</strong> pattern.</li>
+          <li>Finally, test yourself using <strong>"Common Mistakes"</strong>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="problem-block">
+      <div class="problem-title">Tutorial Sheet 1 - Problem Understandings</div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q1: REF and RREF of matrices</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> REF is about pivot staircase and zeros below pivots. RREF adds pivot=1 and zeros above pivots.</li>
+          <li><span class="step-num">Exam Steps:</span> pick pivot column -> place pivot row -> clear below (REF) -> scale pivots to 1 -> clear above (RREF).</li>
+          <li><span class="step-num">What examiner checks:</span> correct pivot positions, correct row operations, and final matrix form.</li>
+          <li><span class="step-num">Common Mistakes:</span> trying to force pivots in zero columns, and not preserving previous pivot columns while eliminating.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q2: Inverse by Gauss-Jordan</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> $[A|I] \to [I|A^{-1}]$. Left block must become identity exactly.</li>
+          <li><span class="step-num">Exam Steps:</span> create pivots one by one (with swaps if needed) -> clear below pivots -> back-eliminate above pivots -> scale each pivot row.</li>
+          <li><span class="step-num">Quick Validity Check:</span> if determinant is 0, inverse does not exist.</li>
+          <li><span class="step-num">Common Mistakes:</span> applying operation only on left side and forgetting right side of augmented matrix.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q3: Dependence with parameter and linear combination</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> in $\mathbb{R}^3$, three vectors are dependent iff determinant of column matrix is 0.</li>
+          <li><span class="step-num">Exam Steps:</span> form $M=[v_1\ v_2\ v_3]$ -> compute $\det(M)$ -> set to zero for parameter value.</li>
+          <li><span class="step-num">For linear combination:</span> write 3 scalar equations in unknown coefficients, solve systematically (substitute from easiest equation first).</li>
+          <li><span class="step-num">Common Mistakes:</span> using general formulas at singular parameter values (like $c=-2$) where denominator becomes zero.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q4: Linear independence/dependence</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> independent means only trivial combination gives zero.</li>
+          <li><span class="step-num">Exam Steps:</span> if square matrix, determinant test is fastest; if rectangular, rank test is safest.</li>
+          <li><span class="step-num">Common Mistakes:</span> concluding independence from one nonzero row; need rank equal to number of vectors.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q5: Basis check for $\mathbb{R}^3$</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> basis requires both independence and spanning.</li>
+          <li><span class="step-num">Exam Shortcut:</span> for 3 vectors in $\mathbb{R}^3$, just check determinant nonzero.</li>
+          <li><span class="step-num">Common Mistakes:</span> writing only "independent" but forgetting to explicitly conclude "therefore forms a basis".</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q6: Rank of matrix</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> rank = number of pivots = number of nonzero rows in REF/RREF.</li>
+          <li><span class="step-num">Exam Steps:</span> row reduce only until pivot count is obvious; full RREF is optional unless asked.</li>
+          <li><span class="step-num">Common Mistakes:</span> counting nonzero columns instead of pivot columns.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q7, Q8, Q10: Linearity test of transformations</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> linear map must satisfy additivity and homogeneity; equivalently $T(0)=0$ must hold.</li>
+          <li><span class="step-num">Exam Shortcut:</span> first test $T(0)$. If nonzero, immediately non-linear.</li>
+          <li><span class="step-num">Absolute value warning:</span> terms like $|x|$ usually break homogeneity.</li>
+          <li><span class="step-num">Matrix form clue:</span> if $T(x)=Ax$, then linear automatically.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q9: Compute image under matrix transformation</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> image of vector is simple matrix-vector multiplication.</li>
+          <li><span class="step-num">Exam Steps:</span> multiply row-by-column carefully and keep dimensions consistent.</li>
+          <li><span class="step-num">Common Mistakes:</span> multiplying in wrong order ($vA$ instead of $Av$).</li>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-block">
+      <div class="problem-title">Tutorial Sheet 2 - Problem Understandings</div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q1: Trace and determinant</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> trace is diagonal sum; determinant indicates volume scaling and invertibility.</li>
+          <li><span class="step-num">Exam Steps:</span> trace first (easy marks), then determinant by cofactor/triangular shortcuts.</li>
+          <li><span class="step-num">Common Mistakes:</span> sign errors in 3x3 cofactor expansion (+ - + pattern).</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q2: Characteristic polynomial, eigenvalues, eigenvectors</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> solve $\det(\lambda I-A)=0$ for eigenvalues, then null space of $(A-\lambda I)$ for eigenvectors.</li>
+          <li><span class="step-num">Exam Steps:</span> find polynomial -> roots with multiplicities -> solve linear system for each root.</li>
+          <li><span class="step-num">Key distinction:</span> algebraic multiplicity (from polynomial) vs geometric multiplicity (dimension of eigenspace).</li>
+          <li><span class="step-num">Common Mistakes:</span> giving one eigenvector for repeated eigenvalue and assuming diagonalizable without checking eigenspace dimension.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q3: Cholesky factorization</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> for symmetric positive definite matrix, $A=LL^T$ with lower triangular $L$ and positive diagonal.</li>
+          <li><span class="step-num">Exam Steps:</span> solve entries in order: $l_{11}$ -> first column -> $l_{22}$ -> $l_{32}$ -> $l_{33}$.</li>
+          <li><span class="step-num">Common Mistakes:</span> forgetting the subtraction terms (like $a_{33}-l_{31}^2-l_{32}^2$).</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q4: Eigendecomposition</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> if enough independent eigenvectors exist, $A=PDP^{-1}$.</li>
+          <li><span class="step-num">Exam Steps:</span> compute eigenpairs -> build $P$ from eigenvectors in same order as diagonal entries of $D$ -> compute $P^{-1}$.</li>
+          <li><span class="step-num">Common Mistakes:</span> mixing eigenvector order between $P$ and $D$.</li>
+        </div>
+      </div>
+
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q5: SVD</div>
+        <div class="step-list">
+          <li><span class="step-num">Core Idea:</span> singular values come from square roots of eigenvalues of $M^TM$ (or $MM^T$).</li>
+          <li><span class="step-num">Exam Steps:</span> compute smaller Gram matrix -> eigenvalues -> singular values -> eigenvectors for $V$ or $U$ -> derive the other side via $u_i = Mv_i/\sigma_i$.</li>
+          <li><span class="step-num">Common Mistakes:</span> forgetting to order singular values descending and not normalizing singular vectors.</li>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-block">
+      <div class="problem-title">Last-Night Exam Checklist</div>
+      <div class="given-box">
+        <strong>Before sleeping, make sure you can do these without notes:</strong>
+        <ul style="margin:6px 0 0 18px;">
+          <li>Convert any matrix to REF/RREF and identify pivot/free columns quickly.</li>
+          <li>Compute inverse using $[A|I]$ cleanly without missing operations.</li>
+          <li>Detect dependence using determinant/rank depending on matrix shape.</li>
+          <li>Find eigenvalues/eigenvectors and say whether matrix is diagonalizable.</li>
+          <li>Set up Cholesky and SVD correctly (even if arithmetic is long).</li>
+        </ul>
+      </div>
+      <div class="note-box"><strong>Exam writing tip:</strong> always show the criterion line first (example: "$\det(A)\neq0 \Rightarrow$ independent"). It gives method marks even if arithmetic slips later.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- FORMULA BANK -->
+<!-- ============================================================ -->
+<div class="sheet-section" id="formula-bank">
+  <div class="sheet-header">Formula Bank + Problem-Wise Tips</div>
+  <div class="sheet-body">
+    <div class="problem-block">
+      <div class="problem-title">Core Matrix Formulas (Use Across TS1 and TS2)</div>
+      <div class="given-box">
+        <strong>Determinant formulas:</strong>
+        <br>$\det\begin{pmatrix}a&b\\c&d\end{pmatrix} = ad-bc$
+        <br>$\det\begin{pmatrix}a&b&c\\d&e&f\\g&h&i\end{pmatrix} = a(ei-fh)-b(di-fg)+c(dh-eg)$
+        <br><strong>Quick properties:</strong>
+        <br>1) Row swap flips sign of determinant.
+        <br>2) Multiplying a row by $k$ multiplies determinant by $k$.
+        <br>3) Adding multiple of one row to another does not change determinant.
+      </div>
+      <div class="given-box">
+        <strong>Rank and RREF:</strong>
+        <br>$\text{rank}(A)$ = number of pivots = number of nonzero rows in REF/RREF.
+        <br>Pivot columns correspond to basic variables; non-pivot columns correspond to free variables.
+      </div>
+      <div class="given-box">
+        <strong>Inverse formulas:</strong>
+        <br>$A^{-1}$ exists iff $\det(A)\neq 0$.
+        <br>Gauss-Jordan method: $[A|I] \to [I|A^{-1}]$.
+        <br>For 2x2: if $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ then $A^{-1}=\dfrac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$.
+      </div>
+      <div class="given-box">
+        <strong>Linear dependence / basis:</strong>
+        <br>Vectors are linearly dependent if $c_1v_1+\cdots+c_kv_k=0$ has nontrivial solution.
+        <br>For $n$ vectors in $\mathbb{R}^n$: independent iff determinant of column matrix is nonzero.
+        <br>Basis for $\mathbb{R}^n$: independent + spanning (equivalently full rank $n$).
+      </div>
+      <div class="given-box">
+        <strong>Linear transformation tests:</strong>
+        <br>$T$ linear iff
+        <br>1) $T(u+v)=T(u)+T(v)$
+        <br>2) $T(\alpha u)=\alpha T(u)$
+        <br>Fast fail test: if $T(0)\neq0$, then not linear.
+        <br>If $T(x)=Ax$, then linear automatically.
+      </div>
+      <div class="given-box">
+        <strong>Trace and eigen basics:</strong>
+        <br>$\text{tr}(A)=\sum_i a_{ii}$, and sum of eigenvalues equals trace.
+        <br>Characteristic polynomial: $p(\lambda)=\det(\lambda I-A)$.
+        <br>Eigenvalues are roots of $p(\lambda)=0$.
+        <br>Eigenvectors satisfy $(A-\lambda I)x=0$.
+      </div>
+      <div class="given-box">
+        <strong>Diagonalization / eigendecomposition:</strong>
+        <br>If $A$ has $n$ independent eigenvectors, then $A=PDP^{-1}$.
+        <br>Columns of $P$ = eigenvectors; diagonal of $D$ = matching eigenvalues in same order.
+      </div>
+      <div class="given-box">
+        <strong>Cholesky factorization:</strong>
+        <br>For symmetric positive definite $A$: $A=LL^T$, where $L$ is lower triangular with positive diagonal.
+        <br>Entry formulas:
+        <br>$l_{ii}=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^2}$
+        <br>$l_{ji}=\dfrac{a_{ji}-\sum_{k=1}^{i-1}l_{jk}l_{ik}}{l_{ii}},\quad j>i$
+      </div>
+      <div class="given-box">
+        <strong>SVD formulas:</strong>
+        <br>$A=U\Sigma V^T$
+        <br>Singular values: $\sigma_i=\sqrt{\lambda_i(A^TA)}=\sqrt{\lambda_i(AA^T)}$.
+        <br>Right singular vectors = eigenvectors of $A^TA$.
+        <br>Left singular vectors = eigenvectors of $AA^T$.
+        <br>Link formula: $u_i=\dfrac{Av_i}{\sigma_i}$ (for $\sigma_i\neq0$).
+      </div>
+    </div>
+
+    <div class="problem-block">
+      <div class="problem-title">Problem-Wise Exam Tips (Very Practical)</div>
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q1 (REF/RREF)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Never chase perfect numbers early; first create zero pattern below pivots.</li>
+          <li><span class="step-num">Tip:</span> If a column is all zeros, skip it immediately and move to next column.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q2 (Inverse)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Write operations in one line and apply to both sides of $[A|I]$ every time.</li>
+          <li><span class="step-num">Tip:</span> Row swap early if pivot is zero; this saves time and avoids arithmetic mess.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q3/Q4/Q5 (Dependence, independence, basis)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Square case: determinant is fastest test.</li>
+          <li><span class="step-num">Tip:</span> Rectangular case: rank test is reliable.</li>
+          <li><span class="step-num">Tip:</span> Always state final conclusion clearly: independent/dependent/basis/not basis.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS1 Q7-Q10 (Transformations)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Test $T(0)$ first. Nonzero means immediate non-linear.</li>
+          <li><span class="step-num">Tip:</span> For absolute values, test with $x$ and $-x$ to show homogeneity failure quickly.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q1 (Trace/Det)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Finish trace in seconds before starting determinant.</li>
+          <li><span class="step-num">Tip:</span> Triangular matrix determinant is product of diagonal entries.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q2/Q4 (Eigen and eigendecomposition)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Keep eigenvalue and eigenvector paired in the same order from start.</li>
+          <li><span class="step-num">Tip:</span> Check diagonalizability by counting independent eigenvectors, not just eigenvalues.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q3 (Cholesky)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Solve $L$ entry-by-entry from top-left to bottom-right; do not jump steps.</li>
+          <li><span class="step-num">Tip:</span> Final quick check: multiply $LL^T$ and compare key entries.</li>
+        </div>
+      </div>
+      <div class="sub-problem">
+        <div class="sub-title">TS2 Q5 (SVD)</div>
+        <div class="step-list">
+          <li><span class="step-num">Tip:</span> Compute smaller matrix first: if $A$ is $m\times n$ with $m<n$, use $AA^T$.</li>
+          <li><span class="step-num">Tip:</span> Sort singular values descending and normalize all singular vectors.</li>
+        </div>
+      </div>
+      <div class="note-box"><strong>Presentation tip for marks:</strong> write formula first, substitute next, simplify last. This structure usually earns method marks even with arithmetic slips.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="text-align:center;padding:28px 16px;color:#888;font-size:0.9em;background:#fff;border-top:1px solid #e0e0e0;margin-top:24px;">
+  BITS Pilani, Hyderabad Campus &mdash; Mathematical Foundations for Data Science (Second Sem 2025–2026)
+  <br>Tutorial Sheets 1 &amp; 2 Solutions &mdash; Prepared for academic reference
+</footer>
+
+</body>
+</html>

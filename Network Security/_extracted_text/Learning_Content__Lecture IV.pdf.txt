@@ -1,0 +1,178 @@
+
+
+===== PAGE 1 =====
+BITSPilaniCourse TitleSubhadip SinghaComputer Science & Information System 
+
+
+===== PAGE 2 =====
+BITSPilani
+ES ZG513/ SS ZG513, Network SecurityLecture No IV.
+
+
+===== PAGE 3 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Block CipherBlock cipher: Encrypts data in fixed-size blocks (like 64-bitor 128-bit) using a key-based transformation. Largemessages are encrypted by processing many blocks oneafter another.
+
+
+
+===== PAGE 4 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Shannon Principles in Block Cipher DesignClaude Shannon proposed two fundamental ideas for secure cipher design:1. Confusion2. DiffusionConfusion:The relationship between the secret keyand the ciphertextshould be highly complex and hidden. An attacker should not be able to predict how changing the key affects the output.Diffusion:Each plaintext bit influences many ciphertext bits.Small input change ⇒large unpredictable output change.
+
+
+===== PAGE 5 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Goal of Confusion1. Hide statistical structure.2. Prevent algebraic or linear relations.3. Make key recovery difficult.How Confusion is AchievedMain tool: Non-linear Substitution (S-Boxes)Why nonlinear?1. Linear functions are easy to analyze.2. Nonlinear mappings destroy patternsExampleC = P ⊕K Without confusion Attacker easily relates key and ciphertext.C = S(P ⊕K) With confusion the relation becomes complex.
+
+
+===== PAGE 6 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Goal of Diffusion1. Spread information across the block2. Remove statistical patterns3. Achieve avalanche effectHow Diffusion is AchievedCommon techniques:1. Permutations2. Linear mixing (matrix operations)3. Bit shuffling4. MixColumns (AES)Before diffusion: 10000000After diffusion: 10110110“Diffusion spreads the data.”
+
+
+===== PAGE 7 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+How Modern Ciphers Use BothEvery round of AES or DES combines:Confusion → Diffusion → Confusion → Diffusion ...Security emerges from repeated application.Confusion makes the cipher hard to understand,Diffusion makes the cipher hard to analyze statistically.
+
+
+===== PAGE 8 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Block Ciphers – Fiestel Network
+
+
+
+===== PAGE 9 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Fiestel cipher design
+• Larger block sizes mean greater security but reduced encryption/decryption speed 
+Block size
+Block size
+• Larger key size means greater security but may decrease encryption/decryption speed 
+Key size
+Key size
+• The essence of a symmetric block cipher is that a single round offers inadequate security but that multiple rounds offer increasing security
+Number of rounds 
+Number of rounds 
+• Greater complexity in this algorithm should lead to greater difficulty of cryptanalysis
+Subkey generation algorithm
+Subkey generation algorithm
+• Greater complexity generally means greater resistance to cryptanalysis
+Round function 
+Round function 
+• In many cases, encryption is embedded in applications or utility functions in such a way as to preclude a hardware implementation; accordingly, the seed of execution of the algorithm becomes a concern
+Fast software encryption/decryption
+Fast software encryption/decryption
+• If the algorithm can be concisely and clearly explained, it is easier to analyze that algorithm for cryptanalytic vulnerabilities and therefore develop a higher level of assurance as to its strength
+Ease of analysis
+Ease of analysis
+
+
+===== PAGE 10 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Fiestel cipherConceptually, Split the block into L and RCompute:Lᵢ₊₁ = RᵢRᵢ₊₁ = Lᵢ XOR F(Rᵢ, Kᵢ)To decrypt, you can recover the previous values:Rᵢ = Lᵢ₊₁Lᵢ = Rᵢ₊₁ XOR F(Rᵢ, Kᵢ)and since Rᵢ = Lᵢ₊₁, this becomes:Lᵢ = Rᵢ₊₁ XOR F(Lᵢ₊₁, Kᵢ)
+
+
+===== PAGE 11 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Block Cipher -D E SDES has a 64-bit block length.• DES uses a 56-bit key;• Out of 16 rounds, each round of DESuses a 48-bitsubkey and eachsubkeyconsists of a 48-bit subset of the 56-bit key.
+
+
+===== PAGE 12 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DES One Round
+
+
+
+===== PAGE 13 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DES One Round with S boxes
+
+
+
+===== PAGE 14 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+D ES cont inue sDESround functionFcan be written asF(Ri−1,Ki)=P-box(S-boxes(Expand(Ri−1)⊕Ki)).The function F, which depends on the outputof the previous round and the key K, is knownas a round function
+
+
+===== PAGE 15 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Each round of D ES
+
+
+
+===== PAGE 16 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DESexpansionThe 48-bit result of the DES expansionpermutation consists of the bits
+
+
+
+===== PAGE 17 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DES – S boxesEach of theeightDES S-boxes maps 6 bits to 4 bits, and,consequently, each can be viewed as an array of 4rows and 16 columns, with one “nibble” (4-bit value)input to the S-box is denotedb0b1b2b3b4b5
+
+
+
+===== PAGE 18 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DESP-boxThe P-box permutation is
+
+
+
+===== PAGE 19 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DESKey SchedulingWe separate the 56 bits of the key intotwo groupand permutethem and call them Left Key (LK) group & Right Key (RK) group:LK RK
+
+
+
+===== PAGE 20 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DESkey scheduling continuedWe define the compression mechanism as the permutation on the left part (LP) as,
+And on the right part (RP) as,
+
+
+
+===== PAGE 21 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+DESkey scheduling continuedNow we define the shift operation at each roundri, fori=1, 2, …, n
+The DES key schedule algorithm for generating the 48-bit subkeyKifor, roundican now be described as
+
+
+
+===== PAGE 22 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Let us check DES key schedulingA commonly used example key is:0x133457799BBCDFF1(64-bit, includes parity)Schedule the first key ki
+
+
+===== PAGE 23 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Cryptanalysis on D E SMathematicians are very good at solvinglinear equations, and the only part of DESthat is not linear is the S-boxes. As a result,the S-boxes are crucial to the security ofDES.Today, DES is vulnerable simply because thekey is too small, not because of anynoteworthy shortcut attack.
+
+
+===== PAGE 24 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Cryptanalysis: DE S▶For DES,C and P are▶each 64 bits, while K is 56 bits. The notation that we’ll adopt for the encryption of P▶with key K is▶C =E(P,K)▶while the corresponding decryption is denoted▶P =D(C,K).
+
+
+===== PAGE 25 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Multiple D ESFor DES, C and P are each 64 bits, while K is 56bits. The notation that we’ll adopt for theencryption of P with key K isC =E(P,K)while the corresponding decryption is denotedP =D(C,K)
+
+
+===== PAGE 26 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+“Double” D E S▶DES key length is insufficient today. Itturns outthat there is a clever way to use DES with a largerkey length. Intuitively, it seems that “double” DESmight be the thing to do,C =E(E(P,K1),K2).▶However, there is anattackon double DES that renders it more-or-less equivalent to single DES. Although the attack is somewhatimpractical, it’s close enough to being practical, that it is cause for concern. This attack is achosen plaintext attack(CPA).
+
+
+===== PAGE 27 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Chosen Plaintext Attack on D E S▶select a particular plaintext P andobtain the corresponding ciphertext C.Our goalis to find the keys K1 and K2inequation, C =E(E(P,K1),K2).▶First we precompute a table of size 256containing the pairsE(P,K)andKfor allpossible key values K
+
+
+===== PAGE 28 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Meet-in-the-middle Attack▶Now given this table and the ciphertext value C corresponding to the chosen P, we decrypt C with keys K˜ until we find a value D(C, K˜) that is in table.▶The value that we find in the table will be E(P,K) for some K and we have▶D(C,K˜ ) = E(P,K)where K˜ and K are known. That we have found the 112-bit key can be seen by encrypting both sides with K˜ , which gives▶C = E(E(P,K), K˜),▶that is, K1 = K and K2 = K˜
+
+
+===== PAGE 29 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+TripleD ES▶It seems that the logical approach to triple DES would be▶C = E(E(E(P,K1),K2),K3)▶but this is not the way it’s done. Instead, triple DES is defined as▶C = E(D(E(P,K1),K2),K1).▶Notice that triple DES only uses two keys, and encrypt-decrypt-encrypt, or EDE

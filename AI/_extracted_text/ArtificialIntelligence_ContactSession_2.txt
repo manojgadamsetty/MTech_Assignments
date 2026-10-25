@@ -1,0 +1,351 @@
+
+
+=== Slide 1 ===
+ArtificialIntelligence-[DSE ZC444]
+
+CS 2-Agents &Environment
+Prof. Brahmanaidu Kakarla
+
+=== Slide 2 ===
+Course Plan
+
+=== Slide 3 ===
+Overview of AI & Applications
+Intelligent Agents
+Task Environment	
+
+Module 1 : Introduction to AI
+
+=== Slide 4 ===
+
+Design Principles & Techniques
+
+=== Slide 5 ===
+AI Agents and Environment 
+An AI  system is composed of 
+an agent 
+an environment 
+
+=== Slide 6 ===
+What is agent? 
+Agent is anything that can perceive its  environment through sensors and acts upon the environment through effectors.
+
+Example of agents
+Robotic
+Human
+Software
+
+
+=== Slide 7 ===
+Important Terminologies
+1.Percept-It is a perceptual inputs at a given instance
+2.Agent program is an implementation of an agent function. 
+3.Agent function is a map from the percept sequence(history of all that an agent has perceived to date) to an action. 
+4.Performance measure-It is criteria how successful an agent is 
+5.Action-Agent performs after any given sequence of percepts
+6.Effectors- can be legs, wheels, arms, fingers, wings, fins, and display screen
+
+
+=== Slide 8 ===
+AI system architecture
+
+=== Slide 9 ===
+Real time example
+Performance measure: An objective criterion for success of an agent's behaviour
+
+E.g., performance measure of a vacuum-cleaner agent
+» amount of dirt cleaned up
+» amount of time taken
+» amount of electricity consumed
+» amount of noise generated, etc.
+
+=== Slide 10 ===
+Contd..
+
+=== Slide 11 ===
+PEAS Environment
+Design on what an application wants the agent to do in the environment
+
+=== Slide 12 ===
+PEAS Environment
+
+=== Slide 13 ===
+Simple Reflex Agents
+Model-Based Reflex Agents
+Goal-Based Agents
+Utility-Based Agents
+Learning Agent
+Types of agents
+
+=== Slide 14 ===
+Simple
+No calculation or solve complicated problems
+Fully observable environment 
+Works on condition-action rule  
+Simple reflex agent
+
+=== Slide 15 ===
+Model Based reflex agents
+Partially observable environment
+Store perceive history 
+
+=== Slide 16 ===
+Goal based agent
+Expansion of model based reflex agent
+Mainly focused on its Goal
+Searching and planning
+Agent is more flexible				 
+
+=== Slide 17 ===
+Utility based agent
+Main focus is on utility
+Utility function
+Deals with happy and unhappy state
+
+=== Slide 18 ===
+Learning agent
+Learning element: It is responsible for making improvements by learning from the environment
+Critic: The learning element takes feedback from critics which describes how well the agent is doing with respect to a fixed performance standard.
+
+=== Slide 19 ===
+Performance element: It is responsible for selecting external action
+Problem Generator: This component is responsible for suggesting actions that will lead to new and informative experiences.
+
+Learning agent
+
+=== Slide 20 ===
+
+
+
+                       Environment
+
+=== Slide 21 ===
+A rational agent is built to solve a specific task. Each such task would then have a different environment which we refer to as Task Environment
+
+Based on the applicability of each technique for agent implementation its task environment design is determined by multiple dimension
+
+
+
+Task Environment
+
+=== Slide 22 ===
+Observability : Fully observable Vs Partial observable
+
+Sensor based Task environment 
+Poker
+      Chess
+
+=== Slide 23 ===
+Dependency : Episodic Vs Sequential
+
+
+
+
+
+
+
+
+		chech		 chess game
+                                                                          Mail sorting system
+Action Based Task Environment
+Pick and place robot system
+
+=== Slide 24 ===
+
+No.of.State : Discrete Vs Continuous
+
+
+
+
+
+
+
+
+
+
+State Based Task Environment
+
+=== Slide 25 ===
+
+State Determinism : Deterministic Vs Stochastic    | Strategic
+(If the environment is deterministic except for the actions of other agents, then the environment is strategic)
+
+Action & State Based:
+
+=== Slide 26 ===
+> Cardinality : Single Vs MultiAgent
+
+
+Agent Based:
+
+=== Slide 27 ===
+Change in Time : Static Vs Dynamic
+(The environment is semi dynamic if the environment itself does not change with the passage of time but the agent's performance score does)
+Action & State Based:
+
+=== Slide 28 ===
+Sensor Based:
+Observability : Full Vs Partial 
+
+Action Based:
+Dependency : Episodic Vs Sequential
+
+State Based:
+No.of.State : Discrete Vs Continuous
+
+Agent Based:
+> Cardinality : Single Vs MultiAgent
+
+Action & State Based:
+State Determinism : Deterministic Vs Stochastic    | Strategic
+Change in Time : Static Vs Dynamic
+Task Environment
+
+=== Slide 29 ===
+Task Environment
+
+=== Slide 30 ===
+Task Environment
+
+=== Slide 31 ===
+Exercises 
+Develop PEAS description for the following task environment: 
+
+ Robot soccer player 
+Shopping for used AI books on the Internet 
+
+ Analyze the properties of the above environments
+Question...
+
+=== Slide 32 ===
+32
+Required Reading:  AIMA - Chapter  # 1.2, 1.4, 2
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+=== Slide 33 ===
+Uninformed Search
+Informed Search
+Heuristic Functions			
+D.	Local Search Algorithms & Optimization Problems
+Module 2 : 
+Problem Solving Agent using Search
+
+=== Slide 34 ===
+Problem Solving Agents
+An agent that tries to come up with a sequence of actions that will bring the environment into a desired state.	
+Phases of Solution Search by PSA
+ “a problem-solving refers to a state where we wish to reach to a definite goal from a present state or condition
+
+=== Slide 35 ===
+Problem Solving Agents-Goal formulation 
+First and simplest step in problem-solving. 
+
+Organizes the steps/sequence required to formulate one goal out of multiple goals as well as actions to achieve that goal. 
+
+Current situation and the agent’s performance measure is the first step in problem solving.
+
+=== Slide 36 ===
+Problem solving Agents-Problem formulation
+Initial State: Start point of problem
+Final State: The finish point of problem. Aka Goal or solution state
+States: Total states in problem
+Transition Model: How one can shift from one state to another
+Actions: Actions set, used to move from one state to another
+Path Cost: What is total effort (cost) from initial state to final state
+
+=== Slide 37 ===
+Problem Solving Agents –Search Phase 
+
+It identifies all the best possible sequence of actions to reach the goal state from the current state. 
+
+It takes a problem as an input and returns solution as its output.
+
+
+
+
+
+
+
+=== Slide 38 ===
+It executes the best optimal solution from the searching algorithms to reach the goal state from the current state.
+Problem solving agents –execution phase
+
+=== Slide 39 ===
+Problem Solving Agents – example
+
+
+
+
+
+
+
+
+
+
+
+
+
+Initial State –E.g., In(Arad)
+Possible Actions – ACTIONS(s)  {Go(Sibiu), Go(Timisoara), Go(Zerind)}
+Transition Model – RESULT( In(Arad), Go(Sibiu) )  = In(Sibiu) 
+Goal Test – IsGoal( In(Bucharest) ) = Yes
+Path Cost – cost( In(Arad), go(Sibiu)) = 140 kms
+
+=== Slide 40 ===
+N - Queen
+
+=== Slide 41 ===
+Vacuum World Problem
+
+=== Slide 42 ===
+Example Problem Formulation
+
+=== Slide 43 ===
+Searching for solutions
+
+=== Slide 44 ===
+
+
+=== Slide 45 ===
+Nodes
+States
+Frontier | Fringes
+Search Strategy : LIFO | FIFO | Priority Queue
+Performance Metrics
+Completeness
+Optimality
+Time Complexity
+Space Complexity
+Algorithm Terminology
+	- d Depth of a node		- m – maximum 
+	- b Branching factor  	- C* - Optimal Cost
+	- n – nodes 		- E – least Cost
+	- l – level of a node		- N –total node generated
+Terminologies
+
+=== Slide 46 ===
+Uninformed Search 
+BFS & its Variants
+
+=== Slide 47 ===
+Uninformed Search 
+Uninformed Search 
+BFS & its Variants
+
+=== Slide 48 ===
+
+
+                    Thank you
+Questions Please..???

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 2 - Architecture of Quick Commerce Platform</title>
+    <style>
+        :root {
+            --bg-1: #f5f8f2;
+            --bg-2: #e6f0de;
+            --card: #ffffff;
+            --ink: #1f2937;
+            --brand: #1b5e20;
+            --brand-2: #2e7d32;
+            --accent: #ef6c00;
+            --line: #d1d5db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+            color: var(--ink);
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 14px;
+            padding-right: 16px;
+            padding-bottom: 14px;
+            padding-left: 16px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #fff;
+            padding-top: 18px;
+            padding-right: 24px;
+            padding-bottom: 18px;
+            padding-left: 24px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        header h1 {
+            font-size: 1.45em;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        header p {
+            font-size: 0.95em;
+            margin: 2px 0;
+            opacity: 0.95;
+        }
+
+        .slide {
+            background: var(--card);
+            border-radius: 4px;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 12px;
+            margin-left: 0;
+            padding-top: 14px;
+            padding-right: 16px;
+            padding-bottom: 14px;
+            padding-left: 16px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d7e2d6;
+            border-top: 3px solid var(--brand);
+            break-inside: avoid;
+        }
+
+        .slide-number {
+            display: inline-block;
+            font-size: 0.75em;
+            color: #fff;
+            background: var(--brand);
+            border-radius: 2px;
+            padding: 4px 10px;
+            margin-bottom: 8px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .slide h2 {
+            color: var(--brand);
+            border-bottom: 2px solid var(--brand);
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+        }
+
+        .slide h3 {
+            color: #1a4f1e;
+            font-size: 1.03em;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .slide p {
+            margin: 4px 0;
+            font-size: 0.95em;
+        }
+
+        ul, ol {
+            margin: 4px 0 4px 20px;
+        }
+
+        li {
+            margin-bottom: 3px;
+            font-size: 0.93em;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .box {
+            background: #f8fff7;
+            border-left: 4px solid var(--brand-2);
+            border: 1px solid #d2e8d2;
+            padding: 8px 10px;
+            border-radius: 3px;
+            margin-top: 6px;
+        }
+
+        .tree-table,
+        .msg-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.9em;
+            border: 1px solid var(--line);
+        }
+
+        .tree-table th,
+        .tree-table td,
+        .msg-table th,
+        .msg-table td {
+            border: 1px solid var(--line);
+            padding-top: 7px;
+            padding-right: 8px;
+            padding-bottom: 7px;
+            padding-left: 8px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .tree-table th,
+        .msg-table th {
+            background: var(--brand);
+            color: #fff;
+            font-size: 0.86em;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .priority-hh {
+            color: #b42318;
+            font-weight: 700;
+        }
+
+        .priority-hm {
+            color: #9a6700;
+            font-weight: 700;
+        }
+
+        .diagram {
+            border: 1px solid #c6d9c6;
+            background: #fbfffb;
+            border-radius: 4px;
+            padding-top: 8px;
+            padding-right: 10px;
+            padding-bottom: 8px;
+            padding-left: 10px;
+            margin-top: 8px;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            min-width: 620px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            border-radius: 999px;
+            border: 1px solid #d2e8d2;
+            background: #f1fbf1;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+
+        footer {
+            font-size: 0.82em;
+            color: #4b5563;
+            border-top: 1px solid #cfd8e3;
+            margin-top: 16px;
+            padding-top: 8px;
+        }
+
+        @media (max-width: 850px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            .mermaid {
+                min-width: 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                font-size: 9.2pt;
+                color: #000;
+                line-height: 1.25;
+            }
+
+            .container {
+                padding-top: 0;
+                padding-right: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                max-width: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 0.35in;
+            }
+
+            header {
+                background: #fff !important;
+                color: #000 !important;
+                box-shadow: none;
+                border: 1px solid #b7c7d8;
+            }
+
+            .slide {
+                box-shadow: none;
+                border: 1px solid #bfcabf;
+                border-top: 2px solid var(--brand);
+                margin-top: 0;
+                margin-right: 0;
+                margin-bottom: 7px;
+                margin-left: 0;
+                padding-top: 10px;
+                padding-right: 11px;
+                padding-bottom: 10px;
+                padding-left: 11px;
+                page-break-inside: avoid;
+                break-inside: avoid-page;
+                page-break-after: auto;
+                break-after: auto;
+            }
+
+            .slide-number {
+                display: none;
+            }
+
+            .slide h2 {
+                color: #000;
+                border-bottom: 1px solid var(--brand);
+                font-size: 1em;
+                margin-bottom: 5px;
+                padding-bottom: 3px;
+            }
+
+            .slide h3 {
+                color: #000;
+                font-size: 0.9em;
+                margin-top: 6px;
+                margin-bottom: 3px;
+            }
+
+            .slide p,
+            .slide li,
+            .tree-table,
+            .msg-table {
+                font-size: 0.86em;
+            }
+
+            .slide p {
+                margin: 3px 0;
+            }
+
+            .slide li {
+                margin-bottom: 2px;
+            }
+
+            ul,
+            ol {
+                margin: 3px 0 3px 17px;
+            }
+
+            .tree-table th,
+            .msg-table th {
+                background: #e8efe8 !important;
+                color: #000 !important;
+                font-size: 0.8em;
+            }
+
+            .tree-table th,
+            .tree-table td,
+            .msg-table th,
+            .msg-table td {
+                padding: 6px 7px;
+            }
+
+            .diagram {
+                border: 1px solid #aeb9c7;
+                margin-top: 5px;
+                padding: 6px;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            header {
+                margin-bottom: 8px;
+                page-break-after: avoid;
+                break-after: avoid-page;
+            }
+
+            footer {
+                display: none;
+            }
+        }
+    </style>
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true, theme: "default" });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Assignment 2 - Software Architecture of a 15-Minute Quick Commerce Platform</h1>
+            <p>Subject: Software Architectures</p>
+            <p>Student: Gadamsetty V Sai Manoj Kumar | BITS ID: 2025MT12100</p>
+            <p>Domain: Retail (Quick Commerce)</p>
+            <p>Current market references: Blinkit, Zepto, Swiggy Instamart, BigBasket Now, Flipkart Minutes</p>
+            <p>Assumed operating scale: 25k concurrent users, peak 3k checkouts/min, metro-focused dark-store network</p>
+        </header>
+
+        <section class="slide">
+            <span class="slide-number">Slide 1</span>
+            <h2>ASR 1 Utility Tree - Ultra-Low Fulfillment Time</h2>
+            <p><strong>Why architecturally significant:</strong> In quick commerce, speed is the product. If confirmation and assignment are slow, customers abandon the order and often switch apps immediately.</p>
+            <p><strong>Market examples:</strong> Blinkit and Zepto publicly emphasize fast confirmation and rider assignment as key user-facing metrics.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Performance -> Response Time</td>
+                        <td>At p95, checkout-to-order-confirmation stays under 2 seconds for active metro zones.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Needs in-memory cart/pricing, local inventory lookup, and async non-critical tasks.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Performance -> End-to-End Latency</td>
+                        <td>Order is assigned to picker within 30 seconds and rider within 90 seconds in high-density zones.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Requires event-driven orchestration and real-time capacity signals.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Performance -> Predictability</td>
+                        <td>ETA shown to customer stays within +/- 3 minutes for at least 90% of delivered orders.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Demands dynamic ETA service and frequent rider-location updates.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Practical note:</strong> This ASR shapes the entire hot path, from cache strategy to orchestration style.</p>
+            <p><strong>Architectural decision:</strong> Keep checkout path synchronous and minimal; move non-critical actions (analytics, recommendation refresh) to async workers.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 2</span>
+            <h2>ASR 2 Utility Tree - Inventory Accuracy and Consistency</h2>
+            <p><strong>Why architecturally significant:</strong> Nothing breaks trust faster than paying for items that are not actually available. Inventory errors also increase refunds, support load, and dark-store waste.</p>
+            <p><strong>Market examples:</strong> Instamart and BigBasket Now rely heavily on frequent stock sync for top-moving SKUs.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Consistency -> Inventory Correctness</td>
+                        <td>For top 2000 SKUs, platform stock differs from dark-store stock by less than 1%.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Needs inventory reservation, real-time event updates, and reconciliation jobs.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Reliability -> Reservation Safety</td>
+                        <td>No oversell when two customers buy last unit simultaneously.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Forces atomic reserve-confirm-release workflow.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Recoverability -> Data Repair</td>
+                        <td>Mismatch between WMS and platform is detected and corrected automatically within 5 minutes.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Requires continuous reconciliation and compensating transactions.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Practical note:</strong> Reservation correctness is treated as a core business rule, not a background data-quality task.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 3</span>
+            <h2>ASR 3 Utility Tree - Availability During Peak Demand</h2>
+            <p><strong>Why architecturally significant:</strong> Quick commerce traffic is bursty (evenings, rain, festivals). If core services fail during spikes, orders are lost in minutes and operations fall behind quickly.</p>
+            <p><strong>Market examples:</strong> Weekend evenings, rain spikes, and festival campaigns are common stress windows across major quick-commerce apps.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Availability -> Fault Tolerance</td>
+                        <td>During one zone failure, 99% browse traffic and 95% checkout traffic continue without manual intervention.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Needs multi-zone deployment, stateless services, health-aware routing.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Scalability -> Burst Handling</td>
+                        <td>System absorbs 5x order spike for 20 minutes without order loss.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Needs queue buffering, autoscaling, and back-pressure controls.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Graceful Degradation -> Core Flow First</td>
+                        <td>Recommendations service can fail without impacting search, cart, and checkout.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Requires service isolation, timeouts, and feature flags.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Practical note:</strong> Graceful degradation keeps revenue-critical paths alive when non-critical modules are unhealthy.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 4</span>
+            <h2>Tactics for ASR 1 - Ultra-Low Fulfillment Time</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Edge caching:</strong> cache catalog snippets and dark-store metadata near user.</li>
+                        <li><strong>In-memory hot path:</strong> cart totals and delivery fee in Redis for fast checkout.</li>
+                        <li><strong>Async orchestration:</strong> order, picking, and rider assignment via events.</li>
+                        <li><strong>Locality routing:</strong> assign nearest dark store and nearest rider first.</li>
+                        <li><strong>SLA budgets:</strong> strict timeout per downstream call to avoid cascading delays.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to cache:</strong> SKU price, stock snapshot, delivery slots, store prep-time profile.</p>
+                        <p><strong>Tools:</strong> Redis Cluster, Kafka, gRPC, OpenTelemetry traces, geospatial index.</p>
+                        <p><strong>How it works:</strong> Checkout validates the cart from in-memory stock snapshot, then publishes OrderPlaced. Fulfillment Orchestrator triggers picker assignment and rider assignment in parallel, instead of waiting for serial steps.</p>
+                    </div>
+                    <p><strong>Assumption:</strong> Dark stores publish near-real-time capacity and prep-time updates.</p>
+                    <h3>Expected Result</h3>
+                    <p>Fast checkout confirmations and reduced dispatch delay for dense city zones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 5</span>
+            <h2>Tactics for ASR 2 - Inventory Accuracy and Consistency</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Inventory reservation:</strong> reserve stock at checkout before payment capture.</li>
+                        <li><strong>Atomic state change:</strong> use optimistic locking/version checks per SKU.</li>
+                        <li><strong>Event sourcing style updates:</strong> every stock movement emits immutable event.</li>
+                        <li><strong>Compensation:</strong> auto-release reservations on payment or picking failure.</li>
+                        <li><strong>Idempotent commands:</strong> reserve/release APIs accept idempotency keys to prevent duplicate updates.</li>
+                        <li><strong>Reconciliation worker:</strong> compare WMS and platform stock periodically.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to protect:</strong> available-to-promise quantity, reservation ledger, final sold quantity.</p>
+                        <p><strong>Tools:</strong> PostgreSQL with row-versioning, Kafka topics, Debezium CDC, Redis for read model, transactional outbox pattern.</p>
+                        <p><strong>How it works:</strong> Inventory Service runs ReserveStock as a transaction, publishes Reserved event, and updates the read cache. Reconciliation jobs compare CDC stream with WMS snapshots and repair drift using compensating updates.</p>
+                    </div>
+                    <p><strong>Trade-off:</strong> slightly higher write complexity is accepted to avoid oversell and post-payment cancellations.</p>
+                    <h3>Expected Result</h3>
+                    <p>Oversell incidents significantly reduced and cancellation/refund rates lowered.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 6</span>
+            <h2>Tactics for ASR 3 - Peak Availability and Scalability</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Active-active deployment:</strong> multiple zones with automatic failover.</li>
+                        <li><strong>Queue buffering:</strong> absorb burst orders in Kafka/RabbitMQ.</li>
+                        <li><strong>Horizontal autoscaling:</strong> HPA based on CPU, latency, and queue lag.</li>
+                        <li><strong>Bulkheads + circuit breakers:</strong> isolate recommendation/promotions from core checkout.</li>
+                        <li><strong>Graceful degradation:</strong> disable non-essential features under overload.</li>
+                    </ul>
+                    <h3>Security Implementations</h3>
+                    <ul>
+                        <li><strong>OAuth 2.1 + short-lived JWT:</strong> access token 15 min, refresh token rotation enabled.</li>
+                        <li><strong>mTLS for service-to-service calls:</strong> only trusted workloads can call internal APIs.</li>
+                        <li><strong>PII encryption and tokenization:</strong> phone, address, and payment data protected at rest and in logs.</li>
+                        <li><strong>WAF + rate limiting:</strong> blocks bot traffic, credential stuffing, and abusive checkout retries.</li>
+                        <li><strong>Secrets management:</strong> DB/API credentials stored in Vault or cloud KMS-backed secret manager.</li>
+                        <li><strong>Fraud controls:</strong> velocity checks on account/device/payment instrument before high-risk order confirmation.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to protect:</strong> browse, add-to-cart, checkout, payment, and order tracking flows.</p>
+                        <p><strong>Tools:</strong> Kubernetes, API Gateway rate limits, Kafka, Prometheus alerts, feature flags, WAF, Istio mTLS, Vault/KMS.</p>
+                        <p><strong>How it works:</strong> Traffic spikes trigger autoscaling and controlled admission. Overflow work is queued and processed by workers, while users still receive accurate status updates for accepted orders. In parallel, the gateway enforces token and rate policies, and internal calls are validated via mTLS identities.</p>
+                    </div>
+                    <p><strong>Trade-off:</strong> some non-critical features may be temporarily disabled to protect checkout reliability.</p>
+                    <h3>Expected Result</h3>
+                    <p>Platform remains usable under severe spikes with priority for core revenue path and stronger protection against abuse/fraud traffic.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 7</span>
+            <h2>Component and Connection View</h2>
+            <p>This view shows the runtime building blocks for ordering, inventory reservation, dark-store picking, rider assignment, and payment settlement.</p>
+            <div class="diagram">
+                <div class="mermaid">
+flowchart LR
+    U[Customer App]
+    R[Delivery Partner App]
+    G[API Gateway]
+    A[Auth Service]
+    C[Catalog Service]
+    S[Search Service]
+    Cart[Cart and Checkout Service]
+    Inv[Inventory Service]
+    Or[Order Service]
+    Ful[Fulfillment Orchestrator]
+    Dark[Dark Store Ops Service]
+    Del[Delivery Assignment Service]
+    Pay[Payment Service]
+    Notif[Notification Service]
+    K[(Kafka)]
+    Red[(Redis)]
+    DB[(PostgreSQL)]
+    PG[External Payment Gateway]
+
+    U -->|HTTPS REST| G
+    R -->|HTTPS REST| G
+    G -->|Token Validation| A
+    G -->|Browse/Search| C
+    G -->|Query| S
+    G -->|Cart/Checkout| Cart
+    Cart -->|Reserve Stock| Inv
+    Cart -->|Create Order| Or
+    Or -->|OrderPlaced Event| K
+    K -->|Consume| Ful
+    Ful -->|Pick Task| Dark
+    Ful -->|Assign Rider| Del
+    Del -->|Driver Status| Red
+    Ful -->|Inventory Adjust| Inv
+    Or -->|Charge| Pay
+    Pay -->|Tokenized Charge| PG
+    K -->|Order Updates| Notif
+    C -->|Read Cache| Red
+    S -->|Read Cache| Red
+    Inv -->|Stock Data| DB
+    Or -->|Order Data| DB
+                </div>
+            </div>
+            <p>
+                <span class="tag">Sync: HTTPS REST/gRPC</span>
+                <span class="tag">Async: Kafka events</span>
+                <span class="tag">Data: PostgreSQL + Redis</span>
+            </p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 8</span>
+            <h2>Deployment View</h2>
+            <p>Deployment across primary and DR regions with zone redundancy, operational telemetry, and external dependency boundaries.</p>
+            <div class="diagram">
+                <div class="mermaid">
+flowchart TB
+    U[Customers and Delivery Partners]
+    DNS[Global DNS and Traffic Manager]
+
+    subgraph Z1[Primary Region - Zone A/B]
+      subgraph K1[Kubernetes Cluster]
+        GW1[Gateway Pods]
+        APP1[Microservice Pods]
+        W1[Worker Pods]
+      end
+      RED1[(Redis Cluster)]
+      DB1[(PostgreSQL Primary)]
+      KF1[(Kafka Cluster)]
+      WMS1[Dark Store WMS Adapter]
+    end
+
+    subgraph Z2[Secondary Region - DR]
+      subgraph K2[Kubernetes Cluster]
+        GW2[Gateway Pods]
+        APP2[Microservice Pods]
+        W2[Worker Pods]
+      end
+      RED2[(Redis Replica)]
+      DB2[(PostgreSQL Replica/Failover)]
+      KF2[(Kafka Mirror)]
+      WMS2[Dark Store WMS Adapter]
+    end
+
+    OBS[Observability: Prometheus, Grafana, ELK, SIEM]
+    PAY[External Payment Gateway]
+
+    U --> DNS
+    DNS --> GW1
+    DNS --> GW2
+    GW1 --> APP1
+    APP1 --> RED1
+    APP1 --> DB1
+    APP1 --> KF1
+    APP1 --> WMS1
+    GW2 --> APP2
+    APP2 --> RED2
+    APP2 --> DB2
+    APP2 --> KF2
+    APP2 --> WMS2
+    APP1 --> PAY
+    APP2 --> PAY
+    APP1 --> OBS
+    APP2 --> OBS
+    DB1 -. replication .-> DB2
+    KF1 -. mirror .-> KF2
+                </div>
+            </div>
+            <p><strong>Deployment tactics shown:</strong> zone redundancy, autoscaling workers, buffered event processing, external dependency isolation.</p>
+            <p><strong>Security implementation in deployment:</strong> private subnets for data services, encryption-at-rest for Redis/PostgreSQL, workload identity for pods, centralized audit logs to SIEM, and restricted admin access through VPN/bastion.</p>
+            <p><strong>Reliability targets:</strong> SLO 99.9% checkout availability, alert at p95 checkout latency > 1.5s for 10 min, RPO 5 min and RTO 30 min for regional failover.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 9</span>
+            <h2>Important Inter-Component Messages and Communication Methods</h2>
+            <table class="msg-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>From -> To</th>
+                        <th>Message</th>
+                        <th>Communication Method</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Customer App -> API Gateway</td>
+                        <td>CheckoutRequest(cartId, address, slot)</td>
+                        <td>HTTPS REST/JSON</td>
+                        <td>Start order placement</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Checkout Service -> Inventory Service</td>
+                        <td>ReserveStock(orderId, skuList)</td>
+                        <td>gRPC unary</td>
+                        <td>Prevent oversell before payment</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Order Service -> Kafka</td>
+                        <td>OrderPlaced event</td>
+                        <td>Async publish (Kafka)</td>
+                        <td>Trigger fulfillment pipeline</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Fulfillment Orchestrator -> Dark Store Ops</td>
+                        <td>CreatePickTask(orderId, priority)</td>
+                        <td>gRPC unary</td>
+                        <td>Start picking and packing workflow</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Fulfillment Orchestrator -> Delivery Assignment</td>
+                        <td>AssignRider(orderId, location)</td>
+                        <td>gRPC streaming</td>
+                        <td>Allocate nearest available rider</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Order Service -> Payment Service</td>
+                        <td>ChargeOrder(orderId, amount, paymentToken)</td>
+                        <td>HTTPS REST + idempotency-key</td>
+                        <td>Safe and retryable payment</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Payment Service -> Payment Gateway</td>
+                        <td>AuthorizeCapture(token, amount)</td>
+                        <td>HTTPS REST + mTLS</td>
+                        <td>External payment authorization and capture</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Kafka -> Notification Service</td>
+                        <td>OrderConfirmed/Picked/OutForDelivery/Delivered</td>
+                        <td>Async consume</td>
+                        <td>Push real-time user updates</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Payment Service -> Inventory Service</td>
+                        <td>ReleaseReservation(orderId) on payment failure</td>
+                        <td>Async event + idempotent command</td>
+                        <td>Prevent stock lock and recover inventory quickly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 10</span>
+            <h2>Sequence Diagram - Major Scenario: Place and Deliver a Quick Commerce Order</h2>
+            <p><strong>Scenario:</strong> Customer places an order, stock is reserved, dark store packs items, rider delivers, and payment is finalized.</p>
+            <div class="diagram">
+                <div class="mermaid">
+sequenceDiagram
+    actor Customer
+    participant App as Customer App
+    participant GW as API Gateway
+    participant Cart as Checkout Service
+    participant Inv as Inventory Service
+    participant Order as Order Service
+    participant Bus as Kafka
+    participant Ful as Fulfillment Orchestrator
+    participant DS as Dark Store Ops
+    participant Del as Delivery Assignment
+    participant Pay as Payment Service
+    participant PG as Payment Gateway
+
+    Customer->>App: Confirm cart and address
+    App->>GW: CheckoutRequest
+    GW->>Cart: Validate and price order
+    Cart->>Inv: ReserveStock
+    Inv-->>Cart: Reserved
+    Cart->>Order: CreateOrder
+    Order->>Bus: Publish OrderPlaced
+    Bus->>Ful: Consume OrderPlaced
+    Ful->>DS: CreatePickTask
+    DS-->>Ful: Packed
+    Ful->>Del: AssignRider
+    Del-->>Ful: RiderAssigned
+    Ful->>Pay: CapturePayment
+    Pay->>PG: Authorize and capture
+    PG-->>Pay: Success
+    Pay-->>Ful: PaymentConfirmed
+    Note over Ful,Inv: If payment fails, release reserved stock
+    Ful-->>App: OutForDelivery/Delivered updates
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 11</span>
+            <h2>Architecture Pattern 1 - Microservices with Bounded Contexts</h2>
+            <h3>Where it is used</h3>
+            <ul>
+                <li>Separate services for Catalog, Search, Cart, Inventory, Order, Fulfillment, Delivery, Payments.</li>
+                <li>API Gateway provides single entry for mobile apps and handles auth/throttling.</li>
+            </ul>
+            <h3>Why this pattern fits</h3>
+            <ul>
+                <li>Different scaling needs: Search and Checkout traffic are much higher than admin flows.</li>
+                <li>Independent release: inventory and fulfillment can evolve without catalog redeploy.</li>
+                <li>Better team autonomy and ownership per business function.</li>
+            </ul>
+            <h3>Trade-off handled</h3>
+            <p>Distributed complexity is managed through service contracts, consumer-driven schema checks, and centralized observability dashboards.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 12</span>
+            <h2>Architecture Pattern 2 - Event-Driven Orchestration (Saga)</h2>
+            <h3>Where it is used</h3>
+            <ul>
+                <li>Order lifecycle is modeled as events: OrderPlaced, StockReserved, Packed, RiderAssigned, Delivered.</li>
+                <li>Orchestrator coordinates cross-service steps and compensation on failure.</li>
+            </ul>
+            <h3>Why this pattern fits</h3>
+            <ul>
+                <li>High-throughput and loose coupling for spike handling.</li>
+                <li>Natural fit for long-running workflows (reserve, pick, assign, deliver, settle).</li>
+                <li>Improves auditability and operational replay/debugging.</li>
+            </ul>
+            <h3>Trade-off handled</h3>
+            <p>Eventual consistency risk is reduced using idempotent consumers, retries with backoff, dead-letter queues, and compensation handlers.</p>
+            <p><strong>Product note:</strong> This event-driven lifecycle is visible in products like Blinkit and Zepto where order-state updates are stream-oriented.</p>
+            <p><strong>Where exactly used:</strong> order placement, stock reservation, payment success/failure, and rider assignment are modeled as Saga steps with compensation actions.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 13</span>
+            <h2>Key Learnings (3)</h2>
+            <p>While preparing this architecture, these were my main takeaways:</p>
+            <ol>
+                <li><strong>Business promise defines architecture:</strong> a 10-20 minute delivery SLA forces low-latency design and parallel orchestration from day one.</li>
+                <li><strong>Inventory is the backbone of trust:</strong> reservation and reconciliation logic must be treated as core architecture, not secondary logic.</li>
+                <li><strong>Design is only half the job:</strong> clear message contracts, observability, and fallback behavior make the architecture practical in real operations.</li>
+            </ol>
+        </section>
+
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

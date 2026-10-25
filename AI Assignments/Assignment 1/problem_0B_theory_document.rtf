@@ -1,0 +1,78 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Calibri;}{\f1 Courier New;}}
+\paperw11906\paperh16838\margl1440\margr1440\margt1080\margb1080
+\fs24
+\b Artificial and Computational Intelligence\b0\line
+\b Assignment 1 - Theory Document\b0\line
+\b Problem Statement 0-B (Travelling Agent)\b0\line
+\line
+Student Name: Gadamsetty V Sai Manoj Kumar\line
+BITS ID: 2025MT12100\line
+Date: 11 April 2026\line
+\line
+\b 1. Agent Environment and PEAS\b0\line
+\line
+\b Problem Context\b0\line
+A travelling agent must move from Chennai (node A) to Hyderabad (node X) on a weighted graph. Edge weights represent approximate travel time between cities. The task is to identify a valid route to the goal using the required search methods (IDA* and Hill Climbing), while reporting path and complexity.\line
+\line
+\b PEAS Description\b0\line
+\b Performance Measure:\b0 Reach goal node X with minimum travel cost; produce valid path; report time and space complexity.\line
+\b Environment:\b0 Weighted graph of cities, static during one run, fully observable.\line
+\b Actuators:\b0 Move from current node to an adjacent node connected by an edge.\line
+\b Sensors:\b0 Current node, neighboring nodes, and edge costs from graph representation.\line
+\line
+\b Environment Characteristics\b0\line
+- Fully observable: all nodes/edges/costs are known from the start.\line
+- Deterministic: moving on an edge always gives the same next node and cost.\line
+- Sequential: each decision affects subsequent choices in the path.\line
+- Static: topology and weights do not change during execution.\line
+- Discrete: nodes and transitions are finite and countable.\line
+\line
+\b 2. Heuristic / Fitness Function Definition\b0\line
+\line
+For this problem, the heuristic follows the assignment statement exactly:\line
+\line
+h(n) = average of total travel costs across all simple paths from node n to goal node X.\line
+\line
+Interpretation:\line
+- Lower h(n) indicates that node n is generally closer (in travel-time sense) to X.\line
+- The heuristic is computed from graph structure, not manually guessed.\line
+\line
+Usage in algorithms:\line
+- IDA*: uses f(n) = g(n) + h(n), where g(n) is path cost from start to n.\line
+- Hill Climbing: selects neighbor with best (lowest) heuristic value; if no improving neighbor exists, local optimum behavior is reported.\line
+\line
+\b 3. Data Structures Used in Implementation\b0\line
+\line
+- Graph: Dictionary of dictionaries (adjacency map with edge weights).\line
+Example: graph[\'A\'][\'D\'] = 3\line
+\line
+- Path containers: list for ordered path sequence.\line
+- Visited tracking: set to prevent node revisits in simple-path exploration.\line
+- Heuristic table: dictionary mapping node -> heuristic value h(n).\line
+- Result object: structured record containing path, cost, expanded nodes, depth, and flags.\line
+\line
+\b 4. Informed and Local Search Methods (Summary)\b0\line
+\line
+\b IDA* (Informed Search)\b0\line
+- Starts with threshold = h(start).\line
+- Performs depth-first bounded search using f(n).\line
+- If goal not found, threshold increases to minimum exceeded f-cost and repeats.\line
+- Returns path A -> D -> G -> X (cost 19) in the submitted implementation run.\line
+\line
+\b Hill Climbing (Local Search)\b0\line
+- At each step chooses best heuristic neighbor.\line
+- Tracks local optimum condition when strict heuristic improvement is not possible.\line
+- Submitted run reports path A -> D -> G -> X and marks local-optimum encountered as Yes.\line
+\line
+\b 5. Complexity Reporting Approach\b0\line
+\line
+The code prints complexity information explicitly:\line
+- IDA*: Time O(b^d) worst case, Space O(bd) worst case.\line
+- Hill Climbing: Time O(b) per move, Space O(b) for neighbor inspection.\line
+\line
+\b 6. Submission Note\b0\line
+\line
+This document contains theory only (PEAS, environment analysis, heuristic definition, and method explanation).\line
+Implementation is provided separately in Python notebook / code as required.\line
+}

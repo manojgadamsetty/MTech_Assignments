@@ -1,0 +1,90 @@
+Birla Institute of Technology & Science, Pilani
+Work Integrated Learning Programmes Division
+Second Semester 2025-2026
+Digital Learning Handout
+Part A: Content Design
+Course Description:
+The object of this course is to introduce the problems and techniques of A.I. along with the applications of A.I. techniques to the fields like natural language understanding, image processing, game theory and problem solving. The course also aims at understanding its implementation using LISP/Python and PROLOG languages.
+Course Objectives
+Text Book(s):
+Reference Book(s) & other resources:
+Learning Outcomes: Students will be able to 
+Modular Content Structure
+Introduction to AI
+History
+Intelligent Agent & Environment
+Role of Learning
+Expert Systems
+Stages of Development
+Structure of Knowledge base
+Problem Solving: Knowledge representation and Inference
+Search Strategies
+Uninformed
+Informed
+Constraint Satisfaction Problem 
+Representation
+Logic 
+Rule system & Fuzzy system
+Semantic Nets 
+Objects
+Reasoning: Static and Dynamic 
+Monotonic
+Forward Chaining
+Backward Chaining
+Non-Monotonic
+Probability 
+Bayesian Networks
+Introduction to Hidden Morkov Model
+Introduction to Learning
+Supervised
+Unsupervised
+Reinforcement Learning
+Neural Network 
+Overview of Deep Learning
+Optimization Models
+Hill climbing Algorithm
+Genetic Algorithm
+Ant Colony Optimization
+Particle Swarm Optimization
+Game Playing 
+AI & Gaming
+Min-Max Algorithm
+Alpha – beta Pruning
+Anatomy of building AI systems
+Shortcomings of AI
+Building Fair models
+Interpretable models
+Application in Natural Language Processing 
+Part B: Learning Plan
+Experiential Learning Components:
+Lab work: 7
+Project work: 0
+Case Study: 0
+Simulation: 0
+Work Integrated Learning Assignment- 1 Assignment
+Design work/ Field work: 0
+Objective of Experiential Learning Component:
+Learners will implement informed/uninformed/local search algorithms, adversarial search and supervised learning using Python,  rule-based systems in Prolog and Q-Learning using OpenAI Gym
+Scope of Experiential Learning Component:
+Programming language – Python, Prolog
+Tools and libraries: Jupyter, Numpy, Scipy, Pandas, ScikitLearn, Matplotlib, OpenGym,
+Lab Infrastructure:
+Google Colab, Online : https://www.swi-prolog.org/
+List of Experiments:
+Evaluation Scheme: 
+Legend: EC = Evaluation Component; AN = After Noon Session; FN = Fore Noon Session
+EC1* (30%): Quiz: 10 %, Lab Assignment/Assignment: 20%
+Syllabus for Mid-Semester Test (Closed Book): Topics in Contact session:  1 to 8
+Syllabus for Comprehensive Exam (Open Book): All topics 
+Important Links and Information:
+eLearn Portal: https://elearn.bits-pilani.ac.in
+Students must visit the eLearn portal regularly and stay updated with the latest announcements and deadlines.
+Contact Sessions: Students should attend the online lectures as per the schedule provided on the eLearn portal.
+Evaluation Guidelines:
+EC-1 consists of either two Assignments or three Quizzes. Students will attempt them through the course pages on the eLearn portal. Announcements will be made on the portal in a timely manner.
+For Closed Book tests: No books or reference material of any kind will be permitted.
+For Open Book exams: “open book” means text/ reference books (publisher copy only) and does not include any other learning material. No other learning material will be permitted during the open book examinations. For Detailed Guidelines refer to the attached document. 
+  EC3 Guidelines 
+If a student is unable to appear for the Regular Test/Exam due to genuine exigencies, the student should follow the procedure to apply for the Make-Up Test/Exam, which will be made available on the eLearn portal. The Make-Up Test/Exam will be conducted only at selected exam centres on the dates to be announced later.
+It shall be the responsibility of the individual student to be regular in maintaining the self-study schedule as given in the course handout, attend the online lectures, and take all the prescribed evaluation components such as Assignments/Quizzes, Mid-Semester Tests and Comprehensive Exams according to the evaluation scheme provided in the handout.
+********************

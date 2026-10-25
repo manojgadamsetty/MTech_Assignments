@@ -1,0 +1,526 @@
+
+
+=== Slide 1 ===
+Artificial Intelligence-[SESIZC444]
+
+CS 4- Informed search &: Knowledge representation and Inference
+By
+Prof. Brahmanaidu Kakarla
+
+=== Slide 2 ===
+Uninformed Search
+Informed Search
+Heuristic Functions			
+D.	Local Search Algorithms & Optimization Problems
+Module 2 : Problem Solving Agent using Search
+
+=== Slide 3 ===
+Informed Search 
+ 	Greedy Best First
+ 	A* Algorithm
+
+=== Slide 4 ===
+	Strategies that know if one non-goal state is more promising than another non-goal state
+Informed /Heuristic Search 
+
+=== Slide 5 ===
+Expands the node that is closest to the goal: Thus, f(n) = h(n)
+Greedy Best First Search
+
+=== Slide 6 ===
+Greedy Best First Search
+
+=== Slide 7 ===
+
+
+=== Slide 8 ===
+ 
+Greedy Best First Search
+
+=== Slide 9 ===
+(1)
+(1 3) (1 4) (1 2) 
+(1 3 5 ) (1 3 4) 
+
+
+
+C(1-3-5) = 100 + 125 =225
+Expanded : 2
+Generated : 6
+Max Queue Length : 3
+
+1
+2
+3
+4
+5
+4
+40
+0
+Greedy Best First Search
+
+=== Slide 10 ===
+Case Study – 1 Search in Treebanks
+Source Credit :
+https://catalog.ldc.upenn.edu/docs/LDC95T7/cl93.html
+https://ufal.mff.cuni.cz/pdt3.5
+BITS Pilani, Pilani Campus
+
+=== Slide 11 ===
+Expands the node which lies in the closest path (estimated cheapest path) to  goal
+Evaluation function f(n) = g(n) + h(n) 
+g(n) – the cost to reach the node
+h(n) – the expected cost to go from node to goal
+f(n) – estimated cost of cheapest path through node n
+
+A*  Search
+
+=== Slide 12 ===
+A* Search
+(1)
+(1 4) (1 2) (1 3)
+(1 4 5) (1 2) (1 3)
+
+C(1-4-5) = 100 + 150 =150
+Expanded : 2
+Generated : 5
+Max Queue Length : 3
+
+1
+2
+3
+4
+5
+0
+70+120 = 190
+125+70 = 195
+100+ 50 + 0 = 150
+100+40 = 140
+
+=== Slide 13 ===
+Optimality of A*
+
+=== Slide 14 ===
+Test for Admissibility:
+
+Expands the node which lies in the closest path (estimated cheapest path) to the goal
+Evaluation function f(n) = g(n) + h(n) 
+g(n) – the cost to reach the node
+h(n) – the expected cost to go from node to goal
+f(n) – estimated cost of cheapest path through node n
+
+
+	A heuristic is admissible or optimistic if , 0 ≤ h(n) ≤ h*(n), where h*(n) is the actual cost to reach the goal
+
+
+A*  Search
+
+=== Slide 15 ===
+ 
+A*  Search
+
+=== Slide 16 ===
+A* Search
+Is theheuristicdesigned leads to optimalsolution?
+Assuming node 3 as goal, taking only sample edges
+per node below is checked for consistency
+BITS Pilani, Pilani Campus
+
+=== Slide 17 ===
+Assuming node 3 as goal, taking only sample edges per node below is checked for consistency
+A*  Search
+Is the heuristic designed leads to optimal solution?
+
+=== Slide 18 ===
+The Depth first search and Breadth first search given earlier for OR trees or graphs can be easily adopted by AND-OR graph. 
+
+The main difference lies in the way termination conditions are determined, since all goals following an AND nodes must be realized; where as a single goal node following an OR node will do. So for this purpose we are using AO* algorithm. 
+
+Like A* algorithm here we will use two arrays and one heuristic function. 
+
+OPEN: 
+It contains the nodes that has been traversed but yet not been marked solvable or unsolvable. 
+CLOSE:It contains the nodes that have already been processed.
+
+FUNCTION :The distance from current node to goal node. 
+
+AO* Search: (And-Or) Graph 
+
+=== Slide 19 ===
+Step 1: Place the starting node into OPEN. 
+
+Step 2: Compute the most promising solution tree say T0. 
+
+Step 3: Select a node n that is both on OPEN and a member of T0. Remove it from OPEN and place it in CLOSE 
+
+Step 4: If n is the terminal goal node then leveled n as solved and leveled all the ancestors of n as solved. If the starting node is marked as solved then success and exit. 
+
+Step 5: If n is not a solvable node, then mark n as unsolvable. If starting node is marked as unsolvable, then return failure and exit.
+ 
+Step 6: Expand n. Find all its successors and find their h (n) value, push them into OPEN. 
+Step 7: Return to Step 2.
+Step 8: Exit. 
+
+AO* Search Algorithm
+
+=== Slide 20 ===
+In Search Strategies, the states are represented as
+Atomic representation
+Treated as black box
+Many factors are ignored, e.g., gas in car, money available for toll, etc.
+To include more factors in our state representation, we have
+Factored Representation
+
+
+State-space representation
+
+=== Slide 21 ===
+Each state will be represented with
+Factors
+Each factor can be a Boolean or real-valued variable
+E.g., City Arad can now be represented as
+{“lat”: 46.1866, “lon”: 21.3123, “has_gas_till_next_station”: yes}
+
+
+
+Factored Representation
+
+=== Slide 22 ===
+Solving problems by
+Representing the knowledge in state-space
+Reasoning about the solution in logical steps
+
+
+
+Knowledge-based Agents
+
+=== Slide 23 ===
+Central Component: Knowledge Base (KB)
+
+KB – set of sentences, not the English sentences
+
+Sentence
+representation of knowledge in a language called Knowledge representation language
+Represents an axiom, when the sentence is taken as given without being derived from other sentences
+TELL operation: Add new sentences to the knowledge base
+ASK operation: Query what is known
+
+Each time a knowledge-based agent is called, it does three things
+TELL – the Knowledge Base about the percepts (inputs)
+ASK – the Knowledge Base what action it should perform. 
+Extensive reasoning about the outcomes of possible action and current state
+TELL – the Knowledge Base about selected action (to update) and agent executes the action
+Knowledge-based Agents
+
+=== Slide 24 ===
+Wumpus World
+Example: Knowledge-based Agents
+
+=== Slide 25 ===
+Defining the task environment (PEAS)
+Performance Measure:
++1000 for climbing out with gold,
+-1000 for falling into a pit or being eaten by Wumpus, 
+-1 for each action taken and 
+-10 for using an arrow
+
+Environment: 4x4 grid of rooms. Always starts at [1, 1] facing right. The location of Wumpus and Gold are random. Agent dies if entered a pit or live Wumpus.
+Wumpus World
+
+=== Slide 26 ===
+Actuators – 
+Forward, 
+TurnLeft by 90, 
+TurnRight by 90, 
+Grab – pick gold if present, 
+Shoot – fire an arrow, it either hits a wall or kills wumpus. Agent has only one arrow. 
+Climb – Used to climb out of cave, only from [1, 1]
+
+Wumpus World
+
+=== Slide 27 ===
+Sensors. The agent has five sensors
+Stench: In all adjacent (but not diagonal) squares of Wumpus
+Breeze: In all adjacent (but not diagonal) squares of a pit
+Glitter: In the square where gold is
+Bump: If agent walks into a wall
+Scream: When Wumpus is killed, it can be perceived everywhere
+
+Percept Format: [Stench?, Breeze?, Glitter?, Bump?, Scream?]
+E.g., [Stench, Breeze, None, None, None]
+
+Wumpus World
+
+=== Slide 28 ===
+Goal: Discover the location of Wumpus, Pits and Gold so that the agent can navigate to Gold without falling prey to Wumpus or Pits.
+
+This would be agent’s knowledge for transitio.
+
+Requires a configuration of the environment to do logical reasonin.
+
+
+Wumpus World
+
+=== Slide 29 ===
+Symbolic Notation
+A = Agent
+B = Breeze
+G = Glitter, Gold
+OK = Safe Square
+P = Pit
+S = Stench
+V = Visited
+W = Wumpus
+
+Wumpus World
+
+=== Slide 30 ===
+Percept 1: [None, None, None, None, None]
+
+
+
+
+
+
+
+
+
+
+Action: Forward
+
+Wumpus World
+
+=== Slide 31 ===
+Percept 2: [None, Breeze, None, None, None]
+
+
+
+
+
+
+
+
+
+
+Action: Move to 1, 2 (the other non-visited OK state)
+Wumpus World
+
+=== Slide 32 ===
+Percept 3: [Stench, None, None, None, None]
+
+
+
+
+
+
+
+
+
+Action: Move to [2, 2]
+
+
+Wumpus World
+
+=== Slide 33 ===
+Logical Agents: combine the current percept with the existing knowledge (percept history) and do logical reasoning in identifying state information
+
+
+
+Wumpus World
+
+=== Slide 34 ===
+Reasoning conducted or assessed according to available knowledge about the domain
+
+Syntax: Every sentence in our knowledge base are expressed according to a syntax of the representing language.
+
+E.g., in Arithmetic, “x + y = 4” is a well-formed sentence, “xy+4=“ is not
+
+
+Logic
+
+=== Slide 35 ===
+Semantics: Meaning of sentence. They define the truth of a sentence according to a possible world.
+         E.g., in a world where x=2, y=2, “x + y = 4” is a true sentence, whereas in a world where x=1, y=1, the same sentence is not true
+
+In standard Logic, every sentence has to be either True or False but cannot be in between
+
+
+Logic – Semantics
+
+=== Slide 36 ===
+Model: Any possible world. Not necessarily the reality. Any combination of assignment of truth values to sentences in our KB.
+
+E.g., Two sentences S1 and S2 in our KB. 
+Possible models: m1: {S1: True, S2: True}, m2: {S1: False, S2: True}, m3: {S1:True, S2: False}, m4: {S1:False, S2:False}
+S1 is true in m1, m3  m1 satisfies S1 or m3 satisfies S1
+
+M(S1) is set of models that satisfy S1, i.e., [m1, m3]
+
+Logic – Model
+
+=== Slide 37 ===
+Logic – Entailment
+
+=== Slide 38 ===
+Example: In Wumpus World, the agent is in [2,1] and detected a breeze
+The agent is interested in squares [1, 2], [2, 2], [3, 1] for next move.
+Now, each square might or might not contain a pit (total 23 = 8 possible models)
+Our KB tells us that in [1, 1] we didn’t receive a breeze and hence [2, 1] doesn’t have a pit
+
+Logic – Entailment
+
+=== Slide 39 ===
+Logic – Entailment
+
+=== Slide 40 ===
+Logic – Entailment
+
+=== Slide 41 ===
+Sound – An inference algorithm that derives only entailed sentences
+E.g., Model Checking is a sound inference procedure
+
+Completeness – An inference algorithm is complete if it can derive any sentence that is entailed
+
+If KB is true, any sentence derived using Sound inference procedure is also true in real world.
+
+
+Logic – Entailment
+
+=== Slide 42 ===
+Grounding – connection between logical reasoning and real environment in which agent exists.
+
+How do we know that KB is true in the real world?
+Logic - Grounding
+
+=== Slide 43 ===
+A simple representation language for building knowledge-based agents
+Proposition Symbol – A symbol that stands for a proposition.
+     E.g., W1,3 – “Wumpus in [1,3]” is a proposition and W1,3 is the symbol
+Proposition can be true or false
+Usually represented with uppercase letter and may contain other letters or subscripts. E.g., P, Q, R, W1,3, North
+Two proposition symbols have fixed meaning
+True – always true proposition
+False – always false proposition
+Propositional Logic
+
+=== Slide 44 ===
+Syntax – Defines the language for allowable sentences
+Atomic proposition – consist of a single propositional symbol
+Complex proposition– Constructed from atomic sentences using parenthesis and logical connectives
+
+
+
+
+Propositional Logic – Syntax
+
+=== Slide 45 ===
+Propositional Logic – Connectivites
+
+=== Slide 46 ===
+Propositional Logic – Syntax 
+
+=== Slide 47 ===
+Semantics defines the rules for determining the truth of a sentence w.r.t a particular model
+E.g., sentences in knowledge base are {P1, P2, P3}, a possible model
+m1 = {P1 = false, P2 = true, P3 = false}, a model provides truth values for proposition symbols
+
+
+Propositional Logic – Semantics
+
+=== Slide 48 ===
+Semantics must specify how to compute the truth value of any sentence, given a model
+
+Compute the truth of atomic sentences and
+Compute the truth of sentences formed with five connectives
+
+The truth of atomic sentences is given by the model
+
+Propositional Logic – Semantics
+
+=== Slide 49 ===
+Propositional Logic – Semantics
+
+=== Slide 50 ===
+A simple KB for wumpus world.
+    For each [x, y] location
+    Px,y is true if there is a pit in [x, y]
+    Wx,y is true if there is a wumpus in [x, y]
+    Bx,y is true if agent perceives a breeze in [x, y]
+    Sx,y is true if agent perceives a stench in [x, y]
+
+
+Propositional Logic – Example KB
+
+=== Slide 51 ===
+Propositional Logic – Example KB 
+
+=== Slide 52 ===
+Propositional Logic (PL) – Inference
+
+=== Slide 53 ===
+PL Inference - Model Checking
+
+=== Slide 54 ===
+PL Inference - Model Checking
+
+=== Slide 55 ===
+PL Inference - Model Checking
+
+=== Slide 56 ===
+PL Inference - Model Checking
+
+=== Slide 57 ===
+PL Inference - Theorem Proving
+
+=== Slide 58 ===
+PL Inference - Theorem Proving
+
+=== Slide 59 ===
+PL Inference - Theorem Proving
+
+=== Slide 60 ===
+PL Inference – Theorem Proving
+
+=== Slide 61 ===
+PL Inference – Theorem Proving
+
+=== Slide 62 ===
+PL Inference – Theorem Proving
+
+=== Slide 63 ===
+PL Inference – Theorem Proving
+
+=== Slide 64 ===
+PL Inference – Theorem Proving
+
+=== Slide 65 ===
+PL Inference – Theorem Proving
+
+=== Slide 66 ===
+example
+
+=== Slide 67 ===
+Solution
+
+=== Slide 68 ===
+Exercise
+Solving a murder case 
+
+=== Slide 69 ===
+Less expressive 
+Proposition is a declarative that either true or false not both
+All and some cannot be represented using propositional logic
+Limitations of Propositional Logic
+
+=== Slide 70 ===
+What my actions do?
+Complexity of Representation 
+Search Strategies
+Propositional Logic
+First Order Logic
+
+=== Slide 71 ===
+
+                     
+                                 Thank you
+Questions...please

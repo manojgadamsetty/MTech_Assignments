@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Assignment 1 - Problem Statement 0-B</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0.45in;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #1f2937;
+            line-height: 1.35;
+            margin: 0;
+            background: #f5f7fb;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px 22px 24px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px 0 14px;
+            border-bottom: 2px solid #d9e2ec;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22pt;
+            color: #17324d;
+        }
+
+        .header h2 {
+            margin: 6px 0 2px;
+            font-size: 16pt;
+            color: #1f4e79;
+        }
+
+        .header p {
+            margin: 3px 0 0;
+            color: #4b5563;
+            font-size: 9.5pt;
+        }
+
+        .meta {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            table-layout: fixed;
+            margin-bottom: 14px;
+            font-size: 9.5pt;
+        }
+
+        .meta td {
+            border: 1px solid #c8d3df;
+            padding: 7px 9px;
+            vertical-align: top;
+            overflow-wrap: anywhere;
+        }
+
+        .meta td:first-child {
+            width: 28%;
+            background: #f3f7fb;
+            font-weight: 700;
+            color: #17324d;
+        }
+
+        .section {
+            margin-top: 10px;
+            margin-bottom: 12px;
+        }
+
+        .section h3 {
+            margin: 0 0 8px;
+            font-size: 13pt;
+            color: #1f4e79;
+            border-bottom: 1px solid #cdd8e3;
+            padding-bottom: 4px;
+        }
+
+        .section p {
+            margin: 0 0 8px;
+            font-size: 10pt;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            table-layout: fixed;
+            margin-top: 8px;
+            font-size: 9.5pt;
+        }
+
+        .result-table th, .result-table td {
+            border: 1px solid #c8d3df;
+            padding: 7px 8px;
+            vertical-align: top;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+
+        .result-table th {
+            background: #1f4e79;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .code-block {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 8pt;
+            line-height: 1.18;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            border: 1px solid #c8d3df;
+            background: #fbfcfe;
+            padding: 10px 11px;
+        }
+
+        .output-block {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 8pt;
+            line-height: 1.2;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            border: 1px solid #c8d3df;
+            background: #fcfefe;
+            padding: 10px 11px;
+        }
+
+        .note {
+            font-size: 9pt;
+            color: #4b5563;
+            margin-top: 4px;
+        }
+
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body { background: #ffffff; }
+            .page {
+                box-shadow: none;
+                padding: 6px 8px 8px;
+                max-width: none;
+                width: 100%;
+                margin: 0;
+            }
+            .header { padding-top: 0; }
+
+            .meta, .result-table {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <table class="meta">
+            <tr><td>Student Name</td><td>Gadamsetty V Sai Manoj Kumar</td></tr>
+            <tr><td>BITS ID</td><td>2025MT12100</td></tr>
+            <tr><td>Assigned Problem</td><td>Problem Statement 0-B</td></tr>
+            <tr><td>Assignment</td><td>Assignment 1 </td></tr>
+            <tr><td>Graph Goal</td><td>Find the shortest route from A to X</td></tr>
+            <tr><td>Heuristic</td><td>Average cost of all simple paths from node to X</td></tr>
+            <tr><td>Implementation</td><td>Executable Python solution with IDA* and Hill Climbing</td></tr>
+            <tr><td>Submitted On</td><td>11 April 2026</td></tr>
+        </table>
+
+        <div class="section">
+            <h3>Environment</h3>
+            <p>Deterministic, fully observable graph-search environment. The agent begins at A and must reach X by traversing adjacent roads with minimum travel cost.</p>
+        </div>
+
+        <div class="section">
+            <h3>Result Summary</h3>
+            <table class="result-table">
+                <tr><th>Algorithm</th><th>Observed Result</th><th>Time Complexity</th><th>Space Complexity</th></tr>
+                <tr><td>IDA*</td><td>A -&gt; D -&gt; G -&gt; X</td><td>O(b^d) worst case</td><td>O(bd) worst case</td></tr>
+                <tr><td>Hill Climbing</td><td>A -&gt; D -&gt; G -&gt; X</td><td>O(b) per move</td><td>O(b) for neighbor inspection</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Verified Program Output</h3>
+            <div class="output-block">Assignment 1 - Problem Statement 0-B
+Graph search from Chennai (A) to Hyderabad (X)
+
+Heuristic values (average cost of all simple paths to X):
+  h(A) = 22
+  h(B) = 27
+  h(C) = 31.3333
+  h(D) = 19
+  h(E) = 24.5
+  h(F) = 21.6667
+  h(G) = 20.3333
+  h(H) = 31.6667
+  h(X) = 0
+
+IDA* result:
+  Path: A -&gt; D -&gt; G -&gt; X
+  Total cost: 19
+  Threshold progression: 22, 27.3333
+  Nodes expanded: 5
+  Max depth reached: 3
+  Time complexity: O(b^d) in the worst case
+  Space complexity: O(bd) in the worst case
+
+Hill climbing result:
+  Path: A -&gt; D -&gt; G -&gt; X
+  Total cost: 19
+  Nodes expanded: 3
+  Max depth reached: 3
+  Reached goal: Yes
+  Local optimum encountered: Yes
+  Time complexity: O(b) per move
+  Space complexity: O(b) for neighbor inspection
+</div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="header" style="border-bottom: 0; margin-bottom: 10px;">
+            <h2>Source Code</h2>
+            <p>Plain code only, without explanatory text.</p>
+        </div>
+        <div class="code-block">"""Assignment 1, Problem Statement 0-B
+
+Travelling Agent on the Chennai-to-Hyderabad graph.
+
+This script implements:
+1. IDA* search
+2. Hill climbing
+
+The heuristic follows the assignment statement:
+the heuristic value h(n) for a node is the average total travel time across
+all simple paths from that node to the goal node X.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from math import inf
+from statistics import fmean
+from typing import Dict, Iterable, List, Optional, Set, Tuple
+
+
+Graph = Dict[str, Dict[str, int]]
+
+
+GRAPH: Graph = {
+    "A": {"B": 5, "D": 3},
+    "B": {"A": 5},
+    "C": {"G": 11},
+    "D": {"A": 3, "E": 12, "F": 6, "G": 4},
+    "E": {"D": 12, "F": 7},
+    "F": {"D": 6, "E": 7, "H": 10, "X": 8},
+    "G": {"C": 11, "D": 4, "X": 12},
+    "H": {"F": 10},
+    "X": {"F": 8, "G": 12},
+}
+
+START_NODE = "A"
+GOAL_NODE = "X"
+
+
+@dataclass
+class SearchResult:
+    path: List[str]
+    cost: float
+    nodes_expanded: int
+    max_depth: int
+    thresholds: Optional[List[float]] = None
+    local_optimum: bool = False
+
+
+def _all_simple_paths_with_costs(graph: Graph, start: str, goal: str) -&gt; List[Tuple[List[str], int]]:
+    """Enumerate all simple paths from start to goal and return their costs."""
+
+    paths: List[Tuple[List[str], int]] = []
+
+    def dfs(node: str, current_path: List[str], current_cost: int, visited: Set[str]) -&gt; None:
+        if node == goal:
+            paths.append((current_path.copy(), current_cost))
+            return
+
+        for neighbor, weight in graph[node].items():
+            if neighbor in visited:
+                continue
+            visited.add(neighbor)
+            current_path.append(neighbor)
+            dfs(neighbor, current_path, current_cost + weight, visited)
+            current_path.pop()
+            visited.remove(neighbor)
+
+    dfs(start, [start], 0, {start})
+    return paths
+
+
+def build_average_heuristic(graph: Graph, goal: str) -&gt; Dict[str, float]:
+    """Compute h(n) as the average cost of all simple paths from n to goal."""
+
+    heuristic: Dict[str, float] = {}
+    for node in graph:
+        paths = _all_simple_paths_with_costs(graph, node, goal)
+        if not paths:
+            heuristic[node] = inf
+            continue
+        heuristic[node] = fmean(cost for _, cost in paths)
+    return heuristic
+
+
+def hill_climbing(graph: Graph, start: str, goal: str, heuristic: Dict[str, float]) -&gt; SearchResult:
+    """Perform steepest-ascent hill climbing using the heuristic table."""
+
+    current = start
+    path = [current]
+    cost = 0.0
+    visited = {current}
+    nodes_expanded = 0
+    max_depth = 0
+    encountered_local_optimum = False
+
+    while current != goal:
+        nodes_expanded += 1
+        neighbors = []
+        for neighbor, edge_cost in graph[current].items():
+            if neighbor in visited and neighbor != goal:
+                continue
+            neighbors.append((heuristic[neighbor], edge_cost, neighbor))
+
+        if not neighbors:
+            return SearchResult(path=path, cost=cost, nodes_expanded=nodes_expanded, max_depth=max_depth, local_optimum=encountered_local_optimum)
+
+        neighbors.sort(key=lambda item: (item[0], item[1], item[2]))
+        improving_neighbors = [item for item in neighbors if item[0] &lt; heuristic[current]]
+
+        if improving_neighbors:
+            best_h, edge_cost, best_neighbor = improving_neighbors[0]
+        else:
+            encountered_local_optimum = True
+            best_h, edge_cost, best_neighbor = neighbors[0]
+
+        if best_neighbor in visited and best_neighbor != goal:
+            return SearchResult(path=path, cost=cost, nodes_expanded=nodes_expanded, max_depth=max_depth, local_optimum=encountered_local_optimum)
+
+        current = best_neighbor
+        path.append(current)
+        visited.add(current)
+        cost += edge_cost
+        max_depth = max(max_depth, len(path) - 1)
+
+    return SearchResult(path=path, cost=cost, nodes_expanded=nodes_expanded, max_depth=max_depth, local_optimum=encountered_local_optimum)
+
+
+def ida_star(graph: Graph, start: str, goal: str, heuristic: Dict[str, float]) -&gt; SearchResult:
+    """Perform IDA* search on the weighted graph."""
+
+    thresholds: List[float] = []
+    nodes_expanded = 0
+    max_depth = 0
+
+    def search(node: str, g_cost: float, threshold: float, path: List[str], visited: Set[str], depth: int) -&gt; Tuple[Optional[List[str]], float]:
+        nonlocal nodes_expanded, max_depth
+
+        max_depth = max(max_depth, depth)
+        f_cost = g_cost + heuristic[node]
+        if f_cost &gt; threshold:
+            return None, f_cost
+
+        if node == goal:
+            return path.copy(), g_cost
+
+        nodes_expanded += 1
+        minimum_excess = inf
+
+        ordered_neighbors = sorted(
+            (
+                (g_cost + edge_cost + heuristic[neighbor], edge_cost, neighbor)
+                for neighbor, edge_cost in graph[node].items()
+                if neighbor not in visited
+            ),
+            key=lambda item: (item[0], item[1], item[2]),
+        )
+
+        for _, edge_cost, neighbor in ordered_neighbors:
+            visited.add(neighbor)
+            path.append(neighbor)
+            found_path, next_bound = search(
+                neighbor,
+                g_cost + edge_cost,
+                threshold,
+                path,
+                visited,
+                depth + 1,
+            )
+            path.pop()
+            visited.remove(neighbor)
+
+            if found_path is not None:
+                return found_path, _path_cost(graph, found_path)
+            minimum_excess = min(minimum_excess, next_bound)
+
+        return None, minimum_excess
+
+    threshold = heuristic[start]
+    while True:
+        thresholds.append(threshold)
+        visited = {start}
+        found_path, result = search(start, 0.0, threshold, [start], visited, 0)
+        if found_path is not None:
+            return SearchResult(
+                path=found_path,
+                cost=result,
+                nodes_expanded=nodes_expanded,
+                max_depth=max_depth,
+                thresholds=thresholds,
+            )
+        if result == inf:
+            return SearchResult(path=[], cost=inf, nodes_expanded=nodes_expanded, max_depth=max_depth, thresholds=thresholds)
+        threshold = result
+
+
+def _path_cost(graph: Graph, path: List[str]) -&gt; float:
+    total = 0.0
+    for left, right in zip(path, path[1:]):
+        total += graph[left][right]
+    return total
+
+
+def _format_path(path: Iterable[str]) -&gt; str:
+    return " -&gt; ".join(path)
+
+
+def print_heuristic_table(heuristic: Dict[str, float]) -&gt; None:
+    print("Heuristic values (average cost of all simple paths to X):")
+    for node in sorted(heuristic):
+        value = heuristic[node]
+        if value == inf:
+            display = "inf"
+        else:
+            display = f"{value:.4f}".rstrip("0").rstrip(".")
+        print(f"  h({node}) = {display}")
+    print()
+
+
+def main() -&gt; None:
+    heuristic = build_average_heuristic(GRAPH, GOAL_NODE)
+
+    print("Assignment 1 - Problem Statement 0-B")
+    print("Graph search from Chennai (A) to Hyderabad (X)")
+    print()
+    print_heuristic_table(heuristic)
+
+    ida_result = ida_star(GRAPH, START_NODE, GOAL_NODE, heuristic)
+    hill_result = hill_climbing(GRAPH, START_NODE, GOAL_NODE, heuristic)
+
+    print("IDA* result:")
+    print(f"  Path: {_format_path(ida_result.path)}")
+    print(f"  Total cost: {ida_result.cost:.0f}")
+    print(f"  Threshold progression: {', '.join(f'{value:.4f}'.rstrip('0').rstrip('.') for value in ida_result.thresholds or [])}")
+    print(f"  Nodes expanded: {ida_result.nodes_expanded}")
+    print(f"  Max depth reached: {ida_result.max_depth}")
+    print("  Time complexity: O(b^d) in the worst case")
+    print("  Space complexity: O(bd) in the worst case")
+    print()
+
+    print("Hill climbing result:")
+    print(f"  Path: {_format_path(hill_result.path)}")
+    print(f"  Total cost: {hill_result.cost:.0f}")
+    print(f"  Nodes expanded: {hill_result.nodes_expanded}")
+    print(f"  Max depth reached: {hill_result.max_depth}")
+    print(f"  Reached goal: {'Yes' if hill_result.path and hill_result.path[-1] == GOAL_NODE else 'No'}")
+    print(f"  Local optimum encountered: {'Yes' if hill_result.local_optimum else 'No'}")
+    print("  Time complexity: O(b) per move")
+    print("  Space complexity: O(b) for neighbor inspection")
+
+
+if __name__ == "__main__":
+    main()</div>
+    </div>
+</body>
+</html>

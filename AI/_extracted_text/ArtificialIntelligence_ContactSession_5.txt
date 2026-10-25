@@ -1,0 +1,323 @@
+
+
+=== Slide 1 ===
+Artificial Intelligence Knowledge Representation: Logic
+By 
+Prof. Brahmanaidu Kakarla
+
+=== Slide 2 ===
+SSWT ZC444 – Artificial Intelligence
+Lecture No. : 5
+
+=== Slide 3 ===
+
+
+=== Slide 4 ===
+It is important  to know that just login to the session does not guarantee the  attendance.
+Once you join the session, continue till the end to consider you as present in the class.
+IMPORTANTLY, you need to make the class more interactive by responding to Professors queries in the session.
+ Whenever Professor calls your number / name ,you need to respond, otherwise it will be considered as ABSENT
+
+=== Slide 5 ===
+Reducing first-order inference to propositional  inference
+Unification
+Generalized Modus Ponens
+Forward chaining
+Backward chaining
+Resolution
+BITS Pilani, Pilani Campus
+Agenda
+
+=== Slide 6 ===
+Universal instantiation (UI)
+BITS Pilani, Pilani Campus
+Reducing first-order inference to propositional	inference
+
+=== Slide 7 ===
+Existential instantiation (EI)
+
+For any sentence a, variable v, and constant  symbol k that does not appear elsewhere in the  knowledge base:
+
+Subst({v/k}, a)
+BITS Pilani, Pilani Campus
+provided C1 is a new constant symbol, called a Skolem Constant
+Reducing first-order inference to propositional	inference
+
+=== Slide 8 ===
+Suppose the KB covers just the following:
+
+King(John)  Greedy(John)  Brother(Richard,	John)
+Instantiating the universal sentence in all possible ways, we have:
+King(John)  Greedy(John)  Brother(Richard,John)
+The new KB is propositionalized: proposition symbols are: King(John), Greedy(John), Evil(John), King(Richard), etc.
+BITS Pilani, Pilani Campus
+Reduction to propositional inference
+
+=== Slide 9 ===
+BITS Pilani, Pilani Campus
+Every FOL KB can be propositionalized so as to preserve entailment.  (A ground sentence is entailed by new KB iff entailed by original KB).
+Idea: propositionalize KB and query, apply resolution, return result  Problem: with function symbols, there are infinitely many ground terms,  Example: Father(Father(Father(John)))
+Reduction to propositional inference
+
+=== Slide 10 ===
+BITS Pilani, Pilani Campus
+Theorem: Herbrand (1930). If a sentence 'a' is entailed by an FOL  KB, it is entailed by a finite subset of the propositionalized KB
+
+Idea: For n = 0 to ∞ do
+create a propositional KB by instantiating with depth-$n$ terms  see if 'a' is entailed by this KB
+
+Problem: works if 'a' is entailed, loops if 'a' is not entailed
+
+Theorem: Turing (1936), Church (1936) Entailment for FOL is  semi-decidable (algorithms exist that say yes to every entailed  sentence, but no algorithm exists that also says no to every  nonentailed sentence.)
+Reduction to propositional inference
+
+=== Slide 11 ===
+BITS Pilani, Pilani Campus
+Propositionalization seems to generate lots of irrelevant  sentences.
+
+
+
+
+
+
+It seems obvious that Evil(John), but propositionalizing  produces lots of facts such as Greedy(Richard) that are  irrelevant.
+
+
+With p k-ary predicates and n constants, there are p.nk  instantiations.
+Reduction to propositional inference
+
+=== Slide 12 ===
+We can get the inference immediately if we can find a substitution θ  such that King(x) and Greedy(x) match King(John) and Greedy(y)
+θ  = {x/John,y/John} works
+Unify(a,þ) = θ   if a θ  = þ θ
+BITS Pilani, Pilani Campus
+Unification
+
+=== Slide 13 ===
+We can get the inference immediately if we can find a substitution θ  such that King(x) and Greedy(x) match King(John) and Greedy(y)
+θ = {x/John,y/John} works
+Unify(a,þ) = θ if aθ = þθ
+Standardizing apart eliminates overlap of variables, e.g., Knows(z,OJ)
+
+BITS Pilani, Pilani Campus
+Unification
+
+=== Slide 14 ===
+We can get the inference immediately if we can find a substitution θ  such that King(x) and Greedy(x) match King(John) and Greedy(y)
+θ = {x/John,y/John} works
+Unify(a,þ) = θ if aθ = þθ
+Standardizing apart eliminates overlap of variables, e.g., Knows(z,OJ)
+
+BITS Pilani, Pilani Campus
+Unification
+
+=== Slide 15 ===
+We can get the inference immediately if we can find a substitution θ  such that King(x) and Greedy(x) match King(John) and Greedy(y)
+θ = {x/John,y/John} works
+Unify(a,þ) = θ if aθ = þθ
+
+BITS Pilani, Pilani Campus
+Standardizing apart eliminates overlap of variables, e.g.,  Knows(z17,OJ)
+Unification
+
+=== Slide 16 ===
+We can get the inference immediately if we can find a substitution θ  such that King(x) and Greedy(x) match King(John) and Greedy(y)
+θ = {x/John,y/John} works
+Unify(a,þ) = θ if aθ = þθ
+BITS Pilani, Pilani Campus
+Unification
+
+=== Slide 17 ===
+To unify Knows(John,x) and Knows(y,z),
+θ = {y/John, x/z } or θ = {y/John, x/John, z/John}
+
+The first unifier is more general than the second.
+
+There is a single most general unifier (MGU) that	is unique up to  renaming of variables.
+MGU = { y/John, x/z }
+BITS Pilani, Pilani Campus
+Unification
+
+=== Slide 18 ===
+BITS Pilani, Pilani Campus
+The Unification Algorithm
+
+=== Slide 19 ===
+BITS Pilani, Pilani Campus
+The Unification Algorithm
+
+=== Slide 20 ===
+GMP used with KB of definite clauses (exactly one positive literal)  All variables assumed universally quantified
+BITS Pilani, Pilani Campus
+Generalized Modus Ponens (GMP)
+
+=== Slide 21 ===
+BITS Pilani, Pilani Campus
+Generalized Modus Ponens (GMP)
+
+=== Slide 22 ===
+The law says that it is a crime for an American to sell  weapons to hostile nations. The country Nono, an enemy of  America, has some missiles, and all of its missiles were sold  to it by Colonel West, who is American.
+
+Prove that Col. West is a criminal
+BITS Pilani, Pilani Campus
+Example Knowledge Base
+
+=== Slide 23 ===
+BITS Pilani, Pilani Campus
+Example Knowledge Base
+
+=== Slide 24 ===
+BITS Pilani, Pilani Campus
+Algorithm:
+
+Start from the facts
+Trigger all rules whose premises are satisfied
+Add the conclusion to known facts
+Repeat the steps till no new facts are added or the query is answered
+Forward Chaining Algorithm 
+
+=== Slide 25 ===
+BITS Pilani, Pilani Campus
+Forward Chaining Algorithm 
+
+=== Slide 26 ===
+Missile(M1)  Owns(Nono, M1)  American (West)  Enemy (Nono, America)
+BITS Pilani, Pilani Campus
+Forward Chaining Proof 
+
+=== Slide 27 ===
+Missile(M1)  Owns(Nono, M1)  American (West)  Enemy (Nono, America)
+BITS Pilani, Pilani Campus
+Forward Chaining Proof 
+
+=== Slide 28 ===
+Missile(M1)  Owns(Nono, M1)  American (West)  Enemy (Nono, America)
+BITS Pilani, Pilani Campus
+Forward Chaining Proof 
+
+=== Slide 29 ===
+BITS Pilani, Pilani Campus
+Sound and complete for first-order definite clauses
+
+Datalog = first-order definite clauses + no functions  FC terminates for Datalog in finite number of iterations
+
+May not terminate in general if 'a' is not entailed
+
+This is unavoidable: entailment with definite clauses is  semi-decidable
+
+
+
+Properties of Forward Chaining
+
+=== Slide 30 ===
+Incremental forward chaining: no need to match a	rule on iteration k if  a premise wasn't added on iteration k-1
+	
+Match each rule whose premise contains a newly added positive literal
+
+Matching itself can be expensive:
+
+Database indexing allows O(1) retrieval of known facts  e.g., query Missile(x) retrieves Missile(M1)
+
+Forward chaining is widely used in deductive databases
+
+BITS Pilani, Pilani Campus
+Efficiency of Forward Chaining
+
+=== Slide 31 ===
+BITS Pilani, Pilani Campus
+Algorithm:	
+
+Form Definite Clause
+Start from the Goals
+Search through rules to find the fact that support the proof
+If it stops in the fact which is to be proved  Empty Set- LHS
+
+Divide & Conquer Strategy  Substitution by Unification
+Backward Chaining Algorithm
+
+=== Slide 32 ===
+SUBST(COMPOSE(θ1, θ2), p) = SUBST(θ2, SUBST(θ1, p))
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 33 ===
+Missile(M1)  Owns(Nono, M1)  American (West)  Enemy (Nono, America)
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 34 ===
+Missile(M1)  
+Owns(Nono, M1)  American (West)  
+Enemy (Nono, America)
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 35 ===
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 36 ===
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 37 ===
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 38 ===
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 39 ===
+BITS Pilani, Pilani Campus
+Backward Chaining Algorithm
+
+=== Slide 40 ===
+BITS Pilani, Pilani Campus
+Depth-first recursive proof search: space is linear in size of proof
+Incomplete due to infinite loops
+fix by checking current goal against every goal on stack
+
+Inefficient due to repeated sub goals (both success and  failure)
+fix using caching of previous results (extra space)
+
+Widely used for logic programming
+
+
+Properties of Backward Chaining
+
+=== Slide 41 ===
+BITS Pilani, Pilani Campus
+O(Z) I(Z)
+E(A)  L(s, A)
+C(dm, cs)
+All courses offered are interesting
+Students like easy to score courses
+
+Data Mining is a Compute Science course
+
+Some of the easy courses are interesting
+
+All Math are interesting course
+Statistics is a math course  
+All computer science course are easy
+
+Apply chaining for below : 
+Q1: Do students like statistics?
+Q2: What course does students like?
+E(B)  I(B)
+C(E,math)   I(E)
+C(stat, math)
+C(D,cs)  E(D)
+Exercise: 
+
+=== Slide 42 ===
+BITS Pilani, Pilani Campus
+Resolution proof: definite clauses
+
+=== Slide 43 ===
+Thank you
+BITS Pilani, Pilani Campus
+Any Questions?
+
+=== Slide 44 ===

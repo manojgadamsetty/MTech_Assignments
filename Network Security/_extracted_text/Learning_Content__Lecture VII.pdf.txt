@@ -1,0 +1,80 @@
+
+
+===== PAGE 1 =====
+BITSPilaniNetwork SecuritySubhadip SinghaComputer Science & Information System 
+
+
+===== PAGE 2 =====
+BITSPilani
+ES ZG513/ SS ZG513, Network SecurityLecture No VII.
+
+
+===== PAGE 3 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Public Key Cryptography•Each user has public and private keys•Public key used for encryption•Private key used for decryption•Solves key distribution problem
+
+
+===== PAGE 4 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Reference Model
+
+
+
+===== PAGE 5 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Mathematical Foundations•Modular arithmetic•Prime numbers and Euler totient function•Modular exponentiation•Discrete logarithm problem
+
+
+===== PAGE 6 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Cryptosystem Overview•Invented by Rivest, Shamir, Adleman•Based on integer factorization problem•Security relies on difficulty of factoring n=pq
+
+
+===== PAGE 7 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Key Generation Example•Choose p=61, q=53•Compute n=pq=3233•Compute phi(n)=3120•Choose e=17•Compute d=2753
+
+
+===== PAGE 8 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Encryption Example•Plaintext m=65•Ciphertext c=m^e mod n•c=2790
+
+
+===== PAGE 9 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Decryption Example•m=c^d mod n•Recovered plaintext = 65
+
+
+===== PAGE 10 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+ElGamal Cryptosystem Overview•Based on discrete logarithm problem•Encryption uses randomness•Provides semantic security
+
+
+===== PAGE 11 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+ElGamal Example•p=23, g=5, x=6•Public key y=8•Encryption produces pair (c1,c2)•Decryption recovers message
+
+
+===== PAGE 12 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Diffie-Hellman Key Exchange•Allows secure key agreement•Uses modular exponentiation•Shared secret computed independently
+
+
+===== PAGE 13 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Diffie-Hellman Example•p=23, g=5•Alice private key=6, public key=8•Bob private key=15, public key=19•Shared secret=2
+
+
+===== PAGE 14 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Security Assumptions•RSA based on factoring hardness•ElGamal based on discrete log hardness•Diffie-Hellman based on discrete log hardness
+
+
+===== PAGE 15 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Applications•Secure web communication (TLS)•Digital signatures•Secure email•Key exchange protocols
+
+
+===== PAGE 16 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Summary•Public key cryptography solves key distribution•RSA, ElGamal, Diffie-Hellman are fundamental•Used in modern secure systems

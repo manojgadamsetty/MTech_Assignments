@@ -1,0 +1,378 @@
+
+
+===== PAGE 1 =====
+BITS Pilani
+K K Birla Goa Campus
+Sanjay K. Sahay
+Department of Computer Science and Information Systems
+Contact Session – I
+  18 - 01 - 2026
+Network Security 
+ (SS/ES ZG513)
+
+
+===== PAGE 2 =====
+BITS Pilani, K K Birla Goa Campus
+Why Network Security 
+Protect Good from Bad
+• “The art of war teaches us to rely not on the likelihood of the  
+enemy's not coming, but on our own readiness to receive him; 
+not on the chance of his not attacking, but rather on the fact 
+that we have made our position unassailable”
+
+
+===== PAGE 3 =====
+BITS Pilani, K K Birla Goa Campus
+Definitions
+• Data Security: measures that are applied to protect digital 
+privacy and to prevent unauthorized access to computers, 
+databases, websites, etc.
+• Computer Security: generic name for the collection of tools 
+designed to protect data and to thwart the hackers.
+• Network Security: measures to protect the data during their 
+transmission.
+• Internet Security: measures to protect data during their 
+transmission over a collection of inter-connected networks.
+
+
+===== PAGE 4 =====
+BITS Pilani, K K Birla Goa Campus
+Background
+• Information Security requirements keeps on changing.
+• Traditionally provided by physical and administrative 
+mechanisms.
+• Computer use requires automated tools to protect files and 
+other stored information.
+• Use of networks and communications links required measures 
+to protect data during transmission.
+
+
+===== PAGE 5 =====
+BITS Pilani, K K Birla Goa Campus
+Network Security: Some Facts 
+• Federal government has suffered 680% increase in network/cyber  
+security breaches in the past six years.
+• Governments, not hackers, are most likely to launch cyber 
+attacks. 
+• More than 600,000 accounts are compromised every day on 
+Facebook alone.
+• National Nuclear Security Administration records 10 million 
+attempted hacks a day.
+• US Navy receives 110,000 attacks per hour. 
+• Every second 18 adults suffer cybercrime (1.5 million/day).
+• Global spam rate is 68%. Of these 61% are adult/dating 
+messages, 28% are pharmaceutical.
+
+
+===== PAGE 6 =====
+BITS Pilani, K K Birla Goa Campus
+Course Objectives 
+• Comprehensive course on Network Security: Includes both 
+theory and practice.
+• Information security is an important area of information 
+technology and this course on Network Security helps the 
+students to understand the important security aspects in the 
+computer networks, cryptographic techniques and protocols to 
+implement the security goals. 
+• The course provides a necessary review of mathematical 
+concepts to implement different cryptographic techniques then 
+provides a deeper dive to the field of cryptography and 
+methods to implement them. 
+
+
+
+===== PAGE 7 =====
+BITS Pilani, K K Birla Goa Campus
+Course Objectives 
+• To understand the important security goals in the networks - 
+Confidentiality, Integrity, Authentication, Non-repudiation and 
+Availability using cryptographic techniques. 
+• The course provides a top-down approach to explore the 
+security implementations in important three layers of Internet 
+protocol stack i.e. Application, Transport and Network layer.
+• The course consolidates and sums up the learning taking few 
+case studies and examples from latest trends and industry 
+deployments. 
+
+
+
+===== PAGE 8 =====
+BITS Pilani, K K Birla Goa Campus
+What Will You Learn: A Sample 
+•  Cryptography: 
+• Encryption techniques
+• Hashing techniques and MAC
+• Digital Signature and Certificates
+• Some Protocols: DHKE, Kerberos etc.
+• How to exchange security keys over public network?
+• How you can sign a message confirming that you sent it? You 
+can’t deny it in a court of law.
+• What are certificates? How you confirm that you are talking to 
+“XYZ”? 
+• Application Layer Security: Email
+• Transport Layer Security: SSL/TLS, SET
+• Network Layer Security: IPSec
+
+
+===== PAGE 9 =====
+BITS Pilani, K K Birla Goa Campus
+What Will You Learn: A Sample 
+•  Text Book: 
+ 
+• Stallings William: Cryptography and Network Security - Principles and 
+Practice, Pearson India, 7th Edition, 2017 or later.
+• Reference Books:
+• Forouzan B A, Mukhopadhyay Debdeep : Cryptography and Network 
+Security, McGraw, Hill, 3rd Edition, 2015 or later.
+• Bruce Schneier, Applied Cryptography: Protocols, Algorithms And Source 
+Code In C 2nd Edition (Protocols, Algorithms and Source Code in C), Wiley 
+India, 2nd Edition 
+• Kurose James F and Keith W. Ross: Computer Networking: A Top-Down 
+Approach, Pearson India, 5th Edition, 2012 or later. 
+
+
+===== PAGE 10 =====
+BITS Pilani, K K Birla Goa Campus
+OSI Security Architecture
+• The Open Systems 
+Interconnection (OSI) 
+security architecture 
+provide a systematic 
+framework for defining 
+security attacks, 
+mechanisms and 
+services.
+• Network engineer has 
+no choice but to be 
+security conscious and 
+vice-versa.
+• No matter how well we 
+secure our hosts, we are 
+still vulnerable.
+
+
+
+===== PAGE 11 =====
+BITS Pilani, K K Birla Goa Campus
+Aspects of Security
+• Security Level
+• Security Attacks
+ 
+• Security Truism
+• Security Policies
+• Security Services
+• Security Mechanism
+• Security Response Teams
+
+
+===== PAGE 12 =====
+BITS Pilani, K K Birla Goa Campus
+Security Attacks
+• Any action that compromises 
+the security of information 
+owned by an organization
+• Have a wide range of attacks
+• Generic types of attacks:
+• Passive (Interception)
+• Active (Interruption, 
+Modification, Fabrication)
+A
+A
+B
+B
+
+
+
+===== PAGE 13 =====
+BITS Pilani, K K Birla Goa Campus
+Security Truism
+• An integral part of the original design, no more privileges than those 
+necessary to do the job, and make security arrangement simple as 
+simple, but no simpler.
+• Keep the level of all your defences at about the same height and in layers 
+as attacker doesn’t go through security, but around it (A chain is only as 
+strong as its weakest link).
+• No absolute security, bad idea to rely on Security through Obscurity.
+• Security is always a question of economics; don’t underestimate the value 
+of your assets.
+• If you do not run a program, it does not matter if it has security holes 
+(program/protocol is insecure until proven secure).
+
+
+
+===== PAGE 14 =====
+BITS Pilani, K K Birla Goa Campus
+Security Policies
+• Which is not expressly prohibited is permitted and vice-versa.
+• What resource are you trying to protect.
+• Who is interested in attacking you.
+• How many security can you afford.
+• What action will be taken when security is compromised in the 
+organization.
+• What action will be tolerated and what will not.
+
+
+===== PAGE 15 =====
+BITS Pilani, K K Birla Goa Campus
+Security Services
+• Security Services implement security policies and are 
+implemented by security mechanisms. 
+• Enhance security of data processing systems and information 
+transfers of an organization.
+• Intended to counter security attacks.
+• Using one or more security mechanisms.
+• Often replicates functions normally associated with physical 
+documents, e.g. 
+• Have signatures, dates, need protection from disclosure, 
+tampering or destruction, be notarized or witnessed, be recorded 
+or licensed.
+
+
+===== PAGE 16 =====
+BITS Pilani, K K Birla Goa Campus
+Security Services (X.800)
+• Data Confidentiality:
+• Protection of data from unauthorized disclosure.
+• Authentication:
+• Assurance that the communicating entity is the one claimed.
+• Integrity: 
+• Assurance that data received is as sent by an authorized entity.
+• Non-repudiation: 
+• Protection against denial by one the parties in a communication.
+• Access Control: 
+• Prevention of the unauthorized use of a resource.
+
+
+===== PAGE 17 =====
+BITS Pilani, K K Birla Goa Campus
+Security Mechanism
+• Feature designed to detect, prevent, or recover from a security 
+attack.
+• No single mechanism that will support all services required.
+• However, one particular element underlies many of the security 
+mechanisms: Cryptographic Techniques.
+• Specific Security Mechanism (X.800): Encipherment, Hash, MAC, 
+Digital Signatures, Traffic Padding, Routing Control, Notarization.
+• Pervasive Security Mechanism (X.800): Trusted Functionality, 
+Security Label, Event Detection, Security Audit Trails, Security Recovery.
+
+
+
+===== PAGE 18 =====
+BITS Pilani, K K Birla Goa Campus
+Security Response Teams
+• Computer Emergency Response Team/ Coordinate Centre 
+(CERT/CC)
+• Defense Data Network Security Coordination Centre.
+● NIST Computer Security Response and Response 
+Clearinghouse.
+● Department of Energy Computer Incident Advisory Capability.
+● NASA Ames Computer Network Security Response Team. 
+
+
+
+===== PAGE 19 =====
+BITS Pilani, K K Birla Goa Campus
+Model for Network Security
+• Using this model requires us to:
+• Design a suitable algorithm for the security transformation.
+• Generate the secret information (keys) used by the algorithm.
+• Develop methods to distribute and share the secret information.
+• Specify a protocol enabling the principles to use the 
+transformation and secret information for a security service
+• A likes to send a 
+message to B securely
+• Insecure/ Secure 
+Channel
+
+
+
+===== PAGE 20 =====
+BITS Pilani, K K Birla Goa Campus
+Model for Network Security
+• Kinds of Threats:
+• Information access threats (intercept/modify data on behalf of users who should not 
+have access to the data)
+• Service threats (exploit service flaws in computers to inhibit use by legitimate users).
+• Using this model requires us to:
+• Select appropriate gatekeeper functions to identify users
+• Implement security controls to ensure only authorised users access designated 
+information or resources.
+• Trusted computer systems may be useful to help implement this model.
+
+
+
+===== PAGE 21 =====
+BITS Pilani, K K Birla Goa Campus
+● Mutual Trust is primarily two-way authentication for network 
+communications (mTLS) and is a basis of Zero trust security 
+architecture and operate on the principle of “Never trust, always 
+verify”.
+● Principle of zero trust is perfectly aligned with mTLS, as it ensures all 
+users, devices, and applications are authenticated regardless of their 
+location (inside or outside the network perimeter).
+● Mutual trust shall have strong defense against MITM attacks, spoofing, 
+impersonation, and credential-stuffing attacks so that an attacker 
+cannot easily forge either side communication/certificates.
+● Requires managing a PKI to issue, distribute, and revoke certificates. 
+It adds operational complexity compared to simple password-based 
+methods, the use of automation tools, private CAs.
+Zero and Mutual Trust
+
+
+===== PAGE 22 =====
+BITS Pilani, K K Birla Goa Campus
+Cryptography: Terminology
+• Cryptography: science of secret writing with the goal of hiding the 
+meaning of the message.
+• Cryptanalysis: art and science to break the cryptosystem.
+• Encryption: method of transforming data (x) into an unreadable format.
+• Plaint-text: message/data before encryption.
+• Cipher-text: message/data after encryption.
+• Decryption: method to get back the ‘x’ from ‘y’.
+
+
+===== PAGE 23 =====
+BITS Pilani, K K Birla Goa Campus
+Cryptography: Terminology
+• Cipher/EA: set of rules/procedures that dictates how to encrypt/decrypt the data.
+• Key: values used in encryption/decryption.
+• Key space: range of possible values used to construct keys.
+• Key clustering: when two different keys generate the same ‘y’ from the same ‘x’.
+• Work factor: estimated time and resources to break a cryptosystem. No system is unbreakable.
+
+
+===== PAGE 24 =====
+BITS Pilani, K K Birla Goa Campus
+Steganography
+
+
+
+===== PAGE 25 =====
+BITS Pilani, K K Birla Goa Campus
+Keys Ideas of Encryption
+●Kerckhoffs’s Principle.
+●Confusion
+●Diffusion
+
+
+
+===== PAGE 26 =====
+BITS Pilani, K K Birla Goa Campus
+Breaking an Algorithm
+• Total Break
+● Global Deduction
+● Instance (Local) Deduction
+● Information Deduction 
+
+
+===== PAGE 27 =====
+BITS Pilani, K K Birla Goa Campus
+Cryptanalysis Attacks
+
+
+
+===== PAGE 28 =====
+BITS Pilani, K K Birla Goa Campus
+Thanks!!!
+Queries?

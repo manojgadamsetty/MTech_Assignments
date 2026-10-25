@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Architecture of Ride-Hailing Platform</title>
+    <style>
+        :root {
+            --bg-1: #f3f7fb;
+            --bg-2: #dfe9f4;
+            --card: #ffffff;
+            --ink: #1f2937;
+            --brand: #0f4c81;
+            --brand-2: #106899;
+            --accent: #e97b2c;
+            --good: #1f7a3a;
+            --warn: #9a6700;
+            --line: #d1d5db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+            color: var(--ink);
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #fff;
+            padding: 18px 22px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        header h1 {
+            font-size: 1.45em;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        header p {
+            font-size: 0.95em;
+            margin: 2px 0;
+            opacity: 0.95;
+        }
+
+        .slide {
+            background: var(--card);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--brand);
+            break-inside: avoid;
+        }
+
+        .slide-number {
+            display: inline-block;
+            font-size: 0.75em;
+            color: #fff;
+            background: var(--brand);
+            border-radius: 2px;
+            padding: 4px 10px;
+            margin-bottom: 8px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .slide h2 {
+            color: var(--brand);
+            border-bottom: 2px solid var(--brand);
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+        }
+
+        .slide h3 {
+            color: #0b3f6b;
+            font-size: 1.03em;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .slide p {
+            margin: 4px 0;
+            font-size: 0.95em;
+        }
+
+        ul, ol {
+            margin: 4px 0 4px 20px;
+        }
+
+        li {
+            margin-bottom: 3px;
+            font-size: 0.93em;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .box {
+            background: #f8fbff;
+            border-left: 4px solid var(--brand-2);
+            border: 1px solid #d8e5f3;
+            padding: 8px 10px;
+            border-radius: 3px;
+            margin-top: 6px;
+        }
+
+        .tree-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        .tree-table th,
+        .tree-table td {
+            border: 1px solid var(--line);
+            padding: 7px 8px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .tree-table th {
+            background: #0f4c81;
+            color: #fff;
+            font-size: 0.86em;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .priority-hh {
+            color: #b42318;
+            font-weight: 700;
+        }
+
+        .priority-hm {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        .diagram {
+            border: 1px solid #c8d5e4;
+            background: #fbfdff;
+            border-radius: 4px;
+            padding: 6px;
+            margin-top: 8px;
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            min-width: 620px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            border-radius: 999px;
+            border: 1px solid #d8e5f3;
+            background: #f3f9ff;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+
+        .msg-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        .msg-table th,
+        .msg-table td {
+            border: 1px solid var(--line);
+            padding: 7px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .msg-table th {
+            background: #0f4c81;
+            color: #fff;
+            font-size: 0.86em;
+            text-transform: uppercase;
+        }
+
+        footer {
+            font-size: 0.82em;
+            color: #4b5563;
+            border-top: 1px solid #cfd8e3;
+            margin-top: 16px;
+            padding-top: 8px;
+        }
+
+        @media (max-width: 850px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .mermaid {
+                min-width: 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                font-size: 10pt;
+                color: #000;
+            }
+
+            @page {
+                size: A4;
+                margin: 0.45in;
+            }
+
+            header {
+                background: #fff !important;
+                color: #000 !important;
+                box-shadow: none;
+                border: 1px solid #b7c7d8;
+            }
+
+            .slide {
+                box-shadow: none;
+                border: 1px solid #d1d5db;
+                border-top: 2px solid #0f4c81;
+                margin-bottom: 6px;
+                padding: 10px;
+            }
+
+            .slide-number {
+                display: none;
+            }
+
+            .slide h2 {
+                color: #000;
+                border-bottom: 1px solid #0f4c81;
+                font-size: 1.05em;
+            }
+
+            .slide h3 {
+                color: #000;
+                font-size: 0.95em;
+            }
+
+            .tree-table th,
+            .msg-table th {
+                background: #e8edf4 !important;
+                color: #000 !important;
+            }
+
+            .diagram {
+                border: 1px solid #aeb9c7;
+            }
+        }
+    </style>
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true, theme: "default" });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Assignment 2 - Software Architecture of a Ride-Hailing Platform (Uber-like)</h1>
+            <p>Subject: Software Architectures</p>
+            <p>Student: Gadamsetty V Sai Manoj Kumar | BITS ID: 2025MT12100</p>
+            <p>Domain: Transportation</p>
+        </header>
+
+        <section class="slide">
+            <span class="slide-number">Slide 1</span>
+            <h2>ASR 1 Utility Tree - Availability and Reliability</h2>
+            <p><strong>Why this is architecturally significant:</strong> Ride-booking is revenue-critical and safety-sensitive. If dispatch fails during peaks, users churn immediately and operations collapse.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Availability -> Fault Tolerance</td>
+                        <td>During a zone outage, 95% of new ride requests are still accepted and dispatched within 60 seconds.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Requires active-active deployment, retries, idempotency, and health-aware routing.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Availability -> Recoverability</td>
+                        <td>After broker/database node failure, service auto-recovers without manual restart and no confirmed booking is lost.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Forces durable events, transactional outbox, and exactly-once business semantics.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Availability -> Graceful Degradation</td>
+                        <td>When surge engine is unavailable, booking continues with fallback pricing and explicit warning to user.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Needs fallback policies and feature toggles at gateway/service layer.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 2</span>
+            <h2>ASR 2 Utility Tree - Performance (Low Latency Dispatch)</h2>
+            <p><strong>Why this is architecturally significant:</strong> Rider experience is strongly tied to request-to-match time and ETA accuracy. Latency directly affects conversion and cancellations.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Performance -> Response Time</td>
+                        <td>For 99th percentile, rider gets driver match in less than 2 seconds in metro cities.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Demands in-memory geospatial indexing, regional partitioning, and async workflows.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Performance -> Throughput</td>
+                        <td>Platform handles 25,000 location updates per second and 3,000 booking requests per second at peak.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Requires stream processing, horizontal scale-out, and queue buffering.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Performance -> Predictability</td>
+                        <td>ETA service remains within +/- 15% error despite traffic spikes.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Needs caching plus periodic model recalibration and timeout budgets per service call.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 3</span>
+            <h2>ASR 3 Utility Tree - Security and Privacy</h2>
+            <p><strong>Why this is architecturally significant:</strong> The platform processes payment data, PII, and real-time location traces. Security failures can cause legal penalties and trust loss.</p>
+            <table class="tree-table">
+                <thead>
+                    <tr>
+                        <th>Utility Tree Path</th>
+                        <th>Concrete Scenario</th>
+                        <th>Priority</th>
+                        <th>Architectural Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utility -> Security -> Confidentiality</td>
+                        <td>Card details are never stored directly; only payment tokens are persisted.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Introduces payment vault/tokenization boundary and PCI zone isolation.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Security -> Integrity</td>
+                        <td>Fare and trip status updates are tamper-evident and auditable end-to-end.</td>
+                        <td><span class="priority-hh">(H, H)</span></td>
+                        <td>Requires signed events, immutable audit logs, and strict authorization checks.</td>
+                    </tr>
+                    <tr>
+                        <td>Utility -> Security -> Access Control</td>
+                        <td>Only authorized roles can access rider contact/location, with all access logged.</td>
+                        <td><span class="priority-hm">(H, M)</span></td>
+                        <td>Needs centralized IAM, scoped tokens, and policy-based authorization.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 4</span>
+            <h2>Tactics for ASR 1 - Availability and Reliability</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Redundancy:</strong> Active-active across two regions; global traffic manager routes to healthy region.</li>
+                        <li><strong>Health-based routing:</strong> Gateway routes only to healthy pods using readiness probes.</li>
+                        <li><strong>Idempotent booking API:</strong> Client sends request-id so retries do not duplicate rides.</li>
+                        <li><strong>Transactional outbox:</strong> Booking DB commit and event publish stay consistent.</li>
+                        <li><strong>Back-pressure and queueing:</strong> Kafka buffers dispatch tasks during spikes.</li>
+                        <li><strong>Circuit breaker:</strong> Fallback when pricing or maps service is degraded.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to protect:</strong> booking acceptance, driver assignment, trip state.</p>
+                        <p><strong>Tools:</strong> Kubernetes + HPA, AWS ALB/Route53, Kafka, PostgreSQL, Redis, Resilience4j.</p>
+                        <p><strong>How it works:</strong> retryable requests hit API Gateway, Booking Service writes booking + outbox row, event consumer sends to Kafka, Dispatch Service consumes and assigns driver. On service failure, retries + fallback path preserve user flow.</p>
+                    </div>
+                    <h3>Expected Result</h3>
+                    <p>New requests keep flowing through partial failures; no loss of confirmed bookings.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 5</span>
+            <h2>Tactics for ASR 2 - Performance and Low Latency</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Geospatial indexing:</strong> Nearby drivers in Redis GEO index.</li>
+                        <li><strong>Cache-aside:</strong> hot entities (driver status, city config, ETA seeds) in Redis.</li>
+                        <li><strong>Asynchronous pipelines:</strong> location updates on Kafka stream.</li>
+                        <li><strong>Regional sharding:</strong> partition trips by city/zone for locality.</li>
+                        <li><strong>Bulkhead isolation:</strong> independent thread pools for ETA, pricing, and dispatch.</li>
+                        <li><strong>Timeout budget:</strong> strict p95 timeout per downstream call.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to cache:</strong> active driver coordinates, demand heatmaps, route estimates, policy metadata.</p>
+                        <p><strong>Tools:</strong> Redis Cluster, Kafka, gRPC for low-latency internal calls, OpenTelemetry for tracing.</p>
+                        <p><strong>How it works:</strong> Driver App pushes location every few seconds, Location Service updates Redis GEO + stream. Dispatch queries nearest drivers from memory, then confirms with Booking Service over gRPC for faster match decision.</p>
+                    </div>
+                    <h3>Expected Result</h3>
+                    <p>Fast, predictable matching under peak traffic with reduced database load.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 6</span>
+            <h2>Tactics for ASR 3 - Security and Privacy</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Recommended Tactics</h3>
+                    <ul>
+                        <li><strong>Tokenization:</strong> store payment token only; payment gateway keeps PAN data.</li>
+                        <li><strong>Encryption:</strong> TLS 1.3 in transit, AES-256 for PII at rest.</li>
+                        <li><strong>Zero-trust service auth:</strong> mTLS between services via service mesh.</li>
+                        <li><strong>Policy-based access control:</strong> scoped JWT + role checks per endpoint.</li>
+                        <li><strong>Auditability:</strong> immutable audit events for admin and support actions.</li>
+                        <li><strong>Fraud/rate controls:</strong> per-device and per-account anomaly rules.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What, Tool, and How</h3>
+                    <div class="box">
+                        <p><strong>What to protect:</strong> rider profile, phone number, live location, payment operations.</p>
+                        <p><strong>Tools:</strong> API Gateway with OAuth2, Vault/KMS, Istio mTLS, WAF, SIEM.</p>
+                        <p><strong>How it works:</strong> Gateway validates token and scopes, services decrypt only needed fields using KMS envelope keys, all privileged reads are emitted as signed audit events to SIEM.</p>
+                    </div>
+                    <h3>Expected Result</h3>
+                    <p>PCI and privacy exposure reduced with strong traceability of sensitive operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 7</span>
+            <h2>Component and Connection View</h2>
+            <p>Main runtime components for rider booking, dispatch, trip execution, and payment settlement.</p>
+            <div class="diagram">
+                <div class="mermaid">
+flowchart LR
+    R[Rider App]
+    D[Driver App]
+    G[API Gateway]
+    A[Auth Service]
+    B[Booking Service]
+    M[Dispatch/Matching Service]
+    L[Location Service]
+    E[ETA/Pricing Service]
+    T[Trip Service]
+    P[Payment Service]
+    N[Notification Service]
+    K[(Kafka)]
+    C[(Redis Cache)]
+    DB[(PostgreSQL)]
+    PG[External Payment Gateway]
+
+    R -->|HTTPS REST| G
+    D -->|HTTPS REST| G
+    G -->|JWT Validate gRPC| A
+    G -->|Create Ride REST| B
+    G -->|Driver Heartbeat REST| L
+    B -->|RideCreated Event| K
+    K -->|Subscribe| M
+    M -->|NearbyDriver Query| L
+    M -->|ETA Request gRPC| E
+    M -->|Write Assignment| DB
+    M -->|Assignment Event| K
+    K -->|TripStart/End Events| T
+    T -->|Fare Calc gRPC| E
+    T -->|Charge Request REST| P
+    P -->|Tokenized Payment HTTPS| PG
+    T -->|Notify Rider/Driver| N
+    L -->|Hot Driver State| C
+    E -->|Read Cache| C
+    B -->|Booking Data| DB
+    T -->|Trip Data| DB
+                </div>
+            </div>
+            <p>
+                <span class="tag">Sync: HTTPS REST, gRPC</span>
+                <span class="tag">Async: Kafka Events</span>
+                <span class="tag">State: Redis + PostgreSQL</span>
+            </p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 8</span>
+            <h2>Deployment View</h2>
+            <p>Deployment across two regions for resilience, with managed data and observability stack.</p>
+            <div class="diagram">
+                <div class="mermaid">
+flowchart TB
+    U[Users: Rider and Driver Apps]
+    DNS[Global DNS + Traffic Manager]
+
+    subgraph R1[Region A]
+      subgraph K1[Kubernetes Cluster]
+        GW1[API Gateway Pods]
+        S1[Core Microservices Pods]
+        W1[Worker Pods]
+      end
+      RED1[(Redis Cluster)]
+      DB1[(PostgreSQL Primary)]
+      KF1[(Kafka Brokers)]
+    end
+
+    subgraph R2[Region B]
+      subgraph K2[Kubernetes Cluster]
+        GW2[API Gateway Pods]
+        S2[Core Microservices Pods]
+        W2[Worker Pods]
+      end
+      RED2[(Redis Cluster Replica)]
+      DB2[(PostgreSQL Read Replica / DR Primary)]
+      KF2[(Kafka Mirror)]
+    end
+
+    OBS[Observability: Prometheus + Grafana + ELK + SIEM]
+    PAY[External Payment Gateway]
+
+    U --> DNS
+    DNS --> GW1
+    DNS --> GW2
+    GW1 --> S1
+    S1 --> RED1
+    S1 --> DB1
+    S1 --> KF1
+    GW2 --> S2
+    S2 --> RED2
+    S2 --> DB2
+    S2 --> KF2
+    S1 --> PAY
+    S2 --> PAY
+    S1 --> OBS
+    S2 --> OBS
+    DB1 -. replication .-> DB2
+    KF1 -. mirror .-> KF2
+                </div>
+            </div>
+            <p><strong>Deployment tactics shown:</strong> multi-region resilience, horizontal pod autoscaling, asynchronous buffering, and centralized telemetry.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 9</span>
+            <h2>Important Inter-Component Messages and Communication Methods</h2>
+            <table class="msg-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>From -> To</th>
+                        <th>Message</th>
+                        <th>Communication Method</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Rider App -> API Gateway</td>
+                        <td>CreateRideRequest(pickup, drop, rideType)</td>
+                        <td>HTTPS REST/JSON</td>
+                        <td>Start booking transaction</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>API Gateway -> Auth Service</td>
+                        <td>ValidateJWT(token, scopes)</td>
+                        <td>gRPC unary</td>
+                        <td>Authenticate and authorize caller</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Booking Service -> Kafka</td>
+                        <td>RideCreated event</td>
+                        <td>Async publish (Kafka)</td>
+                        <td>Trigger dispatch decoupled from request path</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Dispatch Service -> Location Service</td>
+                        <td>FindNearbyDrivers(lat, lon, radius)</td>
+                        <td>gRPC streaming</td>
+                        <td>Low-latency nearest-driver lookup</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Dispatch Service -> ETA/Pricing Service</td>
+                        <td>GetETAAndFareEstimate(routeContext)</td>
+                        <td>gRPC unary</td>
+                        <td>Estimate match quality and price</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Trip Service -> Payment Service</td>
+                        <td>ChargeTrip(tripId, fare, paymentToken)</td>
+                        <td>HTTPS REST with idempotency-key</td>
+                        <td>Collect fare safely on trip completion</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Payment Service -> Payment Gateway</td>
+                        <td>TokenizedChargeRequest</td>
+                        <td>HTTPS REST + mutual TLS</td>
+                        <td>External payment authorization/capture</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Kafka -> Notification Service</td>
+                        <td>DriverAssigned, TripStarted, TripCompleted</td>
+                        <td>Async consume</td>
+                        <td>Push app notifications and receipts</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 10</span>
+            <h2>Sequence Diagram - Major Scenario: Rider Books a Trip</h2>
+            <p><strong>Scenario:</strong> Rider requests a ride, system matches a driver, trip starts and completes, payment is processed.</p>
+            <div class="diagram">
+                <div class="mermaid">
+sequenceDiagram
+    actor Rider
+    participant App as Rider App
+    participant GW as API Gateway
+    participant Auth as Auth Service
+    participant Book as Booking Service
+    participant Bus as Kafka
+    participant Disp as Dispatch Service
+    participant Loc as Location Service
+    participant Trip as Trip Service
+    participant Pay as Payment Service
+    participant PG as Payment Gateway
+
+    Rider->>App: Enter pickup and drop
+    App->>GW: CreateRideRequest
+    GW->>Auth: Validate token and scopes
+    Auth-->>GW: OK
+    GW->>Book: Create booking
+    Book->>Bus: Publish RideCreated
+    Bus->>Disp: Consume RideCreated
+    Disp->>Loc: Find nearby drivers
+    Loc-->>Disp: Driver candidates
+    Disp-->>App: DriverAssigned
+    Note over Rider,App: Trip starts and ends
+    Trip->>Pay: ChargeTrip(paymentToken, amount)
+    Pay->>PG: Authorize/Capture
+    PG-->>Pay: Success
+    Pay-->>Trip: PaymentConfirmed
+    Trip-->>App: TripCompleted + Receipt
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 11</span>
+            <h2>Architecture Pattern 1 - Microservices with API Gateway</h2>
+            <h3>Where it is used</h3>
+            <ul>
+                <li>Gateway fronts all client traffic and centralizes auth, throttling, and request routing.</li>
+                <li>Domain services are separated by business capability: Booking, Dispatch, Trip, Payment, Notification.</li>
+            </ul>
+            <h3>Why this pattern fits</h3>
+            <ul>
+                <li>Independent scaling: Dispatch and Location scale far more than profile services.</li>
+                <li>Independent deployment: teams release services without full-system redeploy.</li>
+                <li>Fault isolation: failure in Notification does not block core booking path.</li>
+            </ul>
+            <h3>Trade-off handled</h3>
+            <p>Operational complexity is mitigated using standardized CI/CD templates, observability, and service contracts.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 12</span>
+            <h2>Architecture Pattern 2 - Event-Driven Architecture (with Saga Style)</h2>
+            <h3>Where it is used</h3>
+            <ul>
+                <li>Ride lifecycle changes are published as events (RideCreated, DriverAssigned, TripCompleted).</li>
+                <li>Downstream services consume events asynchronously for dispatch, notifications, analytics, and billing.</li>
+            </ul>
+            <h3>Why this pattern fits</h3>
+            <ul>
+                <li>Loose coupling: producers do not depend on consumers being online.</li>
+                <li>High throughput: events buffer burst traffic and smooth load.</li>
+                <li>Business traceability: lifecycle transitions become auditable event history.</li>
+            </ul>
+            <h3>Trade-off handled</h3>
+            <p>Eventual consistency is managed through idempotent consumers, retries, and compensation actions for failed payment or dispatch steps.</p>
+        </section>
+
+        <section class="slide">
+            <span class="slide-number">Slide 13</span>
+            <h2>Key Learnings (3)</h2>
+            <ol>
+                <li><strong>ASRs drive architecture choices:</strong> the top three ASRs immediately shaped boundaries, communication style, and deployment model.</li>
+                <li><strong>Tactics must be concrete:</strong> naming a tactic is not enough; architecture quality depends on what is cached, where retries happen, and how failures are isolated.</li>
+                <li><strong>Diagrams become clearer with message labels:</strong> adding message names and protocols in C and C view made behavior and performance assumptions much easier to explain during discussion.</li>
+            </ol>
+        </section>
+
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

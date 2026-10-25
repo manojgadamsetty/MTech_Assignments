@@ -1,0 +1,89 @@
+
+
+===== PAGE 1 =====
+Sample Numerical Practice Questions for Network
+Security
+Part A: Historical Ciphers
+Question 1 (Caesar Cipher)
+Encrypt the plaintextSECURITYusing a Caesar cipher with keyk= 7. Use
+the mappingA= 0, B= 1, . . . , Z= 25.
+Question 2 (Caesar Decryption)
+A ciphertextKHOORis encrypted using a Caesar cipher with keyk= 3. De-
+crypt the ciphertext and recover the plaintext.
+Part B: One-Time Pad
+Question 3
+Alice wants to send the messageWILPNETWORK. The one-time pad key is
+XAWQMRCTKUL. Use the rule
+C= (M+K) mod 26
+Compute the ciphertext.
+Part C: Hill Cipher
+Question 4
+Encrypt the plaintextHELPusing the Hill cipher with the key matrix
+K=
+6 1
+9 5
+
+UseA= 0, . . . , Z= 25.
+1
+
+
+===== PAGE 2 =====
+Question 5
+Check whether the matrix
+K=
+
+
+6 24 1
+13 16 10
+20 17 15
+
+
+is invertible modulo 26.
+Part D: GCD and Extended Euclidean Algorithm
+Question 6
+Compute gcd(145,278) using the Euclidean algorithm.
+Question 7
+Use the Extended Euclidean Algorithm to find integersx, ysuch that
+145x+ 278y= gcd(145,278).
+Part E: Multiplicative Inverse
+Question 8
+Find the multiplicative inverse of 31 modulo 43.
+Question 9
+Find the multiplicative inverse of 11 modulo 26.
+Part G: Linear Congruential Generator
+Question 10
+Consider the LCG defined as
+Xn+1 = (9Xn + 5) mod 17
+with seedX 0 = 12.
+Compute the first 6 pseudo-random numbers.
+Question 11
+Determine the period of the above LCG.
+2
+
+
+===== PAGE 3 =====
+Part H: RSA
+Question 12
+Letp= 19,q= 23.
+1. Computenandϕ(n).
+2. Choosee= 13. Verify gcd(e, ϕ(n)) = 1.
+3. Compute the private keyd.
+Question 13
+Using the RSA parameters from Question 16, encrypt the messageM= 9.
+Part I: Diffie-Hellman
+Question 14
+Letp= 29 and generatorg= 10.
+•Alice chooses private keya= 16.
+•Bob chooses private keyb= 5.
+Compute:
+1. Alice’s public key
+2. Bob’s public key
+3. Shared secret key
+Part J: Theorem-Based Questions
+Question 15
+Use Euler’s theorem to compute
+7100 mod 15
+Question 16
+Use Fermat’s Little Theorem and use it to compute
+3100 mod 7
+3

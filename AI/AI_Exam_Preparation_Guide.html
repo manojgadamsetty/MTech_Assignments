@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IS ZC444 AI - Full Exam Preparation Guide</title>
+  <style>
+    :root {
+      --bg: #edf4f8;
+      --panel: #ffffff;
+      --text: #17212b;
+      --muted: #526171;
+      --line: #d6e2ea;
+      --accent: #0f766e;
+      --accent-soft: #dff6f3;
+      --accent-2: #164e63;
+      --code-bg: #f4f7fa;
+      --warn-bg: #fff8e7;
+      --warn-line: #d97706;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #d9f1ff 0, transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .hero,
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .hero {
+      padding: 28px;
+    }
+
+    .section {
+      padding: 24px;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 12px;
+      line-height: 1.25;
+      color: #0f172a;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 {
+      font-size: 1.45rem;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent-soft);
+    }
+    h3 {
+      font-size: 1.12rem;
+      color: var(--accent-2);
+      margin-top: 20px;
+    }
+    h4 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-top: 16px;
+    }
+
+    p { margin: 8px 0; }
+    ul, ol { margin: 8px 0 14px 22px; }
+    li { margin: 4px 0; }
+
+    .muted { color: var(--muted); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 8px;
+    }
+
+    .chip {
+      border: 1px solid #b8e7de;
+      background: var(--accent-soft);
+      color: #0f5f58;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .toc a {
+      display: block;
+      text-decoration: none;
+      color: #114b5f;
+      background: #f7fbfc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 600;
+    }
+
+    .toc a:hover { background: #eef9f7; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f2fbf8;
+      color: #0f3f48;
+    }
+
+    code {
+      background: var(--code-bg);
+      border: 1px solid #dde7ef;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 14px;
+      border-radius: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 10px 0 16px;
+    }
+
+    .callout {
+      background: #f7fbff;
+      border: 1px solid #d4e8f7;
+      border-left: 4px solid #0284c7;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .warning {
+      background: var(--warn-bg);
+      border: 1px solid #fed7aa;
+      border-left: 4px solid var(--warn-line);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .formula {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #f9fbfc;
+      border: 1px dashed #cfe0ea;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+
+    .checklist li {
+      list-style: none;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .checklist li::before {
+      content: "[ ]";
+      position: absolute;
+      left: 0;
+      color: #0f766e;
+      font-weight: 700;
+    }
+
+    @media (max-width: 720px) {
+      .hero, .section { padding: 18px; border-radius: 14px; }
+      h1 { font-size: 1.58rem; }
+      h2 { font-size: 1.25rem; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>IS ZC444 Artificial Intelligence - Full Exam Preparation Guide</h1>
+      <p class="muted">This HTML now includes the detailed content that was missing from the shorter version. It is based on your AI PPTs, PDFs, and course handout, then consolidated into exam-focused notes.</p>
+      <div class="chips">
+        <span class="chip">Agents</span>
+        <span class="chip">Search</span>
+        <span class="chip">CSP</span>
+        <span class="chip">Logic</span>
+        <span class="chip">Bayes Nets</span>
+        <span class="chip">HMM</span>
+        <span class="chip">Decision Trees</span>
+        <span class="chip">Neural Networks</span>
+      </div>
+      <div class="callout">
+        <strong>Evaluation snapshot:</strong> EC-1 (30%): Quiz 10% + Lab/Assignment 20%. Mid-Semester is closed book for CS 1-8. Comprehensive exam is open book and can cover all topics.
+      </div>
+      <div class="toc">
+        <a href="#course">Course at a glance</a>
+        <a href="#modules">Module-wise topics</a>
+        <a href="#definitions">Core definitions</a>
+        <a href="#algorithms">Algorithm cheat sheet</a>
+        <a href="#probability">Probability and HMM</a>
+        <a href="#learning">Learning algorithms</a>
+        <a href="#contrasts">Contrast tables</a>
+        <a href="#formulas">Important formulas</a>
+        <a href="#exam">Exam patterns</a>
+        <a href="#revision">Revision plans</a>
+        <a href="#sources">Source mapping</a>
+      </div>
+    </section>
+
+    <section class="section" id="course">
+      <h2>Course At A Glance</h2>
+      <p><strong>IS ZC444</strong> is a comprehensive introduction to Artificial Intelligence covering foundations, intelligent agents, search, constraint satisfaction, logic, inference, uncertainty, Bayesian networks, Hidden Markov Models, machine learning, neural networks, deep learning, and game playing.</p>
+      <ul>
+        <li><strong>Foundations:</strong> AI history, definitions, agents, and intelligent behavior approaches</li>
+        <li><strong>Problem-Solving:</strong> Search strategies (uninformed and informed), constraint satisfaction</li>
+        <li><strong>Knowledge Representation and Reasoning:</strong> Propositional logic, first-order logic, inference mechanisms</li>
+        <li><strong>Uncertainty Handling:</strong> Probability theory, Bayesian networks, Hidden Markov Models</li>
+        <li><strong>Machine Learning:</strong> Decision trees, regression, clustering, reinforcement learning</li>
+        <li><strong>Modern AI:</strong> Neural networks, CNNs, RNNs, minimax, alpha-beta pruning</li>
+      </ul>
+    </section>
+
+    <section class="section" id="modules">
+      <h2>Module-Wise Topics</h2>
+
+      <h3>Module 1: Introduction To AI</h3>
+      <ul>
+        <li><strong>AI definitions and perspectives:</strong> acting humanly, thinking humanly, thinking rationally, acting rationally</li>
+        <li><strong>Main course focus:</strong> rational agent approach</li>
+        <li><strong>Agent:</strong> entity that perceives via sensors and acts via effectors</li>
+        <li><strong>Agent function:</strong> maps percept sequence to action</li>
+        <li><strong>Agent program:</strong> implementation of agent function</li>
+        <li><strong>PEAS:</strong> Performance measure, Environment, Actuators, Sensors</li>
+      </ul>
+
+      <h4>Task environment properties</h4>
+      <ul>
+        <li>Fully observable vs partially observable</li>
+        <li>Deterministic vs stochastic vs strategic</li>
+        <li>Episodic vs sequential</li>
+        <li>Static vs dynamic vs semi-dynamic</li>
+        <li>Discrete vs continuous</li>
+        <li>Single-agent vs multiagent</li>
+      </ul>
+
+      <h4>Agent types</h4>
+      <ol>
+        <li>Simple reflex agent</li>
+        <li>Model-based reflex agent</li>
+        <li>Goal-based agent</li>
+        <li>Utility-based agent</li>
+        <li>Learning agent</li>
+      </ol>
+
+      <h3>Module 2: Problem Solving Using Search</h3>
+      <h4>Problem formulation</h4>
+      <ul>
+        <li>Initial state</li>
+        <li>Possible actions: <code>ACTIONS(state)</code></li>
+        <li>Transition model: <code>RESULT(state, action)</code></li>
+        <li>Goal test: <code>GOAL-TEST(state)</code></li>
+        <li>Path cost</li>
+        <li>Choice of abstraction and state representation is critical</li>
+      </ul>
+
+      <h4>Classic problem examples</h4>
+      <ul>
+        <li>8-puzzle</li>
+        <li>N-Queens</li>
+        <li>Missionaries and Cannibals</li>
+        <li>Cryptarithmetic: SEND + MORE = MONEY</li>
+        <li>Water jug problem</li>
+        <li>Route finding, traveling salesman, robot navigation</li>
+      </ul>
+
+      <h4>Search strategy evaluation</h4>
+      <ul>
+        <li><strong>Completeness:</strong> does it find a solution if one exists?</li>
+        <li><strong>Optimality:</strong> does it find the least-cost solution?</li>
+        <li><strong>Time complexity:</strong> nodes expanded</li>
+        <li><strong>Space complexity:</strong> max memory used</li>
+        <li>Use <code>b</code> = branching factor, <code>d</code> = solution depth, <code>m</code> = max depth</li>
+      </ul>
+
+      <h4>Uninformed search strategies</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Strategy</th>
+            <th>Complete</th>
+            <th>Optimal</th>
+            <th>Time</th>
+            <th>Space</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Breadth-First Search</td>
+            <td>Yes</td>
+            <td>Yes, for uniform cost</td>
+            <td>O(b^d)</td>
+            <td>O(b^d)</td>
+            <td>FIFO queue, level-order expansion, memory intensive</td>
+          </tr>
+          <tr>
+            <td>Depth-First Search</td>
+            <td>No without bound</td>
+            <td>No</td>
+            <td>O(b^m)</td>
+            <td>O(bm)</td>
+            <td>LIFO stack, low memory, can get trapped deep</td>
+          </tr>
+          <tr>
+            <td>Depth-Limited Search</td>
+            <td>No</td>
+            <td>No</td>
+            <td>O(b^l)</td>
+            <td>O(bl)</td>
+            <td>DFS with cutoff depth <code>l</code></td>
+          </tr>
+          <tr>
+            <td>Iterative Deepening</td>
+            <td>Yes</td>
+            <td>Yes for uniform cost</td>
+            <td>O(b^d)</td>
+            <td>O(bd)</td>
+            <td>Best uninformed tradeoff</td>
+          </tr>
+          <tr>
+            <td>Uniform-Cost Search</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>O(b^d)</td>
+            <td>O(b^d)</td>
+            <td>Dijkstra-style, sorted by path cost <code>g(n)</code></td>
+          </tr>
+          <tr>
+            <td>Bidirectional Search</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>O(b^(d/2))</td>
+            <td>O(b^(d/2))</td>
+            <td>Requires explicit goal and reverse operators</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Informed search</h4>
+      <p><strong>Heuristic:</strong> estimated cost from node <code>n</code> to the goal, written as <code>h(n)</code>.</p>
+      <ul>
+        <li><strong>Admissible:</strong> <code>0 ≤ h(n) ≤ h*(n)</code>, never overestimates actual cost</li>
+        <li><strong>Consistent:</strong> <code>h(n) ≤ cost(n,a,n') + h(n')</code></li>
+      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Strategy</th>
+            <th>Evaluation</th>
+            <th>Complete</th>
+            <th>Optimal</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Greedy Best-First</td>
+            <td><code>f(n)=h(n)</code></td>
+            <td>No</td>
+            <td>No</td>
+            <td>Closest-looking node first, fast but risky</td>
+          </tr>
+          <tr>
+            <td>A*</td>
+            <td><code>f(n)=g(n)+h(n)</code></td>
+            <td>Yes</td>
+            <td>Yes with admissible heuristic</td>
+            <td>Combines true cost so far and estimate to goal</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Other search topics</h4>
+      <ul>
+        <li>AO* search for AND-OR graphs</li>
+        <li>Hill climbing and local maxima issue</li>
+        <li>Genetic algorithms</li>
+        <li>Ant colony optimization</li>
+        <li>Particle swarm optimization</li>
+      </ul>
+
+      <h4>Constraint satisfaction problems</h4>
+      <ul>
+        <li>Variables with domains and constraints</li>
+        <li>Consistent assignment vs complete assignment</li>
+        <li>Node consistency</li>
+        <li>Arc consistency</li>
+        <li>AC-3 as the main queue-based consistency algorithm</li>
+      </ul>
+
+      <h3>Module 3: Knowledge Representation And Inference</h3>
+      <h4>Logic basics</h4>
+      <ul>
+        <li><strong>Syntax:</strong> structure of well-formed sentences</li>
+        <li><strong>Semantics:</strong> meaning and truth in possible worlds</li>
+        <li><strong>Model:</strong> an assignment that makes sentences true or false</li>
+        <li><strong>Entailment:</strong> KB entails alpha if alpha is true in every model where KB is true</li>
+      </ul>
+
+      <h4>Propositional logic</h4>
+      <ul>
+        <li>Proposition symbols like <code>P</code>, <code>Q</code>, <code>R</code>, <code>W1,3</code></li>
+        <li>Connectives: NOT, AND, OR, implication, biconditional</li>
+        <li>Implication is false only when antecedent is true and consequent is false</li>
+        <li>Inference rules: Modus Ponens, unit resolution, resolution</li>
+        <li>Model checking is sound and complete but exponential</li>
+      </ul>
+
+      <h4>First-order logic</h4>
+      <ul>
+        <li>Objects, predicates, functions, variables, quantifiers</li>
+        <li>Universal instantiation and existential instantiation</li>
+        <li>Unification and most general unifier</li>
+      </ul>
+
+      <h4>Inference in FOL</h4>
+      <ul>
+        <li><strong>Forward chaining:</strong> fact-driven, sound, complete for Datalog</li>
+        <li><strong>Backward chaining:</strong> goal-driven, depth-first, can loop if uncontrolled</li>
+        <li><strong>Resolution:</strong> convert to CNF and derive contradiction</li>
+        <li><strong>Logic programming:</strong> Prolog uses backward chaining over definite clauses</li>
+      </ul>
+
+      <h4>Wumpus world</h4>
+      <ul>
+        <li>Performance: +1000 for climbing out with gold, -1000 for death, -1 per action, -10 for arrow</li>
+        <li>Actuators: Forward, TurnLeft, TurnRight, Grab, Shoot, Climb</li>
+        <li>Sensors: Stench, Breeze, Glitter, Bump, Scream</li>
+        <li>Uses logical reasoning to infer safe cells</li>
+      </ul>
+    </section>
+
+    <section class="section" id="definitions">
+      <h2>Core Definitions - Must Memorize</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Agent</td><td>Perceives environment via sensors and acts via effectors</td></tr>
+          <tr><td>Rational Agent</td><td>Selects action maximizing expected utility given percepts and knowledge</td></tr>
+          <tr><td>Search Problem</td><td>Initial state, actions, transition model, goal test, path cost</td></tr>
+          <tr><td>State Space</td><td>Directed graph where nodes are states and edges are action transitions</td></tr>
+          <tr><td>Node</td><td>Stores state, parent, action, depth, and path cost</td></tr>
+          <tr><td>Frontier / Open List</td><td>Nodes waiting to be expanded</td></tr>
+          <tr><td>Heuristic</td><td>Estimated cost from current node to goal</td></tr>
+          <tr><td>Knowledge Base</td><td>Set of sentences representing knowledge about a domain</td></tr>
+          <tr><td>Entailment</td><td>Sentence is true in all models that satisfy the knowledge base</td></tr>
+          <tr><td>Sound Inference</td><td>Derives only correct conclusions</td></tr>
+          <tr><td>Complete Inference</td><td>Can derive every entailed conclusion</td></tr>
+          <tr><td>CNF</td><td>Conjunction of clauses, standard format for resolution</td></tr>
+          <tr><td>Unification</td><td>Finding substitution that makes two expressions identical</td></tr>
+          <tr><td>Transition Model</td><td><code>P(Xt|Xt-1)</code> in temporal probabilistic models</td></tr>
+          <tr><td>Sensor Model</td><td><code>P(Et|Xt)</code>, probability of observation given state</td></tr>
+          <tr><td>Admissibility</td><td>Heuristic never overestimates actual cost</td></tr>
+          <tr><td>Consistency</td><td>Heuristic obeys monotonicity condition</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="algorithms">
+      <h2>Algorithm Cheat Sheet</h2>
+
+      <h3>A* Search</h3>
+      <pre>Problem: Find optimal path to goal
+Evaluation function: f(n) = g(n) + h(n)
+g(n) = actual cost from start to n
+h(n) = estimated cost from n to goal
+
+OPEN = {start}
+CLOSED = {}
+while OPEN not empty:
+  n = node in OPEN with minimum f(n)
+  if n is goal: return path
+  move n from OPEN to CLOSED
+  for each successor m of n:
+    if m not in OPEN and not in CLOSED:
+      add m
+    else if better path to m found:
+      update m
+return failure</pre>
+      <ul>
+        <li>Complete with finite branching</li>
+        <li>Optimal with admissible heuristic</li>
+        <li>Common heuristics: straight-line distance, Manhattan distance, Euclidean distance, misplaced tiles</li>
+      </ul>
+
+      <h3>AC-3</h3>
+      <pre>QUEUE = all arcs
+while QUEUE not empty:
+  (Xi, Xj) = pop arc
+  if REVISE(Xi, Xj):
+    if domain of Xi becomes empty:
+      return failure
+    for each Xk neighbor of Xi where k != j:
+      add (Xk, Xi) to QUEUE
+
+REVISE(Xi, Xj):
+  remove values from domain(Xi) that have no supporting value in domain(Xj)</pre>
+      <p>Complexity is typically written as <code>O(ed^3)</code>, where <code>e</code> is the number of arcs and <code>d</code> is the domain size.</p>
+
+      <h3>Forward Chaining</h3>
+      <pre>Start with known facts.
+Repeatedly apply rules whose premises are all satisfied.
+Add new conclusions to the knowledge base.
+Stop when query is derived or no new fact can be added.</pre>
+
+      <h3>Backward Chaining</h3>
+      <pre>Start from the goal.
+Find rules that can produce the goal.
+Recursively prove each premise.
+Use unification and substitution to match goals with rule conclusions.</pre>
+
+      <h3>Minimax</h3>
+      <pre>At MAX nodes choose maximum child value.
+At MIN nodes choose minimum child value.
+Work bottom-up from terminal utilities.
+Time complexity: O(b^d)</pre>
+
+      <h3>Alpha-Beta Pruning</h3>
+      <pre>Alpha = best score MAX can guarantee so far.
+Beta = best score MIN can guarantee so far.
+Prune when alpha >= beta.
+Best case complexity improves to O(b^(d/2)).</pre>
+    </section>
+
+    <section class="section" id="probability">
+      <h2>Probability, Bayesian Networks, And HMM</h2>
+
+      <h3>Probability basics</h3>
+      <ul>
+        <li>Sample space = set of all outcomes</li>
+        <li>Event = subset of sample space</li>
+        <li>Probability model satisfies values between 0 and 1 and sums to 1</li>
+        <li>Independence: <code>P(A,B)=P(A)P(B)</code></li>
+        <li>Conditional independence: <code>P(A,B|C)=P(A|C)P(B|C)</code></li>
+      </ul>
+
+      <div class="formula">P(A|B) = P(A and B) / P(B)</div>
+      <div class="formula">P(A, B) = P(A|B) P(B) = P(B|A) P(A)</div>
+      <div class="formula">Bayes Rule: P(A|B) = P(B|A) P(A) / P(B)</div>
+      <div class="formula">P(B) = Sum over a of P(B|A=a) P(A=a)</div>
+
+      <h3>Bayesian networks</h3>
+      <ul>
+        <li>Directed acyclic graph over random variables</li>
+        <li>Each node has a conditional probability table</li>
+        <li>Full joint distribution factorizes as product of local conditional probabilities</li>
+      </ul>
+      <div class="formula">P(X1, X2, ..., Xn) = Product of P(Xi | Parents(Xi))</div>
+
+      <h3>Hidden Markov Models</h3>
+      <ul>
+        <li><code>Xt</code> = hidden state at time <code>t</code></li>
+        <li><code>Et</code> = evidence at time <code>t</code></li>
+        <li>Transition model: <code>P(Xt|Xt-1)</code></li>
+        <li>Sensor model: <code>P(Et|Xt)</code></li>
+        <li>Markov assumption: current state depends only on previous state</li>
+        <li>Sensor Markov assumption: current observation depends only on current state</li>
+      </ul>
+
+      <h4>HMM inference problems</h4>
+      <ol>
+        <li><strong>Filtering:</strong> current state given observations so far</li>
+        <li><strong>Prediction:</strong> future state given current evidence</li>
+        <li><strong>Smoothing:</strong> past state given later evidence</li>
+        <li><strong>Most likely sequence:</strong> solved by Viterbi algorithm</li>
+      </ol>
+    </section>
+
+    <section class="section" id="learning">
+      <h2>Learning Algorithms</h2>
+
+      <h3>Decision Trees</h3>
+      <p>Decision trees map attribute vectors to class labels or values. Internal nodes test attributes, branches represent outcomes, and leaves output predictions.</p>
+      <ol>
+        <li>Compute entropy of current set</li>
+        <li>Compute information gain for each attribute</li>
+        <li>Select the attribute with highest gain</li>
+        <li>Split recursively until stopping condition is met</li>
+      </ol>
+      <div class="formula">Entropy: H(S) = - Sum of p(c) log2 p(c)</div>
+      <div class="formula">Gain(A) = H(parent) - Sum over v of (|Sv|/|S|) H(Sv)</div>
+      <p><strong>Overfitting:</strong> tree memorizes training data and performs poorly on new data. Fix using pruning, regularization, or early stopping.</p>
+
+      <h3>Supervised Learning: Regression</h3>
+      <ul>
+        <li>Linear regression predicts continuous values</li>
+        <li>Simple model: <code>y = mx + b</code></li>
+        <li>Multiple regression: <code>y = w0 + w1x1 + ... + wkxk</code></li>
+        <li>Loss often uses mean squared error</li>
+        <li>Logistic regression is used for classification with output in [0,1]</li>
+      </ul>
+
+      <h3>Unsupervised Learning: Clustering</h3>
+      <p><strong>K-means algorithm:</strong></p>
+      <ol>
+        <li>Initialize <code>k</code> centers</li>
+        <li>Assign each point to nearest center</li>
+        <li>Recompute centers as cluster means</li>
+        <li>Repeat until centers stop changing</li>
+      </ol>
+
+      <h3>Reinforcement Learning</h3>
+      <ul>
+        <li>Agent interacts with environment using actions</li>
+        <li>Receives rewards and learns policy</li>
+        <li>Value function estimates cumulative future reward</li>
+      </ul>
+      <div class="formula">Q(s,a) = Q(s,a) + alpha [r + gamma max Q(s',a') - Q(s,a)]</div>
+
+      <h3>Neural Networks</h3>
+      <ul>
+        <li>Neuron computes weighted sum then applies activation function</li>
+        <li>Activation functions: threshold, sigmoid, ReLU</li>
+        <li>Feed-forward network: input, hidden, output layers</li>
+        <li>MLP with multiple layers can model nonlinear functions</li>
+        <li>Backpropagation updates weights using gradient descent</li>
+      </ul>
+      <div class="formula">output = g(w0 + Sum of wi xi)</div>
+
+      <h3>Deep Learning</h3>
+      <ul>
+        <li><strong>CNN:</strong> image-oriented, local filters and convolutions</li>
+        <li><strong>RNN:</strong> sequence-oriented, hidden state carries memory over time</li>
+        <li>Deep networks learn hierarchical features from low-level to high-level patterns</li>
+      </ul>
+    </section>
+
+    <section class="section" id="contrasts">
+      <h2>Contrast Tables</h2>
+      <div class="two-col">
+        <div>
+          <h3>Search Algorithms At A Glance</h3>
+          <table>
+            <thead>
+              <tr><th>Feature</th><th>BFS</th><th>DFS</th><th>UCS</th><th>DFID</th><th>A*</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Uses heuristic?</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+              <tr><td>Order</td><td>FIFO</td><td>LIFO</td><td>By cost</td><td>Depth then restart</td><td>By g+h</td></tr>
+              <tr><td>Complete?</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+              <tr><td>Optimal?</td><td>Yes for unit cost</td><td>No</td><td>Yes</td><td>Yes for unit cost</td><td>Yes with admissible h</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Forward vs Backward Chaining</h3>
+          <table>
+            <thead>
+              <tr><th>Aspect</th><th>Forward</th><th>Backward</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Direction</td><td>Facts to conclusions</td><td>Goal to premises</td></tr>
+              <tr><td>Style</td><td>Data-driven</td><td>Goal-driven</td></tr>
+              <tr><td>Best when</td><td>Many facts, many possible queries</td><td>Specific target query</td></tr>
+              <tr><td>Risk</td><td>May derive many unused facts</td><td>May loop or repeat subgoals</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Learning Types</h3>
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Feedback</th><th>Data</th><th>Goal</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supervised</td><td>Labels provided</td><td>Labeled pairs</td><td>Learn mapping</td><td>Spam classifier</td></tr>
+          <tr><td>Unsupervised</td><td>No labels</td><td>Unlabeled data</td><td>Discover structure</td><td>Customer segmentation</td></tr>
+          <tr><td>Reinforcement</td><td>Rewards</td><td>State-action-reward</td><td>Maximize long-term reward</td><td>Game AI</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Propositional Logic vs FOL vs Probability</h3>
+      <table>
+        <thead>
+          <tr><th>Dimension</th><th>Propositional Logic</th><th>First-Order Logic</th><th>Probability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ontology</td><td>True/false propositions</td><td>Objects, relations, functions</td><td>Uncertain events</td></tr>
+          <tr><td>Uncertainty</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Expressive power</td><td>Limited</td><td>Very high</td><td>High with uncertainty</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="formulas">
+      <h2>Important Formulas And Metrics</h2>
+      <h3>Search metrics</h3>
+      <ul>
+        <li>Branching factor <code>b</code>: average number of successors</li>
+        <li>Solution depth <code>d</code>: depth of shallowest goal</li>
+        <li>Maximum depth <code>m</code>: maximum depth of search tree</li>
+      </ul>
+      <div class="formula">Nodes in a full tree up to depth d: N = 1 + b + b^2 + ... + b^d = (b^(d+1)-1)/(b-1)</div>
+      <div class="formula">Entropy: H(S) = - Sum p(c) log2 p(c)</div>
+      <div class="formula">Information gain: G(A) = H(parent) - Sum (|Sv|/|S|) H(Sv)</div>
+      <div class="formula">Bayes Rule: P(A|B) = P(B|A) P(A) / P(B)</div>
+      <div class="formula">Bayes net factorization: P(X1...Xn) = Product P(Xi|Parents(Xi))</div>
+
+      <h3>ML metrics</h3>
+      <ul>
+        <li>Accuracy = (TP + TN) / total</li>
+        <li>Precision = TP / (TP + FP)</li>
+        <li>Recall = TP / (TP + FN)</li>
+        <li>F1 = 2 * Precision * Recall / (Precision + Recall)</li>
+      </ul>
+    </section>
+
+    <section class="section" id="exam">
+      <h2>Typical Exam Question Patterns</h2>
+
+      <h3>1. PEAS specification</h3>
+      <p>Expected answer structure: performance measure, environment, actuators, sensors, then classify environment properties such as observable, deterministic, sequential, dynamic, and multiagent.</p>
+
+      <h3>2. Search algorithm analysis</h3>
+      <ol>
+        <li>Draw graph and label costs</li>
+        <li>Show frontier changes</li>
+        <li>Write expansion order</li>
+        <li>State solution path and cost</li>
+        <li>Compare completeness, optimality, time, and space</li>
+      </ol>
+
+      <h3>3. A* calculations</h3>
+      <ul>
+        <li>Compute <code>g(n)</code>, use given <code>h(n)</code>, derive <code>f(n)=g(n)+h(n)</code></li>
+        <li>Show which node is expanded next</li>
+        <li>Check admissibility against actual goal cost</li>
+      </ul>
+
+      <h3>4. CSP / AC-3</h3>
+      <ol>
+        <li>List variables, domains, constraints</li>
+        <li>Run arc consistency step by step</li>
+        <li>Show domain pruning after each revision</li>
+        <li>Conclude consistent assignment or failure</li>
+      </ol>
+
+      <h3>5. Propositional logic and entailment</h3>
+      <ol>
+        <li>Define proposition symbols</li>
+        <li>Write the knowledge base as logical formulas</li>
+        <li>Use truth table, resolution, or chaining</li>
+        <li>Check whether query is true in all valid KB models</li>
+      </ol>
+
+      <h3>6. Bayesian networks and probability</h3>
+      <ol>
+        <li>Write network factorization</li>
+        <li>Apply Bayes rule or sum-out method</li>
+        <li>Interpret conditional independence from graph structure</li>
+      </ol>
+
+      <h3>7. Decision trees</h3>
+      <ol>
+        <li>Compute root entropy</li>
+        <li>Compute gain of each attribute</li>
+        <li>Select best attribute and split recursively</li>
+        <li>Discuss overfitting and stopping rule</li>
+      </ol>
+
+      <h3>8. Game playing</h3>
+      <ol>
+        <li>Evaluate leaf utilities</li>
+        <li>Propagate with minimax</li>
+        <li>Track alpha and beta values</li>
+        <li>Mark pruned branches</li>
+      </ol>
+
+      <h3>9. Unification and backward chaining</h3>
+      <p>Show substitutions clearly, standardize variables apart if needed, and trace goal decomposition step by step.</p>
+
+      <h3>10. HMM filtering</h3>
+      <p>Start from prior, apply transition update, then apply sensor update, then normalize. Repeat for each new observation.</p>
+    </section>
+
+    <section class="section" id="revision">
+      <h2>Revision Plans</h2>
+
+      <h3>Two-week revision plan</h3>
+      <h4>Week 1</h4>
+      <ul>
+        <li>Days 1-2: agents, PEAS, task environment properties</li>
+        <li>Days 3-4: uninformed search and complexity</li>
+        <li>Days 5-6: informed search, A*, heuristics</li>
+        <li>Day 7: CSP and AC-3</li>
+      </ul>
+
+      <h4>Week 2</h4>
+      <ul>
+        <li>Days 8-9: propositional logic and first-order logic</li>
+        <li>Days 10-11: forward chaining, backward chaining, unification</li>
+        <li>Days 12-13: probability, Bayes nets, HMM</li>
+        <li>Day 14: full revision, formula drill, mock problems</li>
+      </ul>
+
+      <h3>One day before exam</h3>
+      <ul>
+        <li>Morning: one PEAS problem, one A* problem, one logic entailment proof</li>
+        <li>Afternoon: revise formulas twice and skim definitions</li>
+        <li>Evening: read contrast tables and algorithm summaries</li>
+        <li>Before exam: skim high-yield checklist only</li>
+      </ul>
+
+      <h3>High-yield checklist</h3>
+      <ul class="checklist">
+        <li>PEAS and task environment properties</li>
+        <li>BFS, DFS, DFID, UCS, A*</li>
+        <li>Admissibility and consistency of heuristics</li>
+        <li>CSP basics and AC-3</li>
+        <li>Syntax, semantics, entailment in propositional logic</li>
+        <li>Forward chaining and backward chaining</li>
+        <li>Bayes rule and conditional probability</li>
+        <li>Bayesian network factorization</li>
+        <li>HMM filtering and Viterbi idea</li>
+        <li>Entropy and information gain</li>
+        <li>Minimax and alpha-beta pruning</li>
+      </ul>
+    </section>
+
+    <section class="section" id="sources">
+      <h2>Source Mapping And Extraction Limits</h2>
+
+      <h3>Topic provenance</h3>
+      <ul>
+        <li>AI introduction, agents, PEAS: Contact Session 1 and 2</li>
+        <li>Search, heuristics, CSP: Contact Session 2, 3, and 4</li>
+        <li>Propositional logic, FOL, chaining: Contact Session 4 and 5</li>
+        <li>Probability, Bayesian networks, HMM: AI CS 6 PDF</li>
+        <li>Learning, neural networks, deep learning: AI CS 7 PDF</li>
+        <li>Course structure and exam details: course handout and exam PDF</li>
+      </ul>
+
+      <h3>Known extraction limitations</h3>
+      <div class="warning">
+        <ul>
+          <li><code>AI CS 7.pdf</code> contains OCR noise, so some deep-learning lines may still be less clean than the rest.</li>
+          <li>Some game-playing examples were not fully recoverable from slide extraction.</li>
+          <li>For exact wording in definitions or numericals, use the original slides and PDFs as the final authority.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

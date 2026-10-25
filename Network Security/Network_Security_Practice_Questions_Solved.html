@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Security - Solved Numerical Practice Questions</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --paper: #ffffff;
+      --ink: #1f2430;
+      --muted: #5f6b7a;
+      --accent: #0c4a6e;
+      --line: #dbe2ec;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 20%, #dcebf9 0, transparent 35%),
+        radial-gradient(circle at 90% 15%, #e8f2e3 0, transparent 32%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 28px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(20, 40, 70, 0.08);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      color: #0b2f4a;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent);
+      background: #f0f8ff;
+      padding: 10px 12px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+
+    .toc {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 16px 0 24px;
+      background: #fafcff;
+    }
+
+    .toc a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 12px;
+      white-space: nowrap;
+      font-size: 0.95rem;
+    }
+
+    .section-title {
+      margin-top: 26px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .question {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      background: #ffffff;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .q-head {
+      font-weight: 700;
+      color: #123d5b;
+      margin-bottom: 8px;
+    }
+
+    .work {
+      margin: 8px 0;
+      color: #1f2b3a;
+    }
+
+    .final {
+      margin-top: 10px;
+      font-weight: 700;
+      color: #0f5132;
+      background: #ebf8ef;
+      border: 1px solid #b8e0c5;
+      padding: 8px 10px;
+      border-radius: 7px;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: "Menlo", "Consolas", monospace;
+      font-size: 0.92em;
+    }
+
+    .mono {
+      font-family: "Menlo", "Consolas", monospace;
+      font-size: 0.92em;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        max-width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 8mm;
+      }
+
+      a { text-decoration: none; color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Network Security - Solved Numerical Practice Questions</h1>
+    <p class="subtitle">
+      Based on: <code>WILP_Sample Numerical Practice Questions for Network Security.pdf</code><br>
+      Aligned with methods from your <code>Learning_Content</code> lectures (mod arithmetic, Euclidean algorithms, Hill cipher, RSA, Diffie-Hellman, Euler/Fermat).
+    </p>
+
+    <div class="note">
+      Convention used throughout: <span class="mono">A = 0, B = 1, ..., Z = 25</span> and arithmetic is modulo 26 unless specified otherwise.
+    </div>
+
+    <div class="toc">
+      <strong>Quick Navigation:</strong><br>
+      <a href="#part-a">Part A</a>
+      <a href="#part-b">Part B</a>
+      <a href="#part-c">Part C</a>
+      <a href="#part-d">Part D</a>
+      <a href="#part-e">Part E</a>
+      <a href="#part-g">Part G</a>
+      <a href="#part-h">Part H</a>
+      <a href="#part-i">Part I</a>
+      <a href="#part-j">Part J</a>
+    </div>
+
+    <h2 id="part-a" class="section-title">Part A: Historical Ciphers</h2>
+
+    <section class="question">
+      <div class="q-head">Question 1: Caesar encryption of SECURITY with key $k=7$</div>
+      <div class="work">Use $C = (P + k) \bmod 26$ letter by letter:</div>
+      <div class="work mono">S(18)->25(Z), E(4)->11(L), C(2)->9(J), U(20)->1(B), R(17)->24(Y), I(8)->15(P), T(19)->0(A), Y(24)->5(F)</div>
+      <div class="final">Ciphertext = <span class="mono">ZLJBYPAF</span></div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 2: Caesar decryption of KHOOR with key $k=3$</div>
+      <div class="work">Use $P = (C - k) \bmod 26$:</div>
+      <div class="work mono">K->H, H->E, O->L, O->L, R->O</div>
+      <div class="final">Plaintext = <span class="mono">HELLO</span></div>
+    </section>
+
+    <h2 id="part-b" class="section-title">Part B: One-Time Pad</h2>
+
+    <section class="question">
+      <div class="q-head">Question 3: Encrypt WILPNETWORK using key XAWQMRCTKUL</div>
+      <div class="work">Use $C = (M + K) \bmod 26$:</div>
+      <div class="work mono">W+X=T, I+A=I, L+W=H, P+Q=F, N+M=Z, E+R=V, T+C=V, W+T=P, O+K=Y, R+U=L, K+L=V</div>
+      <div class="final">Ciphertext = <span class="mono">TIHFZVVPYLV</span></div>
+    </section>
+
+    <h2 id="part-c" class="section-title">Part C: Hill Cipher</h2>
+
+    <section class="question">
+      <div class="q-head">Question 4: Encrypt HELP with $K = \begin{bmatrix}6 & 1 \\ 9 & 5\end{bmatrix}$</div>
+      <div class="work">Split plaintext into pairs: HE and LP.</div>
+      <div class="work">For HE: $\begin{bmatrix}7 \\ 4\end{bmatrix}$</div>
+      <div class="work">$$K\begin{bmatrix}7 \\ 4\end{bmatrix} = \begin{bmatrix}6\cdot7+1\cdot4 \\ 9\cdot7+5\cdot4\end{bmatrix} = \begin{bmatrix}46 \\ 83\end{bmatrix} \equiv \begin{bmatrix}20 \\ 5\end{bmatrix} \pmod{26}$$</div>
+      <div class="work">This gives letters U, F.</div>
+      <div class="work">For LP: $\begin{bmatrix}11 \\ 15\end{bmatrix}$</div>
+      <div class="work">$$K\begin{bmatrix}11 \\ 15\end{bmatrix} = \begin{bmatrix}81 \\ 174\end{bmatrix} \equiv \begin{bmatrix}3 \\ 18\end{bmatrix} \pmod{26}$$</div>
+      <div class="work">This gives letters D, S.</div>
+      <div class="final">Ciphertext = <span class="mono">UFDS</span></div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 5: Check if $\begin{bmatrix}6&24&1\\13&16&10\\20&17&15\end{bmatrix}$ is invertible modulo 26</div>
+      <div class="work">A matrix is invertible mod 26 iff $\gcd(\det(K),26)=1$.</div>
+      <div class="work">
+        $$\det(K)=6(16\cdot15-10\cdot17)-24(13\cdot15-10\cdot20)+1(13\cdot17-16\cdot20)$$
+        $$=6(70)-24(-5)+(-99)=420+120-99=441$$
+      </div>
+      <div class="work">$441 \bmod 26 = 25$, and $\gcd(25,26)=1$.</div>
+      <div class="final">Yes, the matrix is invertible modulo 26.</div>
+    </section>
+
+    <h2 id="part-d" class="section-title">Part D: GCD and Extended Euclidean Algorithm</h2>
+
+    <section class="question">
+      <div class="q-head">Question 6: Compute $\gcd(145,278)$</div>
+      <div class="work mono">278 = 145(1) + 133</div>
+      <div class="work mono">145 = 133(1) + 12</div>
+      <div class="work mono">133 = 12(11) + 1</div>
+      <div class="work mono">12 = 1(12) + 0</div>
+      <div class="final">$\gcd(145,278)=1$</div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 7: Find integers $x,y$ such that $145x+278y=\gcd(145,278)$</div>
+      <div class="work">From Question 6, gcd is 1. Back-substitute:</div>
+      <div class="work mono">1 = 133 - 12(11)</div>
+      <div class="work mono">12 = 145 - 133</div>
+      <div class="work mono">1 = 133 - (145-133)11 = 12(133) - 11(145)</div>
+      <div class="work mono">133 = 278 - 145</div>
+      <div class="work mono">1 = 12(278-145) - 11(145) = 12(278) - 23(145)</div>
+      <div class="final">One solution is $x=-23,\ y=12$.</div>
+    </section>
+
+    <h2 id="part-e" class="section-title">Part E: Multiplicative Inverse</h2>
+
+    <section class="question">
+      <div class="q-head">Question 8: Find $31^{-1} \pmod{43}$</div>
+      <div class="work">Use Extended Euclidean Algorithm:</div>
+      <div class="work mono">43=31+12, 31=12(2)+7, 12=7+5, 7=5+2, 5=2(2)+1</div>
+      <div class="work">Back-substitution gives:</div>
+      <div class="work mono">1 = 13(43) - 18(31)</div>
+      <div class="work">So $-18\cdot31 \equiv 1 \pmod{43}$, hence inverse is $-18 \equiv 25 \pmod{43}$.</div>
+      <div class="final">$31^{-1} \equiv 25 \pmod{43}$</div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 9: Find $11^{-1} \pmod{26}$</div>
+      <div class="work">Try a small multiple: $11\cdot19 = 209 = 26\cdot8 + 1$.</div>
+      <div class="final">$11^{-1} \equiv 19 \pmod{26}$</div>
+    </section>
+
+    <h2 id="part-g" class="section-title">Part G: Linear Congruential Generator (LCG)</h2>
+
+    <section class="question">
+      <div class="q-head">Question 10: For $X_{n+1}=(9X_n+5)\bmod17$, seed $X_0=12$, find first 6 numbers</div>
+      <div class="work">Compute recursively:</div>
+      <div class="work mono">X1=(9*12+5) mod 17 = 11</div>
+      <div class="work mono">X2=(9*11+5) mod 17 = 2</div>
+      <div class="work mono">X3=(9*2+5) mod 17 = 6</div>
+      <div class="work mono">X4=(9*6+5) mod 17 = 8</div>
+      <div class="work mono">X5=(9*8+5) mod 17 = 9</div>
+      <div class="work mono">X6=(9*9+5) mod 17 = 1</div>
+      <div class="final">First 6 pseudo-random values (after seed): <span class="mono">11, 2, 6, 8, 9, 1</span></div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 11: Determine period of the same LCG sequence</div>
+      <div class="work">Continue from $X_6=1$:</div>
+      <div class="work mono">X7=(9*1+5) mod 17 = 14</div>
+      <div class="work mono">X8=(9*14+5) mod 17 = 12 = X0</div>
+      <div class="final">Period = <span class="mono">8</span> (for seed $X_0=12$)</div>
+    </section>
+
+    <h2 id="part-h" class="section-title">Part H: RSA</h2>
+
+    <section class="question">
+      <div class="q-head">Question 12: Given $p=19, q=23, e=13$</div>
+      <div class="work">1) $n=pq=19\cdot23=437$</div>
+      <div class="work">2) $\varphi(n)=(p-1)(q-1)=18\cdot22=396$</div>
+      <div class="work">3) Verify $\gcd(13,396)=1$ (true, since $396=13\cdot30+6$ and $13=6\cdot2+1$)</div>
+      <div class="work">4) Find $d$ such that $13d\equiv1\pmod{396}$.</div>
+      <div class="work mono">1 = 61(13) - 2(396)</div>
+      <div class="final">Private key exponent: $d=61$</div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 13: Encrypt $M=9$ using RSA parameters from Question 12</div>
+      <div class="work">(The sheet says Question 16, but RSA parameters are in Question 12; using those.)</div>
+      <div class="work">Public key: $(e,n)=(13,437)$.</div>
+      <div class="work">$$C=M^e \bmod n = 9^{13} \bmod 437$$</div>
+      <div class="work">Fast powers:</div>
+      <div class="work mono">9^2=81</div>
+      <div class="work mono">9^4=81^2=6561 mod 437 = 6</div>
+      <div class="work mono">9^8=6^2=36</div>
+      <div class="work mono">9^13=9^8*9^4*9 = 36*6*9 = 1944 mod 437 = 196</div>
+      <div class="final">Ciphertext = <span class="mono">196</span></div>
+    </section>
+
+    <h2 id="part-i" class="section-title">Part I: Diffie-Hellman</h2>
+
+    <section class="question">
+      <div class="q-head">Question 14: $p=29$, $g=10$, Alice $a=16$, Bob $b=5$</div>
+      <div class="work">Alice public key: $A=g^a \bmod p = 10^{16}\bmod29$.</div>
+      <div class="work mono">10^2=13, 10^4=24, 10^8=25, 10^16=16 (mod 29)</div>
+      <div class="work">So $A=16$.</div>
+      <div class="work">Bob public key: $B=g^b \bmod p = 10^5\bmod29 = 8$.</div>
+      <div class="work">Shared secret: $K=B^a\bmod p = 8^{16}\bmod29$.</div>
+      <div class="work mono">8^2=6, 8^4=7, 8^8=20, 8^16=23 (mod 29)</div>
+      <div class="final">Alice public key = 16, Bob public key = 8, Shared secret key = 23</div>
+    </section>
+
+    <h2 id="part-j" class="section-title">Part J: Theorem-Based Questions</h2>
+
+    <section class="question">
+      <div class="q-head">Question 15: Compute $7^{100} \bmod 15$ using Euler's theorem</div>
+      <div class="work">$\gcd(7,15)=1$, and $\varphi(15)=\varphi(3\cdot5)=15(1-1/3)(1-1/5)=8$.</div>
+      <div class="work">So $7^8\equiv1\pmod{15}$. Write $100=8\cdot12+4$:</div>
+      <div class="work">$$7^{100}=\left(7^8\right)^{12}7^4\equiv1^{12}7^4\pmod{15}$$</div>
+      <div class="work">$7^2=49\equiv4\pmod{15}$, so $7^4\equiv16\equiv1\pmod{15}$.</div>
+      <div class="final">$7^{100}\equiv1\pmod{15}$</div>
+    </section>
+
+    <section class="question">
+      <div class="q-head">Question 16: Compute $3^{100} \bmod 7$ using Fermat's little theorem</div>
+      <div class="work">Since 7 is prime and $\gcd(3,7)=1$, Fermat gives $3^{6}\equiv1\pmod{7}$.</div>
+      <div class="work">Write $100=6\cdot16+4$:</div>
+      <div class="work">$$3^{100}=\left(3^6\right)^{16}3^4\equiv1^{16}3^4\pmod{7}$$</div>
+      <div class="work">$3^2=9\equiv2\pmod{7}$, so $3^4\equiv4\pmod{7}$.</div>
+      <div class="final">$3^{100}\equiv4\pmod{7}$</div>
+    </section>
+
+    <div class="note">
+      Print tip: Open this file in a browser and press <code>Cmd + P</code>. The styling is optimized for clean black-on-white print output with formulas preserved.
+    </div>
+  </main>
+</body>
+</html>

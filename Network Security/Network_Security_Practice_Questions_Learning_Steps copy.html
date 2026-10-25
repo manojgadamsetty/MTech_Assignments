@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Security - Step-by-Step Learning Solutions</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --paper: #ffffff;
+      --ink: #1b2430;
+      --muted: #4f5c6a;
+      --line: #d7e0ea;
+      --accent: #0b5a75;
+      --ok-bg: #eaf8ee;
+      --ok-line: #b8dfc2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background: #eef3f8;
+      line-height: 1.32;
+      font-size: 13px;
+    }
+    .wrap {
+      width: min(210mm, calc(100vw - 20px));
+      margin: 10px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10mm;
+      box-shadow: 0 8px 20px rgba(24, 48, 78, 0.08);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      align-content: start;
+    }
+    .wrap > * { min-width: 0; }
+    h1, .sub, .intro, .print-note {
+      grid-column: 1 / -1;
+    }
+    h1, h2, h3 { color: #08344a; margin: 0; }
+    h1 {
+      font-size: 1.45rem;
+      letter-spacing: 0.01em;
+    }
+    .sub {
+      color: var(--muted);
+      margin: -2px 0 2px;
+      font-size: 0.95rem;
+    }
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 8px;
+      margin-bottom: 2px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbfe;
+      font-size: 0.92rem;
+    }
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 9px;
+      margin: 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .q {
+      font-weight: 700;
+      color: #0a4a63;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+    .steps {
+      margin: 4px 0 4px 16px;
+      padding-left: 10px;
+    }
+    .steps li { margin: 2px 0; }
+    p { margin: 4px 0; }
+    .compact { margin: 3px 0; }
+    .answer {
+      margin-top: 5px;
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-line);
+      border-radius: 6px;
+      padding: 5px 7px;
+      font-weight: 700;
+      color: #0f5132;
+    }
+    code {
+      font-family: "Menlo", "Consolas", monospace;
+      background: #f2f4f7;
+      padding: 0 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 5px;
+      font-size: 0.81rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 3px 4px;
+      text-align: left;
+    }
+    th { background: #f7fbff; }
+    .print-note {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: right;
+    }
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 6mm;
+      }
+      body {
+        background: #fff;
+        font-size: 8.6pt;
+      }
+      .wrap {
+        margin: 0;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        gap: 4.5mm;
+      }
+      .intro {
+        padding: 4px 6px;
+      }
+      table {
+        font-size: 7.7pt;
+      }
+      th, td {
+        padding: 2px 3px;
+      }
+      .box {
+        padding: 6px 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Step-by-Step Learning Solutions</h1>
+    <p class="sub">For: <code>WILP_Sample Numerical Practice Questions for Network Security</code></p>
+    <div class="intro">
+      <span><strong>Letter map:</strong> $A=0, B=1, \dots, Z=25$</span>
+      <span><strong>Goal:</strong> single-page A4 quick revision sheet</span>
+    </div>
+
+    <section class="box">
+      <div class="q">A1) Caesar cipher: Encrypt SECURITY with $k=7$</div>
+      <ol class="steps">
+        <li>Use $C=(P+7)\bmod 26$ and convert each letter back after reduction.</li>
+      </ol>
+      <table>
+        <tr><th>Letter</th><th>$P$</th><th>$(P+7)\bmod 26$</th><th>Cipher</th></tr>
+        <tr><td>S</td><td>18</td><td>25</td><td>Z</td></tr>
+        <tr><td>E</td><td>4</td><td>11</td><td>L</td></tr>
+        <tr><td>C</td><td>2</td><td>9</td><td>J</td></tr>
+        <tr><td>U</td><td>20</td><td>1</td><td>B</td></tr>
+        <tr><td>R</td><td>17</td><td>24</td><td>Y</td></tr>
+        <tr><td>I</td><td>8</td><td>15</td><td>P</td></tr>
+        <tr><td>T</td><td>19</td><td>0</td><td>A</td></tr>
+        <tr><td>Y</td><td>24</td><td>5</td><td>F</td></tr>
+      </table>
+      <div class="answer">Ciphertext: ZLJBYPAF</div>
+    </section>
+
+    <section class="box">
+      <div class="q">A2) Caesar decryption: Decrypt KHOOR with $k=3$</div>
+      <ol class="steps">
+        <li>Apply $P=(C-3)\bmod 26$ to each ciphertext letter.</li>
+      </ol>
+      <table>
+        <tr><th>Cipher</th><th>$C$</th><th>$(C-3)\bmod 26$</th><th>Plain</th></tr>
+        <tr><td>K</td><td>10</td><td>7</td><td>H</td></tr>
+        <tr><td>H</td><td>7</td><td>4</td><td>E</td></tr>
+        <tr><td>O</td><td>14</td><td>11</td><td>L</td></tr>
+        <tr><td>O</td><td>14</td><td>11</td><td>L</td></tr>
+        <tr><td>R</td><td>17</td><td>14</td><td>O</td></tr>
+      </table>
+      <div class="answer">Plaintext: HELLO</div>
+    </section>
+
+    <section class="box">
+      <div class="q">B1) OTP: Encrypt WILPNETWORK using key XAWQMRCTKUL</div>
+      <ol class="steps">
+        <li>Use $C=(M+K)\bmod 26$ for each aligned message-key pair.</li>
+      </ol>
+      <table>
+        <tr><th>Pos</th><th>Message</th><th>$M$</th><th>Key</th><th>$K$</th><th>$(M+K)\bmod 26$</th><th>Cipher</th></tr>
+        <tr><td>1</td><td>W</td><td>22</td><td>X</td><td>23</td><td>19</td><td>T</td></tr>
+        <tr><td>2</td><td>I</td><td>8</td><td>A</td><td>0</td><td>8</td><td>I</td></tr>
+        <tr><td>3</td><td>L</td><td>11</td><td>W</td><td>22</td><td>7</td><td>H</td></tr>
+        <tr><td>4</td><td>P</td><td>15</td><td>Q</td><td>16</td><td>5</td><td>F</td></tr>
+        <tr><td>5</td><td>N</td><td>13</td><td>M</td><td>12</td><td>25</td><td>Z</td></tr>
+        <tr><td>6</td><td>E</td><td>4</td><td>R</td><td>17</td><td>21</td><td>V</td></tr>
+        <tr><td>7</td><td>T</td><td>19</td><td>C</td><td>2</td><td>21</td><td>V</td></tr>
+        <tr><td>8</td><td>W</td><td>22</td><td>T</td><td>19</td><td>15</td><td>P</td></tr>
+        <tr><td>9</td><td>O</td><td>14</td><td>K</td><td>10</td><td>24</td><td>Y</td></tr>
+        <tr><td>10</td><td>R</td><td>17</td><td>U</td><td>20</td><td>11</td><td>L</td></tr>
+        <tr><td>11</td><td>K</td><td>10</td><td>L</td><td>11</td><td>21</td><td>V</td></tr>
+      </table>
+      <div class="answer">Ciphertext: TIHFZVVPYLV</div>
+    </section>
+
+    <section class="box">
+      <div class="q">C1) Hill cipher: Encrypt HELP with $K=\begin{bmatrix}6&1\\9&5\end{bmatrix}$</div>
+      <ol class="steps">
+        <li>Use 2-letter blocks HE and LP, then compute $C = KP \bmod 26$.</li>
+      </ol>
+      <p class="compact"><strong>HE:</strong> $P_1=\begin{bmatrix}7\\4\end{bmatrix}$</p>
+      <p class="compact">$$K P_1 =
+      \begin{bmatrix}6&1\\9&5\end{bmatrix}
+      \begin{bmatrix}7\\4\end{bmatrix}
+      =\begin{bmatrix}46\\83\end{bmatrix}
+      \equiv\begin{bmatrix}20\\5\end{bmatrix}\pmod{26}$$</p>
+      <p class="compact">$20\to U$, $5\to F$</p>
+      <p class="compact"><strong>LP:</strong> $P_2=\begin{bmatrix}11\\15\end{bmatrix}$</p>
+      <p class="compact">$$K P_2 =
+      \begin{bmatrix}6&1\\9&5\end{bmatrix}
+      \begin{bmatrix}11\\15\end{bmatrix}
+      =\begin{bmatrix}81\\174\end{bmatrix}
+      \equiv\begin{bmatrix}3\\18\end{bmatrix}\pmod{26}$$</p>
+      <p class="compact">$3\to D$, $18\to S$</p>
+      <div class="answer">Ciphertext: UFDS</div>
+    </section>
+
+    <section class="box">
+      <div class="q">C2) Check invertibility of $\begin{bmatrix}6&24&1\\13&16&10\\20&17&15\end{bmatrix}$ mod 26</div>
+      <ol class="steps">
+        <li>Invertible iff $\gcd(\det(K),26)=1$.</li>
+      </ol>
+      <p class="compact">$$\det(K)=6(16\cdot15-10\cdot17)-24(13\cdot15-10\cdot20)+(13\cdot17-16\cdot20)=441$$</p>
+      <p class="compact">$441\bmod 26=25$ and $\gcd(25,26)=1$.</p>
+      <div class="answer">Matrix is invertible modulo 26.</div>
+    </section>
+
+    <section class="box">
+      <div class="q">D1) Compute $\gcd(145,278)$</div>
+      <ol class="steps">
+        <li>Apply Euclidean algorithm until remainder is 0.</li>
+      </ol>
+      <p class="compact"><code>278 = 145(1) + 133</code><br>
+      <code>145 = 133(1) + 12</code><br>
+      <code>133 = 12(11) + 1</code><br>
+      <code>12 = 1(12) + 0</code></p>
+      <div class="answer">$\gcd(145,278)=1$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">D2) Find $x,y$ such that $145x+278y=\gcd(145,278)$</div>
+      <ol class="steps">
+        <li>Back-substitute from D1 to express 1 as a linear combination.</li>
+      </ol>
+      <p class="compact">
+        $1=133-12\cdot11$<br>
+        $12=145-133$<br>
+        $\Rightarrow 1=133-(145-133)11=12\cdot133-11\cdot145$<br>
+        $133=278-145$<br>
+        $\Rightarrow 1=12(278-145)-11\cdot145=12\cdot278-23\cdot145$
+      </p>
+      <p class="compact">So $1=145(-23)+278(12)$.</p>
+      <div class="answer">$x=-23,\ y=12$ is one valid pair.</div>
+    </section>
+
+    <section class="box">
+      <div class="q">E1) Find $31^{-1}\pmod{43}$</div>
+      <ol class="steps">
+        <li>Use EEA and express 1 as a combination of 31 and 43.</li>
+      </ol>
+      <p class="compact"><code>43=31+12</code><br><code>31=12(2)+7</code><br><code>12=7+5</code><br><code>7=5+2</code><br><code>5=2(2)+1</code></p>
+      <p class="compact">$1=13\cdot43-18\cdot31$, so $-18\cdot31\equiv1\pmod{43}$.</p>
+      <div class="answer">$31^{-1}\equiv25\pmod{43}$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">E2) Find $11^{-1}\pmod{26}$</div>
+      <ol class="steps">
+        <li>Check a value $k$ such that $11k\equiv1\pmod{26}$.</li>
+      </ol>
+      <div class="answer">$11^{-1}\equiv19\pmod{26}$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">G1) $X_{n+1}=(9X_n+5)\bmod17$, seed $X_0=12$</div>
+      <ol class="steps">
+        <li>Substitute each output back into the recurrence.</li>
+      </ol>
+      <p class="compact"><code>X1=(9*12+5) mod 17 = 11</code><br>
+      <code>X2=(9*11+5) mod 17 = 2</code><br>
+      <code>X3=(9*2+5) mod 17 = 6</code><br>
+      <code>X4=(9*6+5) mod 17 = 8</code><br>
+      <code>X5=(9*8+5) mod 17 = 9</code><br>
+      <code>X6=(9*9+5) mod 17 = 1</code></p>
+      <div class="answer">First 6 numbers after seed: 11, 2, 6, 8, 9, 1</div>
+    </section>
+
+    <section class="box">
+      <div class="q">G2) Determine period of this LCG</div>
+      <ol class="steps">
+        <li>Continue until the seed appears again.</li>
+      </ol>
+      <p class="compact"><code>X7=(9*1+5) mod 17 = 14</code><br>
+      <code>X8=(9*14+5) mod 17 = 12 = X0</code></p>
+      <div class="answer">Period = 8</div>
+    </section>
+
+    <section class="box">
+      <div class="q">H1) Given $p=19, q=23, e=13$: find $n,\varphi(n),d$</div>
+      <ol class="steps">
+        <li>Compute modulus: $n=pq=19\cdot23=437$.</li>
+        <li>Compute totient: $\varphi(n)=(p-1)(q-1)=18\cdot22=396$.</li>
+        <li>Check coprime: $\gcd(13,396)=1$.</li>
+        <li>Find $d$ from $13d\equiv1\pmod{396}$.</li>
+      </ol>
+      <p class="compact"><code>396=13(30)+6</code><br><code>13=6(2)+1</code><br>
+      <code>1=13-6(2)=13-(396-13*30)2=13*61-396*2</code></p>
+      <div class="answer">$n=437,\ \varphi(n)=396,\ d=61$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">H2) Encrypt $M=9$ with RSA from H1</div>
+      <p class="compact">Public key: $(e,n)=(13,437)$.</p>
+      <ol class="steps">
+        <li>Use $C=M^e\bmod n = 9^{13}\bmod437$ with repeated squaring.</li>
+      </ol>
+      <p class="compact"><code>9^2=81</code><br>
+      <code>9^4=81^2=6561 mod 437 = 6</code><br>
+      <code>9^8=6^2=36</code></p>
+      <p class="compact">$$9^{13}=9^8\cdot9^4\cdot9\equiv 36\cdot6\cdot9=1944\equiv196\pmod{437}$$</p>
+      <div class="answer">Ciphertext: 196</div>
+    </section>
+
+    <section class="box">
+      <div class="q">I1) Diffie-Hellman: $p=29, g=10, a=16, b=5$</div>
+      <ol class="steps">
+        <li>Alice public key: $A=g^a\bmod p = 10^{16}\bmod29$.</li>
+      </ol>
+      <p class="compact"><code>10^2=13, 10^4=24, 10^8=25, 10^16=16 (mod 29)</code> so $A=16$.</p>
+      <ol class="steps" start="2">
+        <li>Bob public key: $B=g^b\bmod p = 10^5\bmod29$.</li>
+      </ol>
+      <p class="compact"><code>10^5 = 10^4*10 = 24*10 = 240 mod 29 = 8</code> so $B=8$.</p>
+      <ol class="steps" start="3">
+        <li>Shared key: $K=B^a\bmod p = 8^{16}\bmod29$.</li>
+      </ol>
+      <p class="compact"><code>8^2=6, 8^4=7, 8^8=20, 8^16=23 (mod 29)</code></p>
+      <div class="answer">Alice public key = 16, Bob public key = 8, Shared key = 23</div>
+    </section>
+
+    <section class="box">
+      <div class="q">J1) Compute $7^{100}\bmod15$ using Euler theorem</div>
+      <ol class="steps">
+        <li>$\gcd(7,15)=1$, so Euler applies.</li>
+        <li>$\varphi(15)=15\left(1-\frac13\right)\left(1-\frac15\right)=8$.</li>
+        <li>Hence $7^8\equiv1\pmod{15}$.</li>
+        <li>Write exponent: $100=8\cdot12+4$.</li>
+      </ol>
+      <p class="compact">$$7^{100}=(7^8)^{12}7^4\equiv1^{12}7^4\pmod{15}$$</p>
+      <p class="compact">$7^2=49\equiv4\pmod{15}$ and $7^4\equiv4^2=16\equiv1\pmod{15}$.</p>
+      <div class="answer">$7^{100}\equiv1\pmod{15}$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">J2) Compute $3^{100}\bmod7$ using Fermat theorem</div>
+      <ol class="steps">
+        <li>Since 7 is prime and $\gcd(3,7)=1$, $3^{6}\equiv1\pmod7$.</li>
+        <li>Write exponent: $100=6\cdot16+4$.</li>
+      </ol>
+      <p class="compact">$$3^{100}=(3^6)^{16}3^4\equiv1^{16}3^4\pmod7$$</p>
+      <p class="compact">$3^2=9\equiv2\pmod7$, so $3^4\equiv2^2=4\pmod7$.</p>
+      <div class="answer">$3^{100}\equiv4\pmod{7}$</div>
+    </section>
+
+    <p class="print-note"><strong>Print:</strong> Use <code>Cmd + P</code>; MathJax formulas remain intact.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Problem 0-B Theory Document</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #334155;
+      --accent: #0b3b6e;
+      --panel: #f8fafc;
+      --line: #cbd5e1;
+      --soft: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+      line-height: 1.58;
+    }
+
+    .page {
+      width: min(960px, 94vw);
+      margin: 28px auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      padding: 30px;
+    }
+
+    .title {
+      text-align: center;
+      margin: 0;
+      color: var(--ink);
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .meta {
+      margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #93c5fd;
+      table-layout: fixed;
+    }
+
+    .meta td {
+      border: 1px solid #93c5fd;
+      padding: 10px 12px;
+      vertical-align: top;
+      word-wrap: break-word;
+    }
+
+    .meta td:first-child {
+      width: 220px;
+      font-weight: 700;
+      background: #eff6ff;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    h2 {
+      color: var(--accent);
+      margin: 0 0 8px 0;
+      border-bottom: 2px solid #dbeafe;
+      padding-bottom: 6px;
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      margin: 14px 0 8px;
+      font-size: 1.2rem;
+      color: #1e293b;
+    }
+
+    p {
+      margin: 8px 0;
+      text-align: justify;
+    }
+
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .formula {
+      margin-top: 8px;
+      padding: 12px;
+      border: 1px solid var(--soft);
+      border-left: 4px solid var(--accent);
+      background: var(--panel);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.98rem;
+      overflow-wrap: anywhere;
+    }
+
+    .note {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { background: #fff; }
+      .page {
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      h2, h3 { break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      .section { break-inside: avoid-page; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">Artificial and Computational Intelligence</h1>
+    <div class="subtitle">Assignment 1 - Theory Document</div>
+    <div class="subtitle">Problem Statement 0-B (Travelling Agent)</div>
+
+    <table class="meta">
+      <tr><td>Student Name</td><td>Gadamsetty V Sai Manoj Kumar</td></tr>
+      <tr><td>BITS ID</td><td>2025MT12100</td></tr>
+      <tr><td>Date</td><td>11 April 2026</td></tr>
+    </table>
+
+    <section class="section">
+      <h2>1. Agent Environment and PEAS</h2>
+      <h3>Problem Context</h3>
+      <p>
+        A travelling agent must move from Chennai (node A) to Hyderabad (node X) on a weighted graph.
+        Edge weights represent approximate travel time between cities. The task is to identify a valid route
+        to the goal using the required search methods (IDA* and Hill Climbing), while reporting path and complexity.
+      </p>
+
+      <h3>PEAS Description</h3>
+      <ul>
+        <li><strong>Performance Measure:</strong> Reach goal node X with minimum travel cost; produce valid path; report time and space complexity.</li>
+        <li><strong>Environment:</strong> Weighted graph of cities, static during one run, fully observable.</li>
+        <li><strong>Actuators:</strong> Move from current node to an adjacent node connected by an edge.</li>
+        <li><strong>Sensors:</strong> Current node, neighboring nodes, and edge costs from graph representation.</li>
+      </ul>
+
+      <h3>Environment Characteristics</h3>
+      <ul>
+        <li>Fully observable: all nodes, edges, and costs are known from the start.</li>
+        <li>Deterministic: moving on an edge always gives the same next node and cost.</li>
+        <li>Sequential: each decision affects subsequent choices in the path.</li>
+        <li>Static: topology and weights do not change during execution.</li>
+        <li>Discrete: nodes and transitions are finite and countable.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>2. Heuristic / Fitness Function Definition</h2>
+      <p>For this problem, the heuristic follows the assignment statement exactly:</p>
+      <div class="formula">h(n) = average of total travel costs across all simple paths from node n to goal node X.</div>
+      <h3>Interpretation</h3>
+      <ul>
+        <li>Lower h(n) indicates that node n is generally closer (in travel-time sense) to X.</li>
+        <li>The heuristic is computed from graph structure, not manually guessed.</li>
+      </ul>
+      <h3>Usage in Algorithms</h3>
+      <ul>
+        <li>IDA*: uses f(n) = g(n) + h(n), where g(n) is path cost from start to n.</li>
+        <li>Hill Climbing: selects neighbor with best (lowest) heuristic value; if no improving neighbor exists, local optimum behavior is reported.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>3. Data Structures Used in Implementation</h2>
+      <ul>
+        <li>Graph: dictionary of dictionaries (adjacency map with edge weights).</li>
+        <li>Example: graph['A']['D'] = 3</li>
+        <li>Path containers: list for ordered path sequence.</li>
+        <li>Visited tracking: set to prevent node revisits in simple-path exploration.</li>
+        <li>Heuristic table: dictionary mapping node to heuristic value h(n).</li>
+        <li>Result object: structured record containing path, cost, expanded nodes, depth, and flags.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>4. Informed and Local Search Methods (Summary)</h2>
+      <h3>IDA* (Informed Search)</h3>
+      <ul>
+        <li>Starts with threshold = h(start).</li>
+        <li>Performs depth-first bounded search using f(n).</li>
+        <li>If goal is not found, threshold increases to minimum exceeded f-cost and repeats.</li>
+        <li>Returns path A -&gt; D -&gt; G -&gt; X (cost 19) in the submitted implementation run.</li>
+      </ul>
+
+      <h3>Hill Climbing (Local Search)</h3>
+      <ul>
+        <li>At each step, chooses best heuristic neighbor.</li>
+        <li>Tracks local optimum condition when strict heuristic improvement is not possible.</li>
+        <li>Submitted run reports path A -&gt; D -&gt; G -&gt; X and marks local-optimum encountered as Yes.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>5. Complexity Reporting Approach</h2>
+      <p>The code prints complexity information explicitly:</p>
+      <ul>
+        <li>IDA*: Time O(b^d) worst case, Space O(bd) worst case.</li>
+        <li>Hill Climbing: Time O(b) per move, Space O(b) for neighbor inspection.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>6. Submission Note</h2>
+      <div class="note">
+        This document contains theory only (PEAS, environment analysis, heuristic definition, and method explanation).
+        Implementation is provided separately in Python notebook / code as required.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

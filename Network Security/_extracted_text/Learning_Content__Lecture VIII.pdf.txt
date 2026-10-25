@@ -1,0 +1,139 @@
+
+
+===== PAGE 1 =====
+BITSPilaniNetwork SecuritySubhadip SinghaComputer Science & Information System 
+
+
+===== PAGE 2 =====
+BITSPilani
+ES ZG513/ SS ZG513, Network SecurityLecture No VIII.
+
+
+===== PAGE 3 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Learning Objectives•Understand cryptographic hash functions•Learn properties of secure hash functions•Study SHA-512 algorithm structure•Understand Message Authentication Codes (MAC)•Learn HMAC and CMAC algorithms•Work through practical examples
+
+
+===== PAGE 4 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Cryptographic Hash Function•A hash function H takes input of arbitrary length and produces fixed length output.•H : {0,1}* → {0,1}^n•H(m) is called digest.
+
+
+===== PAGE 5 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Important Properties of Hash Functions1. Preimage resistance2. Second preimage resistance3. Collision resistance4. Deterministic output5. Efficient computation6. Avalanche effect
+
+
+===== PAGE 6 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Preimage Resistance•Given y = H(m), it should be computationally infeasible to find m.•Formal:•Given y, find m such that H(m)=y
+
+
+===== PAGE 7 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Second Preimage Resistance•Given m1, it should be hard to find m2 ≠ m1 such that:•H(m1) = H(m2)
+
+
+===== PAGE 8 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Collision Resistance•It should be computationally infeasible to find ANY two messages:•m1 ≠ m2 such that•H(m1) = H(m2)
+
+
+===== PAGE 9 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Avalanche Effect•A small change in input causes large change in output.•Example:•H('HELLO') ≠ close to H('HELLo')
+
+
+===== PAGE 10 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Applications of Hash Functions• Password storage• Digital signatures• Message authentication• Blockchain• File integrity verification
+
+
+===== PAGE 11 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Secure Hash Algorithm Family•Developed by NIST•SHA-1 (deprecated)•SHA-2 family:• SHA-224• SHA-256• SHA-384• SHA-512
+
+
+===== PAGE 12 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+SHA-512 Overview• Output length: 512 bits• Block size: 1024 bits• Word size: 64 bits• Number of rounds: 80
+
+
+===== PAGE 13 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+SHA-512 High Level Steps1. Padding the message2. Append message length3. Initialize hash values4. Process blocks using compression function5. Produce 512-bit hash output
+
+
+===== PAGE 14 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+SHA-512 Padding•Message is padded so that:•Length ≡ 896 mod 1024•Padding includes:•1 bit '1' followed by zeros•Then 128-bit length field
+
+
+===== PAGE 15 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+SHA-512 Compression Function•For each block:• Message schedule expansion• 80 rounds of mixing• Logical functions:•Ch, Maj, Σ0, Σ1
+
+
+===== PAGE 16 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Example (Conceptual) SHA-512•Message: 'ABC'•Step 1: Convert to binary•Step 2: Apply padding•Step 3: Process 1024-bit block•Step 4: Final 512-bit digest•Actual output example:•ddaf35a193617abacc417349ae204131...
+
+
+===== PAGE 17 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Message Authentication Codes•A MAC ensures:• Message integrity• Authentication•MAC_k(m) → tag
+
+
+===== PAGE 18 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+MAC Security GoalAdversary should not be able to forge a valid tag for a new message even after seeing many message-tag pairs.
+
+
+===== PAGE 19 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Types of MAC Constructions1. Hash based MAC (HMAC)2. Block cipher based MAC (CMAC)3. CBC-MAC
+
+
+===== PAGE 20 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+HMAC Overview•HMAC uses a hash function and secret key.•HMAC(K,m) = H((K ⊕opad) || H((K ⊕ipad) || m))
+
+
+===== PAGE 21 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+HMAC Parameters•ipad = inner padding•opad = outer paddingTypical hash functions used:• SHA-256• SHA-512
+
+
+===== PAGE 22 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Worked Example: HMAC (Toy)•Let:•K = 101010•m = 110011•Step 1: K ⊕ipad•Step 2: Hash with message•Step 3: K ⊕opad•Step 4: Final hash → MAC
+
+
+===== PAGE 23 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+CMAC Overview•CMAC is based on block ciphers.•Uses AES encryption to generate authentication tag.
+
+
+===== PAGE 24 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+CMAC Steps1. Generate subkeys K1 and K22. Divide message into blocks3. Apply CBC-MAC structure4. Encrypt final block5. Output authentication tag
+
+
+===== PAGE 25 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+CMAC Worked Example (Conceptual)•Message blocks: M1, M2, M3•C1 = AES_K(M1)•C2 = AES_K(M2 ⊕C1)•C3 = AES_K(M3 ⊕C2)•Tag = C3
+
+
+===== PAGE 26 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Comparison: HMAC vs CMACHMAC:• Based on hash functions• Widely used in internet protocolsCMAC:• Based on block ciphers• Efficient when AES hardware exists
+
+
+===== PAGE 27 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Real World Uses• TLS authentication• API authentication• Secure messaging• Banking systems
+
+
+===== PAGE 28 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Summary• Hash functions provide data integrity• SHA-512 is a secure hash algorithm in SHA-2 family• MAC provides authentication and integrity• HMAC uses hash functions• CMAC uses block ciphers

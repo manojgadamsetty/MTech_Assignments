@@ -1,0 +1,911 @@
+
+
+=== Slide 1 ===
+Artificial Intelligence-[SESIZC444]
+
+CS 3- Problem Solving: Knowledge representation and Inference
+By
+Prof. Brahmanaidu Kakarla
+
+=== Slide 2 ===
+Uninformed Search
+Informed Search
+Heuristic Functions			
+D.	Local Search Algorithms & Optimization Problems
+Module 2 : 
+Problem Solving Agent using Search
+
+=== Slide 3 ===
+Toy problems and micro-worlds
+8-Puzzle
+Missionaries and Cannibals
+Cryptarithmetic
+Remove 5 Sticks
+Water Jug Problem
+
+Real-world problems
+Some example problems
+
+=== Slide 4 ===
+8-Puzzle
+Given an initial configuration of 8 numbered tiles on a 3 x 3 board, move the tiles in such a way so as to produce a desired goal configuration of the tiles. 
+
+
+=== Slide 5 ===
+State Representation:  3 x 3 array configuration of the tiles on the board. 
+Operators: Move Blank Square Left, Right, Up or Down. 
+This is a more efficient encoding of the operators than one in which each of four possible moves for each of the 8 distinct tiles is used.
+Initial State: A particular configuration of the board. 
+Goal: A particular configuration of the board.
+ 
+
+        3 x 3 array configuration of the tiles on the board.
+
+
+Move Blank Square Left, Right, Up or Down. 
+This is a more efficient encoding of the operators than one in which each of four possible moves for each of the 8 distinct tiles is used.
+
+                                	A particular configuration of the board. 
+			A particular configuration of the board.
+
+		
+8-Puzzle
+
+=== Slide 6 ===
+The 8-Queens Problem 
+State Representation:  ?
+
+Initial State:  ?
+
+Operators:  ?
+
+Goal:  Place eight queens on a chessboard such that no queen attacks any other!
+
+=== Slide 7 ===
+Missionaries and Cannibals
+Three missionaries and three cannibals wish to cross the river.  They have a small boat that will carry up to two people.  Everyone can navigate the boat.  If at any time the Cannibals outnumber the Missionaries on either bank of the river, they will eat the Missionaries.  Find the smallest number of crossings that will allow everyone to cross the river safely.
+
+=== Slide 8 ===
+Missionaries and Cannibals
+Goal: Move all the missionaries and cannibals across the river. 
+
+Constraint: Missionaries can never be outnumbered by cannibals on either side of river, or else the missionaries are killed. 
+
+State: configuration of missionaries and cannibals and boat on each side of river.
+
+Initial State:  3 missionaries, 3 cannibals and the boat are on the near bank.
+
+Operators: Move boat containing some set of occupants across the river (in either direction) to the other side.
+
+
+=== Slide 9 ===
+Missionaries and Cannibals Solution
+                                  		Near side     	Far side
+0 Initial setup:                   		MMMCCC  B       	 -
+1 Two cannibals cross over:        	MMMC          	B  CC
+2 One comes back:                 	 MMMCC   B        	C
+3 Two cannibals go over again:     	MMM          	 B  CCC
+4 One comes back:                  	MMMC    B       	 CC
+5 Two missionaries cross:          	MC            	B  MMCC
+6 A missionary & cannibal return: 	 MMCC    B        	MC
+7 Two missionaries cross again:    	CC            	B  MMMC
+8 A cannibal returns:              	CCC  B       	 MMM
+9 Two cannibals cross:            	 C             	B  MMMCC
+10 One returns:                   		 CC      B        	MMMC
+11 And brings over the third:     	 -  	 	B  MMMCCC
+
+=== Slide 10 ===
+Cryptarithmetic
+Find an assignment of digits (0, ..., 9) to letters so that a given arithmetic expression is true.  examples: SEND + MORE = MONEY and
+ FORTY     Solution:  29786    
++  TEN                  850
++  TEN                  850
+ -----                -----
+ SIXTY                31486
+F=2, O=9, R=7, etc.
+
+
+=== Slide 11 ===
+State:  mapping from letters to digits
+
+Initial State:  empty mapping
+
+Operators:  assign a digit to a letter
+
+Goal Test:  whether the expression is true given the complete mapping
+
+Cryptarithmetic
+Find an assignment of digits to letters so that a given arithmetic expression is true.  examples: SEND + MORE = MONEY and
+ FORTY     Solution:  29786    
++  TEN                  850
++  TEN                  850
+ -----                -----
+ SIXTY                31486
+F=2, O=9, R=7, etc.
+State:  mapping from letters to digits
+
+Initial State:  empty mapping
+
+Operators:  assign a digit to a letter
+
+Goal Test:  whether the expression is true given the complete mapping
+
+	Note: In this problem, the solution is NOT a sequence of actions that transforms the initial state into the goal state; rather, the solution is a goal node that includes an assignment of a digit to each letter in the given problem.
+
+=== Slide 12 ===
+Remove 5 Sticks
+	Given the following configuration of sticks, remove exactly 5 sticks in such a way that the remaining configuration forms exactly 3 squares. 
+
+State:  ?
+
+Initial State:  ?
+
+Operators:  ?
+
+Goal Test:  ?
+
+=== Slide 13 ===
+Water Jug Problem
+
+Given a full 5-gallon jug and a full 2-gallon jug, fill the 2-gallon jug with exactly one gallon of water.
+
+State:  ?
+
+Initial State:  ?
+
+Operators: ?
+
+Goal State: ?
+
+=== Slide 14 ===
+Water Jug Problem
+
+
+
+
+
+State = (x,y), where x is the number of gallons of water in the 5-gallon jug and y is # of gallons in the 2-gallon jug 
+Initial State = (5,2) 
+Goal State = (*,1), where * means any amount 
+Operator table
+
+=== Slide 15 ===
+Empty2
+Empty5
+2to5
+5to2
+5to2part
+Water jug state space
+
+=== Slide 16 ===
+5, 2
+3, 2
+2, 2
+1, 2
+4, 2
+0, 2
+5, 1
+3, 1
+2, 1
+1, 1
+4, 1
+0, 1
+5, 0
+3, 0
+2, 0
+1, 0
+4, 0
+0, 0
+Water jug solution
+
+=== Slide 17 ===
+Some more real-world problems
+Route finding
+Touring (traveling salesman)
+Logistics
+VLSI layout
+Robot navigation
+Learning
+
+=== Slide 18 ===
+Knowledge representation issues
+What’s in a state ? 
+Is the color of the boat relevant to solving the Missionaries and Cannibals problem? Is sunspot activity relevant to predicting the stock market? What to represent is a very hard problem that is usually left to the system designer to specify. 
+
+What level of abstraction or detail to describe the world.
+Too fine-grained and we’ll “miss the forest for the trees.” Too coarse-grained and we’ll miss critical details for solving the problem.
+
+The number of states depends on the representation and level of abstraction chosen. 
+In the Remove-5-Sticks problem, if we represent the individual sticks, then there are 17-choose-5 possible ways of removing 5 sticks.
+On the other hand, if we represent the “squares” defined by 4 sticks, then there are 6 squares initially and we must remove 3 squares, so only 6-choose-3 ways of removing 3 squares.
+
+=== Slide 19 ===
+Formalizing search in a state space
+A state space is a graph (V, E) where V is a set of nodes and E is a set of arcs, and each arc is directed from a node to another node
+
+Each node is a data structure that contains a state description plus other information such as the parent of the node, the name of the operator that generated the node from that parent, and other bookkeeping data
+
+Each arc corresponds to an instance of one of the operators. When the operator is applied to the state associated with the arc’s source node, then the resulting state is the state associated with the arc’s destination node
+
+
+=== Slide 20 ===
+Formalizing search II
+Each arc has a fixed, positive cost associated with it corresponding to the cost of the operator.
+
+Each node has a set of successor nodes corresponding to all of the legal operators that can be applied at the source node’s state. 
+
+The process of expanding a node means to generate all of the successor nodes and add them and their associated arcs to the state-space graph
+
+One or more nodes are designated as start nodes.
+
+A goal test predicate is applied to a state to determine if its associated node is a goal node.
+
+=== Slide 21 ===
+Formalizing search III
+A solution is a sequence of operators that is associated with a path in a state space from a start node to a goal node.
+
+The cost of a solution is the sum of the arc costs on the solution path.
+If all arcs have the same (unit) cost, then the solution cost is just the length of the solution (number of steps / state transitions)
+
+
+=== Slide 22 ===
+Formalizing search IV
+State-space search is the process of searching through a state space for a solution by making explicit a sufficient portion of an implicit state-space graph to find a goal node. 
+
+For large state spaces, it isn’t practical to represent the whole space.
+Initially V={S}, where S is the start node; when S is expanded, its successors are generated and those nodes are added to V and the associated arcs are added to E. This process continues until a goal node is found.
+
+Each node implicitly or explicitly represents a partial solution path (and cost of the partial solution path) from the start node to the given node. 
+In general, from this node there are many possible paths (and therefore solutions) that have this partial path as a prefix.
+
+
+=== Slide 23 ===
+State-space search algorithm
+function general-search (problem, QUEUEING-FUNCTION)
+;; problem describes the start state, operators, goal test, and operator costs
+;; queueing-function is a comparator function that ranks two states
+;; general-search returns either a goal node or failure
+nodes = MAKE-QUEUE(MAKE-NODE(problem.INITIAL-STATE))
+  loop
+     if EMPTY(nodes) then return "failure"
+     node = REMOVE-FRONT(nodes)
+     if problem.GOAL-TEST(node.STATE) succeeds
+        then return node
+     nodes = QUEUEING-FUNCTION(nodes, EXPAND(node,
+             problem.OPERATORS))
+ end
+     ;; Note: The goal test is NOT done when nodes are generated
+     ;; Note: This algorithm does not detect loops
+
+=== Slide 24 ===
+Key procedures to be defined
+EXPAND
+Generate all successor nodes of a given node
+GOAL-TEST
+Test if state satisfies all goal conditions
+QUEUEING-FUNCTION
+Used to maintain a ranked list of nodes that are candidates for expansion
+
+
+=== Slide 25 ===
+Bookkeeping
+Typical node data structure includes:
+State at this node
+Parent node
+Operator applied to get to this node
+Depth of this node (number of operator applications since initial state)
+Cost of the path (sum of each operator application so far)
+
+=== Slide 26 ===
+Some issues
+Search process constructs a search tree, where 
+root is the initial state and 
+leaf nodes are nodes
+not yet expanded (i.e., they are in the list “nodes”) or 
+having no successors (i.e., they’re “deadends” because no operators were applicable and yet they are not goals)
+Search tree may be infinite because of loops even if state space is small
+Return a path or a node depending on problem. 
+E.g., in cryptarithmetic return a node; in 8-puzzle return a path
+Changing definition of the QUEUEING-FUNCTION leads to different search strategies
+
+
+=== Slide 27 ===
+Evaluating Search Strategies
+Completeness
+Guarantees finding a solution whenever one exists
+Time complexity
+How long (worst or average case) does it take to find a solution? Usually measured in terms of the number of nodes expanded
+Space complexity
+How much space is used by the algorithm? Usually measured in terms of the maximum size of the “nodes” list during the search
+Optimality/Admissibility
+If a solution is found, is it guaranteed to be an optimal one? That is, is it the one with minimum cost?
+
+
+=== Slide 28 ===
+Uninformed vs. informed search
+Uninformed search strategies
+Also known as “blind search,” uninformed search strategies use no information about the likely “direction” of the goal node(s) 
+Uninformed search methods: Breadth-first, depth-first, depth-limited, uniform-cost, depth-first iterative deepening, bidirectional
+
+Informed search strategies
+Also known as “heuristic search,” informed search strategies use information about the domain to (try to) (usually) head in the general direction of the goal node(s)
+Informed search methods: Hill climbing, best-first, greedy search, beam search, A, A*
+
+=== Slide 29 ===
+Example for illustrating uninformed search strategies
+
+=== Slide 30 ===
+Uninformed Search Methods
+
+=== Slide 31 ===
+Breadth-First
+Enqueue nodes on nodes in FIFO (first-in, first-out) order. 
+Complete 
+Optimal (i.e., admissible) if all operators have the same cost. Otherwise, not optimal but finds solution with shortest path length. 
+Exponential time and space complexity, O(bd), where d is the depth of the solution and b is the branching factor (i.e., number of children) at each node 
+Will take a long time to find solutions with a large number of steps because must look at all shorter length possibilities first 
+A complete search tree of depth d where each non-leaf node has b children, has a total of 1 + b + b2 + ... + bd = (b(d+1) - 1)/(b-1) nodes 
+For a complete search tree of depth 12, where every node at depths 0, ..., 11 has 10 children and every node at depth 12 has 0 children, there are 1 + 10 + 100 + 1000 + ... + 1012 = (1013 - 1)/9 = O(1012) nodes in the complete search tree. If BFS expands 1000 nodes/sec and each node uses 100 bytes of storage, then BFS will take 35 years to run in the worst case, and it will use 111 terabytes of memory!
+
+=== Slide 32 ===
+ Depth-First (DFS)
+Enqueue nodes on nodes in LIFO (last-in, first-out) order. That is, nodes used as a stack data structure to order nodes. 
+May not terminate without a “depth bound,” i.e., cutting off search below a fixed depth D ( “depth-limited search”)
+Not complete (with or without cycle detection, and with or without a cutoff depth) 
+Exponential time, O(bd), but only linear space, O(bd)
+Can find long solutions quickly if lucky (and short solutions slowly if unlucky!)
+When search hits a dead-end, can only back up one level at a time even if the “problem” occurs because of a bad operator choice near the top of the tree. Hence, only does “chronological backtracking”
+
+=== Slide 33 ===
+Uniform-Cost (UCS)
+Enqueue nodes by path cost. That is, let g(n) = cost of the path from the start node to the current node n. Sort nodes by increasing value of g. 
+Called “Dijkstra’s Algorithm” in the algorithms literature and similar to “Branch and Bound Algorithm” in operations research literature 
+Complete (*)
+Optimal/Admissible (*)
+Admissibility depends on the goal test being applied when a node is removed from the nodes list, not when its parent node is expanded and the node is first generated 
+Exponential time and space complexity, O(bd) 
+
+
+=== Slide 34 ===
+Depth-First Iterative Deepening (DFID)
+First do DFS to depth 0 (i.e., treat start node as having no successors), then, if no solution found, do DFS to depth 1, etc. 
+until solution found do
+   DFS with depth cutoff c
+   c = c+1
+Complete 
+Optimal/Admissible if all operators have the same cost. Otherwise, not optimal but guarantees finding solution of shortest length (like BFS). 
+Time complexity seems worse than BFS or DFS because nodes near the top of the search tree are generated multiple times, but because almost all of the nodes are near the bottom of a tree, the worst case time complexity is still exponential, O(bd).
+
+=== Slide 35 ===
+Depth-First Iterative Deepening
+If branching factor is b and solution is at depth d, then nodes at depth d are generated once, nodes at depth d-1 are generated twice, etc. 
+IDS : (d) b + (d-1) b2 + … + (2) b(d-1) + bd = O(bd). 
+If b=4, then worst case is 1.78 * 4d, i.e., 78% more nodes searched than exist at depth d (in the worst case). 
+However, let’s compare this to the time spent on BFS:
+BFS : b + b2 + … + bd + (b(d+1) – b) = O(bd).
+Same time complexity of O(bd), but BFS expands some nodes at depth d+1, which can make a HUGE difference:
+With b = 10, d = 5,
+BFS: 10 + 100 + 1,000 + 10,000 + 100,000 + 999,990 = 1,111,100
+IDS: 50 + 400 + 3,000 + 20,000 + 100,000 = 123,450
+IDS can actually be quicker in-practice than BFS, even though it regenerates early states.
+
+=== Slide 36 ===
+Depth-First Iterative Deepening
+Exponential time complexity, O(bd), like BFS 
+Linear space complexity, O(bd), like DFS 
+
+Has advantage of BFS (i.e., completeness) and also advantages of DFS (i.e., limited space and finds longer paths more quickly) 
+Generally preferred for large state spaces where solution depth is unknown
+
+
+=== Slide 37 ===
+Uninformed Search Results
+
+=== Slide 38 ===
+Breadth-First Search
+		Expanded node  	Nodes list
+				{ S0 }
+			S0	{ A3 B1 C8 }
+			A3	{ B1 C8 D6 E10 G18 }   
+			B1	{ C8 D6 E10 G18 G21 }
+			C8	{ D6 E10 G18 G21 G13 }         
+			D6	{ E10 G18 G21 G13 }   
+			E10	{ G18 G21 G13 }     
+			G18	{ G21 G13 }
+    Solution path found is S A G , cost 18
+
+Number of nodes expanded 
+(including goal node) = 7
+
+=== Slide 39 ===
+Depth-First Search 
+		Expanded node  	Nodes list
+				{ S0 }
+			S0	{ A3 B1 C8 }
+			A3	{ D6 E10 G18 B1 C8 }    
+			D6	{ E10 G18 B1 C8 }
+			E10	{ G18 B1 C8 }               
+			G18	{ B1 C8 } 
+
+Solution path found is S A G, cost 18
+
+Number of nodes expanded 
+(including goal node) = 5
+
+=== Slide 40 ===
+Uniform-Cost Search 
+		Expanded node  	Nodes list
+				{ S0 }
+			S0	{ B1 A3 C8 }
+			B1	{ A3 C8 G21 }
+			A3	{ D6 C8 E10 G18 G21 }	
+			D6	{ C8 E10 G18 G1 }
+			C8	{ E10 G13 G18 G21 }       
+			E10	{ G13 G18 G21 }
+			G13	{ G18 G21 }                             
+ Solution path found is S B G, cost 13
+
+Number of nodes expanded
+	 (including goal node) = 7
+
+=== Slide 41 ===
+How they perform
+Breadth-First Search: 
+Expanded nodes: S A B C D E G 
+Solution found: S A G (cost 18)
+Depth-First Search: 
+Expanded nodes: S A D E G 
+Solution found: S A G (cost 18)
+Uniform-Cost Search: 
+Expanded nodes: S A D B C E G 
+Solution found: S B G (cost 13)
+This is the only uninformed search that worries about costs.
+Iterative-Deepening Search: 
+nodes expanded: S S A B C S A D E G 
+Solution found: S A G (cost 18)
+
+=== Slide 42 ===
+Bi-directional search
+Alternate searching from the start state toward the goal and from the goal state toward the start.
+Stop when the frontiers intersect.
+Works well only when there are unique start and goal states.
+Requires the ability to generate “predecessor” states.
+Can (sometimes) lead to finding a solution more quickly.
+Time complexity: O(bd/2).   Space complexity: O(bd/2). 
+
+=== Slide 43 ===
+Comparing Search Strategies 
+b – branching factor		d – depth of optimal solution
+m – maximum depth 		l – depth limit
+
+=== Slide 44 ===
+Avoiding Repeated States 
+In increasing order of effectiveness in reducing size of state space and with increasing computational costs:
+1. Do not return to the state you just came from. 
+2. Do not create paths with cycles in them. 
+3. Do not generate any state that was ever created before. 
+Net effect depends on frequency of “loops” in state space. 
+
+=== Slide 45 ===
+A State Space that Generates an Exponentially Growing  Search Space 
+
+=== Slide 46 ===
+Graph Search
+function graph-search (problem, QUEUEING-FUNCTION)
+;; problem describes the start state, operators, goal test, and operator costs
+;; queueing-function is a comparator function that ranks two states
+;; graph-search returns either a goal node or failure
+nodes = MAKE-QUEUE(MAKE-NODE(problem.INITIAL-STATE))
+	closed = {}
+  loop
+     if EMPTY(nodes) then return "failure"
+     node = REMOVE-FRONT(nodes)
+     if problem.GOAL-TEST(node.STATE) succeeds
+        then return node.SOLUTION
+     if node.STATE is not in closed
+	      then ADD(node, closed)
+     	      nodes = QUEUEING-FUNCTION(nodes,   
+		          EXPAND(node, problem.OPERATORS))
+ end
+     ;; Note: The goal test is NOT done when nodes are generated
+     ;; Note: closed should be implemented as a hash table for efficiency
+
+=== Slide 47 ===
+Graph Search Strategies
+Breadth-first search and uniform-cost search are optimal graph search strategies.
+
+Iterative deepening search and depth-first search can follow a non-optimal path to the goal.
+
+Iterative deepening search can be used with modification:
+It must check whether a new path to a node is better than the original one
+If so, IDS must revise the depths and path costs of the node’s descendants.
+
+=== Slide 48 ===
+Informed Search Methods
+
+=== Slide 49 ===
+Informed Search
+Blind search methods take O(bm) in the worst case
+
+May make blind search algorithms prohibitively slow where d is large
+
+How can we reduce the running time?
+Use problem-specific knowledge to pick which states are better candidates
+
+=== Slide 50 ===
+Informed Search
+Also called heuristic search
+
+In a heuristic search each state is assigned a “heuristic value” (h-value) that the search uses in selecting the “best” next step
+
+A heuristic is an operationally-effective nugget of information on how to direct search in a problem space
+
+Heuristics are only approximately correct
+
+=== Slide 51 ===
+Informed Search: Prominent methods
+Best-First Search
+
+			A*
+			Backtracking 
+
+Hill Climbing
+
+AO*
+
+
+
+=== Slide 52 ===
+Cost and Cost Estimation
+f(n)=g(n)+h(n)
+
+g(n) the cost (so far) to reach the node n
+h(n) estimated cost to get from the node to the goal
+f(n) estimated total cost of path through n to goal
+
+=== Slide 53 ===
+Informed Search: Best-First Search
+Special case of breadth-first search
+Uses h(n) = heuristic function as its evaluation function
+Ignores cost so far to get to that node (g(n))
+Expand the node that appears closest to goal
+
+Best First Search is complete
+Best First Search is not optimal
+A solution can be found in a longer path (higher h(n) with a lower g(n) value)
+
+Special cases:
+uniform cost search: f(n) = g(n) = path to n
+A* search
+
+
+58
+
+=== Slide 54 ===
+Best-First Search: Algorithm
+List open, closed, successors={};
+Node root_node, current_node;
+insert-last(root_node,open)
+
+while not-empty(open);
+	current_node=remove-first (open);
+	insert-last(current_node,closed);
+	if (goal(current_node)) return current_node;
+	else
+		successors=estimationOrderedSuccessorsOf(current_node);
+		for(x in successors)
+			if(not-in(x,closed)) insert-last(x,open);
+	endIf
+endWhile
+59
+N.B.= this version is not saving the path for simplicity
+returns the list of direct descendants of the current node in shortest cost order
+
+=== Slide 55 ===
+Best-First Search: Example
+60
+A
+B
+S
+B
+S
+A
+D
+1
+2
+3
+	open = {S}, closed={}
+0.	Visit S: open = {A,B}, closed={S}
+Visit A: open={B,F,B,S}, closed={S,A}
+Visit B: open={F,B,S,F,A,C,D}, closed={S,A,B}
+Visit F: Goal Found!
+
+A
+C
+D
+h=1
+h=1
+h=2
+h=2
+h=2
+h=2
+h=2
+h=2
+h=2
+In this case we estimate the cost as the distance from the root node (in term of nodes)
+
+=== Slide 56 ===
+Best-First Search: Example
+61
+A
+B
+S
+B
+S
+A
+D
+A
+C
+D
+Result is: S->A->F!
+
+If we consider real costs, optimal solution is:
+S->B->F
+h=1, w=2
+h=1, w=1
+h=2, w=4
+h=2
+h=2
+h=2
+h=2, w=7
+h=2
+h=2
+
+=== Slide 57 ===
+A* Algorithm
+Derived from Best-First Search
+Uses both g(n) and h(n)
+A* is optimal
+A* is complete
+
+=== Slide 58 ===
+A* : Algorithm
+List open, closed, successors={};
+Node root_node, current_node, goal;
+insert-back(root_node,open)
+
+while not-empty(open);
+	current_node=remove-front(open);
+	insert-back(current_node,closed);
+	if (current_node==goal) return current_node;
+	else
+		successors=totalEstOrderedSuccessorsOf(current_node);
+		for(x in successors)
+			if(not-in(x,closed)) insert-back(x,open);
+	endIf
+endWhile
+63
+N.B.= this version is not saving the path for simplicity
+returns the list of direct descendants of the current node in shortest total estimation order 
+
+=== Slide 59 ===
+A* : Example
+64
+A
+B
+S
+B
+S
+A
+D
+1
+2
+3
+	open = {S}, closed={}
+0.	Visit S: open = {B,A}, closed={S}
+Visit B: open={A,C,A,F,D}, closed={S,B}
+Visit A: open={C,A,F,D,B,S,F}, closed={S,B,A}
+Visit C: open={A,F,D,B,S,F}, closed={S,B,A,C}
+Visit A: open={F,D,B,S,F}, closed={S,B,A,C,A}
+Visit F: Goal Found!
+
+A
+C
+D
+h=2,
+w=1
+g=3
+h=2,
+w=2,
+g=4
+In this case we estimate the cost as the distance from the root node (in term of nodes)
+h=1, w=2, g=2
+h=1, w=1, g=1
+h=2, w=4, g=5
+h=2, w=7, g=9
+h=2,w=1
+g=2
+h=2
+w=3
+g=4
+h=2, w=4, g=5
+4
+5
+
+=== Slide 60 ===
+A* : Example
+65
+A
+B
+S
+B
+S
+A
+D
+A
+C
+D
+h=2,
+w=1
+g=3
+h=2,
+w=2,
+g=4
+h=1, w=2, g=2
+h=1, w=1, g=1
+h=2, w=4, g=5
+h=2, w=7, g=9
+h=2,w=1
+g=2
+h=2
+w=3
+g=4
+h=2, w=4, g=5
+Result is: S->B->F!
+
+=== Slide 61 ===
+Hill Climbing
+Special case of depth-first search
+Uses h(n) = heuristic function as its evaluation function
+Ignores cost so far to get to that node (g(n))
+Expand the node that appears closest to goal
+
+Hill Climbing is not complete
+Unless we introduce backtracking
+Hill Climbing is not optimal
+Solution found is a local optimum
+
+
+=== Slide 62 ===
+Hill Climbing: Algorithm
+List successors={}; Node root_node, current_node, nextNode;
+
+current_node=root_node
+while (current_node!=null)
+	if (goal(current_node)) return current_node;
+	else
+		successors=successorsOf(current_node);
+		nextEval = -∞; nextNode=null;
+		for(x in successors)
+			if(eval(x)> nextEval) 
+				nexEval=eval(x);
+				nextNode=x;
+		current_node=nextNode,
+	endIf
+endWhile
+67
+N.B.= this version is not using backtracking
+
+=== Slide 63 ===
+Hill Climbing: Example
+68
+A
+B
+S
+B
+S
+A
+D
+1
+2
+3
+0.	current_node=S, successors (A=1,B=1)
+current_node=A, successors (B=2,F=2,S=2)
+current_node=B, successors (F=1,….)
+current_node=F: Goal Found!
+
+A
+C
+D
+h=1
+h=1
+h=2
+h=2
+h=2
+h=2
+h=2
+h=2
+h=3
+In this case we estimate the cost as the distance from the root node (in term of nodes)
+h=1
+
+=== Slide 64 ===
+Hill Climbing: Example
+69
+A
+B
+S
+B
+S
+A
+D
+A
+C
+D
+h=1
+h=1
+h=2
+h=2
+h=2
+h=2
+h=2
+h=2
+h=3
+h=1
+Result is: S->A->B->F!
+
+Not optimal, more if at step 1 h(S)=2 we would have completed without funding a solution
+
+=== Slide 65 ===
+AO* Search: (And-Or) Graph 
+The Depth first search and Breadth first search given earlier for OR trees or graphs can be easily adopted by AND-OR graph. 
+
+The main difference lies in the way termination conditions are determined, since all goals following an AND nodes must be realized; where as a single goal node following an OR node will do. So for this purpose we are using AO* algorithm. 
+
+Like A* algorithm here we will use two arrays and one heuristic function. 
+
+OPEN: 
+It contains the nodes that has been traversed but yet not been marked solvable or unsolvable. 
+CLOSE:It contains the nodes that have already been processed.
+
+FUNCTION :The distance from current node to goal node. 
+
+
+=== Slide 66 ===
+AO* Search Algorithm
+Step 1: Place the starting node into OPEN. 
+
+Step 2: Compute the most promising solution tree say T0. 
+
+Step 3: Select a node n that is both on OPEN and a member of T0. Remove it from OPEN and place it in CLOSE 
+
+Step 4: If n is the terminal goal node then leveled n as solved and leveled all the ancestors of n as solved. If the starting node is marked as solved then success and exit. 
+
+Step 5: If n is not a solvable node, then mark n as unsolvable. If starting node is marked as unsolvable, then return failure and exit.
+ 
+Step 6: Expand n. Find all its successors and find their h (n) value, push them into OPEN. 
+Step 7: Return to Step 2.
+Step 8: Exit. 
+
+
+=== Slide 67 ===
+Informed Search Algorithm Comparison
+72
+b, branching factor
+d, tree depth of the solution
+m, maximum tree depth
+
+=== Slide 68 ===
+
+
+
+
+                                  Thank you
+
+=== Slide 69 ===
+                         
+
+
+
+
+                              Any Questions?

@@ -1,0 +1,110 @@
+
+
+=== Page 1 ===
+Birla Institute of T echnology & Science, Pilani
+W ork Integrated Learning Programmes Division
+First Semester 2025-2026
+Mid-Semester T est
+(EC-2 Regular)
+Course No : IS ZC444
+Course Title : Artiﬁcial Intelligence
+Nature of Exam : Closed Book
+Weightage : 30%
+Duration : 2 hours
+Date : 21/09/2025
+No. of Pages = 3
+No. of Questions = 4
+Note to Students:
+1. Please follow all the Instructions to Candidates given on the cover page of the answer book.
+2. All parts of a question should be answered consecutively. Each answer should start from a fresh page.
+3. Assumptions made if any, should be stated clearly at the beginning of your answer.
+Q.1. [3 marks]
+PEAS speciﬁcation (Intelligent Agents). For each scenario below, give a concise
+PEAS description: list 2–3 clear items under each of Performance, Environment,
+Actuators, Sensors. Keep items speciﬁc to the task.
+(a) (2 marks)Autonomous taxi (ride-hailing) operating in a modern city.
+(b) (1 mark)Name any two key environment properties for the autonomous taxi task (choose
+from: fully/partially observable, deterministic/stochastic, episodic/sequential,
+static/dynamic, discrete/continuous, single-agent/multiagent) with a one-phrase
+justiﬁcation each.
+Q.2. [9 marks]
+A∗ Search Algorithm (Informed Heuristic Search Strategies).
+Consider the following weighted graph, where the numbers on the edges represent
+the cost of the path between the nodes, and the numbers near the nodes represent
+the heuristic values (h) of the nodes (to the goal).
+A B
+C
+D
+E
+Goal
+1
+4
+2
+5
+2
+3
+1
+h=5 h=4
+h=3
+h=3
+h=1
+h=0
+(a) (2 marks)Explain the concept of the A∗ search algorithm. What is the evaluation function
+used in A ∗, and how does it help in ﬁnding the optimal path?
+IS ZC444 (EC-2 Regular Mid-Sem T est) First Semester 2019-2020 Page 1 of 3
+
+=== Page 2 ===
+(b) (3 marks)Calculate the values of g(n) and f(n) for all the nodes that are added to the
+priority queue.
+(c) (3 marks)Identify the sequence of nodes that A ∗ pops out of the queue before reaching
+the goal. Explain why A ∗ chooses the node to expand based on the lowest f(n)
+value.
+(d) (1 mark)What is the signiﬁcance of the heuristic function in the A ∗ search algorithm?
+How does a consistent and admissible heuristic aﬀect the algorithm’s perfor-
+mance?
+Q.3. [9 marks]
+Constraint Satisfaction Problem (CSP) with Binary Constraints.
+Consider the following CSP where the variables X1,X 2,X 3,X 4 are assigned integer
+values from the domain {0, 1, 2, 3}. The binary constraints between the variables are
+as follows:
+X1 X2
+X3 X4
+<
+><
+The constraints between the variables are: X1 <X 2, X2 >X 4, and X1 <X 3.
+Each variable can take integer values in the range {0, 1, 2, 3}.
+(a) (2 marks)What is the meaning of the sentence given below? The goal of a constraint
+satisfaction problem is to ﬁnd a consistent and complete assignment.
+(b) (2 marks)What is node consistency and arc consistency?
+(c) (4 marks)Suppose we use the AC-3 (Arc-Consistency) algorithm, to enforce arc consis-
+tency on X1,X 2,X 3,X 4. What will be the domain of each variable when the
+AC-3 algorithm terminates?
+(d) (1 mark)How does the AC-3 algorithm help in solving CSPs eﬃciently?
+Q.4. [9 marks]
+Knowledge Representation and Entailment in Propositional Logic.
+Consider the propositional statements given below:
+• p: The student attended the lecture.
+• q: The student submitted the assignment.
+• r: The student received a grade of ’A’.
+The following three propositions represent the student’s behavior and is present in
+the knowledge base KB:
+1. If the student attended the lecture, they 1 submitted the assignment.
+1They is a gender-neutral singular pronoun.
+IS ZC444 (EC-2 Regular Mid-Sem T est) First Semester 2019-2020 Page 2 of 3
+
+=== Page 3 ===
+2. If the student submitted the assignment, they received a grade of ’A’.
+3. If the student did not receive a grade of ’A’, they did not attend the lecture.
+Now, answer the following:
+(a) (3 marks)Express the knowledge base above in terms of propositional logic. Clearly state
+the set of propositions that represent the knowledge about the student’s behav-
+ior.
+(b) (2 marks)When can we say that a knowledge base KB entails a sentenceα (i.e. KB |=α)?
+(c) (2 marks)Find the models that satisfy the knowledge base given above. Each model in
+your answer should clearly show the truth value assignments to symbols — e.g.
+(p =true,q =false,r =false).
+(d) (2 marks)Suppose we add the following fact to the KB about a student:
+• The student submitted the assignment
+Is it logically entailed that the student attended the lecture? Justify your answer
+by using the deﬁnition of entailment.
+IS ZC444 (EC-2 Regular Mid-Sem T est) First Semester 2019-2020 Page 3 of 3

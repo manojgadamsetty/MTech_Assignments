@@ -1,0 +1,760 @@
+
+
+=== Page 1 ===
+BITS Pilani
+Pilani Campus
+Artificial Intelligence-[SESIZC444]
+CS 7- M4-Indroduction to Learning
+By
+Prog. Brahmanadu Kakarla
+
+=== Page 2 ===
+
+
+=== Page 3 ===
+•
+BITS Pilani, Pilani Campus
+Supervised - Induction by decision trees, Unsupervised 
+Learning, Reinforcement Learning
+Neural Network•
+•Deep Learning – CNN , RNN
+•Build a model using reinforcement learning for given data
+•HW: - Identify features for a problem to implement 
+reinforcement learning
+Topics : M4 : Learning
+Introduction to Learning
+
+=== Page 4 ===
+Why Learning
+BITS Pilani, Pilani Campus
+An agent is learning if it improves its performance on future tasks after 
+making observations about the world
+Learning happens through observations, i.e., data
+1. The agent designer cannot anticipate all possible world states the agent  need to
+handle and code them in the agent environment
+1. E.g., A robot designed to navigate mazes need to learn the layout of  new
+maze whenever encountered
+2. The agent designer cannot anticipate all changes over time
+1. E.g., Stock market prediction
+3. Sometimes the agent designer have no idea how to program a solution
+1. E.g., Stock market prediction.
+
+=== Page 5 ===
+Learning Agent
+BITS Pilani, Pilani Campus
+
+=== Page 6 ===
+Learning Agent Components
+BITS Pilani, Pilani Campus
+Performance Element – taking a decision of action based on 
+percepts
+Learning Element – Make the performance element select 
+better actions such that the utility function is optimized
+Critic – Provides feedback on the actions taken
+Problem Generator – Make the Performance Element select 
+sub-optimal actions such that you would learn from unseen
+actions.
+
+=== Page 7 ===
+Learning
+BITS Pilani, Pilani Campus
+
+
+=== Page 8 ===
+Supervised Learning / Predictive models:
+BITS Pilani, Pilani Campus
+• Sreuived Leauning iv a |re of Ѵeaumimg heueĹ
+• We Ѵeaun fuom rav| da|a
+• Couuec| anveuv ŐѴabeѴvő aue aѴuead giem
+• The goaѴ iv |o ruedic| f|ue o|comevĺ
+• The modeѴ iv |oѴd ha| |o Ѵeaun amd ho |o Ѵeaun vimg ѴabeѴed
+eamrѴev•
+
+=== Page 9 ===
+Supervised Learning / Predictive models:
+BITS Pilani, Pilani Campus
+•
+Cv|omeu Chun Puedic|ion
+PuobѴem S|a|emen|Ĺ
+A mauke|img comram am|v |o idem|if hich cv|omeuv aue ѴikeѴ |o v|or ving |heiu
+veuice im |he f|ueĺ
+Gien Da|a ŐLabeѴedőĹ
+Cv|omeu Uvage ComrѴaim|v Chum
+CƐ High Lo No
+CƑ Lo High Yev
+Cƒ Medim Lo No
+TavkĹ
+Puedic| he|heu a ne cv|omeu iѴѴ chum ou mo|ĺ
+•Output label (Churn: Yes/No) is already known in training data
+•Model learns from past examples to predict future customers
+
+=== Page 10 ===
+BITS Pilani, Pilani Campus
+
+=== Page 11 ===
+BITS Pilani, Pilani Campus
+Unsupervised learning / Descriptive models
+•Learns patterns from data without labels
+•No target output is given
+•Groups similar data items together
+SimrѴe ReaѴŊWouѴd EamrѴev
+Re|aiѴ EamrѴe
+•Da|aĹ Cv|omeu ruchave hiv|ou
+•GoaѴĹ Fimd hich ruodc|v aue of|en bogh| |oge|heu
+•O|r|Ĺ Cv|omeuņruodc| guorv ŐcѴv|euvő
+HeaѴ|hcaue EamrѴe
+•Da|aĹ Pa|iem| vmr|omv amd uerou|v
+•GoaѴĹ Fimd diveavev |ha| commonѴ occu |oge|heu Őeĺgĺķ i|h
+diabe|evő
+•O|r|Ĺ Diveave cѴv|euv
+Ke AѴgoui|hmĹKŊMeanv CѴv|euing
+
+=== Page 12 ===
+BITS Pilani, Pilani Campus
+Reinforcement Learning(RL)
+•A learning method where an agent learns by interacting
+ with an environment
+•The goal is to maximize performance (reward)
+•The agent learns continuously from experience,
+not from labeled data
+•Less human intervention is required over time.
+ŎLeaum ha| ac|ion |o |ake im a vi|a|iom baved om ueaud ou
+renaѴ|
+EamrѴe
+Robo| Ѵeaumimg |o maiga|e a ra|h
+Game AI Ѵeaumimg |o im b |uiaѴ amd euuou
+
+=== Page 13 ===
+BITS Pilani, Pilani Campus
+
+=== Page 14 ===
+BITS Pilani, Pilani Campus
+
+=== Page 15 ===
+BITS Pilani, Pilani Campus
+
+=== Page 16 ===
+Learning Element - Feedback
+BITS Pilani, Pilani Campus
+There are three (3) types of feedback that determine the learning form
+1. Supervised – Feedback will be provided for every action suggesting  the
+correct action
+1. E.g., In a Spam Classifier, if the agent tags an email as Spam, the 
+Feedback says whether it is actual Spam or Not. Can be multiple 
+classes.
+2. Reinforcement – Feedback will be provided for a collection of  actions
+suggesting whether the end state is desirable (reward) or not  (punishment)
+1. Doesn’t mention the corrective actions
+2. E.g., Two points at the end of a chess game would tell the agent it  did
+something right but the agent has to figure out which actions  are
+responsible.
+3. Unsupervised – No feedback. The agent need to figure out 
+patterns.
+1. Clustering related news articles in Google news
+
+=== Page 17 ===
+Supervised Learning
+BITS Pilani, Pilani Campus
+
+=== Page 18 ===
+Decision Tree
+BITS Pilani, Pilani Campus
+It is the most simple yet most powerful algorithm in machine 
+learning
+Let us first describe the Hypothesis Space and then learn a  good
+hypothesis
+Input: A vector of attribute values  Output:
+A ”decision” - single output value  E.g., [1.2,
+3, ’a’, 4] -> “spam”
+Decision Tree: A tree consists of nodes and directed edges 
+where decisions are made at each node on selecting a child 
+branch. Decisions are made by a test on one of the input  attribute
+values. Each leaf node will be the return value.
+
+
+=== Page 19 ===
+Decision Tree
+BITS Pilani, Pilani Campus
+DECISION TREE
+
+=== Page 20 ===
+DECISION TREE EXAMPLE
+
+
+=== Page 21 ===
+STEP 1
+Heigh| Haiu Eev A||uac|ie
+vmaѴѴ bѴomde buom No
+|aѴѴ dauk buom No
+|aѴѴ bѴomde bѴe Yev
+|aѴѴ dauk bѴe No
+vmaѴѴ dauk bѴe No
+|aѴѴ ued bѴe Yev
+|aѴѴ bѴomde buom No
+vmaѴѴ bѴomde bѴe Yev
+
+
+=== Page 22 ===
+ENTROPY
+
+
+=== Page 23 ===
+INFORMATION GAIN
+
+
+=== Page 24 ===
+Generalization
+BITS Pilani, Pilani Campus
+Generalization
+Goal: Build a model which is accurate enough on train set and  is
+generalizable (performs similarly) to unseen examples
+Can’t keep generating nodes as it performs poorly on test sets
+•The goaѴ iv |o biѴd a modeѴ |ha| reufoumv eѴѴ on bo|h |uaining
+da|a and nveen da|a
+•A good modeѴ vhoѴd no| jv| memouie |he |uaimimg ve|
+•Cuea|img |oo mam modev ŐoeuŊcomrѴe modeѴő Ѵeadv |o roou
+reufoumance on |ev| da|a
+
+=== Page 25 ===
+Generalization
+BITS Pilani, Pilani Campus
+Overfitting
+Oeufi||ing occuv hem a modeѴ Ѵeaumv |he |uaimimg da|a
+|oo eѴѴ amd faiѴv |o gemeuaѴie |o me da|aĺ
+
+
+=== Page 26 ===
+Regression
+Reguevvion iv a vreuived Ѵeauning |echnite ved |o ruedic|
+a con|inov nmeuicaѴ aѴeĺE.g., Predict the prices of
+houses based on the sqft of house
+BITS Pilani, Pilani Campus
+
+=== Page 27 ===
+Types of Regression
+BITS Pilani, Pilani Campus
+Tre Devcuir|ion
+Lineau Reguevvion Ome imr| Ǌ ome o|r|
+MѴ|irѴe Lineau
+Reguevvion
+MѴ|irѴe imr|v Ǌ ome
+o|r|
+PoѴnomiaѴ ReguevvionCued ueѴa|iomvhir
+Logiv|ic Reguevvion CѴavvifica|iom Őo|r| Ə
+ou Ɛő
+
+=== Page 28 ===
+Linear Regression
+BITS Pilani, Pilani Campus
+
+=== Page 29 ===
+Simple Linear Regression
+
+
+=== Page 30 ===
+S|d Houv Őő Maukv Őő
+Ƒ ƓƏ
+Ɠ ѶƏ
+EamrѴe ƐĹ SimrѴe Lineau Reguevvion ŐS|erŊbŊS|erő
+Gien Da|a
+
+=== Page 31 ===
+
+
+=== Page 32 ===
+
+
+=== Page 33 ===
+Multiple Linear Regression
+
+
+=== Page 34 ===
+Unsupervised Learning : Clustering
+BITS Pilani, Pilani Campus
+
+=== Page 35 ===
+Reinforcement Learning
+BITS Pilani, Pilani Campus
+The frequency of rewards varies with the problem
+A Policy is a function that maps inputs to actions
+The goal of Reinforcement Learning – Identify an optimal policy that maximizes the expected  total
+reward
+Task: Use observed rewards to learn an optimal policy for the environment
+Reinforcement Learning in nutshell: Imagine playing a new game and after 100 moves your 
+opponent says you lost the game.
+
+=== Page 36 ===
+ML: Reinforcement Learning
+Environment
+Feedback / Reward (+1 / -1)
+Perform Action 
+based on state
+Improve 
+Action to 
+optimize 
+Reward
+Computer
+Agent
+BITS Pilani, Pilani Campus
+
+=== Page 37 ===
+Agent and Components of Agents
+BITS Pilani, Pilani Campus
+
+=== Page 38 ===
+Policy
+BITS Pilani, Pilani Campus
+Policy defines the behavior of the agent
+If you are lazy, you would look for shortcuts to reach the destination soon or  you
+may not even reach the destination if your calculations are wrong or if  there are
+obstacles in the way
+Stochastic Policy:-
+For every decision you have a probability given the current state. Over 
+experience you want to optimize this probability distribution so that you get  a
+higher chance of success while finding shortcuts
+If you were taking the methodical approach, you would be knowing what 
+direction to chose at any point of time
+Deterministic Policy:- a function that maps states to actions
+here, ‘∏’ is just the policy function that simply gives an output state given  your
+current state
+
+=== Page 39 ===
+Value Function
+BITS Pilani, Pilani Campus
+
+=== Page 40 ===
+Model
+BITS Pilani, Pilani Campus
+Model is the agent’s representation of the environment
+Transition Model:
+Model try to predict the dynamics of the environment with the  data
+it has seen till that point
+Reward Model:
+Based on previous experiences, predicting the reward 
+provided by environment.
+
+=== Page 41 ===
+Snake Example
+.
+Instructions :
+Eat apple(red circle) to get points.
+Eat cherries(pink circle to get bonus points)  If
+you hit wall or eat yourself you die.
+Controls are UP, DOWN, LEFT, RIGHT
+Applying Policy
+Snake need to have some 
+behavior to eat the apple
+BITS Pilani, Pilani Campus
+
+=== Page 42 ===
+Applying Value Function
+BITS Pilani, Pilani Campus
+In value function we assign every grid a value
+
+=== Page 43 ===
+Applying Model
+BITS Pilani, Pilani Campus
+Model is just a prediction of the environment variables 
+according to the agent
+Initially the snake doesn’t have an idea about the surrounding 
+Looking at the policy, it has an idea of which direction to go
+Looking at the value function it has an idea as how to 
+maximize the reward for each step
+Then the agent takes the decisions.
+
+=== Page 44 ===
+How does brain works?
+What are the mathematical models of brain activity?
+Neurons
+The hypothesis that mental activity consists primarily of 
+electrochemical activity in networks of brain cells fires a 
+downward signal when the input signal exceeds a threshold
+Neural Network
+Collection of units connected together, the properties of network  are
+determined by its topology and the properties of neurons .
+Artificial Neural Networks (ANN)
+BITS Pilani, Pilani Campus
+
+=== Page 45 ===
+Neuron
+BITS Pilani, Pilani Campus
+Biological Neuron Artif ci ial
+Neuron
+
+=== Page 46 ===
+ANN building blocks and Example ANN
+Neuron Units
+Basic structures of Neural Networks
+Also known as artificial neurons
+Receives signals, processes them and transmit
+Links
+Units are connected through links
+Each link can transmit a signal from one artificial 
+neuron to another
+Activation
+Transforms the input signal into a restricted output
+EXAMPLE ANN
+BITS Pilani, Pilani Campus
+
+=== Page 47 ===
+ANN Activations
+BITS Pilani, Pilani Campus
+Threshold Activation
+Linear single layer classifier
+The activation function g is typically a hard threshold 
+Called a Perceptron
+Logistic Function
+Also referred to as Sigmoid perceptron
+Both of these nonlinear activation function ensure the important  property
+that the entire network of units can represent any nonlinear  function
+The logistic activation function has the added advantage of being 
+differentiable
+
+=== Page 48 ===
+ANN Activations
+BITS Pilani, Pilani Campus
+
+=== Page 49 ===
+ANN building blocks
+BITS Pilani, Pilani Campus
+Network of neurons:
+Connecting the neurons together to form a network
+Feed-Forward Network
+A network that has connections only in one direction—that is, it forms a 
+directed acyclic graph.
+Every node receives input from “upstream” nodes and delivers output to 
+“downstream” nodes; there are no loops
+A feed-forward network represents a function of its current input; thus, it has  no
+internal state other than the weights themselves
+Layers: Feed-forward networks are usually arranged in layers, such that  each
+unit receives input only from units in the immediately preceding layer
+Hidden Units: One or more layers of units that are not connected to the 
+outputs of the network.
+
+=== Page 50 ===
+Single Layer Feed-Forward Neural Network
+A network with all the inputs connected directly to the outputs  For
+Example
+Consider addition of two binary digits
+Two output units, one for sum and one for carry is needed
+The perceptron network is as below Truth table of the network
+BITS Pilani, Pilani Campus
+
+=== Page 51 ===
+Perceptron Network
+A perceptron network with m outputs is really m separate networks, because  each
+weight affects only one of the outputs
+So, there will be m separate training processes
+Unit 3 Classifier Unit 4 Classifier
+Unit 3 classif ier is logical AND and Unit 4 classif ier is logical XOR
+Logical AND learns easily with Neural Networks as it is a linear classif iers and can 
+represent linear decision boundaries in the input space
+Logical XOR function is diff icult to learn as it is not linearly separable
+Example for complex function which can be represented with Neural Network easily 
+Majority Function:- which outputs a 1 only if more than half of its inputs are 1  can be
+represented by a perceptron with each and
+Whereas a decision tree would need exponentially many nodes to represent this  function
+BITS Pilani, Pilani Campus
+
+=== Page 52 ===
+Multi-Layer Feed-forward Neural Network
+Single layer Feed-Forward can only 
+represent basic boolean functions
+To deal with many other functions, more 
+hidden layers are needed
+Example of a Multi-layer Feed-forward 
+network
+Given an input vector , the activations of the
+input units are set to
+BITS Pilani, Pilani Campus
+
+=== Page 53 ===
+A machine learning subfield of learning representations of
+data, where we use algorithms that attempt to learn (multiple 
+levels of) representation by using a hierarchy of multiple 
+neural layers
+If you provide the system tons of information, it begins to 
+understand it and respond in useful ways.
+DL is exceptionally effective at learning patterns.
+BITS Pilani, Pilani Campus
+What is Deep Learning?
+
+=== Page 54 ===
+Multi-Layer Feed-forward Neural Network
+BITS Pilani, Pilani Campus
+The output expressed as a function of the inputs and the 
+weights
+Calculate the derivatives of such expressions w.r.t. the weights  The
+gradient-descent loss-minimization method is used to train  the
+network
+Because the function represented by a network can be highly 
+nonlinear—composed, as it is, of nested nonlinear soft  threshold
+functions— neural networks is used as a tool for  nonlinear
+regression.
+
+=== Page 55 ===
+Multi-Layer Feed-forward Neural Network
+How do networks generate complicated functions?
+Each unit in a sigmoid network represents a soft threshold in its input space
+With one hidden layer and one output layer, each output unit computes a  soft-
+thresholded linear combination of several such functions
+By adding two opposite-facing soft threshold functions and thresholding the  result,
+a ridge function is obtained
+Adding two ridge functions at right angle to each other we can obtain a bump
+BITS Pilani, Pilani Campus
+
+=== Page 56 ===
+Learning in Neural Networks
+Let be the output vector function and returns a vector for the above multilayer network  Let
+target output will be a vector
+The loss function is additive across the components of the error vector The loss is given by
+Where the index ranges over nodes in the output layer.
+Each term in the final summation is just the gradient of the loss for the output, independent of  other
+outputs
+BITS Pilani, Pilani Campus
+
+=== Page 57 ===
+Back-Propagation with Example
+BITS Pilani, Pilani Campus
+
+=== Page 58 ===
+Background - Machine Learning Example
+Suppose we want to separate two categories of data by drawing a line 
+between them in a scatterplot.
+In the plot on the left, we represent some data using Cartesian coordinates,  and the
+task is impossible.
+In the plot on the right, we represent the data with polar coordinates and  the
+task becomes simple to solve with a vertical line.
+BITS Pilani, Pilani Campus
+
+=== Page 59 ===
+Solution
+BITS Pilani, Pilani Campus
+Use Machine Learning to discover not only the mapping from 
+representation to output but the representation as well
+This is called Representation Learning
+Enable AI systems to rapidly adapt to new tasks with minimal 
+human intervention
+Manually designing features for complex task requires a great  deal
+of human effort
+The quintessential example of representation learning is 
+autoencoder.
+
+=== Page 60 ===
+Drawbacks of traditional learning
+BITS Pilani, Pilani Campus
+A major source of difficulty in many real-world AI applications is that 
+factors of variation influence every single example of data we observe
+Most applications want us to disentangle the factors of variation and 
+discard the ones we do not care about
+Many of these factors of variation, such as speaker’s accent (in Speech 
+Recognition), can be identified only using sophisticated, nearly human-  level
+understanding of data
+When it is nearly as difficult to obtain a representation as to solve the 
+problem, representation learning does not, at first glance, seem to help  us
+
+=== Page 61 ===
+Deep Learning to rescue
+BITS Pilani, Pilani Campus
+DL solves these problems in representation learning by introducing 
+representations that are expressed in terms of other, simpler 
+representations.
+DL enables the computer to build complex concepts out of simpler 
+concepts.
+Other challenges like understanding non-linearity, complex data-types, 
+feature engineering can also be solved efficiently using Deep Learning.
+
+=== Page 62 ===
+MLP vs Deep Learning
+BITS Pilani, Pilani Campus
+
+=== Page 63 ===
+Illustrations of a Deep Learning Model
+BITS Pilani, Pilani Campus
+• Diuec|Ѵ Ѵeaumimg comrѴe imr|ŋo|r|
+marrimg iv eu difficѴ|
+• Deer Leaumimg ŐDLő voѴev |hiv b bueakimg a
+comrѴe ruobѴem im|o mam vimrѴe v|erv
+• Each v|er iv hamdѴed b a Ѵaeu im |he
+me|ouk
+RoѴe of Hidden Laeuv
+• Hiddem Ѵaeuv a|oma|icaѴѴ e|uac|
+fea|uev
+• The aue caѴѴed hiddem becave |heve
+fea|uev aue mo| giem erѴici|Ѵ
+• Each Ѵaeu Ѵeaumv a higheuŊѴeeѴ fea|ue |ham
+|he rueiov omeFea|ue E|uac|ion EamrѴe ŐImageő
+•Inr| ѴaeuĹ ua image rieѴv
+•Fiuv| hidden ѴaeuĹ de|ec|v edgev
+•Second hidden ѴaeuĹ de|ec|v couneuv and con|ouv
+•Higheu ѴaeuvĹ de|ec| objec| rau|v
+
+=== Page 64 ===
+Depth of a model
+BITS Pilani, Pilani Campus
+• Der|h meamv |he mmbeu of Ѵaeuv im a modeѴ
+• Deer Ѵeaumimg focvev om Ѵeaumimg |he uigh| da|a
+ueruevem|a|iom
+• Each Ѵaeu reufoumv a vmaѴѴ comr|a|iom v|er
+• O|r| of ome Ѵaeu becomev imr| |o |he me| Ѵaeu
+• Deereu modeѴv cam Ѵeaum comrѴe ra||eumv
+• La|eu Ѵaeuv biѴd om uevѴ|v of eauѴieu Ѵaeuv
+No|eĹ The der|h of a modeѴ uefeuv |o |he nmbeu of Ѵaeuv |ha| aѴѴo |he ne|ouk
+|o Ѵeaun comrѴe uerueven|a|ionv |huogh mѴ|irѴe veten|iaѴ v|ervĺ
+
+=== Page 65 ===
+Depth of a model
+There are two main ways of measuring the depth of a model
+Ɛĺ vetem|iaѴ v|erv
+Ƒĺ meavuimg der|h Őcomcer|Ŋbavedő
+●
+●
+BITS Pilani, Pilani Campus
+ƐĺModeѴ der|h cam be meavued b |he mmbeu of
+vetem|iaѴ v|erv
+ƑĺI| iv |he Ѵomgev| ra|h fuom imr| |o o|r|
+ƒĺEach v|er ueruevem|v a comr|a|iom ou oreua|iom
+ƓĺMoue v|erv Ǌ guea|eu der|h
+Arruoach Ɛ
+
+=== Page 66 ===
+Arruoach Ƒ
+• Der|h cam aѴvo be meavued b ho comcer|v deremd om each
+o|heu
+• SimrѴe comcer|v aue Ѵeaumed fiuv|
+• ComrѴe comcer|v aue Ѵeaumed b combimimg vimrѴeu omev
+• Each ѴeeѴ ueruevem|v a higheuŊѴeeѴ abv|uac|iom
+• Deereu modeѴv cam uefime mdeuv|amdimg vimg eauѴieu comcer|v
+No|eĹ In |he vecond ieķ modeѴ der|h iv meavued b
+|he nmbeu of hieuauchicaѴ concer| ѴeeѴv ved |o
+uerueven| and uefine knoѴedgeĺ
+
+=== Page 67 ===
+Depth of a model
+BITS Pilani, Pilani Campus
+2. Another approach, used by deep probabilistic models, regards the depth  of a
+model as being not the depth of the computational graph but the depth  of the graph
+describing how concepts are related to each other.
+1. This is because the system’s understanding of the simpler concepts  can be
+refined given information about the more complex concepts.
+2. For example, an AI system observing an image of a face with one eye  in
+shadow may initially only see one eye. After detecting that a face is  present,
+it can then infer that a second eye is probably present as well.
+3. The graph of concepts only includes two layers—a layer for eyes and a  layer
+for faces—but the graph of computations includes 2n layers if we  refine our
+estimate of each concept given the other n times.
+
+=== Page 68 ===
+Depth of a model
+BITS Pilani, Pilani Campus
+Because it is not always clear which of these two views is most relevant, and  There
+is no single correct value for the depth of an architecture, just as there  is no single
+correct value for the length of a computer program.
+Nor is there a consensus about how much depth a model requires to qualify  as
+“deep.”
+However, deep learning can safely be regarded as the study of models that  either
+involve a greater amount of composition of learned functions or  learned concepts
+than traditional machine learning does.
+Deep learning is a particular kind of machine learning that achieves great  power
+and flexibility by learning to represent the world as a nested hierarchy  of concepts,
+with each concept defined in relation to simpler concepts, and more abstract 
+representations computed in terms of less abstract ones.
+
+=== Page 69 ===
+Deep Learning and AI
+BITS Pilani, Pilani Campus
+
+=== Page 70 ===
+Convolutional Neural Networks (CNN)
+Input Image
+ 
+Convolutional
+3x3 filter
+CNN Filters
+BITS Pilani, Pilani Campus
+
+=== Page 71 ===
+Convolution in 3 dimensions
+BITS Pilani, Pilani Campus
+Even a 3D convolution gives a 2D output
+= (1*0)+(1*0) +
+(1*1)+(1*1) +
+(0*1)+(1*0) +
+(1*1)+(0*0) +
+(1*1)+(2*1) +
+(3*1)+(4*1)
+= 13
+
+=== Page 72 ===
+Convolution in 3 dimensions
+BITS Pilani, Pilani Campus
+To summarize, the Conv Layer:
+● Accepts a volume of size W1×H1×D1
+● Requires four hyperparameters:
+○ Number of f ilters K,
+○ their spatial extent F,
+○ the stride S,
+○ the amount of zero padding P.
+● Produces a volume of size W2×H2×D2 where:
+○ W2=(W1 F+2P)/S + 1
+○ H2=(H1 F+2P)/S + 1
+○ D2=K
+● With parameter sharing, it introduces F F wDe1ights per f ilter, for a
+total of (F F D1w) eigKhts and K biases.
+A common setting of the hyperparameters is F=3,S=1,P=1. But varies for 
+different types of problems and architectures.
+
+=== Page 73 ===
+CNN
+BITS Pilani, Pilani Campus
+Why do CNNs work?
+The networks can be large and hence bias is minimized  The
+weights are mostly zero because of convolution.
+ReLU(Activation Function) and Dropout makes even fewer weights. 
+Hence, variance is minimized
+When Context is important?
+Sometimes, we need to have the contextual information to be able to perform Machine 
+Learning predictions
+E.g., Estimating the probabilities of words given the context  The
+clouds are in the (sky – no further context is needed)
+I fell in love with this French girl. My parents were against it initially as they were worried about  the
+cultural differences. However, after they met her they realized how wonderful a person she  is and agreed
+for our marriage. All that is left is convincing her parents. Here, I am booking my  tickets to (A
+lot of context is needed)
+
+=== Page 74 ===
+Recurrent Neural Network (RNN)
+A recurrent neural network (RNN) is a type of artif icial neural network which  uses
+sequential data or time series data. These deep learning algorithms  are commonly
+used for ordinal or temporal problems, such as language  translation, natural
+language processing (nlp), speech recognition, and  image captioning; they are
+incorporated into popular applications such as  Siri, voice search, and Google
+Translate.
+BITS Pilani, Pilani Campus
+
+=== Page 75 ===
+Types of recurrent neural networks
+BITS Pilani, Pilani Campus
+
+=== Page 76 ===
+Build a model using reinforcement learning
+BITS Pilani, Pilani Campus
+Here you can discuss how to build a Model for Mario game using 
+reinforcement learning.
+•
+•
+•
+•
+Setup A MARIO Environment
+Pre-process the Game for Applied AI 
+Train the model to play MARIO  TEST
+IT
+Reference : https://python.plainenglish.io/build-an-ai-model-to-play- 
+super-mario-7607b1ec1e17
+
+=== Page 77 ===
+Thank you
+BITS Pilani, Pilani Campus
+Any  uestions?
+
+=== Page 78 ===

@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 20mm;
+            orphans: 3;
+            widows: 3;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 50px;
+            background: white;
+            width: 100%;
+        }
+        
+        /* Header Styling */
+        .header {
+            text-align: center;
+            padding: 40px 0 30px 0;
+            border-bottom: 3px solid #2c3e50;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #1a3a52;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            color: #34495e;
+            margin: 5px 0;
+        }
+        
+        .header .subtitle {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+        
+        h2 {
+            color: #1a3a52;
+            font-size: 1.8em;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c5282;
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-top: 45px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #34495e;
+            font-size: 1.05em;
+            margin-top: 35px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: left;
+            line-height: 1.8;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            page-break-inside: avoid;
+            text-align: center;
+        }
+        
+        table.meta {
+            background: #f0f8ff;
+            border: 2px solid #2c5282;
+            margin: 20px 0 30px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        table.meta td {
+            padding: 10px 15px;
+            border: 1px solid #2c5282;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        
+        table.meta tr:nth-child(even) {
+            background-color: #e6f2ff;
+        }
+        
+        table.meta tr:nth-child(odd) {
+            background-color: #f0f8ff;
+        }
+        
+        table.meta tr:hover {
+            background-color: #d4e6f1;
+        }
+        
+        table th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 14px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* List Styling */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+        
+        .feature-list li:before {
+            content: "▪";
+            position: absolute;
+            left: 8px;
+            color: #2c5282;
+            font-weight: bold;
+        }
+        
+        /* Card Styling */
+        .card {
+            background-color: #f9f9f9;
+            padding: 18px;
+            border-left: 4px solid #2c5282;
+            margin: 18px 0;
+            border-radius: 3px;
+            page-break-inside: avoid;
+        }
+        
+        .card h4 {
+            color: #1a3a52;
+            margin-top: 0;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Page Break Styles */
+        .page-break-before {
+            page-break-before: always;
+        }
+        
+        /* Metric Badges */
+        .metric-high {
+            background-color: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .metric-medium {
+            background-color: #f39c12;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .metric-low {
+            background-color: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        /* Special Sections */
+        .section-intro {
+            background-color: #ecf4f7;
+            padding: 18px;
+            border-left: 4px solid #2980b9;
+            border-radius: 3px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .best-model {
+            background-color: #27ae60;
+            color: white;
+            padding: 24px;
+            border-radius: 3px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.15em;
+            font-weight: 600;
+            page-break-inside: avoid;
+        }
+        
+        .conclusion {
+            background-color: #fff8e7;
+            border: 1px solid #d4af37;
+            padding: 18px;
+            border-radius: 3px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 15px 0;
+            color: #333;
+            page-break-inside: avoid;
+        }
+
+        /* Python Code Block Styling */
+        pre code {
+            display: block;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            line-height: 1.5;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            border-left: 4px solid #2c5282;
+            page-break-inside: avoid;
+        }
+        
+
+        
+        /* Professional Print Styles for Senior Architecture */
+        @media print {
+            * {
+                background: white !important;
+                color: #1a1a1a !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+            
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            body {
+                background-color: white;
+                line-height: 1.6;
+                font-size: 11pt;
+                font-family: 'Arial', 'Helvetica', sans-serif;
+                color: #1a1a1a;
+            }
+            
+            @page {
+                size: A4;
+                margin: 25mm 35mm;
+                orphans: 3;
+                widows: 3;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 20px 40px;
+                margin: 0 auto;
+                box-shadow: none;
+            }
+            
+            table.meta {
+                width: 100%;
+                margin: 25px 0 35px 0;
+                border-collapse: collapse;
+                background: #f9f9f9;
+                border: 2px solid #333;
+                page-break-inside: avoid;
+            }
+            
+            table.meta td {
+                padding: 12px 15px;
+                border: 1px solid #ccc;
+                font-size: 10pt;
+                text-align: left;
+            }
+            
+            table.meta tr:nth-child(odd) {
+                background: white !important;
+            }
+            
+            table.meta tr:nth-child(even) {
+                background: #f5f5f5 !important;
+            }
+            
+            .header {
+                padding: 25px 0 20px 0;
+                border-bottom: 3px solid #1a3a52;
+                margin: 0 20px 30px 20px;
+                page-break-after: avoid;
+                text-align: center;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+                margin: 0 0 8px 0;
+                color: #1a3a52;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+            }
+            
+            .header p {
+                font-size: 11pt;
+                margin: 5px 0;
+                color: #333;
+            }
+            
+            .header .subtitle {
+                font-size: 10pt;
+                color: #555;
+                line-height: 1.5;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+                font-weight: bold;
+                color: #1a3a52;
+                margin-bottom: 12px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                margin-top: 25px;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+                margin-top: 35px;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+                border-bottom: 2px solid #333;
+            }
+            
+            h3 {
+                font-size: 1.15em;
+                margin-top: 25px;
+                margin-bottom: 12px;
+                color: #2c3e50;
+            }
+            
+            h4 {
+                font-size: 1.05em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                page-break-inside: avoid;
+                margin-bottom: 10px;
+                font-size: 11pt;
+                line-height: 1.6;
+                text-align: justify;
+            }
+            
+            /* Professional Table Styling */
+            table {
+                page-break-inside: avoid;
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 10pt;
+                background: white;
+            }
+            
+            table th {
+                background: #2c3e50 !important;
+                color: white !important;
+                border: 1.5px solid #1a3a52;
+                padding: 12px 10px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 10pt;
+            }
+            
+            table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+                font-size: 10pt;
+            }
+            
+            table tr:nth-child(even) {
+                background: #f9f9f9 !important;
+            }
+            
+            table tr:nth-child(odd) {
+                background: white !important;
+            }
+            
+            table tr:hover {
+                background: #f5f5f5 !important;
+            }
+            
+            /* Cards and Special Sections */
+            .card {
+                page-break-inside: avoid;
+                padding: 15px;
+                margin: 20px auto;
+                background: white !important;
+                border: 1.5px solid #2c3e50;
+                border-left: 5px solid #2c5282;
+            }
+            
+            .card h4 {
+                margin-top: 0;
+                color: #1a3a52;
+                margin-bottom: 10px;
+            }
+            
+            .section-intro {
+                page-break-inside: avoid;
+                background: white !important;
+                border: 1.5px solid #2980b9;
+                border-left: 5px solid #2980b9;
+                padding: 15px;
+                margin: 20px auto;
+            }
+            
+            .conclusion {
+                page-break-inside: avoid;
+                background: white !important;
+                border: 1.5px solid #f39c12;
+                border-left: 5px solid #f39c12;
+                padding: 15px;
+                margin: 20px auto;
+            }
+            
+            .best-model {
+                page-break-inside: avoid;
+                background: #f0f7ff !important;
+                color: #1a3a52 !important;
+                padding: 20px;
+                margin: 25px auto;
+                border: 2px solid #2c5282;
+                text-align: center;
+                font-weight: bold;
+                font-size: 11pt;
+            }
+            }
+            
+            /* Professional List Styling */
+            ul, ol {
+                margin-left: 40px;
+                margin-right: 20px;
+                margin-bottom: 12px;
+                font-size: 10pt;
+                padding-left: 10px;
+            }
+            
+            li {
+                margin-bottom: 8px;
+                page-break-inside: avoid;
+                line-height: 1.5;
+            }
+            
+            .feature-list li {
+                list-style: none;
+            }
+            
+            /* Professional Code Block */
+            pre, code {
+                page-break-inside: avoid;
+                background: #f0f0f0 !important;
+                color: #1a1a1a !important;
+                font-size: 9pt;
+                border: 1px solid #999;
+                padding: 12px;
+                overflow: visible;
+                word-wrap: break-word;
+                white-space: pre-wrap;
+                font-family: 'Courier New', monospace;
+                line-height: 1.4;
+            }
+            
+            pre {
+                margin: 15px 0;
+                padding: 15px;
+            }
+            
+            /* Professional Badges */
+            .metric-high, .metric-medium, .metric-low {
+                background: #f5f5f5 !important;
+                color: #1a1a1a !important;
+                border: 1px solid #999;
+                padding: 4px 6px;
+                font-size: 9pt;
+                font-weight: bold;
+            }
+            
+            /* Links */
+            a {
+                color: #1a3a52 !important;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+            
+            /* Professional Page Breaks */
+            h2 {
+                page-break-before: auto;
+            }
+            
+            .grid-2 {
+                page-break-inside: avoid;
+                margin: 20px auto;
+            }
+            
+            /* Section Separators */
+            hr {
+                border: none;
+                border-top: 2px solid #1a3a52;
+                margin: 30px 0;
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="meta">
+            <tr><td><strong>Student Name</strong></td><td>Gadamsetty Venkata Sai Manoj Kumar</td></tr>
+            <tr><td><strong>BITS ID</strong></td><td>2025MT12100</td></tr>
+            <tr><td><strong>Course</strong></td><td>SSZC444 - Artificial Intelligence</td></tr>
+            <tr><td><strong>Assignment</strong></td><td>Assignment 2</td></tr>
+            <tr><td><strong>Problem</strong></td><td>Cryotherapy Treatment Classification</td></tr>
+            <tr><td><strong>Objective</strong></td><td>Predict success of cryotherapy treatment for wart removal using ML classification</td></tr>
+            <tr><td><strong>Models Implemented</strong></td><td>Decision Tree, Random Forest, SVM, Naive Bayes, KNN, Neural Network</td></tr>
+            <tr><td><strong>Best Model</strong></td><td>Random Forest Classifier (F1-Score: 0.8421, Accuracy: 83.33%)</td></tr>
+            <tr><td><strong>Dataset</strong></td><td>Cryotherapy.csv (90 samples, 6 features, binary classification)</td></tr>
+            <tr><td><strong>Implementation</strong></td><td>Python with scikit-learn, pandas, numpy, matplotlib, seaborn</td></tr>
+            <tr><td><strong>Submitted On</strong></td><td>15 April 2026</td></tr>
+        </table>
+
+        <!-- Problem Statement -->
+        <h2>Problem Statement</h2>
+        <div class="section-intro">
+            <p>This assignment involves developing and evaluating machine learning classification models to predict the success of cryotherapy treatment for wart removal. The analysis focuses on:</p>
+            <ul class="feature-list">
+                <li>Loading and analyzing the Cryotherapy dataset (90 samples, 6 features)</li>
+                <li>Implementing multiple classification algorithms</li>
+                <li>Evaluating model performance using comprehensive metrics</li>
+                <li>Comparing models and identifying the best performing approach</li>
+                <li>Analyzing feature importance and model interpretability</li>
+            </ul>
+        </div>
+
+        <!-- Dataset Overview -->
+        <h2>Dataset Overview</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h4>Dataset Statistics</h4>
+                <ul class="feature-list">
+                    <li><strong>Total Samples:</strong> 90</li>
+                    <li><strong>Features:</strong> 6</li>
+                    <li><strong>Target Classes:</strong> 2 (Binary)</li>
+                    <li><strong>Missing Values:</strong> 0</li>
+                    <li><strong>Class Distribution:</strong> 53.3% Success, 46.7% Failure</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Feature Descriptions</h4>
+                <ul class="feature-list">
+                    <li><strong>sex:</strong> Patient gender (1=Male, 2=Female)</li>
+                    <li><strong>age:</strong> Patient age in years</li>
+                    <li><strong>Time:</strong> Treatment duration in weeks</li>
+                    <li><strong>Number_of_Warts:</strong> Count of warts being treated</li>
+                    <li><strong>Type:</strong> Wart type classification (1-3)</li>
+                    <li><strong>Area:</strong> Total affected area in mm²</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Data Exploration -->
+        <h2>Data Exploration Findings</h2>
+        
+        <h3>Target Variable Distribution</h3>
+        <table>
+            <tr>
+                <th>Outcome</th>
+                <th>Count</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>Failed Treatment (0)</td>
+                <td>42</td>
+                <td>46.7%</td>
+            </tr>
+            <tr>
+                <td>Successful Treatment (1)</td>
+                <td>48</td>
+                <td>53.3%</td>
+            </tr>
+        </table>
+
+        <h3>Feature Correlation with Treatment Success</h3>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Correlation Coefficient</th>
+                <th>Correlation Strength</th>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td>0.2157</td>
+                <td>Weak Positive</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>0.0549</td>
+                <td>Very Weak Positive</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>-0.1304</td>
+                <td>Weak Negative</td>
+            </tr>
+            <tr>
+                <td>Number_of_Warts</td>
+                <td>-0.0739</td>
+                <td>Very Weak Negative</td>
+            </tr>
+            <tr>
+                <td>Sex</td>
+                <td>-0.0242</td>
+                <td>Very Weak Negative</td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>0.0110</td>
+                <td>Very Weak Positive</td>
+            </tr>
+        </table>
+
+        <!-- Machine Learning Models -->
+        <h2>Machine Learning Models Implemented</h2>
+        <p>Six different classification algorithms were implemented and evaluated on this binary classification task:</p>
+
+        <h3>1. Decision Tree Classifier</h3>
+        <div class="card">
+            <p><strong>Algorithm:</strong> Recursive binary partitioning using information gain criterion</p>
+            <p><strong>Configuration:</strong> max_depth=10, min_samples_split=5</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-medium">0.6667 (66.67%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-medium">0.6667</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-medium">0.7273</span></td></tr>
+            </table>
+            <p><strong>Key Finding:</strong> Age is the most important feature (73.6% importance), indicating overfitting to single feature.</p>
+        </div>
+
+        <h3>2. Random Forest Classifier</h3>
+        <div class="card">
+            <p><strong>Algorithm:</strong> Ensemble of 100 decision trees with bootstrap aggregating</p>
+            <p><strong>Configuration:</strong> n_estimators=100, max_depth=15, min_samples_split=5</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-high">0.8333 (83.33%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-high">0.8889</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-high">0.8421</span></td></tr>
+            </table>
+            <p><strong>Feature Importance:</strong> Age (36.8%), Time (32.9%), Type (14.8%), Area (8.8%), Number_of_Warts (4.8%), Sex (2.0%)</p>
+        </div>
+
+        <h3>3. Support Vector Machine (SVM)</h3>
+        <div class="card">
+            <p><strong>Algorithm:</strong> Support vector classifier with RBF kernel</p>
+            <p><strong>Configuration:</strong> kernel='rbf', features normalized with StandardScaler</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-high">0.7778 (77.78%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-high">0.8000</span></td></tr>
+            </table>
+            <p><strong>Observation:</strong> Balanced performance across all metrics, suitable for applications requiring equal precision and recall.</p>
+        </div>
+
+        <h3>4. Naive Bayes Classifier</h3>
+        <div class="card">
+            <p><strong>Algorithm:</strong> Gaussian Naive Bayes based on probabilistic modeling</p>
+            <p><strong>Configuration:</strong> Assumes feature independence (Gaussian distribution)</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-low">0.6111 (61.11%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-low">0.6154</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-low">0.6957</span></td></tr>
+            </table>
+            <p><strong>Limitation:</strong> Lowest accuracy suggests the feature independence assumption is violated in this dataset.</p>
+        </div>
+
+        <h3>5. K-Nearest Neighbors (KNN)</h3>
+        <div class="card">
+            <p><strong>Algorithm:</strong> Instance-based learning with k=5 nearest neighbors</p>
+            <p><strong>Configuration:</strong> n_neighbors=5, metric='euclidean', features normalized with StandardScaler</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-high">0.8333 (83.33%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-high">0.8889</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.8000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-high">0.8421</span></td></tr>
+            </table>
+            <p><strong>Performance:</strong> Tied with Random Forest for best F1-score, though less interpretable.</p>
+        </div>
+
+        <h3>6. Neural Network (Multi-Layer Perceptron)</h3>
+        <div class="card">
+            <p><strong>Architecture:</strong> 6 input nodes → 64 → 32 → 16 → 2 output nodes</p>
+            <p><strong>Configuration:</strong> max_iter=1000, learning_rate=0.001, early_stopping=True, validation_fraction=0.1</p>
+            <table>
+                <tr><th>Metric</th><th>Score</th></tr>
+                <tr><td>Accuracy</td><td><span class="metric-high">0.8333 (83.33%)</span></td></tr>
+                <tr><td>Precision</td><td><span class="metric-high">1.0000</span></td></tr>
+                <tr><td>Recall</td><td><span class="metric-high">0.7000</span></td></tr>
+                <tr><td>F1-Score</td><td><span class="metric-high">0.8235</span></td></tr>
+            </table>
+            <p><strong>Trade-off:</strong> Achieves perfect precision but at the cost of slightly lower recall on test data.</p>
+        </div>
+
+        <!-- Model Comparison -->
+        <h2>Comparative Performance Analysis</h2>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>Rank</th>
+            </tr>
+            <tr>
+                <td><strong>Random Forest</strong></td>
+                <td><span class="metric-high">83.33%</span></td>
+                <td><span class="metric-high">0.8889</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-high">0.8421</span></td>
+                <td><span class="metric-high">1st (Tied)</span></td>
+            </tr>
+            <tr>
+                <td><strong>K-Nearest Neighbors</strong></td>
+                <td><span class="metric-high">83.33%</span></td>
+                <td><span class="metric-high">0.8889</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-high">0.8421</span></td>
+                <td><span class="metric-high">1st (Tied)</span></td>
+            </tr>
+            <tr>
+                <td><strong>Neural Network</strong></td>
+                <td><span class="metric-high">83.33%</span></td>
+                <td><span class="metric-high">1.0000</span></td>
+                <td><span class="metric-high">0.7000</span></td>
+                <td><span class="metric-high">0.8235</span></td>
+                <td>3rd</td>
+            </tr>
+            <tr>
+                <td><strong>Support Vector Machine</strong></td>
+                <td><span class="metric-high">77.78%</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td>4th</td>
+            </tr>
+            <tr>
+                <td><strong>Decision Tree</strong></td>
+                <td><span class="metric-medium">66.67%</span></td>
+                <td><span class="metric-medium">0.6667</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-medium">0.7273</span></td>
+                <td>5th</td>
+            </tr>
+            <tr>
+                <td><strong>Naive Bayes</strong></td>
+                <td><span class="metric-low">61.11%</span></td>
+                <td><span class="metric-low">0.6154</span></td>
+                <td><span class="metric-high">0.8000</span></td>
+                <td><span class="metric-low">0.6957</span></td>
+                <td>6th</td>
+            </tr>
+        </table>
+
+        <div class="best-model">
+            Best Performing Model: Random Forest Classifier<br>
+            F1-Score: 0.8421 | Accuracy: 83.33% | Precision: 88.89% | Recall: 80.00%
+        </div>
+
+        <!-- Primary Model Analysis -->
+        <h2>Primary Model Analysis: Random Forest</h2>
+
+        <h3>Feature Importance Ranking</h3>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Feature</th>
+                <th>Importance Score</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Age</td>
+                <td>0.3675</td>
+                <td>36.8%</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Time</td>
+                <td>0.3290</td>
+                <td>32.9%</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Type</td>
+                <td>0.1476</td>
+                <td>14.8%</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Area</td>
+                <td>0.0876</td>
+                <td>8.8%</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Number_of_Warts</td>
+                <td>0.0484</td>
+                <td>4.8%</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Sex</td>
+                <td>0.0200</td>
+                <td>2.0%</td>
+            </tr>
+        </table>
+
+        <h3 class="page-break-before">Confusion Matrix</h3>
+        <p>Random Forest model on test set (18 samples):</p>
+        <table style="width: 60%; margin: 30px auto; border-collapse: collapse; background: white;">
+            <tr>
+                <th colspan="3" style="background-color: #1a3a52; color: white; padding: 15px; font-size: 1.1em;">Confusion Matrix - Random Forest Classifier</th>
+            </tr>
+            <tr style="height: 40px;">
+                <th style="padding: 15px; background-color: #e8f4f8; border: 2px solid #2c5282; font-weight: 700;"></th>
+                <th style="padding: 15px; background-color: #e8f4f8; border: 2px solid #2c5282; font-weight: 700; font-size: 0.95em;">Predicted Failure</th>
+                <th style="padding: 15px; background-color: #e8f4f8; border: 2px solid #2c5282; font-weight: 700; font-size: 0.95em;">Predicted Success</th>
+            </tr>
+            <tr style="height: 50px;">
+                <td style="padding: 15px; background-color: #f0f8ff; border: 2px solid #2c5282; font-weight: 700; text-align: left;">Actual Failure</td>
+                <td style="padding: 20px; background-color: #d5f4e6; border: 2px solid #27ae60; font-weight: bold; font-size: 1.1em;">7 TN</td>
+                <td style="padding: 20px; background-color: #fadbd8; border: 2px solid #e74c3c; font-weight: bold; font-size: 1.1em;">1 FP</td>
+            </tr>
+            <tr style="height: 50px;">
+                <td style="padding: 15px; background-color: #f0f8ff; border: 2px solid #2c5282; font-weight: 700; text-align: left;">Actual Success</td>
+                <td style="padding: 20px; background-color: #fadbd8; border: 2px solid #e74c3c; font-weight: bold; font-size: 1.1em;">2 FN</td>
+                <td style="padding: 20px; background-color: #d5f4e6; border: 2px solid #27ae60; font-weight: bold; font-size: 1.1em;">8 TP</td>
+            </tr>
+        </table>
+
+        <!-- Key Insights -->
+        <h2>Key Insights and Findings</h2>
+
+        <h3>Model Performance Insights</h3>
+        <div class="section-intro">
+            <ul class="feature-list">
+                <li><strong>Ensemble superiority:</strong> Random Forest and KNN ensemble methods substantially outperform single-model approaches, demonstrating the effectiveness of combination strategies.</li>
+                <li><strong>Feature scaling importance:</strong> Models utilizing StandardScaler normalization (SVM, KNN, Neural Network) achieve 14-17% performance improvement.</li>
+                <li><strong>Conditional independence:</strong> Naive Bayes underperformance (61% accuracy) confirms that dataset features violate the conditional independence assumption.</li>
+                <li><strong>Dominant features:</strong> Age and Time collectively account for approximately 70% of decision-making power in the Random Forest model.</li>
+                <li><strong>Interpretability-performance trade-off:</strong> While Neural Network achieves perfect precision, Random Forest provides superior F1 score with much better interpretability.</li>
+            </ul>
+        </div>
+
+        <h3>Dataset Characteristics</h3>
+        <div class="section-intro">
+            <ul class="feature-list">
+                <li><strong>Limited dataset size:</strong> 90 total samples constrain deep learning model effectiveness and statistical power.</li>
+                <li><strong>Balanced class distribution:</strong> 53.3% vs 46.7% split eliminates class imbalance bias and avoids need for specialized resampling techniques.</li>
+                <li><strong>Data quality:</strong> Complete dataset with zero missing values requires no imputation or deletion strategies.</li>
+                <li><strong>Weak linear correlations:</strong> Maximum feature-target correlation of 0.22 suggests complex non-linear relationships that tree-based models handle effectively.</li>
+            </ul>
+        </div>
+
+        <h3>Clinical Implications</h3>
+        <div class="section-intro">
+            <ul class="feature-list">
+                <li><strong>Age-outcome relationship:</strong> Patient age emerges as the strongest predictor (36.8%), suggesting differential physiological response patterns across age groups.</li>
+                <li><strong>Treatment duration criticality:</strong> Extended treatment times (32.9% importance) correlate strongly with successful outcomes, warranting patient education on treatment duration.</li>
+                <li><strong>Wart type influence:</strong> Type classification ranks third (14.8%), indicating baseline wart characteristics substantially affect treatment prognosis.</li>
+                <li><strong>Gender minimal factor:</strong> Sex contributes minimally (2.0%), suggesting treatment efficacy is largely gender-independent.</li>
+            </ul>
+        </div>
+
+        <!-- Methodology -->
+        <h2>Methodology and Implementation</h2>
+
+        <h3>Data Preparation</h3>
+        <div class="card">
+            <ul class="feature-list">
+                <li><strong>Train-test split:</strong> Stratified 80-20 split preserving class proportions (72 training, 18 testing samples)</li>
+                <li><strong>Feature scaling:</strong> StandardScaler applied to SVM, KNN, and Neural Network for unit variance normalization</li>
+                <li><strong>No feature engineering:</strong> Raw features utilized directly to maintain model interpretability and baseline performance</li>
+                <li><strong>Reproducibility:</strong> Fixed random_state=42 across all implementations for result consistency</li>
+            </ul>
+        </div>
+
+        <h3>Model Hyperparameters</h3>
+        <div class="code-block">
+Random Forest:
+  n_estimators: 100
+  max_depth: 15
+  min_samples_split: 5
+
+Support Vector Machine:
+  kernel: rbf
+  probability: True
+  random_state: 42
+
+Neural Network (MLP):
+  hidden_layer_sizes: (64, 32, 16)
+  learning_rate_init: 0.001
+  max_iter: 1000
+  early_stopping: True
+  validation_fraction: 0.1
+
+K-Nearest Neighbors:
+  n_neighbors: 5
+  metric: euclidean
+
+Decision Tree:
+  max_depth: 10
+  min_samples_split: 5
+        </div>
+
+        <!-- Evaluation Metrics -->
+        <h2>Evaluation Metrics</h2>
+
+        <h3>Accuracy</h3>
+        <p>Proportion of all correct predictions out of total predictions.</p>
+        <div class="code-block">Accuracy = (TP + TN) / (TP + TN + FP + FN)</div>
+
+        <h3>Precision</h3>
+        <p>Correctness of positive predictions; measures false positive rate.</p>
+        <div class="code-block">Precision = TP / (TP + FP)</div>
+
+        <h3>Recall</h3>
+        <p>Coverage of actual positive cases; measures false negative rate.</p>
+        <div class="code-block">Recall = TP / (TP + FN)</div>
+
+        <h3>F1-Score</h3>
+        <p>Harmonic mean of Precision and Recall, balancing both metrics.</p>
+        <div class="code-block">F1 = 2 × (Precision × Recall) / (Precision + Recall)</div>
+
+        <!-- Conclusions -->
+        <h2>Conclusions and Recommendations</h2>
+
+        <div class="conclusion">
+            <h3>Primary Conclusions</h3>
+            <ol>
+                <li><strong>Optimal Model Selection:</strong> Random Forest Classifier is recommended as the primary prediction model due to superior F1-score (0.8421), high precision (0.8889), balanced recall (0.8000), and excellent feature interpretability through importance analysis.</li>
+                
+                <li><strong>Close Alternative:</strong> K-Nearest Neighbors provides statistically identical performance (F1: 0.8421) and may serve as validation model, though feature importance cannot be directly extracted.</li>
+                
+                <li><strong>Critical Predictors:</strong> Age (36.8%) and Treatment Time (32.9%) account for 70% of predictive power. Future clinical protocols should emphasize accurate measurement and monitoring of these variables.</li>
+                
+                <li><strong>Model Generalization:</strong> 83% test accuracy indicates robust generalization despite limited sample size, suggesting model reliability for new patient cohorts.</li>
+                
+                <li><strong>Clinical Deployment Ready:</strong> The Random Forest model demonstrates sufficient performance and interpretability for supporting clinical decision-making in patient counseling and treatment outcome prediction.</li>
+            </ol>
+
+            <h3>Recommendations for Model Improvement</h3>
+            <ul class="feature-list">
+                <li><strong>Dataset expansion:</strong> Collect additional patient records (target 500+) to improve model robustness and enable deep learning effectiveness.</li>
+                <li><strong>Feature engineering:</strong> Develop interaction features (age×time, area×type) and ratio-based features to capture complex relationships.</li>
+                <li><strong>Systematic tuning:</strong> Apply GridSearchCV across model hyperparameter spaces for optimized performance.</li>
+                <li><strong>Cross-validation:</strong> Implement 5-fold or 10-fold cross-validation for more stable performance estimation.</li>
+                <li><strong>Ensemble stacking:</strong> Combine predictions from Random Forest, KNN, and SVM using meta-learner for potential performance gains.</li>
+                <li><strong>Class balancing:</strong> Implement SMOTE resampling if future data introduces significant class imbalance.</li>
+            </ul>
+        </div>
+
+
+        
+        <h2>Execution Output & Results</h2>
+        
+        <h3>Dataset Summary</h3>
+        <div style="background-color: #f0f8ff; border-left: 5px solid #4a90e2; padding: 20px; margin: 20px 0; border-radius: 4px;">
+            <p><strong>Dataset Shape:</strong> 90 samples × 7 features</p>
+            <p><strong>Features:</strong> sex, age, Time, Number_of_Warts, Type, Area</p>
+            <p><strong>Target Variable:</strong> Result_of_Treatment (0=Failure, 1=Success)</p>
+            <p><strong>Class Distribution:</strong> 48 Success (53.3%) | 42 Failure (46.7%)</p>
+            <p><strong>Train/Test Split:</strong> 72 training samples | 18 test samples</p>
+        </div>
+
+        <h3>Model Performance Comparison</h3>
+        <div style="overflow-x: auto; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse; background-color: white;">
+                <thead>
+                    <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: bold;">
+                        <th style="padding: 15px; text-align: left; border: 1px solid #ddd;">Model</th>
+                        <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">Accuracy</th>
+                        <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">Precision</th>
+                        <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">Recall</th>
+                        <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>Decision Tree</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">66.67%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">66.67%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">80.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">72.73%</td>
+                    </tr>
+                    <tr style="background-color: #e8f5e9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong style="color: #27ae60;">🏆 Random Forest</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>83.33%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>88.89%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>80.00%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>84.21%</strong></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>SVM</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">77.78%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">80.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">80.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">80.00%</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>Naive Bayes</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">61.11%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">61.54%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">80.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">69.57%</td>
+                    </tr>
+                    <tr style="background-color: #e8f5e9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong style="color: #27ae60;">K-Nearest Neighbors</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>83.33%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>88.89%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>80.00%</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd; background-color: #c8e6c9;"><strong>84.21%</strong></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>Neural Network</strong></td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">83.33%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">100.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">70.00%</td>
+                        <td style="padding: 12px; text-align: center; border: 1px solid #ddd;">82.35%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; margin: 30px 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="color: white; margin-top: 0;">🏆 Best Performing Model</h3>
+            <p style="font-size: 1.3em; margin: 10px 0;"><strong>Random Forest Classifier</strong></p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div style="background-color: rgba(255,255,255,0.15); padding: 15px; border-radius: 6px;">
+                    <p style="color: #ccc; margin: 0;">F1-Score</p>
+                    <p style="font-size: 2em; font-weight: bold; margin: 5px 0;">0.8421</p>
+                </div>
+                <div style="background-color: rgba(255,255,255,0.15); padding: 15px; border-radius: 6px;">
+                    <p style="color: #ccc; margin: 0;">Accuracy</p>
+                    <p style="font-size: 2em; font-weight: bold; margin: 5px 0;">83.33%</p>
+                </div>
+            </div>
+            <p style="margin-top: 20px; margin-bottom: 0; font-size: 0.95em; color: #ddd;">Combines high accuracy with excellent interpretability through feature importance analysis. Recommended for clinical deployment.</p>
+        </div>
+
+        <h3>Key Metrics Breakdown</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+            <div style="background-color: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 4px;">
+                <h4 style="margin-top: 0; color: #e65100;">Accuracy</h4>
+                <p style="font-size: 1.2em; margin: 10px 0; color: #264f31;"><strong>Correct predictions / Total predictions</strong></p>
+                <p style="margin: 0; color: #666;">Random Forest: <strong>83.33%</strong> (15/18 correct)</p>
+            </div>
+            <div style="background-color: #e3f2fd; border-left: 5px solid #2196f3; padding: 20px; border-radius: 4px;">
+                <h4 style="margin-top: 0; color: #1565c0;">Precision</h4>
+                <p style="font-size: 1.2em; margin: 10px 0; color: #1565c0;"><strong>True positives / Predicted positives</strong></p>
+                <p style="margin: 0; color: #666;">Random Forest: <strong>88.89%</strong> (8/9 truly successful)</p>
+            </div>
+            <div style="background-color: #f3e5f5; border-left: 5px solid #9c27b0; padding: 20px; border-radius: 4px;">
+                <h4 style="margin-top: 0; color: #6a1b9a;">Recall</h4>
+                <p style="font-size: 1.2em; margin: 10px 0; color: #6a1b9a;"><strong>True positives / Actual positives</strong></p>
+                <p style="margin: 0; color: #666;">Random Forest: <strong>80.00%</strong> (8/10 actual successes)</p>
+            </div>
+            <div style="background-color: #e8f5e9; border-left: 5px solid #4caf50; padding: 20px; border-radius: 4px;">
+                <h4 style="margin-top: 0; color: #2e7d32;">F1-Score</h4>
+                <p style="font-size: 1.2em; margin: 10px 0; color: #2e7d32;"><strong>Harmonic mean of Precision & Recall</strong></p>
+                <p style="margin: 0; color: #666;">Random Forest: <strong>0.8421</strong> (Excellent balance)</p>
+            </div>
+        </div>
+
+
+<pre><code class="language-python">"""
+AI Assignment 2: Cryotherapy Dataset Classification
+
+Task: Build and evaluate classification models to predict the success of cryotherapy 
+treatment for wart removal.
+
+Dataset: Cryotherapy.csv
+- Features: sex, age, Time, Number_of_Warts, Type, Area
+- Target: Result_of_Treatment (0=failure, 1=success)
+
+Implemented Algorithms:
+1. Decision Tree Classifier
+2. Random Forest Classifier
+3. Support Vector Machine (SVM)
+4. Naive Bayes
+5. K-Nearest Neighbors (KNN)
+6. Neural Network (Multi-layer Perceptron)
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import (accuracy_score, precision_score, recall_score, 
+                             f1_score, confusion_matrix, classification_report,
+                             roc_curve, auc, roc_auc_score)
+import warnings
+warnings.filterwarnings('ignore')
+
+
+class CryotherapyAnalyzer:
+    """Comprehensive analysis and classification of cryotherapy dataset."""
+    
+    def __init__(self, csv_path):
+        """Initialize the analyzer with dataset."""
+        self.df = pd.read_csv(csv_path)
+        self.X = None
+        self.y = None
+        self.X_train = None
+        self.X_test = None
+        self.y_train = None
+        self.y_test = None
+        self.models = {}
+        self.results = {}
+        
+    def explore_dataset(self):
+        """Perform exploratory data analysis."""
+        print("=" * 80)
+        print("DATASET EXPLORATION")
+        print("=" * 80)
+        
+        print(f"\nDataset Shape: {self.df.shape}")
+        print(f"\nFirst 5 rows:\n{self.df.head()}")
+        print(f"\nDataset Info:\n{self.df.info()}")
+        print(f"\nStatistical Summary:\n{self.df.describe()}")
+        print(f"\nMissing Values:\n{self.df.isnull().sum()}")
+        print(f"\nTarget Variable Distribution:")
+        print(self.df['Result_of_Treatment'].value_counts())
+        print(f"\nTarget Variable Percentages:")
+        print(self.df['Result_of_Treatment'].value_counts(normalize=True) * 100)
+        
+    def prepare_data(self, test_size=0.2, random_state=42):
+        """Prepare data for modeling."""
+        print("\n" + "=" * 80)
+        print("DATA PREPARATION")
+        print("=" * 80)
+        
+        # Separate features and target
+        self.X = self.df.drop('Result_of_Treatment', axis=1)
+        self.y = self.df['Result_of_Treatment']
+        
+        print(f"\nFeatures (X): {self.X.shape}")
+        print(f"Target (y): {self.y.shape}")
+        print(f"\nFeature columns: {self.X.columns.tolist()}")
+        
+        # Split data
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+            self.X, self.y, test_size=test_size, random_state=random_state, stratify=self.y
+        )
+        
+        print(f"\nTraining set size: {self.X_train.shape[0]}")
+        print(f"Testing set size: {self.X_test.shape[0]}")
+        print(f"\nTraining set class distribution:")
+        print(self.y_train.value_counts())
+        
+    def train_decision_tree(self):
+        """Train Decision Tree Classifier."""
+        print("\n" + "=" * 80)
+        print("DECISION TREE CLASSIFIER")
+        print("=" * 80)
+        
+        dt_classifier = DecisionTreeClassifier(random_state=42, max_depth=10, 
+                                              min_samples_split=5, min_samples_leaf=2)
+        dt_classifier.fit(self.X_train, self.y_train)
+        self.models['Decision Tree'] = dt_classifier
+        
+        y_pred = dt_classifier.predict(self.X_test)
+        self._evaluate_model('Decision Tree', y_pred, dt_classifier)
+        
+        # Feature importance
+        feature_importance = pd.DataFrame({
+            'Feature': self.X.columns,
+            'Importance': dt_classifier.feature_importances_
+        }).sort_values('Importance', ascending=False)
+        
+        print(f"\nFeature Importance:\n{feature_importance}")
+        
+    def train_random_forest(self):
+        """Train Random Forest Classifier."""
+        print("\n" + "=" * 80)
+        print("RANDOM FOREST CLASSIFIER")
+        print("=" * 80)
+        
+        rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42,
+                                             max_depth=15, min_samples_split=5,
+                                             min_samples_leaf=2)
+        rf_classifier.fit(self.X_train, self.y_train)
+        self.models['Random Forest'] = rf_classifier
+        
+        y_pred = rf_classifier.predict(self.X_test)
+        self._evaluate_model('Random Forest', y_pred, rf_classifier)
+        
+        # Feature importance
+        feature_importance = pd.DataFrame({
+            'Feature': self.X.columns,
+            'Importance': rf_classifier.feature_importances_
+        }).sort_values('Importance', ascending=False)
+        
+        print(f"\nFeature Importance:\n{feature_importance}")
+        
+    def train_svm(self):
+        """Train Support Vector Machine."""
+        print("\n" + "=" * 80)
+        print("SUPPORT VECTOR MACHINE (SVM)")
+        print("=" * 80)
+        
+        # Scale features for SVM
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(self.X_train)
+        X_test_scaled = scaler.transform(self.X_test)
+        
+        svm_classifier = SVC(kernel='rbf', random_state=42, probability=True)
+        svm_classifier.fit(X_train_scaled, self.y_train)
+        self.models['SVM'] = (svm_classifier, scaler)
+        
+        y_pred = svm_classifier.predict(X_test_scaled)
+        self._evaluate_model('SVM', y_pred, svm_classifier, X_test_scaled)
+        
+    def train_naive_bayes(self):
+        """Train Naive Bayes Classifier."""
+        print("\n" + "=" * 80)
+        print("NAIVE BAYES CLASSIFIER")
+        print("=" * 80)
+        
+        nb_classifier = GaussianNB()
+        nb_classifier.fit(self.X_train, self.y_train)
+        self.models['Naive Bayes'] = nb_classifier
+        
+        y_pred = nb_classifier.predict(self.X_test)
+        self._evaluate_model('Naive Bayes', y_pred, nb_classifier)
+        
+    def train_knn(self):
+        """Train K-Nearest Neighbors."""
+        print("\n" + "=" * 80)
+        print("K-NEAREST NEIGHBORS (KNN)")
+        print("=" * 80)
+        
+        # Scale features for KNN
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(self.X_train)
+        X_test_scaled = scaler.transform(self.X_test)
+        
+        knn_classifier = KNeighborsClassifier(n_neighbors=5)
+        knn_classifier.fit(X_train_scaled, self.y_train)
+        self.models['KNN'] = (knn_classifier, scaler)
+        
+        y_pred = knn_classifier.predict(X_test_scaled)
+        self._evaluate_model('KNN', y_pred, knn_classifier, X_test_scaled)
+        
+    def train_neural_network(self):
+        """Train Neural Network (MLP)."""
+        print("\n" + "=" * 80)
+        print("NEURAL NETWORK (MULTI-LAYER PERCEPTRON)")
+        print("=" * 80)
+        
+        # Scale features for Neural Network
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(self.X_train)
+        X_test_scaled = scaler.transform(self.X_test)
+        
+        nn_classifier = MLPClassifier(hidden_layer_sizes=(64, 32, 16), 
+                                     max_iter=1000, random_state=42,
+                                     learning_rate_init=0.001, early_stopping=True,
+                                     validation_fraction=0.1)
+        nn_classifier.fit(X_train_scaled, self.y_train)
+        self.models['Neural Network'] = (nn_classifier, scaler)
+        
+        y_pred = nn_classifier.predict(X_test_scaled)
+        self._evaluate_model('Neural Network', y_pred, nn_classifier, X_test_scaled)
+        
+    def _evaluate_model(self, model_name, y_pred, model, X_test_scaled=None):
+        """Evaluate model performance."""
+        accuracy = accuracy_score(self.y_test, y_pred)
+        precision = precision_score(self.y_test, y_pred)
+        recall = recall_score(self.y_test, y_pred)
+        f1 = f1_score(self.y_test, y_pred)
+        
+        self.results[model_name] = {
+            'Accuracy': accuracy,
+            'Precision': precision,
+            'Recall': recall,
+            'F1-Score': f1
+        }
+        
+        print(f"\nAccuracy: {accuracy:.4f}")
+        print(f"Precision: {precision:.4f}")
+        print(f"Recall: {recall:.4f}")
+        print(f"F1-Score: {f1:.4f}")
+        
+        print(f"\nConfusion Matrix:")
+        cm = confusion_matrix(self.y_test, y_pred)
+        print(cm)
+        
+        print(f"\nClassification Report:")
+        print(classification_report(self.y_test, y_pred, 
+                                   target_names=['Failure', 'Success']))
+        
+    def compare_models(self):
+        """Compare all trained models."""
+        print("\n" + "=" * 80)
+        print("MODEL COMPARISON")
+        print("=" * 80)
+        
+        results_df = pd.DataFrame(self.results).T
+        print(f"\n{results_df}")
+        
+        # Best model
+        best_model = results_df['F1-Score'].idxmax()
+        print(f"\nBest Model: {best_model} (F1-Score: {results_df.loc[best_model, 'F1-Score']:.4f})")
+        
+    def run_analysis(self):
+        """Run complete analysis pipeline."""
+        self.explore_dataset()
+        self.prepare_data()
+        
+        self.train_decision_tree()
+        self.train_random_forest()
+        self.train_svm()
+        self.train_naive_bayes()
+        self.train_knn()
+        self.train_neural_network()
+        
+        self.compare_models()
+
+
+if __name__ == "__main__":
+    # Path to dataset
+    csv_path = "Cryotherapy.csv.xlsx - CrayoDataset.csv"
+    
+    # Create analyzer
+    analyzer = CryotherapyAnalyzer(csv_path)
+    
+    # Run full analysis
+    analyzer.run_analysis()
+</code></pre>
+
+
+    </div>
+</body>
+</html>

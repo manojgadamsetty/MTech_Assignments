@@ -1,0 +1,726 @@
+
+
+=== Page 1 ===
+BITS Pilani
+Pilani | Dubai | Goa | Hyderabad
+ARTIFICIAL INTELLIGENCE
+By
+Prof. Brahmanaidu Kakarla
+
+=== Page 2 ===
+BITS Pilani
+Pilani | Dubai | Goa | Hyderabad
+Contact Session-6
+Probability, Bayesian Networks and Hidden Markov Models
+
+=== Page 3 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+You can reach Bangalore Airport from MG Road within 90 m ins
+if you go by route A.
+–There is uncertainty in this information due to partial observability  and
+non determinism
+– Agents should handle such uncertainty
+• Previous approaches like Logic represent all possible world
+states
+• Such approaches can’t be used as multiple possible states n eed to
+be enumerated to handle the uncertainty in our infor  mation.
+Uncertainty
+
+=== Page 4 ===
+¾
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+You can reach Bangalore Airport from MG Road within 90
+mins if you go by route A.
+¾ Such information can only provide a degree of belief, e.g., w  e
+are 80% conf ident that it would be true on any given day
+¾ In order to deal such degree of belief, we need Probability
+Theory.
+Belief
+
+=== Page 5 ===
+Knowledge Representation
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+As discussed earlier the knowledge can be represent in any of the
+following language with respect to aspects.
+
+=== Page 6 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Probability provides a way to summarize the uncertainty
+You can reach Bangalore Airport from MG Road within 90
+mins if you go by route A.
+•
+–
+– If we know that it is evening, the Probability of the statement
+can be 0.4
+Based on available information the Probability would capture
+the belief better.
+Probability Theory
+Sample Space: Set of all possible outcomes.
+–
+–
+Ex: After tossing 2 coins, the set of all possible outcomes are
+{HH, HT, TH, TT}
+Event: A subset of a sample space.
+– An event of interest might be – {HH}.
+
+=== Page 7 ===
+A fully specified probability model associates a numerical probability P( ) with
+each possible world.
+The basic axioms
+1. Every possible world has a probability between 0 and 1
+2. Sum of probabilities of possible worlds is 1
+3. E.g., P(HH) = 0.25; P(HT) = 0.25; P(TT) = 0.25, P(TH) = 0.25
+Probability Basics – Probability Model
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 8 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Statistics – Statistics provides a way of organizing data to
+extract information on a wider and objective basis than
+relying on personal experience.
+–Analyse the past events
+• Probability – Predict the likelihood of a future event
+Questions addressed:•
+–
+–
+Statistics – How ideal is the world?
+Probability – What will happen in a given ideal world?
+Statistics & Probability
+
+=== Page 9 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Mutually Exclusive Events:
+–Two events (or propositions) are mutually exclusive or disjoint if
+they cannot both occur at the same time(be true).
+A clear example is the set of outcomes of a single coin toss, which can
+result in either heads or tails, but not both.
+–
+• Exhaustive Events:
+–The set of events out of which one will definitely occur whenever the
+experiment is performed is called exhaustive events in probability. The
+union of the exhaustive events gives the entire sample space.
+A set of events is jointly or collectively exhaustive if at least one  of the
+events must occur.
+E.g., when rolling a six-sided die, the events 1, 2, 3, 4, 5, and 6  are
+collectively exhaustive.
+–
+Probability Basics – Exclusive / Exhaustive events
+
+=== Page 10 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Probabilistic assertions (Propositions)
+–
+–
+Usually not a particular world event but about a set of them
+E.g., two dice when rolled, a proposition can be “the sum of dice  is 11”
+• For any proposition ,
+• P(sum = 11) = P((5, 6)) + P((6, 5))
+         = 1/36 + 1/36
+         = 1/18
+Probability Basics - Propositions
+
+=== Page 11 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Probability Assertions and Propositions
+
+=== Page 12 ===
+• Unconditional / Prior probabilities:
+• Propositions like P(sum = 11) or P(two dices rolling equals)
+are called Unconditional or Prior probabilities
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+They refer to degree of belief in absence of any other information
+Probability Basics – Unconditional / Prior
+
+=== Page 13 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Probability Basics - Conditional
+
+=== Page 14 ===
+Conditional probabilities can be expressed in unconditional
+probabilities
+E.g., for proposition a, b  Holds when P(b) > 0
+Product rule :
+Probability Basics - Conditional
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 15 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+If there is a random variable Weather with domain {sunny, rain, cloudy, snow},
+we could write
+P(Weather = sunny) = 0.6
+P(Weather = rain) = 0.1
+P(Weather = cloudy) = 0.2
+P(Weather = snow) = 0.1
+•
+•
+•
+•
+• P(Weather) = <0.6, 0.1, 0.2, 0.1>
+P defines a probability distribution for the random variable Weather
+P is used for conditional distributions; P(X|Y) gives values for P(X = i, | Y = j)
+for all combinations of i and j
+•
+•
+Probability Distribution
+
+=== Page 16 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+For continuous variables (e.g., weight) it is infeasible to
+write the distribution as a vector
+• Instead, we define the probability as a function of the value
+the variable can take
+P(Weight = x) = Normal(x | mean = 60, std = 10)•
+• It says that the weight of an individual is Normal (Gaussian)
+distributed with average weight being 60 kgs and a deviation
+of 10 kgs
+• They are called as Probability Density Function
+Probability Density Function
+
+=== Page 17 ===
+• Instead of distribution over single variable, we can model
+distribution over multiple variables, separated by comma
+E.g., P(A, B) = P(A | B) . P(B)
+P(A, B) is the probability distribution over combination of  all
+values of A and B
+E.g., if A = Weather and B = Cavity.
+•
+•
+•
+Joint Probability Distributions
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 18 ===
+Probability Theory
+BITS Pilani, Deemed to be University under Section 3 of
+UGCBIATcSt,P1i9la5n6i
+•X and Y are two discrete random variables.
+•X can take any of the values xi, i = 1, . . . , M, and Y can take the values
+yj, j = 1, . . . , L.
+Let a total of N trials in which we sample both of the variables X and Y, and let
+the number of such trials in which X = xi and Y = yj be nij .
+Let the number of trials in which X takes the value xi be denoted by ci,  and
+similarly let the number of trials in which Y takes the value yj be denoted by rj .
+•
+•
+
+=== Page 19 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+A probability model is completely determined by the joint
+distribution for all of random variables – full joint probability
+distribution
+E.g., P(Catch, Cavity, Toothache)
+Can be represented by 2X2X2 table to represent all combinations
+of the variables with values corresponding  to the probabilities of
+seeing those combinations  respectively.
+•
+•
+Full Joint Probability Distribution
+
+=== Page 20 ===
+•
+Probabilistic Inference
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 21 ===
+• Query: P(cavity)
+P(cavity) = 0.108 + 0.012 + 0.072 + 0.008 = 0.2•
+• This process is called marginalization or summing out –
+as we sum up probabilities for each possible value of other
+variable so that we take them out of equation.
+Probabilistic Inference: Marginalization
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 22 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Marginal Probability: The probability of an event occurring P(A).
+It may be thought of as an unconditional probability.
+It is not conditioned on another event.
+• Ex: From a deck of cards, the probability that a card drawn is red
+p(red) = 0.5
+From a deck of cards, the probability that a card drawn is a 4
+      p(four)=1/13
+Probability Basics – Marginal Probability
+
+=== Page 23 ===
+• If we have two random variables, TimeToBnlrAirport and HyderabadWeather
+P(TimeToBnlrAirport, HyderabadWeather)
+To determine their relation, use the product rule
+= P(TimeToBnlrAirport | HyderabadWeather) / P(HyderabadWeather)
+•
+•
+•
+• However, we would argue that HyderabadWeather and TimeToBnlrAirport
+doesn’t have any relation and hence
+P(TimeToBnlrAirport | HyderabadWeather) = P(TimeToBnlrAirport)
+This is called Independence or Marginal Independence
+•
+•
+• Independence between propositions a and b can be written as
+Independence
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 24 ===
+• Using the product rule for propositions a and b
+• Equating the right hand sides and dividing by P(a)
+• This is called the Bayes Rule.
+Bayes Rule
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 25 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+2 random variables A and B are conditionally independent given C iff
+P(a, b | c) = P(a | c) P(b | c) for all values a, b, c
+• More intuitive (equivalent) conditional formulation
+– A and B are conditionally independent given C iff
+P(a | b, c) = P(a | c) OR P(b | a, c) =P(b | c), for all values a, b, c
+–Intuitive interpretation:
+P(a | b, c) = P(a | c) tells us that learning about b, given that we already know c,
+provides no change in our probability for a, i.e., b c ontains no information
+about a beyond what c provides.
+Conditional Independence
+
+=== Page 26 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Can generalize to more than 2 random variables
+–
+–
+–
+E.g., K different symptom variables X1, X2, … XK, and C = disease
+P(X1, X2,…. XK | C) = P(Xi | C)
+Also known as the naïve Bayes assumption
+Conditional Independence
+
+=== Page 27 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+In Probabilities, we have seen that random variables can be related  with
+joint distribution, conditionality, independence, etc.
+However, such relations are def ined in a formal semantics using a
+network topology and probabilities
+• Bayesian Networks is a field that represents such relations systematically
+• We explore the use of probability theory to objects and relations (like in first-
+order logic)
+Bayesian Networks
+
+=== Page 28 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Full joint probability distributions can be used for inference
+however can become intractable as the  number of variables
+grow
+• Bayesian Networks represent dependencies among variables
+– Can represent full joint probability distribution
+Bayesian Networks
+
+=== Page 29 ===
+A Bayesian network is a directed graph in which each node  is
+annotated with quantitative probability information.
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+• Each node corresponds to a random variable, which may  be
+discrete or continuous.
+A set of directed links or arrows connects pairs of nodes.  If
+there is an arrow from node X to node Y , X is said to be a
+parent of Y. The graph has no directed cycles (and hence is a
+directed acyclic graph, or DAG).
+Each node Xi has a conditional probability distribution
+P(Xi | Parents(Xi )) that quantifier the effect of the parents  on
+the node.
+•
+•
+What is a Bayesian Network
+
+=== Page 30 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Once the topology of the Bayesian Network is laid out,
+–Will specify the conditional probability distribution for each
+variable given its parents
+–Such that the topology and conditional probabilities suffices
+to specify the full joint probability distribution of all variables
+Bayesian Networks
+
+=== Page 31 ===
+•A simple world with four randomvariables
+Weather, Toothache, Cavity, Catch
+Weather is independent of other variables
+Toothache and Catch are conditionally independent
+given Cavity
+P(Toothache, Catch | Cavity) = P(Too  thache | Cavity ) .
+P(Catch | Cavity)
+Cavity is a direct cause of Toothache  and Catch
+No direct relation between Toothache  and Catch exists.
+Example Bayesian Net
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 32 ===
+A Burglary Alarm System
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Fairly reliable on detecting a burglary  Also
+responds to earthquakes
+Two neighbors John and Mary are asked to call you at workwhen Burglary
+happens and they hear the Alarm
+need to estimate the probability of a burglary
+John nearly always calls when he hears the alarm, however some  times
+confuses the telephone ring with alarm and calls then too
+Mary like loud music and often misses the alarm altogether  Problem:
+Given the information that who has / has not called we need to estimate
+the probability of a burglary
+Example Bayesian Net
+
+=== Page 33 ===
+• Conditional distributions shown are Conditional
+Probability Tables (CPT)
+• Used for discrete variables
+Example Bayes Net: Burglary Alarm
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 34 ===
+• We will get a compact Bayesian network only if we choose the node  ordering
+well.
+What happens if we happen to choose the wrong order?  Suppose
+we decide to add the nodes in the order
+MaryCalls, JohnCalls, Alarm, Burglary, Earthquake or
+MaryCalls, JohnCalls, Earthquake , Burglary , Alarm
+•
+•
+•
+•
+Not so good Bayes Nets: Burglary Alarm
+Network structure depends on
+order of introduction. In each
+network, nodes are introduced
+nodes top-to-bottom order.
+The network has more links that
+represent tenuous relationships
+and require diff icult and
+unnatural probability judgments
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 35 ===
+• Captures Full Joint Distribution of all variables given the
+topology with conditional distributions
+• Example: Simple bayesian network with 3 variables.
+Semantics of Bayesian Nets
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 36 ===
+• Calculate the probability that alarm has sounded, but neither burglary
+nor earthquake happened, and both John and Mary called.
+Example
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 37 ===
+• Given the Bayesian Belief
+Network and a set of
+observations, compute
+probabilities associated with
+each node.
+Example
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 38 ===
+• P(Mileage=Hi) = 0.5
+P(Air Cond=Working) = 0.625•
+• P(Engine=Good|Mileage=Hi) = 0.5
+P(Engine=Good|Mileage=Lo) = 0.75•
+P(Value=High|Engine=Good, Air Cond=Working) = 0.750
+P(Value=High|Engine=Good, Air Cond=Broken) = 0.667
+P(Value=High|Engine=Bad, Air Cond=Working) = 0.222
+P(Value=High|Engine=Bad, Air Cond=Broken) = 0
+38
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Example
+
+=== Page 39 ===
+43
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Probabilistic Reasoning over Time
+Hidden Markov Model
+
+=== Page 40 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Agents in partially observable environment should keep  a
+track of current state to the extent allowed by sensors
+– E.g., Robot moving in a new maze
+Agent maintains a belief state representing the current
+possible world states
+Transition Model: Using belief state and transition model,
+the agent can how the world might evolve in next time  step
+Sensor Model: With the observed percepts and sensor
+model, the agent can update the belief state.
+•
+•
+•
+Partial Observability
+
+=== Page 41 ===
+Earlier, the states were captured as
+– Facts in Logic which can take either True/False
+– To capture the degree of belief we will use Probability Theory.
+– We model the change in world using a variable for each aspect of state and at
+each point in time
+– Transition models – describe the probability distribution of variables at  time t,
+given the state of the world at past times.
+– Sensor models – describe the probability of each percept at time ‘t’, given the
+current state of the world.
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Degree of belief
+
+=== Page 42 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Static World: Each random variable would have a single
+fixed value
+– E.g., Diagnosing a broken car
+• Dynamic World: The state information keeps changing
+with time
+– E.g., treating a diabetic patient, tracking the location of robot,
+tracking economic activity of a nation etc..
+Time and Uncertainty
+
+=== Page 43 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Time slices: World is observed in time slices. Each slice  has
+a set of random variables, some observable and some not.
+• Assumption: We will assume same subset of random
+variables are observable in each time slice
+• Denoted by
+Et – set of observable random variables at time t
+Xt – set of unobserved random variables at time t
+•
+•
+States and Observations
+
+=== Page 44 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+A security guard at a secret underground station
+He couldn’t access the outside world so has no idea of weather•
+• He wants to know whether it is raining
+Only observed variable: His director coming in with/without an
+umbrella
+•
+•
+For each day t, Et - single evidence variable Umbrella t(Ut) (Y/N)
+Xt – single state variable Raint (Rt) (Yes/No)•
+Example
+
+=== Page 45 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Assumption: The time interval between slices is fixed
+Also, state variables start at t = 0
+Evidence variables start at t = 1
+•
+•
+• Umbrella world can be represented by
+–
+–
+–
+State variables – R0, R1, R2, R3, …
+Evidence variables – U1, U2, U3, …
+Notation: Time slice a:b Æ Xa:b Æ Xa to Xb
+Formulation
+
+=== Page 46 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Transition Model: Probability distribution over latent(hidden)
+state variables given the previous values, P(Xt | X0:t-1)
+X0:t-1 – unbounded in size as t increases
+Markov Assumption: Current state depends only on finite
+fixed number of previous states
+•
+•
+• Markov Process/Chain – Processes satisfying this  assumption
+Transition and Markov models
+
+=== Page 47 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+When the current state depends only on the previous state but
+not on earlier states
+P(Xt | X0:t-1) = P(Xt | Xt-1)
+• Transition Model: P(Xt | Xt-1)
+• Second-order Markov Process:
+P(Xt | X0:t-1) = P(Xt | Xt-2, Xt-1).
+First Order Markov Process
+
+=== Page 48 ===
+Bayesian Network
+First-order Markov process
+Second-order Markov process
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 49 ===
+• Given the inf inite values of t, the probability distribution
+governing P(Xt | Xt-1)
+• Assumption: Changes in the world states are caused by  a
+stationary process – a process of change that are governed by
+laws that do not themselves change over time
+• Therefore, P(Rt | Rt-1) is same for all t
+One conditional probability table•
+Stationary Process
+Rt-1 P(Rt|Rt-1)
+True 0.7
+False 0.3
+P(Rt-1)      P(Rt | Rt-1)
+True                     Əĺƕ
+FaѴse                     Əĺƒ
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 50 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Evidence Variable Et can depend on previous variables as  well
+as current state variables, i.e., P(Et| X0:t, E0:t-1)
+• Sensor Markov Assumption: P(Et| X0:t, E0:t-1) = P(Et | Xt)
+• Sensor Model: P(Et | Xt)
+Sensor Model
+
+=== Page 51 ===
+Bayesian Net for Umbrella Example
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Bayesian network structure and conditional distributions describing the
+umbrella world.
+The transition model is P(Raint | Raint−1) and the sensor model is
+P(Umbrellat | Raint).
+•
+
+=== Page 52 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Inference in Temporal Models
+
+=== Page 53 ===
+• Recursive Elimination
+Inference - Filtering
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 54 ===
+Inference - Filtering
+α is a normalizing constant used to make probabilities sum up to 1.
+We can think of the f iltered estimate P(Xt | e1:t) as a “message” f1:t that
+is propagated forward along the sequence, modif ied by each
+transition and updated by each new observation.
+• Forward Message Æ f1:t = P(Xt | e1:t)
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 55 ===
+• Compute P(R2 | u1:2)
+• Transition Model = P(Rt | Rt-1)
+• Sensor Model = P(Et| Xt)
+Filtering Example
+Rt-1 P(Rt|Rt-1)
+True 0.7
+False 0.3
+Rt P(Et|Rt)
+True 0.9
+False 0.2
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 56 ===
+• Day 0: No observations, only the prior beliefs of security
+guard: P(R0) = <0.5, 0.5>
+• Day 1: Umbrella appears U1 = True
+–Adding the evidence U1
+Filtering Example
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 57 ===
+• Day 2: the umbrella appears U2 = True
+–Then adding the evidence U2
+Filtering Example
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 58 ===
+• Prediction can be seen as f iltering without the additi  on
+of new evidence
+Inference: Prediction
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 59 ===
+•
+Inference: Smoothing
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 60 ===
+• Backward Message Æ bk+1:t = P(ek+1:t | Xk)
+Inference Smoothing
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 61 ===
+• Compute P(R1 | u1,2)
+• We already know P(R1 | u1) = <0.818, .182>
+• Plugging it back in
+Smoothing Example
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 62 ===
+Forward Backward Algorithm
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 63 ===
+•
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Suppose the umbrella sequence is [true, true, false, true, true]  What
+is the likely weather sequence that can explain this?
+25 possible sequences
+•
+• In NLP
+The Observed sequence are the words in a sentence:
+[Ram, killed, Ravan]
+The hidden sequence are the POS tags
+[NNP, VBD, NNP]
+Most Likely Sequence
+
+=== Page 64 ===
+• Algorithm
+–
+–
+Linear Time
+View each sequence as a path through a graph whose nodes
+are possible states at each step
+– Finding the most likely path – Product of transition probabilities  along the
+path and the probabilities of given observations at each state
+Most Likely Sequence
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 65 ===
+• Algorithm
+–The most likely path to say Rain5 = True consists of most likely  path
+to some state at time 4 followed by transition to Rain5 = True
+– Recursive relation
+Most Likely Sequence
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 66 ===
+• In order to f ind the actual sequence, the algorithm need
+to record, for each state, the best state that leads to it;
+indicated by bold arrows
+• The optimal sequence is identif ied by following bold
+arrows backwards from the best f inal state
+• This is called Viterbi algorithm
+Most Likely Sequence
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+
+=== Page 67 ===
+Questions???
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Thank you.

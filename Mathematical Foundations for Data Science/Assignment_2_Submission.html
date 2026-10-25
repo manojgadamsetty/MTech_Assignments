@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Foundations for Data Science - Assignment 2</title>
+    <style>
+        @media print {
+            @page { margin: 1.5cm; }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body {
+                margin: 0;
+                background: #ffffff !important;
+                color: #000000 !important;
+                max-width: none;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                background: #ffffff !important;
+                padding: 0;
+            }
+
+            .header h1,
+            .header h2,
+            .student-info p,
+            .problem-section h2,
+            .code-section h3,
+            .output-section h3,
+            .summary h2,
+            .summary li,
+            .footer {
+                color: #000000 !important;
+            }
+
+            .student-info,
+            .output-section,
+            .summary,
+            .highlight {
+                background: #ffffff !important;
+                border: 1px solid #000000 !important;
+            }
+
+            pre {
+                background: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #000000 !important;
+            }
+
+            pre {
+                font-size: 8.5px;
+                line-height: 1.2;
+                white-space: pre;
+                word-break: normal;
+                overflow-wrap: normal;
+                overflow: visible;
+                tab-size: 4;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+        
+        .header h2 {
+            color: #34495e;
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        
+        .student-info {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .student-info p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        
+        .problem-section {
+            margin: 30px 0;
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+        }
+        
+        .problem-section h2 {
+            color: #2980b9;
+            font-size: 20px;
+        }
+        
+        .code-section {
+            margin: 20px 0;
+        }
+        
+        .code-section h3 {
+            color: #27ae60;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre;
+            word-break: normal;
+            overflow-wrap: normal;
+            tab-size: 4;
+        }
+        
+        .output-section {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-section h3 {
+            color: #e74c3c;
+            font-size: 16px;
+            margin-top: 0;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .summary {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .summary h2 {
+            color: #155724;
+            margin-top: 0;
+        }
+        
+        .summary ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .summary li {
+            padding: 5px 0;
+            color: #155724;
+        }
+        
+        .summary li:before {
+            content: "• ";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mathematical Foundations for Data Science</h1>
+            <h2>Assignment 2 - Solutions</h2>
+        </div>
+        
+        <div class="student-info">
+            <p><strong>Student Name:</strong> <span class="highlight">Gadamsetty V Sai Manoj Kumar</span></p>
+            <p><strong>Student ID:</strong> <span class="highlight">2025MT12100</span></p>
+            <p><strong>Submission Date:</strong> 11 April 2026</p>
+        </div>
+        
+        <div class="code-section">
+            <h3>Complete Python Code for All Problems:</h3>
+            <pre>import math
+import sys
+
+
+def print_section(title):
+    """Print a formatted section header."""
+    print("\n" + "=" * 90)
+    print(f" {title}")
+    print("=" * 90 + "\n")
+
+
+def print_row(headers, values):
+    """Print one formatted table row for iterative optimizer output."""
+    widths = [max(len(h), 12) for h in headers]
+    row = " | ".join(f"{str(v):&gt;{w}}" for v, w in zip(values, widths))
+    print(row)
+
+
+def print_table_header(headers):
+    """Print iterative table header."""
+    widths = [max(len(h), 12) for h in headers]
+    header = " | ".join(f"{h:&gt;{w}}" for h, w in zip(headers, widths))
+    divider = "-+-".join("-" * w for w in widths)
+    print(header)
+    print(divider)
+
+
+# ============================================================================
+# PROBLEM 1: Gradient Descent with Adam Optimizer
+# ============================================================================
+def problem_1_adam():
+    print_section("PROBLEM 1: Adam Optimizer for f(x, y) = x^2 + y^2")
+
+    # Given settings
+    x = -2.0
+    y = 2.0
+    alpha = 0.1
+    beta1 = 0.9
+    beta2 = 0.9
+    eps = 1e-8
+    max_epochs = 50
+
+    # Adam state variables
+    m_x = 0.0
+    m_y = 0.0
+    v_x = 0.0
+    v_y = 0.0
+
+    print("Initial settings:")
+    print(f"x0 = {x}, y0 = {y}")
+    print(f"alpha = {alpha}, beta1 = {beta1}, beta2 = {beta2}, eps = {eps}, epochs = {max_epochs}\n")
+
+    headers = ["epoch", "x", "y", "f(x,y)", "grad_x", "grad_y"]
+    print_table_header(headers)
+
+    for t in range(1, max_epochs + 1):
+        # Gradient for f(x, y) = x^2 + y^2
+        g_x = 2.0 * x
+        g_y = 2.0 * y
+
+        # Update biased first moment estimate
+        m_x = beta1 * m_x + (1.0 - beta1) * g_x
+        m_y = beta1 * m_y + (1.0 - beta1) * g_y
+
+        # Update biased second raw moment estimate
+        v_x = beta2 * v_x + (1.0 - beta2) * (g_x ** 2)
+        v_y = beta2 * v_y + (1.0 - beta2) * (g_y ** 2)
+
+        # Bias correction
+        m_x_hat = m_x / (1.0 - (beta1 ** t))
+        m_y_hat = m_y / (1.0 - (beta1 ** t))
+        v_x_hat = v_x / (1.0 - (beta2 ** t))
+        v_y_hat = v_y / (1.0 - (beta2 ** t))
+
+        # Parameter update
+        x = x - alpha * m_x_hat / (math.sqrt(v_x_hat) + eps)
+        y = y - alpha * m_y_hat / (math.sqrt(v_y_hat) + eps)
+
+        f_val = x ** 2 + y ** 2
+
+        # Print first 10, then every 5th epoch, and last epoch
+        if t &lt;= 10 or t % 5 == 0 or t == max_epochs:
+            print_row(
+                headers,
+                [
+                    t,
+                    f"{x:.8f}",
+                    f"{y:.8f}",
+                    f"{f_val:.10f}",
+                    f"{g_x:.8f}",
+                    f"{g_y:.8f}",
+                ],
+            )
+
+    print("\nFinal Adam result:")
+    print(f"x* = {x:.10f}, y* = {y:.10f}")
+    print(f"f(x*, y*) = {x ** 2 + y ** 2:.12f}")
+
+    return x, y, x ** 2 + y ** 2
+
+
+# ============================================================================
+# PROBLEM 2: Gradient Descent with AdaGrad Optimizer
+# ============================================================================
+def problem_2_adagrad():
+    print_section("PROBLEM 2: AdaGrad Optimizer for f(x, y) = x^2 + y^2")
+
+    # Given settings
+    x = -2.0
+    y = 2.0
+    alpha = 0.1
+    eps = 1e-8
+    max_epochs = 50
+
+    # AdaGrad accumulators
+    g2_x = 0.0
+    g2_y = 0.0
+
+    print("Initial settings:")
+    print(f"x0 = {x}, y0 = {y}")
+    print(f"alpha = {alpha}, eps = {eps}, epochs = {max_epochs}\n")
+
+    headers = ["epoch", "x", "y", "f(x,y)", "acc_g2_x", "acc_g2_y"]
+    print_table_header(headers)
+
+    for t in range(1, max_epochs + 1):
+        # Gradient for f(x, y) = x^2 + y^2
+        g_x = 2.0 * x
+        g_y = 2.0 * y
+
+        # Accumulate squared gradients
+        g2_x += g_x ** 2
+        g2_y += g_y ** 2
+
+        # Parameter update
+        x = x - alpha * g_x / (math.sqrt(g2_x) + eps)
+        y = y - alpha * g_y / (math.sqrt(g2_y) + eps)
+
+        f_val = x ** 2 + y ** 2
+
+        # Print first 10, then every 5th epoch, and last epoch
+        if t &lt;= 10 or t % 5 == 0 or t == max_epochs:
+            print_row(
+                headers,
+                [
+                    t,
+                    f"{x:.8f}",
+                    f"{y:.8f}",
+                    f"{f_val:.10f}",
+                    f"{g2_x:.8f}",
+                    f"{g2_y:.8f}",
+                ],
+            )
+
+    print("\nFinal AdaGrad result:")
+    print(f"x* = {x:.10f}, y* = {y:.10f}")
+    print(f"f(x*, y*) = {x ** 2 + y ** 2:.12f}")
+
+    return x, y, x ** 2 + y ** 2
+
+
+# ============================================================================
+# PROBLEM 3: Lagrange Multipliers
+# ============================================================================
+def problem_3_lagrange():
+    print_section("PROBLEM 3: Lagrange Multipliers for constrained minimization")
+
+    print("Objective function: f(x, y) = x + 2y")
+    print("Constraint: g(x, y) = x^2 + y^2 = 4")
+    print("Initial guess (given): (0, 0)\n")
+
+    print("Lagrangian:")
+    print("L(x, y, lambda) = x + 2y + lambda(x^2 + y^2 - 4)\n")
+
+    print("Stationary equations:")
+    print("dL/dx = 1 + 2lambda x = 0  =&gt;  x = -1/(2lambda)")
+    print("dL/dy = 2 + 2lambda y = 0  =&gt;  y = -1/lambda")
+    print("dL/dlambda = x^2 + y^2 - 4 = 0\n")
+
+    # Substitute x and y into constraint:
+    # (1/(4*lambda^2)) + (1/lambda^2) = 4
+    # (5/4) * (1/lambda^2) = 4
+    # lambda^2 = 5/16
+    lambda_abs = math.sqrt(5.0) / 4.0
+    lambda_1 = lambda_abs
+    lambda_2 = -lambda_abs
+
+    # Candidate 1
+    x1 = -1.0 / (2.0 * lambda_1)
+    y1 = -1.0 / lambda_1
+    f1 = x1 + 2.0 * y1
+
+    # Candidate 2
+    x2 = -1.0 / (2.0 * lambda_2)
+    y2 = -1.0 / lambda_2
+    f2 = x2 + 2.0 * y2
+
+    print(f"lambda solutions: +sqrt(5)/4 = {lambda_1:.10f}, -sqrt(5)/4 = {lambda_2:.10f}\n")
+
+    print("Candidate points and function values:")
+    print(f"Point 1: (x, y) = ({x1:.10f}, {y1:.10f}), f = {f1:.10f}")
+    print(f"Point 2: (x, y) = ({x2:.10f}, {y2:.10f}), f = {f2:.10f}\n")
+
+    if f1 &lt; f2:
+        x_min, y_min, f_min = x1, y1, f1
+        x_max, y_max, f_max = x2, y2, f2
+    else:
+        x_min, y_min, f_min = x2, y2, f2
+        x_max, y_max, f_max = x1, y1, f1
+
+    print("Conclusion:")
+    print(f"Minimum value is f_min = {f_min:.10f} at (x, y) = ({x_min:.10f}, {y_min:.10f})")
+    print(f"Maximum value is f_max = {f_max:.10f} at (x, y) = ({x_max:.10f}, {y_max:.10f})")
+
+    return x_min, y_min, f_min
+
+
+# ============================================================================
+# MAIN EXECUTION
+# ============================================================================
+if __name__ == "__main__":
+    print("\n" + "#" * 90)
+    print(" " * 22 + "MATHEMATICAL FOUNDATIONS FOR DATA SCIENCE")
+    print(" " * 33 + "ASSIGNMENT 2 SOLUTIONS")
+    print("#" * 90)
+    print("\nName: [Your Name]")
+    print("ID: [Your ID]")
+    print("Date: 11 April 2026")
+    print("Due Date: 16 April 2026")
+
+    try:
+        adam_result = problem_1_adam()
+        adagrad_result = problem_2_adagrad()
+        lagrange_result = problem_3_lagrange()
+
+        print_section("SUMMARY OF SOLUTIONS")
+        print("Problem 1: Adam optimizer implemented for 50 epochs")
+        print(f"  Final point: ({adam_result[0]:.10f}, {adam_result[1]:.10f})")
+        print(f"  Final objective: {adam_result[2]:.12f}")
+
+        print("Problem 2: AdaGrad optimizer implemented for 50 epochs")
+        print(f"  Final point: ({adagrad_result[0]:.10f}, {adagrad_result[1]:.10f})")
+        print(f"  Final objective: {adagrad_result[2]:.12f}")
+
+        print("Problem 3: Lagrange multipliers solved analytically")
+        print(f"  Minimum point: ({lagrange_result[0]:.10f}, {lagrange_result[1]:.10f})")
+        print(f"  Minimum value: {lagrange_result[2]:.10f}")
+
+        print("\n" + "#" * 90)
+        print(" " * 31 + "ALL PROBLEMS COMPLETED")
+        print("#" * 90 + "\n")
+
+    except Exception as exc:
+        print(f"\nError occurred: {exc}", file=sys.stderr)
+        import traceback
+
+        traceback.print_exc()
+        sys.exit(1)
+</pre>
+        </div>
+        
+        <div class="output-section">
+            <h3>Program Output - All Solutions:</h3>
+            <pre>
+##########################################################################################
+                      MATHEMATICAL FOUNDATIONS FOR DATA SCIENCE
+                                 ASSIGNMENT 2 SOLUTIONS
+##########################################################################################
+
+Name: [Your Name]
+ID: [Your ID]
+Date: 11 April 2026
+Due Date: 16 April 2026
+
+==========================================================================================
+ PROBLEM 1: Adam Optimizer for f(x, y) = x^2 + y^2
+==========================================================================================
+
+Initial settings:
+x0 = -2.0, y0 = 2.0
+alpha = 0.1, beta1 = 0.9, beta2 = 0.9, eps = 1e-08, epochs = 50
+
+       epoch |            x |            y |       f(x,y) |       grad_x |       grad_y
+-------------+--------------+--------------+--------------+--------------+-------------
+           1 |  -1.90000000 |   1.90000000 | 7.2200000019 |  -4.00000000 |   4.00000000
+           2 |  -1.80003286 |   1.80003286 | 6.4802365583 |  -3.80000000 |   3.80000000
+           3 |  -1.70012520 |   1.70012520 | 5.7808514026 |  -3.60006571 |   3.60006571
+           4 |  -1.60030803 |   1.60030803 | 5.1219715981 |  -3.40025040 |   3.40025040
+           5 |  -1.50061751 |   1.50061751 | 4.5037058466 |  -3.20061607 |   3.20061607
+           6 |  -1.40109599 |   1.40109599 | 3.9261399691 |  -3.00123503 |   3.00123503
+           7 |  -1.30179325 |   1.30179325 | 3.3893313172 |  -2.80219199 |   2.80219199
+           8 |  -1.20276802 |   1.20276802 | 2.8933017997 |  -2.60358649 |   2.60358649
+           9 |  -1.10408992 |   1.10408992 | 2.4380291143 |  -2.40553603 |   2.40553603
+          10 |  -1.00584185 |   1.00584185 | 2.0234356513 |  -2.20817985 |   2.20817985
+          15 |  -0.52531974 |   0.52531974 | 0.5519216620 |  -1.23891702 |   1.23891702
+          20 |  -0.08335094 |   0.08335094 | 0.0138947591 |  -0.33303627 |   0.33303627
+          25 |   0.26054354 |  -0.26054354 | 0.1357658764 |   0.40824763 |  -0.40824763
+          30 |   0.41427837 |  -0.41427837 | 0.3432531319 |   0.80349852 |  -0.80349852
+          35 |   0.35567151 |  -0.35567151 | 0.2530044526 |   0.76265273 |  -0.76265273
+          40 |   0.16180827 |  -0.16180827 | 0.0523638357 |   0.41333137 |  -0.41333137
+          45 |  -0.06278448 |   0.06278448 | 0.0078837819 |  -0.04285371 |   0.04285371
+          50 |  -0.18417987 |   0.18417987 | 0.0678444464 |  -0.34860729 |   0.34860729
+
+Final Adam result:
+x* = -0.1841798664, y* = 0.1841798664
+f(x*, y*) = 0.067844446371
+
+==========================================================================================
+ PROBLEM 2: AdaGrad Optimizer for f(x, y) = x^2 + y^2
+==========================================================================================
+
+Initial settings:
+x0 = -2.0, y0 = 2.0
+alpha = 0.1, eps = 1e-08, epochs = 50
+
+       epoch |            x |            y |       f(x,y) |     acc_g2_x |     acc_g2_y
+-------------+--------------+--------------+--------------+--------------+-------------
+           1 |  -1.90000000 |   1.90000000 | 7.2200000019 |  16.00000000 |  16.00000000
+           2 |  -1.83112505 |   1.83112505 | 6.7060379281 |  30.44000000 |  30.44000000
+           3 |  -1.77582152 |   1.77582152 | 6.3070841095 |  43.85207586 |  43.85207586
+           4 |  -1.72855704 |   1.72855704 | 5.9758188693 |  56.46624408 |  56.46624408
+           5 |  -1.68676160 |   1.68676160 | 5.6903293816 |  68.41788182 |  68.41788182
+           6 |  -1.64899688 |   1.64899688 | 5.4383814365 |  79.79854058 |  79.79854058
+           7 |  -1.61436267 |   1.61436267 | 5.2123336582 |  90.67530345 |  90.67530345
+           8 |  -1.58225154 |   1.58225154 | 5.0070398703 | 101.09997077 | 101.09997077
+           9 |  -1.55223082 |   1.55223082 | 4.8188410664 | 111.11405051 | 111.11405051
+          10 |  -1.52397945 |   1.52397945 | 4.6450267171 | 120.75173264 | 120.75173264
+          15 |  -1.40221845 |   1.40221845 | 3.9324331874 | 164.17302722 | 164.17302722
+          20 |  -1.30248343 |   1.30248343 | 3.3929261907 | 201.23308074 | 201.23308074
+          25 |  -1.21711804 |   1.21711804 | 2.9627526640 | 233.37011080 | 233.37011080
+          30 |  -1.14211746 |   1.14211746 | 2.6088646021 | 261.53026411 | 261.53026411
+          35 |  -1.07507144 |   1.07507144 | 2.3115571990 | 286.39028586 | 286.39028586
+          40 |  -1.01439371 |   1.01439371 | 2.0579891849 | 308.46059752 | 308.46059752
+          45 |  -0.95897299 |   0.95897299 | 1.8392583927 | 328.14056456 | 328.14056456
+          50 |  -0.90799386 |   0.90799386 | 1.6489056861 | 345.75116877 | 345.75116877
+
+Final AdaGrad result:
+x* = -0.9079938563, y* = 0.9079938563
+f(x*, y*) = 1.648905686069
+
+==========================================================================================
+ PROBLEM 3: Lagrange Multipliers for constrained minimization
+==========================================================================================
+
+Objective function: f(x, y) = x + 2y
+Constraint: g(x, y) = x^2 + y^2 = 4
+Initial guess (given): (0, 0)
+
+Lagrangian:
+L(x, y, lambda) = x + 2y + lambda(x^2 + y^2 - 4)
+
+Stationary equations:
+dL/dx = 1 + 2lambda x = 0  =&gt;  x = -1/(2lambda)
+dL/dy = 2 + 2lambda y = 0  =&gt;  y = -1/lambda
+dL/dlambda = x^2 + y^2 - 4 = 0
+
+lambda solutions: +sqrt(5)/4 = 0.5590169944, -sqrt(5)/4 = -0.5590169944
+
+Candidate points and function values:
+Point 1: (x, y) = (-0.8944271910, -1.7888543820), f = -4.4721359550
+Point 2: (x, y) = (0.8944271910, 1.7888543820), f = 4.4721359550
+
+Conclusion:
+Minimum value is f_min = -4.4721359550 at (x, y) = (-0.8944271910, -1.7888543820)
+Maximum value is f_max = 4.4721359550 at (x, y) = (0.8944271910, 1.7888543820)
+
+==========================================================================================
+ SUMMARY OF SOLUTIONS
+==========================================================================================
+
+Problem 1: Adam optimizer implemented for 50 epochs
+  Final point: (-0.1841798664, 0.1841798664)
+  Final objective: 0.067844446371
+Problem 2: AdaGrad optimizer implemented for 50 epochs
+  Final point: (-0.9079938563, 0.9079938563)
+  Final objective: 1.648905686069
+Problem 3: Lagrange multipliers solved analytically
+  Minimum point: (-0.8944271910, -1.7888543820)
+  Minimum value: -4.4721359550
+
+##########################################################################################
+                               ALL PROBLEMS COMPLETED
+##########################################################################################
+
+</pre>
+        </div>
+        
+        <div class="summary">
+            <h2>Summary of Solutions</h2>
+            <ul>
+                <li><strong>Problem 1:</strong> Adam optimizer implemented for f(x, y) = x^2 + y^2 with all intermediate iterations</li>
+                <li><strong>Problem 2:</strong> AdaGrad optimizer implemented for f(x, y) = x^2 + y^2 with accumulated gradient tracking</li>
+                <li><strong>Problem 3:</strong> Lagrange multiplier method used to solve constrained minimization analytically</li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>

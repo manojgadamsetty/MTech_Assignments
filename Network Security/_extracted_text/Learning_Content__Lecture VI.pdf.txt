@@ -1,0 +1,84 @@
+
+
+===== PAGE 1 =====
+BITSPilaniNetwork SecuritySubhadip SinghaComputer Science & Information System 
+
+
+===== PAGE 2 =====
+BITSPilani
+ES ZG513/ SS ZG513, Network SecurityLecture No VI.
+
+
+===== PAGE 3 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Mathematics for Public Key Cryptography•Applied Cryptography–Number Theory Foundations–Modular Arithmetic, Euler & Fermat Theorems–Primitive Roots and Discrete Logarithm
+
+
+===== PAGE 4 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Why Mathematics?•Public key systems rely on:–Modular arithmetic–Prime numbers–Finite cyclic groups–Hard mathematical problems
+
+
+===== PAGE 5 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Modular Arithmetic•DeﬁniƟon: a ≡ b (mod n) if n | (a - b)–Closed under addition & multiplication–Efficient modular exponentiation is essential
+
+
+===== PAGE 6 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Fast Modular Exponentiation (Example)•Compute 3^13 mod 17–3^2=9, 3^4=13, 3^8=16–3^13 = 3^8 * 3^4 * 3–Answer = 12
+
+
+===== PAGE 7 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Euler’s Totient FunctionNumber of integers in {1,2,…,n-1} that are coprime to n.Important FormulasIf p is prime: φ(p)=p−1If p prime, k≥1: φ(p^k)=p^{k}−p^{k−1}If n = p1^e1 p2^e2: φ(n)= n Π(1 - 1/pi)
+
+
+===== PAGE 8 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Totient Example•Compute φ(84)–84 = 2^2 * 3 * 7–φ(84)=84(1-1/2)(1-1/3)(1-1/7)–Answer = 24
+
+
+===== PAGE 9 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Euler’s TheoremsIn number theory, Euler's theorem (also known as the Fermat–Euler theorem or Euler's totient theorem) states thatIf gcd(a,n)=1 then a^{φ(n)} ≡ 1(mod n) where φ(n) is Euler’s Totient Function.Used in RSA correctness proof.
+
+
+===== PAGE 10 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Euler Example•Compute 7^100 mod 40–φ(40)=16–100=16*6+4–Answer = 1
+
+
+===== PAGE 11 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Fermat’s Little TheoremIf p is prime and gcd(a,p)=1a^{p−1} ≡ 1(mod p)a^{p} ≡ a(mod p)Special case of Euler
+
+
+===== PAGE 12 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Modular Inverse Example•Find 5^-1 mod 19–5^17 ≡ 5^-1 (mod 19)–Answer = 4
+
+
+===== PAGE 13 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Mathematics•n = pq–φ(n)=(p-1)(q-1)–Choose e with gcd(e,φ(n))=1–Find d = e^-1 mod φ(n)
+
+
+===== PAGE 14 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+RSA Example•p=11, q=17–n=187, φ(n)=160–e=7, d=23–Encryption/Decryption works by Euler theorem
+
+
+===== PAGE 15 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Primitive Roots•Zp* is cyclic for prime p–Generator g has order p-1–Used in Diffie–Hellman
+
+
+===== PAGE 16 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Discrete Logarithm Problem•Given g^x ≡ y (mod p)–Find x–Easy forward, hard reverse–Security basis of DH & ElGamal
+
+
+===== PAGE 17 =====
+BITS Pilani, Deemed to be University under Section 3 of UGC Act, 1956
+Summary•Modular arithmeƟc → Eﬃcient computaƟon–ToƟent & Euler → RSA–PrimiƟve roots → DH–DLP → Security foundaƟon

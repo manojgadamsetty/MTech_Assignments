@@ -1,0 +1,76 @@
+
+
+===== PAGE 1 =====
+Classical Encryption TechniquesApplied CryptographyLearning Objectives, Examples, and Security Analysis
+
+
+===== PAGE 2 =====
+Learning Objectives•Understand classical encryption techniques•Analyze cryptanalytic attacks•Study substitution and transposition ciphers•Compare security of classical ciphers
+
+
+===== PAGE 3 =====
+Classical Encryption – Introduction•Developed before modern computers•Based on substitution and permutation•Primary goal: confidentiality
+
+
+===== PAGE 4 =====
+Cryptanalytic Attacks•Ciphertext-only attack•Known-plaintext attack•Chosen-plaintext attack•Chosen-ciphertext attack
+
+
+===== PAGE 5 =====
+Security Criteria•Size of key space•Resistance to known attacks•Confusion and diffusion•Efficiency and practicality
+
+
+===== PAGE 6 =====
+Caesar Cipher•Monoalphabetic substitution cipher•Key = shift value (0–25)•Encryption: C = (P + k) mod 26•Easily broken by brute force
+
+
+===== PAGE 7 =====
+Caesar Cipher – Example•Plaintext: ATTACK•Key: k = 3•Ciphertext: DWWDFN•Only 25 possible keys
+
+
+===== PAGE 8 =====
+Hill Cipher•Based on linear algebra•Plaintext blocks as vectors•Encryption: C = KP mod 26•Key is an invertible matrix
+
+
+===== PAGE 9 =====
+Hill Cipher – Security•Provides good diffusion•Vulnerable to known-plaintext attacks•Requires matrix inverse modulo 26
+
+
+===== PAGE 10 =====
+Vigenère Cipher•Polyalphabetic substitution cipher•Uses repeating keyword•Reduces frequency patterns•Encryption uses multiple Caesar shifts
+
+
+===== PAGE 11 =====
+Vigenère Cipher – Example•Plaintext: ATTACKATDAWN•Key: LEMON•Ciphertext: LXFOPVEFRNHR•Broken using Kasiski examination
+
+
+===== PAGE 12 =====
+Vernam Cipher•Uses binary addition (XOR)•Key length equals plaintext length•Foundation of One-Time Pad
+
+
+===== PAGE 13 =====
+One-Time Pad (OTP)•Key is truly random•Key used only once•Provides perfect secrecy•Impractical key distribution
+
+
+===== PAGE 14 =====
+Comparison of Substitution Ciphers•Caesar: very weak•Playfair: moderate security•Hill: strong but breakable•Vigenère: stronger, not secure•OTP: theoretically unbreakable
+
+
+===== PAGE 15 =====
+Security Comparison Table (Summary)•MonoalphabeƟc → weakest•PolyalphabeƟc → beƩer security•Random key + OTP → perfect secrecy•Key management is critical
+
+
+===== PAGE 16 =====
+Transposition Cipher•Rearranges character positions•Does not change letter identities•Preserves frequency distribution•Examples: Rail Fence, Columnar
+
+
+===== PAGE 17 =====
+Transposition Cipher – Example•Plaintext: MEETATNOON•Rail Fence (2 rails)•Ciphertext: MTAONETNO•Often combined with substitution
+
+
+===== PAGE 18 =====
+Lecture Summary•Classical ciphers form the basis of modern cryptography•Security relies on key secrecy•Most classical ciphers are vulnerable•OTP achieves perfect secrecy theoretically
+
+
+===== PAGE 19 =====
+Quick Quiz•Which cipher provides perfect secrecy?•Which attack breaks Hill cipher?•Why is Caesar cipher insecure?

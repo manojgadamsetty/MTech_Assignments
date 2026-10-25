@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site-Sathi | Smart Construction Inventory Management System</title>
+  <style>
+    :root {
+      --navy: #17365d;
+      --blue: #0878c9;
+      --ink: #253246;
+      --muted: #5f6e80;
+      --line: #cbd7e3;
+      --pale: #f2f6fa;
+      --pale-blue: #eaf3fb;
+      --accent: #eaf6f4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef2f6;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    .toolbar {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; gap: 10px; justify-content: center;
+      padding: 12px; background: var(--navy);
+      box-shadow: 0 2px 8px #0003;
+    }
+    button {
+      border: 0; border-radius: 5px; padding: 10px 18px;
+      color: white; background: var(--blue); cursor: pointer;
+      font-weight: 700; font-size: 14px;
+    }
+    button.secondary { background: #52657d; }
+    .document {
+      max-width: 900px; margin: 25px auto; background: white;
+      padding: 48px 62px; box-shadow: 0 1px 10px #26384922;
+    }
+    .cover { text-align: center; min-height: 760px; display: flex; flex-direction: column; justify-content: center; }
+    .institution { font-size: 24px; color: var(--navy); font-weight: 800; letter-spacing: .3px; }
+    .division { font-size: 17px; margin: 8px 0 42px; }
+    .banner { background: var(--navy); color: white; padding: 26px 18px; font-size: 23px; font-weight: 800; }
+    .cover-table { margin: 30px auto; max-width: 710px; text-align: left; }
+    h1 { color: var(--navy); font-size: 25px; border-bottom: 3px solid var(--blue); padding-bottom: 6px; margin-top: 38px; }
+    h2 { color: var(--blue); font-size: 19px; margin-top: 27px; }
+    h3 { color: var(--navy); font-size: 16px; }
+    p { text-align: justify; }
+    .lead { font-size: 16px; }
+    .callout { border-left: 5px solid var(--blue); background: var(--pale-blue); padding: 13px 17px; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 22px; font-size: 13px; }
+    th { background: var(--navy); color: white; text-align: left; }
+    th, td { border: 1px solid var(--line); padding: 8px 9px; vertical-align: top; }
+    tr:nth-child(even) td { background: var(--pale); }
+    ul, ol { margin-top: 6px; }
+    figure { margin: 22px 0 30px; page-break-inside: avoid; }
+    figcaption { text-align: center; color: var(--muted); font-size: 13px; font-style: italic; margin-top: 7px; }
+    .diagram { width: 100%; border: 1px solid var(--line); background: white; }
+    .mermaid { width: 100%; border: 1px solid var(--line); background: white; padding: 14px; overflow-x: auto; }
+    .mermaid svg { max-width: 100%; height: auto; }
+    .toc li { margin: 6px 0; }
+    .small { color: var(--muted); font-size: 13px; }
+    .page-break { page-break-before: always; }
+    .footer-note { text-align: center; color: var(--muted); border-top: 1px solid var(--line); margin-top: 45px; padding-top: 12px; font-size: 12px; }
+    @media (max-width: 700px) {
+      .document { margin: 0; padding: 25px 18px; }
+      .institution { font-size: 19px; }
+      .banner { font-size: 18px; }
+      table { font-size: 11px; }
+    }
+    @media print {
+      @page { size: A4; margin: 15mm 14mm 16mm; }
+      body { background: white; }
+      .toolbar { display: none; }
+      .document { margin: 0; max-width: none; padding: 0; box-shadow: none; }
+      .cover { min-height: 260mm; }
+      h1 { break-after: avoid; page-break-after: avoid; }
+      h1.major-section { break-before: page; page-break-before: always; }
+      h2, h3 { break-after: avoid; page-break-after: avoid; }
+      figure, table, .callout { break-inside: avoid; page-break-inside: avoid; }
+      figure { margin-top: 10px; margin-bottom: 16px; }
+      .mermaid { max-height: 205mm; overflow: hidden; padding: 5px; break-inside: avoid; }
+      .mermaid svg { max-height: 198mm; width: auto !important; max-width: 100%; }
+      section { break-inside: auto; }
+      a { color: inherit; text-decoration: none; }
+      .mermaid { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="window.print()">Export / Save as PDF</button>
+    <button class="secondary" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to Top</button>
+  </div>
+  <main class="document">
+    <section class="cover">
+      <div class="institution">BIRLA INSTITUTE OF TECHNOLOGY &amp; SCIENCE, PILANI</div>
+      <div class="division">Work Integrated Learning Programmes Division</div>
+      <div class="banner">ASSIGNMENT DOCUMENTATION<br>SOFTWARE SYSTEM SPECIFICATION &amp; ARCHITECTURAL MODELING</div>
+      <table class="cover-table">
+        <tr><th>Item</th><th>Details</th></tr>
+        <tr><td>Course</td><td>SS ZG562: Software Engineering and Management</td></tr>
+        <tr><td>Project Title</td><td>Smart Construction Site Material &amp; Inventory Management System</td></tr>
+        <tr><td>Group Name</td><td>Site-Sathi</td></tr>
+        <tr><td>Members</td><td>ANKIT KUSHWAHA (2026ns12135)<br>GADAMSETTY V SAI MANOJ KUMAR (2025mt12100)</td></tr>
+        <tr><td>Faculty / Instructor</td><td>BHUPINDER SINGH PAWA</td></tr>
+        <tr><td>Submission Date</td><td>07 October 2026</td></tr>
+      </table>
+      <p style="text-align:center"><em>Group assignment reference document</em></p>
+    </section>
+
+    <section>
+      <h1>Table of Contents</h1>
+      <ol class="toc">
+        <li>Executive Summary, Case Study and Scope</li>
+        <li>Business Goals and Non-Functional Requirements</li>
+        <li>Use-Case Model</li>
+        <li>Use-Case Prioritization</li>
+        <li>Significant Use-Case Specifications</li>
+        <li>Software Architecture</li>
+        <li>Domain Class Modeling</li>
+        <li>Behavioral Modeling</li>
+        <li>Requirements Traceability and Class-Operation Mapping</li>
+        <li>Conclusion and References</li>
+      </ol>
+    </section>
+
+    <section>
+      <h1>1. Executive Summary, Case Study and Scope</h1>
+      <p class="lead">Civil construction projects frequently experience material wastage, theft, stockouts, manual data-entry errors and procurement delays. These issues are intensified across multiple construction sites where connectivity may be intermittent and material records are maintained on paper.</p>
+      <p>The Smart Construction Site Material &amp; Inventory Management System digitizes material requests, purchase orders, delivery verification, inventory updates and reorder decisions in one auditable workflow. It is designed for site engineers and managers who need reliable field information even when the network is temporarily unavailable.</p>
+      <div class="callout"><strong>Case-study objective:</strong> Replace fragmented paper-based material tracking with a secure, auditable and offline-capable inventory workflow.</div>
+      <table>
+        <tr><th>Target Indicator</th><th>Target</th></tr>
+        <tr><td>Material wastage and theft</td><td>20% reduction within six months</td></tr>
+        <tr><td>Stockout-induced work stoppages</td><td>35% reduction</td></tr>
+        <tr><td>Purchase-order approval to dispatch</td><td>Less than four hours</td></tr>
+        <tr><td>Physical-to-digital inventory accuracy</td><td>98% match</td></tr>
+      </table>
+      <h2>1.1 In-Scope Functions</h2>
+      <ul>
+        <li>Material requisition and purchase-order management.</li>
+        <li>Supplier and purchase-order status tracking.</li>
+        <li>QR-code delivery-docket verification.</li>
+        <li>Recording of delivered quantity, batch number and storage yard.</li>
+        <li>Inventory balance updates and audit logging.</li>
+        <li>Low-stock detection, reorder recommendations and alerts.</li>
+        <li>Offline transaction capture using encrypted SQLite storage.</li>
+        <li>Automatic synchronization after network restoration.</li>
+        <li>Photo evidence for weighbridge slips and quality documents.</li>
+        <li>Role-based access for Site Engineers, Site Managers, Suppliers and Project Directors.</li>
+      </ul>
+      <h2>1.2 Out-of-Scope Functions</h2>
+      <ul>
+        <li>Payroll and employee attendance management.</li>
+        <li>Complete accounting and financial-ledger management.</li>
+        <li>Construction design and structural analysis.</li>
+        <li>Fleet maintenance and vehicle tracking.</li>
+        <li>Supplier payment processing.</li>
+        <li>Automated physical movement of material inside the site.</li>
+      </ul>
+      <h2>1.3 Assumptions</h2>
+      <ul>
+        <li>Each construction site has a unique site identifier.</li>
+        <li>Materials have configured minimum-stock and reorder quantities.</li>
+        <li>Approved suppliers provide valid purchase-order information.</li>
+        <li>Site Engineers have mobile devices capable of QR scanning.</li>
+        <li>Site Managers are authorized to approve purchase orders.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>2. Business Goals and Non-Functional Requirements</h1>
+      <table>
+        <tr><th>Goal ID</th><th>Business Objective</th><th>Target Impact / Metric</th></tr>
+        <tr><td>BG-01</td><td>Material Wastage Reduction</td><td>Reduce raw-material wastage, spoilage and theft by 20% within six months.</td></tr>
+        <tr><td>BG-02</td><td>Downtime Prevention</td><td>Decrease stockout-induced work stoppages by 35% through reorder alerts.</td></tr>
+        <tr><td>BG-03</td><td>Procurement Efficiency</td><td>Reduce approval-to-dispatch lead time from 48 hours to less than four hours.</td></tr>
+        <tr><td>BG-04</td><td>Inventory Reconciliation</td><td>Achieve 98% agreement between physical audits and digital inventory logs.</td></tr>
+      </table>
+      <table>
+        <tr><th>NFR ID</th><th>Quality Attribute</th><th>Specification and Verification Criterion</th></tr>
+        <tr><td>NFR-01</td><td>Availability</td><td>Backend APIs shall maintain 99.9% uptime during operational hours (06:00–22:00).</td></tr>
+        <tr><td>NFR-02</td><td>Performance</td><td>Stock-balance queries shall respond within 2 seconds under 500 concurrent users.</td></tr>
+        <tr><td>NFR-03</td><td>Offline Synchronization</td><td>SQLite shall store up to 1,000 offline transactions and synchronize within 30 seconds of reconnection.</td></tr>
+        <tr><td>NFR-04</td><td>Security and Integrity</td><td>Data in transit uses TLS 1.3; local storage uses AES-256 and RBAC controls access.</td></tr>
+        <tr><td>NFR-05</td><td>Usability</td><td>High-contrast field UI with touch targets of at least 48 px for outdoor glove usage.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>3. Use-Case Model</h1>
+      <p>The use-case model defines the interaction between operational actors and the system boundary. The Project Director is included because high-value orders require dual approval, while the Stock Scheduler represents the automated threshold-monitoring function.</p>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 560" role="img" aria-label="Use-case diagram">
+          <rect x="180" y="35" width="650" height="470" fill="#f4fbfb" stroke="#0878c9" stroke-width="2"/>
+          <text x="505" y="62" text-anchor="middle" font-weight="bold" fill="#17365d">Smart Construction Inventory System</text>
+          <g fill="white" stroke="#17365d" stroke-width="2">
+            <ellipse cx="360" cy="135" rx="100" ry="34"/><ellipse cx="630" cy="135" rx="100" ry="34"/>
+            <ellipse cx="360" cy="255" rx="100" ry="34"/><ellipse cx="630" cy="255" rx="100" ry="34"/>
+            <ellipse cx="360" cy="385" rx="100" ry="34"/><ellipse cx="630" cy="385" rx="100" ry="34"/>
+          </g>
+          <g fill="#253246" font-size="13" text-anchor="middle">
+            <text x="360" y="131">UC-01 Request Material</text><text x="630" y="131">UC-02 Log Delivery</text>
+            <text x="360" y="251">UC-03 Verify Stock</text><text x="630" y="251">UC-04 Trigger Reorder</text>
+            <text x="360" y="381">UC-05 Authenticate User</text><text x="630" y="381">UC-06 Low-Stock Alert</text>
+          </g>
+          <g stroke="#555" stroke-width="1.5" fill="none">
+            <path d="M105 110 L260 130"/><path d="M105 180 L530 140"/><path d="M105 250 L260 260"/>
+            <path d="M105 320 L530 265"/><path d="M105 390 L530 255"/><path d="M105 460 L530 390"/>
+            <path d="M360 169 L360 350" stroke-dasharray="6 4"/><path d="M630 289 L630 350" stroke-dasharray="6 4"/>
+          </g>
+          <g fill="#253246" font-size="13" text-anchor="middle">
+            <text x="78" y="91">Site Engineer</text><text x="78" y="161">Site Manager</text>
+            <text x="78" y="231">Supplier</text><text x="78" y="301">Project Director</text>
+            <text x="78" y="371">Stock Scheduler</text>
+          </g>
+          <g stroke="#253246" stroke-width="2"><circle cx="78" cy="110" r="10" fill="none"/><path d="M78 120v25M60 130h36M78 145l-14 22M78 145l14 22"/><circle cx="78" cy="180" r="10" fill="none"/><path d="M78 190v25M60 200h36M78 215l-14 22M78 215l14 22"/><circle cx="78" cy="250" r="10" fill="none"/><path d="M78 260v25M60 270h36M78 285l-14 22M78 285l14 22"/></g>
+          <text x="390" y="335" font-size="11">«include»</text><text x="650" y="335" font-size="11">«extend»</text>
+        </svg>
+        <figcaption>Figure 1. Use-Case Diagram and System Boundary</figcaption>
+      </figure>
+      <table>
+        <tr><th>Actor</th><th>Responsibility</th></tr>
+        <tr><td>Site Engineer</td><td>Raises requests, records deliveries and verifies physical shipments.</td></tr>
+        <tr><td>Site Manager</td><td>Reviews stock, approves purchase orders and handles exceptions.</td></tr>
+        <tr><td>Supplier</td><td>Acknowledges purchase orders and dispatches material.</td></tr>
+        <tr><td>Project Director</td><td>Provides second approval for high-value purchase orders.</td></tr>
+        <tr><td>Stock Scheduler</td><td>Automatically checks thresholds and initiates reorder recommendations.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>4. Use-Case Prioritization</h1>
+      <p>MoSCoW prioritization aligns implementation sequencing with business value, operational risk and the minimum viable product.</p>
+      <table>
+        <tr><th>Priority</th><th>Use Case</th><th>Rationale</th><th>Release</th></tr>
+        <tr><td>Must Have</td><td>UC-05 Authenticate User</td><td>Security baseline and role-based access.</td><td>Sprint 1</td></tr>
+        <tr><td>Must Have</td><td>UC-02 Log Material Delivery</td><td>Core receipt and inventory update.</td><td>Sprint 1</td></tr>
+        <tr><td>Must Have</td><td>UC-03 Verify Stock Level</td><td>Accurate stock information.</td><td>Sprint 1</td></tr>
+        <tr><td>Must Have</td><td>UC-04 Trigger Reorder</td><td>Prevents stockouts and site delays.</td><td>Sprint 1</td></tr>
+        <tr><td>Should Have</td><td>UC-01 Request Material</td><td>Automates the internal approval workflow.</td><td>Sprint 2</td></tr>
+        <tr><td>Should Have</td><td>UC-06 Low-Stock Alert</td><td>Provides proactive notification.</td><td>Sprint 2</td></tr>
+        <tr><td>Could Have</td><td>Supplier Performance Rating</td><td>Enables future supplier analytics.</td><td>Sprint 3</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>5. Significant Use-Case Specifications</h1>
+      <h2>5.1 UC-02: Log Material Delivery</h2>
+      <table>
+        <tr><th>Template Field</th><th>Specification</th></tr>
+        <tr><td>Goal</td><td>Record and verify a material delivery and update site inventory.</td></tr>
+        <tr><td>Primary Actor</td><td>Site Engineer / Gatekeeper.</td></tr>
+        <tr><td>Scope and Level</td><td>Smart Construction Inventory System; user-goal level.</td></tr>
+        <tr><td>Trigger</td><td>A supplier shipment arrives at the construction-site gate.</td></tr>
+        <tr><td>Preconditions</td><td>User is authenticated; purchase order exists in Dispatched state or local cache.</td></tr>
+        <tr><td>Main Success Scenario</td><td>1. Select Receive Delivery. 2. Scan QR docket or enter PO ID. 3. Display PO details. 4. Enter quantity, batch and yard. 5. Attach photo. 6. Validate, create receipt, update inventory and mark PO Delivered.</td></tr>
+        <tr><td>Alternate Flows</td><td>Partial delivery changes PO to Partially Delivered. A quality defect creates a rejection slip and blocks stock addition.</td></tr>
+        <tr><td>Exception Flow</td><td>If offline, save the encrypted transaction locally and synchronize after reconnection.</td></tr>
+        <tr><td>Postconditions</td><td>Inventory balance and DeliveryReceipt are updated; the audit log stores user, time and GPS.</td></tr>
+        <tr><td>Business Rules</td><td>Delivered quantity cannot exceed 105% of PO quantity without manager approval. Weighbridge photo is mandatory for aggregate deliveries above five metric tons.</td></tr>
+        <tr><td>Special Requirements</td><td>QR scanning, offline operation, photo evidence, NFR-03 synchronization and NFR-04 security.</td></tr>
+      </table>
+      <h2>5.2 UC-04: Trigger Reorder and Process Purchase Order</h2>
+      <table>
+        <tr><th>Template Field</th><th>Specification</th></tr>
+        <tr><td>Goal</td><td>Create and process a purchase order when available stock reaches the safety threshold.</td></tr>
+        <tr><td>Primary Actor</td><td>Stock Scheduler / Site Manager.</td></tr>
+        <tr><td>Scope and Level</td><td>Smart Construction Inventory System; system-goal level.</td></tr>
+        <tr><td>Trigger</td><td>Inventory verification detects stock less than or equal to the minimum threshold.</td></tr>
+        <tr><td>Preconditions</td><td>Safety stock and reorder quantity are configured; an approved supplier catalogue exists.</td></tr>
+        <tr><td>Main Success Scenario</td><td>1. Detect low stock. 2. Create draft PO. 3. Notify manager. 4. Manager verifies budget and approves. 5. Transmit PO to supplier. 6. Supplier acknowledges and dispatches.</td></tr>
+        <tr><td>Alternate Flows</td><td>Manager adjusts quantity; Engineer requests a manual reorder because of an impending weather delay.</td></tr>
+        <tr><td>Exception Flow</td><td>Supplier returns Capacity Exceeded; the system alerts the manager and suggests a secondary approved supplier.</td></tr>
+        <tr><td>Postconditions</td><td>PO is Approved or Dispatched and the approval audit record is stored.</td></tr>
+        <tr><td>Business Rules</td><td>Orders above $50,000 require Site Manager and Project Director approval. Auto-reorder is suppressed when yard capacity is above 90%.</td></tr>
+        <tr><td>Special Requirements</td><td>Dual approval, audit trail, supplier fallback and four-hour approval-to-dispatch target.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>6. Software Architecture</h1>
+      <p>A three-tier layered client-server architecture separates presentation, business logic and persistence concerns. This supports mobile field use, offline operation, maintainability and independent scaling.</p>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 430" role="img" aria-label="Three-tier architecture diagram">
+          <rect x="35" y="70" width="240" height="290" rx="8" fill="#f8eafa" stroke="#a95db7" stroke-width="2"/>
+          <rect x="330" y="70" width="240" height="290" rx="8" fill="#e5f5f1" stroke="#43ad9a" stroke-width="2"/>
+          <rect x="625" y="70" width="240" height="290" rx="8" fill="#fff0e5" stroke="#d58d50" stroke-width="2"/>
+          <g font-weight="bold" fill="#17365d" text-anchor="middle"><text x="155" y="98">PRESENTATION TIER</text><text x="450" y="98">APPLICATION TIER</text><text x="745" y="98">PERSISTENCE TIER</text></g>
+          <g fill="#253246" font-size="14" text-anchor="middle"><text x="155" y="145">Mobile PWA / React Native</text><text x="155" y="190">QR scanner</text><text x="155" y="235">Offline SQLite cache</text><text x="155" y="280">Web dashboard</text><text x="450" y="145">Node.js REST API</text><text x="450" y="190">Authentication + RBAC</text><text x="450" y="235">PO and reorder engine</text><text x="450" y="280">Offline sync manager</text><text x="745" y="145">PostgreSQL</text><text x="745" y="190">Redis cache</text><text x="745" y="235">AWS S3 photo store</text><text x="745" y="280">Audit log</text></g>
+          <path d="M275 210h55M570 210h55" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+          <text x="302" y="195" text-anchor="middle" font-size="12">HTTPS REST</text><text x="597" y="195" text-anchor="middle" font-size="12">SQL / cache / object</text>
+          <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+        </svg>
+        <figcaption>Figure 2. Three-Tier Layered Architecture and Data Flow</figcaption>
+      </figure>
+      <table>
+        <tr><th>Layer</th><th>Technology</th><th>Responsibilities</th></tr>
+        <tr><td>Presentation / Client</td><td>React Native PWA, SQLite</td><td>QR scanning, high-contrast field UI and local transaction caching.</td></tr>
+        <tr><td>Application / Middle</td><td>Node.js REST API, Express, sync engine</td><td>Authentication, RBAC, business rules, reorder logic and synchronization.</td></tr>
+        <tr><td>Persistence / Backend</td><td>PostgreSQL, Redis, AWS S3</td><td>Domain entities, stock cache, audit records and photo evidence.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>7. Domain Class Modeling</h1>
+      <p>The domain model represents site managers, suppliers, materials, purchase orders, delivery receipts and the inventory transaction ledger.</p>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 540" role="img" aria-label="Domain class diagram">
+          <g fill="white" stroke="#0878c9" stroke-width="2">
+            <rect x="30" y="40" width="190" height="135"/><rect x="30" y="260" width="190" height="130"/>
+            <rect x="310" y="155" width="220" height="170"/><rect x="650" y="40" width="210" height="135"/>
+            <rect x="650" y="260" width="210" height="135"/><rect x="310" y="400" width="220" height="115"/>
+          </g>
+          <g font-size="12" fill="#253246">
+            <text x="125" y="62" text-anchor="middle" font-weight="bold">SiteManager</text><text x="42" y="87">+ managerId</text><text x="42" y="106">+ name</text><text x="42" y="125">+ email</text><text x="42" y="151">+ approvePurchaseOrder()</text>
+            <text x="125" y="282" text-anchor="middle" font-weight="bold">Supplier</text><text x="42" y="307">+ supplierId</text><text x="42" y="326">+ companyName</text><text x="42" y="365">+ dispatchShipment()</text>
+            <text x="420" y="177" text-anchor="middle" font-weight="bold">PurchaseOrder</text><text x="322" y="202">+ poNumber</text><text x="322" y="221">+ orderDate</text><text x="322" y="240">+ status</text><text x="322" y="259">+ totalAmount</text><text x="322" y="290">+ calculateTotal()</text><text x="322" y="309">+ updateStatus()</text>
+            <text x="755" y="62" text-anchor="middle" font-weight="bold">Material</text><text x="662" y="87">+ materialId</text><text x="662" y="106">+ name</text><text x="662" y="125">+ currentQuantity</text><text x="662" y="144">+ minSafetyStock</text><text x="662" y="163">+ updateQuantity()</text>
+            <text x="755" y="282" text-anchor="middle" font-weight="bold">InventoryLog</text><text x="662" y="307">+ logId</text><text x="662" y="326">+ timestamp</text><text x="662" y="345">+ quantityChanged</text><text x="662" y="383">+ recordTransaction()</text>
+            <text x="420" y="422" text-anchor="middle" font-weight="bold">DeliveryReceipt</text><text x="322" y="447">+ receiptId</text><text x="322" y="466">+ deliveryDate</text><text x="322" y="485">+ receivedQuantity</text><text x="322" y="505">+ verifyReceipt()</text>
+          </g>
+          <g stroke="#555" stroke-width="1.5" fill="none"><path d="M220 105h90"/><path d="M220 320l90-70"/><path d="M530 190l120-80"/><path d="M755 175v85"/><path d="M530 285h120"/><path d="M420 325v75"/></g>
+          <g fill="#555" font-size="11"><text x="250" y="98">approves 1</text><text x="245" y="303">fulfils 1</text><text x="555" y="145">contains 1..*</text><text x="770" y="225">tracks 0..*</text><text x="555" y="277">generates 0..1</text></g>
+        </svg>
+        <figcaption>Figure 3. UML Domain Class Model</figcaption>
+      </figure>
+      <table>
+        <tr><th>Class</th><th>Key Attributes</th><th>Operations</th></tr>
+        <tr><td>SiteManager</td><td>managerId, name, email</td><td>approvePurchaseOrder(), rejectPurchaseOrder(), adjustOrderQuantity()</td></tr>
+        <tr><td>Supplier</td><td>supplierId, companyName</td><td>receivePurchaseOrder(), acknowledgePurchaseOrder(), dispatchShipment()</td></tr>
+        <tr><td>PurchaseOrder</td><td>poNumber, orderDate, status, totalAmount</td><td>calculateTotal(), updateStatus(), requestDualApproval()</td></tr>
+        <tr><td>Material</td><td>materialId, name, currentQuantity, minSafetyStock</td><td>checkStock(), updateQuantity(), isBelowSafetyThreshold()</td></tr>
+        <tr><td>InventoryLog</td><td>logId, timestamp, transactionType, quantityChanged</td><td>recordTransaction(), getCurrentBalance()</td></tr>
+        <tr><td>DeliveryReceipt</td><td>receiptId, deliveryDate, receivedQuantity</td><td>verifyReceipt(), attachPhoto(), markAsRejected()</td></tr>
+      </table>
+      <table>
+        <tr><th>Relationship</th><th>Multiplicity and Meaning</th></tr>
+        <tr><td>SiteManager approves PurchaseOrder</td><td>One manager approves zero or many POs; each PO has an approval record.</td></tr>
+        <tr><td>Supplier fulfils PurchaseOrder</td><td>One supplier fulfils zero or many POs; each PO has one primary supplier.</td></tr>
+        <tr><td>PurchaseOrder contains Material</td><td>A PO contains one or more material lines; a material may appear on many POs.</td></tr>
+        <tr><td>Material tracks InventoryLog</td><td>One material has zero or many inventory transactions.</td></tr>
+        <tr><td>PurchaseOrder generates DeliveryReceipt</td><td>A PO generates zero or many receipts for partial deliveries.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>8. Behavioral Modeling</h1>
+      <h2>8.1 Activity Diagram</h2>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 480" role="img" aria-label="Activity diagram">
+          <g stroke="#bbc6d0" stroke-dasharray="8 5"><path d="M300 45v390M600 45v390"/></g>
+          <g fill="#17365d" font-weight="bold" text-anchor="middle"><text x="150" y="28">SITE ENGINEER</text><text x="450" y="28">INVENTORY SYSTEM</text><text x="750" y="28">SUPPLIER</text></g>
+          <g fill="white" stroke="#0878c9" stroke-width="2"><rect x="65" y="75" width="170" height="45"/><rect x="365" y="75" width="170" height="45"/><rect x="665" y="75" width="170" height="45"/><rect x="65" y="190" width="170" height="45"/><rect x="365" y="190" width="170" height="45"/><rect x="365" y="305" width="170" height="45"/><rect x="65" y="400" width="170" height="45"/></g>
+          <g font-size="13" text-anchor="middle"><text x="150" y="102">Create material request</text><text x="450" y="102">Check stock threshold</text><text x="750" y="102">Acknowledge and dispatch</text><text x="150" y="217">Scan QR and inspect</text><text x="450" y="217">Validate delivery</text><text x="450" y="332">Create receipt and update inventory</text><text x="150" y="427">Display confirmation</text></g>
+          <g stroke="#333" fill="none" stroke-width="2" marker-end="url(#arr2)"><path d="M235 97h130"/><path d="M535 97h130"/><path d="M750 120v55H150v15"/><path d="M235 212h130"/><path d="M535 212v70H450v23"/><path d="M365 327H235v70"/></g>
+          <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+          <text x="555" y="155" font-size="12">[stock &lt;= safety threshold]</text><text x="550" y="268" font-size="12">[delivery valid]</text>
+        </svg>
+        <figcaption>Figure 4. Multi-Swimlane Activity Diagram</figcaption>
+      </figure>
+      <h2>8.2 Purchase-Order State Transition Diagram</h2>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 470" role="img" aria-label="State transition diagram">
+          <g fill="white" stroke="#0878c9" stroke-width="2"><rect x="375" y="55" width="150" height="45" rx="8"/><rect x="375" y="145" width="150" height="45" rx="8"/><rect x="375" y="235" width="150" height="45" rx="8"/><rect x="150" y="345" width="180" height="45" rx="8"/><rect x="375" y="345" width="150" height="45" rx="8"/><rect x="650" y="345" width="150" height="45" rx="8"/></g>
+          <g text-anchor="middle" font-size="14"><text x="450" y="83">Draft</text><text x="450" y="173">Approved</text><text x="450" y="263">Dispatched</text><text x="240" y="373">Partially Delivered</text><text x="450" y="373">Delivered</text><text x="725" y="373">Cancelled</text></g>
+          <circle cx="450" cy="25" r="10" fill="#17365d"/><g stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr3)"><path d="M450 35v20"/><path d="M450 100v45"/><path d="M450 190v45"/><path d="M375 257H240v88"/><path d="M450 280v65"/><path d="M330 367h45"/><path d="M525 167h200v178"/></g>
+          <defs><marker id="arr3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+          <g fill="#555" font-size="12"><text x="465" y="48">PO created</text><text x="465" y="130">manager approves</text><text x="465" y="220">supplier acknowledges</text><text x="260" y="312">partial goods</text><text x="465" y="312">complete goods</text><text x="600" y="155">manager rejects / supplier cancels</text></g>
+        </svg>
+        <figcaption>Figure 5. Purchase-Order Lifecycle State Machine</figcaption>
+      </figure>
+      <h2>8.3 System Sequence Diagram</h2>
+      <p>The system-level sequence treats the application as a black box and shows externally visible events for UC-02.</p>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 450" role="img" aria-label="System sequence diagram">
+          <g font-weight="bold" text-anchor="middle" fill="#17365d"><text x="220" y="38">Site Engineer</text><text x="680" y="38">Smart Inventory System</text></g>
+          <path d="M220 55v350M680 55v350" stroke="#888" stroke-dasharray="6 5"/>
+          <g stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr4)"><path d="M220 90h460"/><path d="M220 150h460"/><path d="M680 210H220"/><path d="M220 270h460"/><path d="M680 330H220"/></g>
+          <defs><marker id="arr4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+          <g font-size="13"><text x="390" y="82">selectReceiveDelivery()</text><text x="390" y="142">scanDeliveryDocket(qrCode)</text><text x="390" y="202">displayPODetails(poNumber, material, quantity)</text><text x="390" y="262">confirmDelivery(quantity, batch, photo)</text><text x="390" y="322">displayDeliveryConfirmation()</text></g>
+        </svg>
+        <figcaption>Figure 6. System Sequence Diagram for UC-02 – Log Material Delivery</figcaption>
+      </figure>
+      <h2>8.4 Class/Object Sequence Diagram</h2>
+      <p>The design-level sequence expands the system event into object interactions and identifies the class operations required to implement it.</p>
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 480" role="img" aria-label="Class sequence diagram">
+          <g font-size="12" text-anchor="middle" font-weight="bold" fill="#17365d"><text x="85" y="30">Mobile App</text><text x="235" y="30">Delivery Controller</text><text x="385" y="30">PurchaseOrder</text><text x="535" y="30">DeliveryReceipt</text><text x="685" y="30">InventoryLog</text><text x="835" y="30">Material</text></g>
+          <g stroke="#888" stroke-dasharray="6 5"><path d="M85 45v390M235 45v390M385 45v390M535 45v390M685 45v390M835 45v390"/></g>
+          <g stroke="#333" stroke-width="1.5" fill="none" marker-end="url(#arr5)"><path d="M85 85h150"/><path d="M235 140h150"/><path d="M235 195h300"/><path d="M235 250h450"/><path d="M235 305h600"/><path d="M235 360h150"/></g>
+          <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+          <g font-size="12"><text x="135" y="78">verifyDocket(qrCodeData)</text><text x="300" y="133">getStatus(poNumber)</text><text x="350" y="188">createReceipt()</text><text x="430" y="243">recordTransaction()</text><text x="470" y="298">updateQuantity(+qty)</text><text x="300" y="353">updateStatus(Delivered)</text></g>
+        </svg>
+        <figcaption>Figure 7. Class/Object Sequence Diagram for UC-02 – Process Material Delivery</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h1>9. Requirements Traceability and Class-Operation Mapping</h1>
+      <table>
+        <tr><th>Business Goal</th><th>Use Case</th><th>Domain Class</th><th>Sequence Operation</th><th>Architecture Layer</th><th>Test Case</th></tr>
+        <tr><td>BG-01 Wastage</td><td>UC-02</td><td>DeliveryReceipt, InventoryLog</td><td>createReceipt(), recordTransaction()</td><td>Presentation / Application</td><td>TC-DEL-01</td></tr>
+        <tr><td>BG-02 Downtime</td><td>UC-04</td><td>Material, PurchaseOrder</td><td>isBelowSafetyThreshold(), calculateReorderQuantity()</td><td>Application</td><td>TC-ORD-02</td></tr>
+        <tr><td>BG-03 PO Speed</td><td>UC-01</td><td>SiteManager, PurchaseOrder</td><td>createPurchaseOrder(), approvePurchaseOrder()</td><td>Application</td><td>TC-REQ-03</td></tr>
+        <tr><td>BG-04 Accuracy</td><td>UC-03</td><td>Material, InventoryLog</td><td>getCurrentBalance(), checkStock()</td><td>Persistence</td><td>TC-INV-04</td></tr>
+      </table>
+      <h2>9.1 Operation Derivation from the Class Sequence Diagram</h2>
+      <table>
+        <tr><th>Sequence Message</th><th>Responsible Class</th><th>Purpose</th></tr>
+        <tr><td>verifyDocket(qrCodeData)</td><td>DeliveryController</td><td>Validate the QR docket and identify the PO.</td></tr>
+        <tr><td>getStatus(poNumber)</td><td>PurchaseOrder</td><td>Confirm that the PO is eligible for receipt.</td></tr>
+        <tr><td>createReceipt()</td><td>DeliveryReceipt</td><td>Create a receipt for the delivered quantity.</td></tr>
+        <tr><td>recordTransaction()</td><td>InventoryLog</td><td>Record the inventory movement for auditability.</td></tr>
+        <tr><td>updateQuantity(+qty)</td><td>Material</td><td>Increase available quantity after validation.</td></tr>
+        <tr><td>updateStatus(Delivered)</td><td>PurchaseOrder</td><td>Move the PO to its Delivered lifecycle state.</td></tr>
+      </table>
+      <h2>9.2 Verification Scenarios</h2>
+      <table>
+        <tr><th>Test ID</th><th>Scenario</th><th>Expected Result</th></tr>
+        <tr><td>TC-DEL-01</td><td>Valid QR docket and complete delivery</td><td>Receipt created, stock increased and PO becomes Delivered.</td></tr>
+        <tr><td>TC-DEL-02</td><td>Offline delivery capture</td><td>Encrypted local record saved and synchronized within 30 seconds of reconnection.</td></tr>
+        <tr><td>TC-DEL-03</td><td>Quantity above 105% of PO</td><td>Manager approval is required before stock addition.</td></tr>
+        <tr><td>TC-ORD-01</td><td>Stock at safety threshold</td><td>Draft PO and low-stock alert are generated.</td></tr>
+        <tr><td>TC-ORD-02</td><td>Order above $50,000</td><td>Dual approval is required before supplier transmission.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h1>10. Conclusion</h1>
+      <p>The Smart Construction Site Material &amp; Inventory Management System provides a complete software-engineering blueprint for controlling construction materials from request through delivery and stock reconciliation. The use-case model defines responsibilities, MoSCoW prioritization aligns delivery with business value, and the two detailed specifications capture functional and non-functional requirements. The three-tier architecture supports offline field operation, while the class, activity, state and sequence models establish a traceable design. The operation mapping demonstrates that class operations are derived directly from class-sequence interactions.</p>
+      <h1>11. References</h1>
+      <ul>
+        <li>Object Management Group, Unified Modeling Language (UML) Specification.</li>
+        <li>Alistair Cockburn, <em>Writing Effective Use Cases</em>.</li>
+        <li>SS ZG562 Software Engineering and Management assignment instructions.</li>
+        <li>Project domain assumptions and requirements defined by the Site-Sathi group.</li>
+      </ul>
+      <div class="footer-note">SS ZG562 | Site-Sathi | Smart Construction Site Material &amp; Inventory Management System</div>
+    </section>
+  </main>
+  <script type="module">
+    const diagrams = {
+      "Use-case diagram": `flowchart LR
+        SE[Site Engineer] --> UC1((UC-01<br/>Request Material))
+        SE --> UC2((UC-02<br/>Log Delivery))
+        SE --> UC3((UC-03<br/>Verify Stock))
+        SM[Site Manager] --> UC1
+        SM --> UC4((UC-04<br/>Trigger Reorder))
+        SUP[Supplier] --> UC2
+        SUP --> UC4
+        PD[Project Director] --> UC4
+        SS[Stock Scheduler] --> UC3
+        SS --> UC4
+        UC1 -. include .-> AUTH((UC-05<br/>Authenticate User))
+        UC2 -. include .-> AUTH
+        UC3 -. include .-> AUTH
+        UC6((UC-06<br/>Low-Stock Alert)) -. extend .-> UC4
+        classDef actor fill:#fff,stroke:#17365d,stroke-width:2px;
+        classDef usecase fill:#fff,stroke:#0878c9,stroke-width:2px;
+        class SE,SM,SUP,PD,SS actor;
+        class UC1,UC2,UC3,UC4,AUTH,UC6 usecase;`,
+      "Three-tier architecture diagram": `flowchart LR
+        subgraph P[Presentation Tier]
+          UI[Mobile PWA / React Native]
+          QR[QR Scanner]
+          SQ[SQLite Offline Cache]
+          WD[Web Dashboard]
+        end
+        subgraph A[Application Tier]
+          API[Node.js REST API]
+          AUTH[Authentication and RBAC]
+          PO[PO and Reorder Engine]
+          SYNC[Offline Sync Manager]
+        end
+        subgraph D[Persistence Tier]
+          PG[(PostgreSQL)]
+          REDIS[(Redis Cache)]
+          S3[(AWS S3 Photo Store)]
+          AUDIT[(Audit Log)]
+        end
+        UI --> QR
+        UI --> SQ
+        UI -->|HTTPS REST| API
+        WD -->|HTTPS REST| API
+        API --> AUTH
+        API --> PO
+        API --> SYNC
+        AUTH --> PG
+        PO --> PG
+        PO --> REDIS
+        SYNC --> PG
+        SYNC --> S3
+        API --> AUDIT
+        classDef client fill:#f8eafa,stroke:#a95db7,stroke-width:2px;
+        classDef app fill:#e5f5f1,stroke:#43ad9a,stroke-width:2px;
+        classDef data fill:#fff0e5,stroke:#d58d50,stroke-width:2px;
+        class UI,QR,SQ,WD client;
+        class API,AUTH,PO,SYNC app;
+        class PG,REDIS,S3,AUDIT data;`,
+      "Domain class diagram": `classDiagram
+        class SiteManager {
+          +String managerId
+          +String name
+          +String email
+          +approvePurchaseOrder(poId)
+          +rejectPurchaseOrder(poId, reason)
+          +adjustOrderQuantity(poId, quantity)
+        }
+        class Supplier {
+          +String supplierId
+          +String companyName
+          +receivePurchaseOrder(poId)
+          +acknowledgePurchaseOrder(poId)
+          +dispatchShipment(poId)
+        }
+        class PurchaseOrder {
+          +String poNumber
+          +Date orderDate
+          +String status
+          +Decimal totalAmount
+          +calculateTotal()
+          +updateStatus(newStatus)
+          +requestDualApproval()
+        }
+        class Material {
+          +String materialId
+          +String name
+          +int currentQuantity
+          +int minSafetyStock
+          +checkStock()
+          +updateQuantity(delta)
+          +isBelowSafetyThreshold()
+        }
+        class InventoryLog {
+          +String logId
+          +DateTime timestamp
+          +String transactionType
+          +int quantityChanged
+          +recordTransaction()
+          +getCurrentBalance()
+        }
+        class DeliveryReceipt {
+          +String receiptId
+          +Date deliveryDate
+          +int receivedQuantity
+          +verifyReceipt()
+          +attachPhoto()
+          +markAsRejected(reason)
+        }
+        SiteManager "1" --> "0..*" PurchaseOrder : approves
+        Supplier "1" --> "0..*" PurchaseOrder : fulfils
+        PurchaseOrder "1" *-- "1..*" Material : contains
+        Material "1" o-- "0..*" InventoryLog : tracks
+        PurchaseOrder "1" --> "0..*" DeliveryReceipt : generates`,
+      "Activity diagram": `flowchart TD
+        START((Start)) --> REQ[Site Engineer creates material request]
+        REQ --> CHECK{Stock <= safety threshold?}
+        CHECK -- No --> RESERVE[Reserve available stock]
+        CHECK -- Yes --> DRAFT[Generate draft purchase order]
+        DRAFT --> SUP[Supplier acknowledges and dispatches]
+        SUP --> SCAN[Engineer scans QR docket and inspects shipment]
+        RESERVE --> SCAN
+        SCAN --> VALID{Delivery valid?}
+        VALID -- No --> REJECT[Record defect and reject delivery]
+        VALID -- Yes --> NET{Network available?}
+        NET -- No --> OFFLINE[Save encrypted offline transaction]
+        OFFLINE --> SYNC[Sync after reconnection]
+        NET -- Yes --> RECEIPT[Create delivery receipt]
+        SYNC --> RECEIPT
+        RECEIPT --> UPDATE[Update Material and InventoryLog]
+        UPDATE --> END((End))
+        REJECT --> END`,
+      "State transition diagram": `stateDiagram-v2
+        [*] --> Draft: PO created
+        Draft --> Approved: manager approves
+        Draft --> Cancelled: manager rejects
+        Approved --> Dispatched: supplier acknowledges
+        Dispatched --> PartiallyDelivered: partial goods received
+        Dispatched --> Delivered: complete goods verified
+        Dispatched --> Cancelled: supplier cancels
+        PartiallyDelivered --> Delivered: remaining goods arrives
+        Delivered --> [*]
+        Cancelled --> [*]`,
+      "System sequence diagram": `sequenceDiagram
+        actor Engineer as Site Engineer
+        participant System as Smart Inventory System
+        Engineer->>System: selectReceiveDelivery()
+        Engineer->>System: scanDeliveryDocket(qrCode)
+        System-->>Engineer: displayPODetails(poNumber, material, quantity)
+        Engineer->>System: confirmDelivery(quantity, batch, photo)
+        System-->>Engineer: displayDeliveryConfirmation()
+        Note over System: If offline, save encrypted transaction and sync on reconnect`,
+      "Class sequence diagram": `sequenceDiagram
+        participant App as Mobile App
+        participant DC as Delivery Controller
+        participant PO as PurchaseOrder
+        participant DR as DeliveryReceipt
+        participant IL as InventoryLog
+        participant M as Material
+        App->>DC: verifyDocket(qrCodeData)
+        DC->>PO: getStatus(poNumber)
+        DC->>DR: createReceipt()
+        DC->>IL: recordTransaction()
+        DC->>M: updateQuantity(+qty)
+        DC->>PO: updateStatus(Delivered)
+        DC-->>App: successConfirmation()`
+    };
+
+    function mermaidDefinition(svg) {
+      const label = (svg.getAttribute("aria-label") || "").toLowerCase();
+      if (label.includes("use-case")) return diagrams["Use-case diagram"];
+      if (label.includes("three-tier")) return diagrams["Three-tier architecture diagram"];
+      if (label.includes("domain class")) return diagrams["Domain class diagram"];
+      if (label.includes("activity")) return diagrams["Activity diagram"];
+      if (label.includes("state")) return diagrams["State transition diagram"];
+      if (label.includes("system sequence")) return diagrams["System sequence diagram"];
+      if (label.includes("class sequence")) return diagrams["Class sequence diagram"];
+      return null;
+    }
+
+    const mermaid = await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs");
+    mermaid.default.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#eaf3fb",
+        primaryTextColor: "#253246",
+        primaryBorderColor: "#0878c9",
+        lineColor: "#52657d",
+        secondaryColor: "#eaf6f4",
+        tertiaryColor: "#fff0e5",
+        fontFamily: "Segoe UI, Arial, sans-serif",
+        fontSize: "13px"
+      },
+      flowchart: { htmlLabels: true, curve: "basis" }
+    });
+    const figures = [...document.querySelectorAll("figure")];
+    document.querySelectorAll("h1").forEach((heading) => {
+      if (/^[1-9]\.\s/.test(heading.textContent.trim())) {
+        heading.classList.add("major-section");
+      }
+    });
+    figures.forEach((figure, index) => {
+      const svg = figure.querySelector("svg");
+      const definition = svg && mermaidDefinition(svg);
+      if (!definition) return;
+      const caption = figure.querySelector("figcaption");
+      figure.innerHTML = "";
+      const diagram = document.createElement("div");
+      diagram.className = "mermaid";
+      diagram.textContent = definition;
+      figure.appendChild(diagram);
+      if (caption) figure.appendChild(caption);
+    });
+    await mermaid.default.run({ querySelector: ".mermaid" });
+  </script>
+</body>
+</html>

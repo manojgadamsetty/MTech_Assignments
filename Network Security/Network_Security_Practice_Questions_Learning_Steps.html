@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Security - Step-by-Step Learning Solutions</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --paper: #ffffff;
+      --ink: #1b2430;
+      --muted: #4f5c6a;
+      --line: #d7e0ea;
+      --accent: #0b5a75;
+      --ok-bg: #eaf8ee;
+      --ok-line: #b8dfc2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background: #eef3f8;
+      line-height: 1.32;
+      font-size: 13px;
+    }
+    .wrap {
+      width: min(230mm, calc(100vw - 20px));
+      margin: 12px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9mm;
+      box-shadow: 0 8px 20px rgba(24, 48, 78, 0.08);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      align-content: start;
+    }
+    .wrap > * { min-width: 0; }
+    h1, .part, .print-note {
+      grid-column: 1 / -1;
+    }
+    h1, h2, h3 { color: #08344a; margin: 0; }
+    h1 {
+      font-size: 1.45rem;
+      letter-spacing: 0.01em;
+    }
+    .part {
+      margin-top: 2px;
+      padding: 3px 0 1px;
+      border-bottom: 1px solid var(--line);
+      color: #08344a;
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 9px;
+      margin: 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+    .q {
+      font-weight: 700;
+      color: #0a4a63;
+      margin-bottom: 5px;
+      font-size: 0.96rem;
+    }
+    p { margin: 3px 0; }
+    .work {
+      font-size: 0.84rem;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .work strong {
+      color: #18384b;
+    }
+    .guide {
+      margin: 0 0 4px;
+      color: #3d5467;
+      font-size: 0.82rem;
+      line-height: 1.28;
+      overflow-wrap: anywhere;
+    }
+    .formula {
+      color: var(--muted);
+      font-style: italic;
+    }
+    .steps {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.84rem;
+      line-height: 1.3;
+    }
+    .steps li {
+      margin: 2px 0;
+      overflow-wrap: anywhere;
+    }
+    .calc {
+      display: block;
+      margin-top: 3px;
+      color: #21384a;
+    }
+    .answer {
+      margin-top: 6px;
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-line);
+      border-radius: 6px;
+      padding: 4px 6px;
+      font-weight: 700;
+      color: #0f5132;
+      font-size: 0.83rem;
+      overflow-wrap: anywhere;
+    }
+    code {
+      font-family: "Menlo", "Consolas", monospace;
+      background: #f2f4f7;
+      padding: 0 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .print-note {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: right;
+    }
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 5mm;
+      }
+      html, body {
+        width: 210mm;
+        max-width: 210mm;
+        overflow: hidden;
+      }
+      body {
+        background: #fff;
+        font-size: 7.6pt;
+      }
+      .wrap {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2.6mm;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        overflow: hidden;
+      }
+      h1, .part, .print-note {
+        grid-column: 1 / -1;
+      }
+      .intro {
+        padding: 3px 5px;
+      }
+      .box {
+        padding: 4px 5px;
+        margin: 0;
+        break-inside: avoid;
+        overflow: hidden;
+      }
+      .q {
+        font-size: 7.6pt;
+        margin-bottom: 2px;
+        overflow-wrap: anywhere;
+      }
+      .steps {
+        padding-left: 14px;
+      }
+      .work,
+      .guide,
+      .steps,
+      .answer,
+      .print-note,
+      .part {
+        font-size: 6.7pt;
+        line-height: 1.14;
+      }
+      .answer {
+        padding: 2px 4px;
+        margin-top: 2px;
+      }
+      p {
+        margin: 1px 0;
+      }
+      .part {
+        margin-top: 1px;
+        padding: 1px 0;
+      }
+      mjx-container,
+      mjx-container[jax="CHTML"] {
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+      .work,
+      .answer,
+      .q,
+      .intro,
+      .sub {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Network Security Revision Sheet</h1>
+
+    <div class="part">Part A: Historical Ciphers</div>
+
+    <section class="box">
+      <div class="q">A1) Caesar cipher: Encrypt SECURITY with $k=7$</div>
+      <p class="guide">For any Caesar encryption problem, shift every plaintext letter by the same key value and wrap around after Z using modulo 26.</p>
+      <ol class="steps">
+        <li>Write each letter as a number using $A=0$ to $Z=25$.</li>
+        <li>Add 7 to each value and reduce modulo 26.</li>
+        <li>Convert the new values back to letters.</li>
+      </ol>
+      <p class="work"><span class="calc">$18+7=25\to Z$, $4+7=11\to L$, $2+7=9\to J$, $20+7=27\equiv1\to B$</span><span class="calc">$17+7=24\to Y$, $8+7=15\to P$, $19+7=26\equiv0\to A$, $24+7=31\equiv5\to F$</span></p>
+      <div class="answer">Ciphertext: ZLJBYPAF</div>
+    </section>
+
+    <section class="box">
+      <div class="q">A2) Caesar decryption: Decrypt KHOOR with $k=3$</div>
+      <p class="guide">For any Caesar decryption problem, undo the shift by subtracting the key from each ciphertext letter and wrapping around if the result becomes negative.</p>
+      <ol class="steps">
+        <li>Convert each ciphertext letter into its number.</li>
+        <li>Subtract 3 because decryption reverses the Caesar shift.</li>
+        <li>Convert the results back to letters.</li>
+      </ol>
+      <p class="work"><span class="calc">$10-3=7\to H$, $7-3=4\to E$, $14-3=11\to L$</span><span class="calc">Again $14-3=11\to L$, and $17-3=14\to O$</span></p>
+      <div class="answer">Plaintext: HELLO</div>
+    </section>
+
+    <div class="part">Part B: One-Time Pad</div>
+
+    <section class="box">
+      <div class="q">B1) OTP: Encrypt WILPNETWORK using key XAWQMRCTKUL</div>
+      <p class="guide">In one-time pad questions, message and key must be the same length. Solve them letter by letter because each position is encrypted independently.</p>
+      <ol class="steps">
+        <li>Write the plaintext and key one below the other.</li>
+        <li>Convert each pair to numbers and add them modulo 26.</li>
+        <li>Convert each result back to a letter to get the ciphertext.</li>
+      </ol>
+      <p class="work"><span class="calc">$W=22$, $X=23$: $22+23=45\equiv19\to T$; $I=8$, $A=0$: $8+0=8\to I$</span><span class="calc">$L=11$, $W=22$: $33\equiv7\to H$; $P=15$, $Q=16$: $31\equiv5\to F$; $N=13$, $M=12$: $25\to Z$</span><span class="calc">$E/R\to 4+17=21\to V$, $T/C\to 19+2=21\to V$, $W/T\to 22+19=41\equiv15\to P$</span><span class="calc">$O/K\to 14+10=24\to Y$, $R/U\to 17+20=37\equiv11\to L$, $K/L\to 10+11=21\to V$</span></p>
+      <div class="answer">Ciphertext: TIHFZVVPYLV</div>
+    </section>
+
+    <div class="part">Part C: Hill Cipher</div>
+
+    <section class="box">
+      <div class="q">C1) Hill cipher: Encrypt HELP with $K=\begin{bmatrix}6&1\\9&5\end{bmatrix}$</div>
+      <p class="guide">For Hill cipher problems, first split the message according to the matrix size. Then convert each block to a vector, multiply by the key matrix, and reduce modulo 26.</p>
+      <ol class="steps">
+        <li>Break HELP into pairs: HE and LP.</li>
+        <li>Convert each pair to a column vector and multiply by the key matrix.</li>
+        <li>Reduce each entry modulo 26 and map the numbers back to letters.</li>
+      </ol>
+      <p class="work"><span class="calc"><strong>HE:</strong> $P_1=\begin{bmatrix}7\\4\end{bmatrix}$ and $KP_1=\begin{bmatrix}6\cdot7+1\cdot4\\9\cdot7+5\cdot4\end{bmatrix}=\begin{bmatrix}46\\83\end{bmatrix}$</span><span class="calc">Now $46\equiv20$ and $83\equiv5\pmod{26}$, so the block becomes $\begin{bmatrix}20\\5\end{bmatrix}\to UF$</span><span class="calc"><strong>LP:</strong> $P_2=\begin{bmatrix}11\\15\end{bmatrix}$ and $KP_2=\begin{bmatrix}6\cdot11+1\cdot15\\9\cdot11+5\cdot15\end{bmatrix}=\begin{bmatrix}81\\174\end{bmatrix}$</span><span class="calc">Now $81\equiv3$ and $174\equiv18\pmod{26}$, so the block becomes $\begin{bmatrix}3\\18\end{bmatrix}\to DS$</span></p>
+      <div class="answer">Ciphertext: UFDS</div>
+    </section>
+
+    <section class="box">
+      <div class="q">C2) Check invertibility of $\begin{bmatrix}6&24&1\\13&16&10\\20&17&15\end{bmatrix}$ mod 26</div>
+      <p class="guide">To test whether a Hill cipher key can be inverted, you only need its determinant. The matrix works only when that determinant is coprime with 26.</p>
+      <ol class="steps">
+        <li>Find the determinant of the key matrix.</li>
+        <li>Reduce that determinant modulo 26.</li>
+        <li>If the determinant is coprime with 26, the matrix is invertible.</li>
+      </ol>
+      <p class="work"><span class="calc">$16\cdot15-10\cdot17=240-170=70$, $13\cdot15-10\cdot20=195-200=-5$</span><span class="calc">$13\cdot17-16\cdot20=221-320=-99$, so $\det(K)=6(70)-24(-5)-99=420+120-99=441$</span><span class="calc">Finally $441=26\cdot16+25$, so $441\equiv25\pmod{26}$ and $\gcd(25,26)=1$</span></p>
+      <div class="answer">Matrix is invertible modulo 26.</div>
+    </section>
+
+    <div class="part">Part D: GCD and Extended Euclid</div>
+
+    <section class="box">
+      <div class="q">D1) Compute $\gcd(145,278)$</div>
+      <p class="guide">For gcd questions, keep replacing the pair of numbers by the divisor and the remainder. This always reduces the problem until the remainder becomes 0.</p>
+      <ol class="steps">
+        <li>Divide the larger number by the smaller number.</li>
+        <li>Use the remainder for the next division.</li>
+        <li>The last non-zero remainder is the gcd.</li>
+      </ol>
+      <p class="work"><span class="calc"><code>278=145(1)+133</code>, <code>145=133(1)+12</code></span><span class="calc"><code>133=12(11)+1</code>, <code>12=1(12)+0</code></span></p>
+      <div class="answer">$\gcd(145,278)=1$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">D2) Find $x,y$ such that $145x+278y=\gcd(145,278)$</div>
+      <p class="guide">These questions use the extended Euclidean algorithm. After finding the gcd, rewrite it backward in terms of the original two numbers.</p>
+      <ol class="steps">
+        <li>Start from the last non-zero remainder, which is 1.</li>
+        <li>Substitute backward using the earlier Euclidean equations.</li>
+        <li>Read the coefficients of 145 and 278 from the final expression.</li>
+      </ol>
+      <p class="work"><span class="calc">Start with $1=133-12\cdot11$ and replace $12$ by $145-133$</span><span class="calc">$1=133-(145-133)11=12\cdot133-11\cdot145$</span><span class="calc">Now replace $133$ by $278-145$: $1=12(278-145)-11\cdot145$</span><span class="calc">So $1=12\cdot278-23\cdot145=145(-23)+278(12)$</span></p>
+      <div class="answer">$x=-23,\ y=12$ is one valid pair.</div>
+    </section>
+
+    <div class="part">Part E: Multiplicative Inverses</div>
+
+    <section class="box">
+      <div class="q">E1) Find $31^{-1}\pmod{43}$</div>
+      <p class="guide">A modular inverse exists only when the number and the modulus are coprime. Extended Euclid is the standard method because it directly produces the inverse.</p>
+      <ol class="steps">
+        <li>Run the Euclidean algorithm to confirm that 31 and 43 are coprime.</li>
+        <li>Back-substitute until 1 is written as a combination of 31 and 43.</li>
+        <li>The coefficient of 31 gives the modular inverse.</li>
+      </ol>
+      <p class="work"><span class="calc"><code>43=31+12</code>, <code>31=12(2)+7</code>, <code>12=7+5</code>, <code>7=5+2</code>, <code>5=2(2)+1</code></span><span class="calc">Then $1=5-2\cdot2=5-(7-5)2=3\cdot5-2\cdot7$</span><span class="calc">Replace $5=12-7$ to get $1=3(12-7)-2\cdot7=3\cdot12-5\cdot7$</span><span class="calc">Replace $7=31-2\cdot12$ and $12=43-31$ to get $1=13\cdot43-18\cdot31$, so $31^{-1}\equiv-18\equiv25$</span></p>
+      <div class="answer">$31^{-1}\equiv25\pmod{43}$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">E2) Find $11^{-1}\pmod{26}$</div>
+      <p class="guide">For small numbers, you can often find the modular inverse by quick checking: look for a multiple of the number that is exactly 1 more than a multiple of the modulus.</p>
+      <ol class="steps">
+        <li>We need a number which gives remainder 1 when multiplied by 11 and divided by 26.</li>
+        <li>Try a likely value and verify it directly.</li>
+      </ol>
+      <p class="work"><span class="calc">$11\cdot19=209=26\cdot8+1$, so 19 is the inverse.</span></p>
+      <div class="answer">$11^{-1}\equiv19\pmod{26}$</div>
+    </section>
+
+    <div class="part">Part G: Linear Congruential Generator</div>
+
+    <section class="box">
+      <div class="q">G1) $X_{n+1}=(9X_n+5)\bmod 17$, seed $X_0=12$</div>
+      <p class="guide">In LCG questions, each new value depends only on the previous one. So you can generate the entire sequence by repeating the same substitution step carefully.</p>
+      <ol class="steps">
+        <li>Start with the seed value $X_0=12$.</li>
+        <li>Substitute the current value into $X_{n+1}=(9X_n+5)\bmod 17$.</li>
+        <li>Repeat the same rule to generate the next terms.</li>
+      </ol>
+      <p class="work"><span class="calc">$X_1=(9\cdot12+5)\bmod 17=113\bmod 17=11$</span><span class="calc">$X_2=(9\cdot11+5)\bmod 17=104\bmod 17=2$, $X_3=(9\cdot2+5)\bmod 17=23\bmod 17=6$</span><span class="calc">$X_4=(9\cdot6+5)\bmod 17=59\bmod 17=8$, $X_5=(9\cdot8+5)\bmod 17=77\bmod 17=9$</span><span class="calc">$X_6=(9\cdot9+5)\bmod 17=86\bmod 17=1$</span></p>
+      <div class="answer">First 6 numbers after seed: 11, 2, 6, 8, 9, 1</div>
+    </section>
+
+    <section class="box">
+      <div class="q">G2) Determine period of this LCG</div>
+      <p class="guide">The period of a generator is the length of the cycle before values start repeating. In practice, you keep computing terms until the seed or an earlier value appears again.</p>
+      <ol class="steps">
+        <li>Keep generating values until the original seed appears again.</li>
+        <li>Count how many transitions were needed to return to the start.</li>
+      </ol>
+      <p class="work"><span class="calc">$X_7=(9\cdot1+5)\bmod 17=14$</span><span class="calc">$X_8=(9\cdot14+5)\bmod 17=131\bmod 17=12=X_0$</span><span class="calc">Since the seed returns at $X_8$, the period is 8.</span></p>
+      <div class="answer">Period = 8</div>
+    </section>
+
+    <div class="part">Part H: RSA</div>
+
+    <section class="box">
+      <div class="q">H1) Given $p=19, q=23, e=13$: find $n,\varphi(n),d$</div>
+      <p class="guide">For RSA setup problems, first build the public modulus and totient from the primes, then compute the private exponent as the inverse of $e$ modulo $\varphi(n)$.</p>
+      <ol class="steps">
+        <li>Compute the modulus: $n=pq=19\cdot23$.</li>
+        <li>Compute Euler's totient: $\varphi(n)=(p-1)(q-1)$.</li>
+        <li>Find $d$ such that $13d\equiv1\pmod{396}$ using EEA.</li>
+      </ol>
+      <p class="work"><span class="calc">$n=19\cdot23=437$ and $\varphi(n)=18\cdot22=396$</span><span class="calc"><code>396=13(30)+6</code>, <code>13=6(2)+1</code></span><span class="calc">So $1=13-2\cdot6=13-2(396-13\cdot30)=61\cdot13-2\cdot396$</span><span class="calc">Hence $13\cdot61\equiv1\pmod{396}$, so $d=61$</span></p>
+      <div class="answer">$n=437,\ \varphi(n)=396,\ d=61$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">H2) Encrypt $M=9$ with RSA from H1</div>
+      <p class="guide">RSA encryption questions reduce to modular exponentiation. Repeated squaring is the efficient method because it avoids computing huge powers directly.</p>
+      <ol class="steps">
+        <li>Use the RSA encryption formula $C=M^e\bmod n$.</li>
+        <li>Compute powers of 9 by repeated squaring.</li>
+        <li>Multiply the needed powers because $13=8+4+1$.</li>
+      </ol>
+      <p class="work"><span class="calc">$9^2=81$, then $9^4=81^2=6561=437\cdot15+6\equiv6$</span><span class="calc">Next $9^8\equiv6^2=36$</span><span class="calc">Since $13=8+4+1$, $9^{13}=9^8\cdot9^4\cdot9\equiv36\cdot6\cdot9=1944$</span><span class="calc">Finally $1944=437\cdot4+196$, so $1944\equiv196\pmod{437}$</span></p>
+      <div class="answer">Ciphertext: 196</div>
+    </section>
+
+    <div class="part">Part I: Diffie-Hellman</div>
+
+    <section class="box">
+      <div class="q">I1) Diffie-Hellman: $p=29, g=10, a=16, b=5$</div>
+      <p class="guide">In Diffie-Hellman, both sides publish powers of the same base and then raise the received value again. The two computations match because exponentiation rules give the same shared secret.</p>
+      <ol class="steps">
+        <li>Find Alice's public key using $A=g^a\bmod p$.</li>
+        <li>Find Bob's public key using $B=g^b\bmod p$.</li>
+        <li>Use either public key with the other person's private key to get the shared secret.</li>
+      </ol>
+      <p class="work"><span class="calc">$10^2=100\equiv13$, $10^4\equiv13^2=169\equiv24$, $10^8\equiv24^2=576\equiv25$</span><span class="calc">So $10^{16}\equiv25^2=625\equiv16\pmod{29}$ and Alice's public key is $A=16$</span><span class="calc">Also $10^5\equiv10^4\cdot10\equiv24\cdot10=240\equiv8$, so Bob's public key is $B=8$</span><span class="calc">Now $8^2\equiv6$, $8^4\equiv6^2=36\equiv7$, $8^8\equiv7^2=49\equiv20$, $8^{16}\equiv20^2=400\equiv23$</span></p>
+      <div class="answer">Alice public key = 16, Bob public key = 8, Shared key = 23</div>
+    </section>
+
+    <div class="part">Part J: Theorem-Based Results</div>
+
+    <section class="box">
+      <div class="q">J1) Compute $7^{100}\bmod15$ using Euler theorem</div>
+      <p class="guide">Euler theorem questions are about reducing a large exponent to a much smaller one. Once you know $a^{\varphi(n)}\equiv1$, you only keep the remainder part of the exponent.</p>
+      <ol class="steps">
+        <li>Check that 7 and 15 are coprime, so Euler's theorem applies.</li>
+        <li>Compute $\varphi(15)=8$, so $7^8\equiv1\pmod{15}$.</li>
+        <li>Reduce the exponent using $100=8\cdot12+4$.</li>
+      </ol>
+      <p class="work"><span class="calc">$\varphi(15)=15\left(1-\frac13\right)\left(1-\frac15\right)=15\cdot\frac23\cdot\frac45=8$</span><span class="calc">So $7^{100}=7^{8\cdot12+4}=(7^8)^{12}\cdot7^4\equiv1^{12}\cdot7^4\equiv7^4$</span><span class="calc">Now $7^2=49\equiv4$ and $7^4\equiv4^2=16\equiv1\pmod{15}$</span></p>
+      <div class="answer">$7^{100}\equiv1\pmod{15}$</div>
+    </section>
+
+    <section class="box">
+      <div class="q">J2) Compute $3^{100}\bmod7$ using Fermat theorem</div>
+      <p class="guide">Fermat theorem is the prime-modulus version of the same idea: replace a huge exponent by a smaller equivalent one, then evaluate the remaining small power.</p>
+      <ol class="steps">
+        <li>Because 7 is prime and 3 is not divisible by 7, Fermat's theorem applies.</li>
+        <li>So $3^6\equiv1\pmod7$.</li>
+        <li>Reduce the exponent using $100=6\cdot16+4$.</li>
+      </ol>
+      <p class="work"><span class="calc">Write $100=6\cdot16+4$, so $3^{100}=3^{6\cdot16+4}=(3^6)^{16}\cdot3^4$</span><span class="calc">By Fermat, $(3^6)^{16}\equiv1^{16}$, so $3^{100}\equiv3^4\pmod7$</span><span class="calc">Now $3^2=9\equiv2$ and $3^4\equiv2^2=4\pmod7$</span></p>
+      <div class="answer">$3^{100}\equiv4\pmod{7}$</div>
+    </section>
+
+  </main>
+</body>
+</html>

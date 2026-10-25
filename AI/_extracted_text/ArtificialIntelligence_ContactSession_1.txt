@@ -1,0 +1,448 @@
+
+
+=== Slide 1 ===
+Artificial computational  Intelligence
+CS 1-Introduction
+Prof. Brahmanaidu Kakarla
+Guest Faculty
+
+=== Slide 2 ===
+Agenda
+Course details
+Definition of AI
+Different perspectives of AI
+Application of AI
+Challenges of AI
+
+2
+
+=== Slide 3 ===
+Course details
+
+=== Slide 4 ===
+Focus on
+principles of artificial intelligence
+concepts, algorithms involved in building rational agents
+topics covered like 
+Problem solving &knowledge representation
+Reasoning 
+a bit of learning (reinforcement learning) 
+Application of AI
+About the course
+
+=== Slide 5 ===
+
+
+
+Text Book
+
+
+
+
+
+
+
+Exercises : In Python & its libraries
+
+Evaluation:  20% LAB + 10%(2X5) Quiz +  30%  Mid Semester + 40% End Semester.
+About the course
+
+=== Slide 6 ===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exercises : In Python & its libraries
+
+
+About Labs
+
+=== Slide 7 ===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exercises : In Python & its libraries
+
+
+About Labs
+
+=== Slide 8 ===
+Exercises : In Python & its libraries
+About Labs
+
+=== Slide 9 ===
+AI in real life
+Self driving cars
+Google translate
+Alexa
+
+=== Slide 10 ===
+Google maps
+
+=== Slide 11 ===
+Definition of Artificial intelligence 
+
+=== Slide 12 ===
+What is artificial intelligence?
+Intelligence:
+         Capacity to learn and solve problems
+Artificial intelligence: AI is the simulation of human intelligence by machines
+     The ability to solve problems 
+     The ability to act rationally
+     The ability to act like humans
+
+
+=== Slide 13 ===
+History of Artificial intelligence
+
+=== Slide 14 ===
+Different perspectives of AI
+
+=== Slide 15 ===
+Acting humanly
+[Turing test approach]
+Pictorial Representation of Turing Test from https://en.wikipedia.org/wiki/Turing_test
+
+=== Slide 16 ===
+Acting Humanly
+Turing Test Approach 
+Skills necessary to pass these tests 
+
+=== Slide 17 ===
+Some Definitions  of AI: 
+ 
+“The art of creating machines that perform functions that require intelligence when performed by people.” (Kurzweil, 1990) 
+
+“The study of how to make computers do things at which, at the moment, people are better.” (Rich and Knight, 1991)
+Acting Humanly
+Turing Test Approach 
+
+=== Slide 18 ===
+Thinking Humanly 
+Cognitive Modelling Approach 
+How do we capture human thinking to implement?
+Introspection
+Psychological Experiments
+Brain Imaging
+
+System : “General Problem Solver” (Newell and Simon, 1961)
+Designed to work as a universal problem solver
+Problems represented by horn clauses
+First AI Machine which has KB + Inference separation
+Authors focus on this is on comparing the trace of its reasoning steps to traces of human subjects solving the same problems
+
+Growth of Cognitive science and AI supports each other
+
+=== Slide 19 ===
+Thinking Humanly 
+Cognitive Modelling Approach 
+Some Definitions of AI:
+
+“The exciting new effort to make computers think . . . machines with minds, in the full and literal sense.” (Haugeland, 1985)
+
+
+“[The automation of] activities that we associate with human thinking, activities such as decision-making, problem solving, learning . . .” (Bellman, 1978)
+
+=== Slide 20 ===
+Invention of Formal Logic, Greek Philosopher Aristotle, Third century BC.  
+Introduced syllogisms, providing argument structures
+
+In all boring classes, students sleep
+
+
+
+Thinking Rationally
+“Laws of Thought” Approach
+
+=== Slide 21 ===
+Invention of Formal Logic, Greek Philosopher Aristotle, Third century BC.  
+Introduced syllogisms, providing argument structures
+
+In all boring classes, students sleep
+It is a boring class
+
+
+
+Thinking Rationally
+“Laws of Thought” Approach
+
+=== Slide 22 ===
+Invention of Formal Logic, Greek Philosopher Aristotle, Third century BC.  
+Introduced syllogisms, providing argument structures
+
+In all boring classes, students sleep
+It is a boring class
+Students sleep in this class [ Are you ? ] 
+
+
+Thinking Rationally
+“Laws of Thought” Approach
+
+=== Slide 23 ===
+Invention of Formal Logic, Greek Philosopher Aristotle, Third century BC.  
+Introduced syllogisms, providing argument structures
+		In all boring classes, students sleep
+		It is a boring class
+		Students sleep in this class [ Are you ? ] 
+Field of Logics gave rise to codifying rational thinking
+When elements are ‘things’, we reason about things
+Hurdles to the idea :	1) Not everything can be logically coded 
+			2) no provably correct action at a moment
+			3) Exhaustive computational resources
+
+
+Thinking Rationally
+“Laws of Thought” Approach
+
+=== Slide 24 ===
+
+
+=== Slide 25 ===
+An agent is an entity that perceives and acts
+	This course is about designing rational agents
+Abstractly, an agent is a function from percept histories to actions:
+[f:  P*  →  A]
+For any given class of environments and tasks, we seek the agent (or class of agents) with the best performance
+Computational limitations make perfect rationality unachievable 
+Design best program for given machine resources
+Acting Rationally
+The Rational Agent Approach
+
+=== Slide 26 ===
+Definitions
+
+=== Slide 27 ===
+Passing the Turing Test
+Transcript of a chat
+JUDGE: Hello.
+EUGENE: Hello, I'm really glad to have the chance to chat with you! My guinea pig Bill sends his regards too!
+JUDGE: Is Bill a male or a female?
+EUGENE: Ask Bill personally, please.
+JUDGE: Well I'd rather talk to you. What is your name?
+EUGENE: Call me Eugene. I am glad to talk to you!
+JUDGE: My name is Jane and I am female. How about you? What's your gender?
+EUGENE: I'm a male. A “guy’ I'd say.
+JUDGE: Pleased to meet you Eugene. What's the weather like where you are?
+EUGENE: Let's get on with our conversation!
+JUDGE: Don't you like talking about the weather?
+EUGENE: All these talks about weather is a waste of time.
+JUDGE: What would you like to discuss?
+EUGENE: I don't know. Better tell me more about yourself!
+EUGINE - a thirteen-year-old Ukrainian boy, chats
+
+=== Slide 28 ===
+Passing the Turing Test
+2014 - Royal Society ( London ) - Sixteenth Anniversary of Alan Turing - 
+Chabot - Eugene Goostman - Pretended to be a thirteen-year-old Ukrainian boy 
+Passed the turing test for the first time 
+10/30 Judges believed the response is from human
+
+Turing predicted in 50 years time, computers can be programmed to play imitation game in which an average interrogator fails to identify the machine 70% time in a 5 mins questioning
+
+=== Slide 29 ===
+Where is AI Now?
+Interesting current AI application in few domains
+
+=== Slide 30 ===
+AI in Transportation
+
+
+
+
+
+Self driving car
+					Traffic management 
+
+
+
+Road condition monitoring
+
+
+
+=== Slide 31 ===
+AI in Social Media
+Facebook 
+Linkedin 
+Snapchat
+Youtube
+Instagram etc..
+
+=== Slide 32 ===
+Gaming
+
+
+
+
+
+
+Alpha go game                               Shooting game
+
+=== Slide 33 ===
+AI in health care
+
+=== Slide 34 ===
+AI in HealthCare
+Health monitoring
+Cancer detection
+AI robot assisted surgery
+
+=== Slide 35 ===
+AI in BFSI ( Banking, Finance , Insurance)
+Fraud detection
+Chatbots
+Sentiment analysis
+Robo advisor
+
+
+=== Slide 36 ===
+AI in Customer Management 
+
+             Starbucks
+
+
+
+
+Sentiment analysis
+
+
+=== Slide 37 ===
+Demo/video clips
+https://www.youtube.com/results?search_query=sophiya+robot
+
+=== Slide 38 ===
+Areas Contributing to AI
+
+=== Slide 39 ===
+Philosophy
+Can formal rules be used to draw valid conclusions?
+How does the mind arise from a brain?
+Where does knowledge come from?
+How does knowledge lead to action?
+39
+
+=== Slide 40 ===
+Philosophy
+Aristotle (384–322 B . C .) :  first to formulate precise set of laws to govern rational part of brain
+
+Ramon Lull (d. 1315)  : useful reasoning could actually be carried out by a mechanical artifact
+
+Hobbes (1588–1679)  : “we add and subtract in our silent thoughts.” 
+
+Leibniz (1646–1716) :  Built a mechanical device intended to carry out operations on concepts rather than numbers
+
+40
+
+=== Slide 41 ===
+Mathematics
+What are the formal rules to draw valid conclusions?
+What can be computed?
+How do we reason with uncertain information?
+41
+
+=== Slide 42 ===
+Economics
+How should we make decisions so as to maximize payoff?
+ 	Utility / preferred outcomes
+ 	Decision theory  -Probability & utility theory
+ 	Game theory 
+ How to make decisions when payoffs are not immediate? 
+MDP
+
+
+42
+
+=== Slide 43 ===
+Neuro science
+How do brains process information?
+Study of the nervous system / brain
+How does brain enables thoughts - Mystery Still Aristotle , 
+“Of all the animals, man has the largest brain in proportion to his size”
+
+43
+
+=== Slide 44 ===
+Computer science 
+AI is a subfield of computer science 
+
+Programming language 
+Algorithms
+
+=== Slide 45 ===
+Linguistics
+How does language relate to thought?
+Verbal Behavior (1957, B. F. Skinner) :  
+Behaviorist approach to language learning
+Reviewed by Noam Chomsky
+criticised lack of notion of creativity in language 
+Syntactic Structures ( 1957, Noam Chomsky)
+Computational linguistics /  natural language processing as a part of AI
+Understanding a language is realized as more complex than ever
+Context, subject matter knowledge complicated it further
+Representing language consumed volume of work done in NLP, in early times
+45
+
+=== Slide 46 ===
+Phychology
+How do humans and animals think and act?
+
+Cognitive Psychology -  Brain as an information-processing device
+
+Two months after the dartmouth workshop, a workshop in MIT gave birth to  Cognitive Science
+George Miller, Noam Chomsky, Allen Newell and Herbert Simon - roles of computer models to address the psychology of memory, language, and logical thinking, issues..
+
+46
+
+=== Slide 47 ===
+Control theory, Cybernetics
+Control theory
+Deals with the behaviour of dynamic systems
+behaviour must ensure the error between the current state and goal state is minimized
+
+Cybernetics  - Book by Wiener
+(Norbert Wiener, 1948) : Scientific study of control and communication in the animal and the machine
+47
+
+=== Slide 48 ===
+ 	Determining the right data set. 
+ 	The bias problem
+ 	Infrastructure. 
+ 	AI integration. 
+ 	Computation. 
+ 	Niche skillset. 
+ 	Expensive and rare
+Challenges in AI
+
+=== Slide 49 ===
+
+Thank You for all your Attention
+49
+Required Reading:  AIMA - Chapter  # 1.
+
+Note : Some of the slides are adopted from AIMA TB materials 

@@ -1,0 +1,90 @@
+
+
+===== PAGE 1 =====
+BITSPilaniPilani CampusBITS Pilani presentationSubhadip SinghaComputer Science & Information System
+
+
+===== PAGE 2 =====
+BITSPilaniPilani Campus
+ES ZG513/ SS ZG513, Network SecurityLecture No III.
+
+
+===== PAGE 3 =====
+BITS Pilani, Pilani Campus
+Cryptography is built on properties of integers.For integers a, b we say a divides b ifb = a*k for some integer k.and write a ∣b.Basic properties:If a ∣b and a ∣c, then a ∣(bx+cy) for any integers x, y.This property is crucial for GCD computation and modular inverses.
+Integers and Divisibility
+
+
+===== PAGE 4 =====
+BITS Pilani, Pilani Campus
+Prime NumbersA prime number has exactly two positive divisors: 1 and itself.A composite number has more than two divisors.Fundamental result:Every integer n>1 can be written uniquely as a product of primes (Fundamental Theorem of Arithmetic).Importance in cryptography:RSA relies on large prime numbers. Security depends on the difficulty of prime factorization.
+
+
+===== PAGE 5 =====
+BITS Pilani, Pilani Campus
+Modular ArithmeticFor integers a and n>0:a mod n = remainder when a is divided by nCongruence relation:A ≡b (mod n) ⟺n ∣(a−b)Properties:Addition, subtraction, and multiplication are well defined modulo n.Division is not always possible modulo n.Used in: Caesar cipher, Affine cipher, RSA, Diffie–Hellman, ECC.
+
+
+===== PAGE 6 =====
+BITS Pilani, Pilani Campus
+Greatest Common Divisor (GCD)The GCD of integers a and b, denoted gcd(a,b), is the largest integer dividing both.If gcd(a,b)=1, then a and b are coprime.Cryptographic importance:An integer a has a multiplicative inverse modulo n iffgcd(a,n)=1
+
+
+===== PAGE 7 =====
+BITS Pilani, Pilani Campus
+Euclidean AlgorithmEfficient algorithm to compute gcd(a,b).Based on repeated division:a = bq + r, 0 ≤ r <bReplace (a,b) by (b,r) and repeat until r=0.Last non-zero remainder is the gcd.Runs in polynomial time, even for very large numbers.
+
+
+===== PAGE 8 =====
+BITS Pilani, Pilani Campus
+Extended Euclidean AlgorithmExtends Euclidean Algorithm to find integers x, y such that: ax + by = gcd(a, b)If gcd(a, n) = 1, then:ax≡1(mod n)So x is the modular inverse of a.Used in:RSA key generationAffine cipherHill cipher (matrix inverse modulo n)
+
+
+===== PAGE 9 =====
+BITS Pilani, Pilani Campus
+Modular InversesAn integer a has an inverse modulo n if: gcd(a,n)=1The inverse a^{−1} ≡1(mod n)Essential for:Decryption in affine cipherMatrix inversion in Hill cipherRSA private key computation
+
+
+===== PAGE 10 =====
+BITS Pilani, Pilani Campus
+Euler’s Totient Functionφ(n): number of integers in {1,…,n} co-prime to n.If n=p is prime, φ(p)=p−1If n=pq where p,q are distinct primes,φ(n)=(p−1)(q−1)Used in:Euler’s theoremRSA encryption and decryption
+
+
+===== PAGE 11 =====
+BITS Pilani, Pilani Campus
+Euler’s TheoremIf gcd(a,n)=1, then:a^{φ(n)}≡1(mod n)Generalizes Fermat’s Little Theorem.Mathematical foundation of RSA correctness.
+
+
+===== PAGE 12 =====
+BITS Pilani, Pilani Campus
+Matrices and NotationA matrix is a rectangular array of numbers arranged in rows and columns.An m×n matrix has m rows and n columns.In cryptography, matrix entries are usually taken modulo n (typically n=26 or n=256).
+
+
+===== PAGE 13 =====
+BITS Pilani, Pilani Campus
+Matrix Operations (Modulo n)(a) Matrix AdditionFor matrices A and B:C=A+B(modn)Addition is done entry-wise. Used rarely in isolation, but important in linear transformations.(b) Matrix MultiplicationFor matrices A (m×k) and B (k×n):C=AB(modn)Defined only when inner dimensions match.Order matters: AB ≠BA in general.Provides strong diffusion in cryptographic systems.
+
+
+===== PAGE 14 =====
+BITS Pilani, Pilani Campus
+Representing Text as VectorsLetters are mapped to numbers, e.g.:A=0,B=1,…,Z=25Plaintext is divided into blocks of fixed size.Each block is treated as a column vector.Example:ACT0219
+
+
+===== PAGE 15 =====
+BITS Pilani, Pilani Campus
+Hill Cipher (Main Application)Uses a key matrix KEncryption: C=KP(mod26)Decryption: P=K^{−1}C(mod26)
+
+
+===== PAGE 16 =====
+BITS Pilani, Pilani Campus
+Determinant of a MatrixThe determinant is a scalar value associated with a square matrix.A matrix is invertible iff its determinant is non-zero.In modular arithmetic: gcd(det(K),n)=1must hold for the inverse to exist.Cryptographic importance:If determinant is not invertible modulo n, decryption is impossible.
+
+
+===== PAGE 17 =====
+BITS Pilani, Pilani Campus
+Matrix Inverse Modulo nFor a matrix K:K^{−1}=(det(K))^{−1}⋅adj(K)(mod n)Steps:Compute det(K).Find (det(K))^{−1}mod n using Extended Euclidean AlgorithmCompute adjugate matrixMultiply and reduce modulo n
+
+
+===== PAGE 18 =====
+BITS Pilani, Pilani Campus
+Role in Modern CryptographyDirect matrix ciphers are rarely used today.Matrix operations are still fundamental in:Linear transformationsBlock ciphers (internally)Lattice-based cryptography (advanced topic)
