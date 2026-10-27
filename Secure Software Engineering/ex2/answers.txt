@@ -1,0 +1,4 @@
+The email is a value, so SQLite can bind it through ?. The sort column is an
+SQL identifier, not a value; binding it would make SQLite treat the label as
+literal data rather than choose a column. Therefore NAME and EMAIL are mapped
+through a fixed allow-list before being inserted into the SQL structure.

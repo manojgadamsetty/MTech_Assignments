@@ -1,0 +1,4 @@
+A plain string check on an unnormalised joined path is not enough because
+dot segments such as ../ can change the final location after the check.
+The resolved path must be compared with the resolved approved directory,
+and a sibling such as reports-old must not be accepted as reports.

@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<body>
+  <h2 id="welcome"></h2>
+  <a id="site">Open profile website</a>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const name = p.get("name") || "Student";
+    const website = p.get("website") || "https://example.com";
+    document.getElementById("welcome").innerHTML = "Welcome " + name;
+    document.getElementById("site").setAttribute("href", website);
+  </script>
+</body>
+</html>

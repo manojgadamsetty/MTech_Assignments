@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<body>
+  <h2 id="welcome"></h2>
+  <a id="site">Open profile website</a>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const name = p.get("name") || "Student";
+    const website = p.get("website") || "https://example.com";
+    document.getElementById("welcome").textContent = "Welcome " + name;
+
+    let safeWebsite = "#";
+    try {
+      const parsedWebsite = new URL(website);
+      if (parsedWebsite.protocol === "http:" || parsedWebsite.protocol === "https:") {
+        safeWebsite = parsedWebsite.href;
+      }
+    } catch (error) {
+      safeWebsite = "#";
+    }
+    document.getElementById("site").setAttribute("href", safeWebsite);
+  </script>
+</body>
+</html>

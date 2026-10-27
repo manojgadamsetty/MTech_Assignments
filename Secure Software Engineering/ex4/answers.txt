@@ -1,0 +1,4 @@
+Content-Security-Policy: script-src 'self' would block the starter page's
+inline script because 'self' permits scripts loaded from the page's origin,
+not inline script text. The page would need an external same-origin script or
+a narrowly scoped nonce/hash to run safely.

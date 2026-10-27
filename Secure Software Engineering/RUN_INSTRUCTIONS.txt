@@ -1,0 +1,24 @@
+Secure Software Engineering Lab
+BITS ID: 2025MT12100
+
+Python prerequisite: Python 3.9 or later. No third-party packages are required.
+
+Run Exercises 1 to 3 from this folder:
+
+  ./ex1/run.sh
+  ./ex2/run.sh 2025MT12100
+  ./ex3/run.sh
+
+Each launcher runs the original and corrected programs and prints the Python
+version. The corresponding run.txt files are captured execution logs.
+
+Exercise 4:
+
+  cd ex4
+  python3 -m http.server 9000
+
+Open profile.html on localhost and test the URLs documented in the report.
+Inspect the link element in browser developer tools for each URL test.
+
+Exercise 5 Part A requires completing the approved Google Phishing Quiz
+manually. Part B answers are in ex5/part_b_answers.txt.

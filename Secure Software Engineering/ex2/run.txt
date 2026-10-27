@@ -1,0 +1,13 @@
+2025MT12100
+SQL: SELECT id, name, email FROM users WHERE email = 'ravi@lab.test' ORDER BY name
+[(2, 'Ravi', 'ravi@lab.test')]
+SQL: SELECT id, name, email FROM users WHERE email = '' OR '1'='1' --' ORDER BY name
+[(1, 'Asha', 'asha@lab.test'), (2, 'Ravi', 'ravi@lab.test'), (3, 'Meena', 'meena@lab.test'), (4, 'Kiran', 'kiran@lab.test'), (5, 'Arun', 'arun@lab.test'), (6, '2025MT12100', '2025mt12100@lab.test')]
+2025MT12100
+SQL: SELECT id, name, email FROM users WHERE email = ? ORDER BY name LIMIT 10
+valid: [(6, '2025MT12100', '2025mt12100@lab.test')]
+SQL: SELECT id, name, email FROM users WHERE email = ? ORDER BY name LIMIT 10
+injection: []
+bad sort rejected: Sort must be NAME or EMAIL.
+row count: 6
+Python 3.9.6

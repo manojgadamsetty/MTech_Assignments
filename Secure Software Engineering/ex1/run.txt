@@ -1,0 +1,9 @@
+2025MT12100
+{'qty': -2, 'total': -2}
+2025MT12100
+1 -> {'qty': 1, 'total': 55000}
+0 -> rejected: Quantity must be a whole number from 1 to 10.
+11 -> rejected: Quantity must be a whole number from 1 to 10.
+-2 -> rejected: Quantity must be a whole number from 1 to 10.
+2.5 -> rejected: Quantity must be a whole number from 1 to 10.
+Python 3.9.6

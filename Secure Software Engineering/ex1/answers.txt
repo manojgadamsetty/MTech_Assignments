@@ -1,0 +1,6 @@
+Before the fix, checkout(55000, -2, 1) prints a total of -2 because it trusts
+the client-supplied price and accepts a negative quantity.
+
+Trusting client_price is a security problem because a client can change it to
+obtain an unauthorised price and affect a financial calculation. It is also
+an integrity and business-rule violation, not merely an arithmetic bug.

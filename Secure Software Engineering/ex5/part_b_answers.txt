@@ -1,0 +1,19 @@
+1. Five red flags, with evidence:
+
+- Misleading sender domain: "examcell@bits-wilp-results.net" does not use an
+  official BITS Pilani domain.
+- Urgency: "verify in 24 hours".
+- Threat of a consequence: "your Mid-Semester result has been withheld" and
+  "To avoid cancelation of your registration".
+- Deceptive link: "https://elearn.bits-pilani.ac.in.verify-login.co/results"
+  contains trusted-looking words but does not end in bits-pilani.ac.in.
+- Unusual financial request: "confirm your bank card for a refund of Rs 1,250."
+
+2. The effective domain is verify-login.co. Reading the hostname from the
+   right, the registrable domain is verify-login.co; elearn.bits-pilani.ac.in
+   is only a subdomain controlled by that domain.
+
+3. I would open the official BITS/WILP website or contact the exam cell using
+   a known phone number or address from an official source, not the email.
+   I would also check the result through the normal eLearn portal by typing
+   its known address manually and report the message to the institution.

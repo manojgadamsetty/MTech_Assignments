@@ -1,0 +1,18 @@
+2025MT12100
+summary.txt -> Semester summary
+
+missing.txt -> [Errno 2] No such file or directory: 'reports/missing.txt'
+../secret.txt -> SYNTHETIC_TEST_VALUE
+
+2025MT12100
+summary.txt -> Semester summary
+
+report_00.txt -> Report for 2025MT12100
+
+LOG name='missing.txt' ref=1244423d
+missing.txt -> Report not available (ref 1244423d)
+LOG name='../secret.txt' ref=d33e2eb9
+../secret.txt -> Report not available (ref d33e2eb9)
+LOG name='notes.csv' ref=2914eb62
+notes.csv -> Report not available (ref 2914eb62)
+Python 3.9.6
